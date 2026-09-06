@@ -20,3 +20,272 @@ q('e3','EASA','航空法規','引用 EASA Aircrew 文件中的規則時，應保
 ];
 export function pool(track,subject='all'){return questions.filter(q=>(q.track===track||q.track==='ICAO')&&(subject==='all'||q.subject===subject));}
 export function score(items,answers){return items.reduce((n,q)=>n+(answers[q.id]===q.answer?1:0),0);}
+
+Object.assign(sources, {
+  "lesson_flight-controls": {
+    "title": "FAA PHAK · Chapter 6: Flight Controls",
+    "url": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf",
+    "section": "Primary Flight Controls / Ailerons / Adverse Yaw / Elevator / Rudder",
+    "version": "FAA-H-8083-25C；2023 章節 PDF，已核對引用段落"
+  },
+  "lesson_pitot-static": {
+    "title": "FAA PHAK · Chapter 8: Flight Instruments",
+    "url": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf",
+    "section": "Pitot-Static Flight Instruments / Altimeter / Vertical Speed Indicator / Airspeed Indicator",
+    "version": "FAA-H-8083-25C；2023 章節 PDF，已核對引用段落"
+  },
+  "lesson_weight-balance": {
+    "title": "FAA PHAK · Chapter 10: Weight and Balance",
+    "url": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf",
+    "section": "Balance, Stability, and Center of Gravity / Weight and Balance Computations",
+    "version": "FAA-H-8083-25C；2023 章節 PDF，已核對引用段落"
+  },
+  "lesson_density-altitude": {
+    "title": "FAA · Density Altitude",
+    "url": "https://www.faasafety.gov/files/events/WP/WP09/2023/WP09123760/FAA-P-8740-02-DensityAltitude.pdf",
+    "section": "Density Altitude Defined / High, Hot, and Humid / Check the Charts Carefully",
+    "version": "FAA–P–8740–2，AFS–8（2008）；本文僅引用原理，不採用通用距離修正值"
+  },
+  "lesson_clouds-fog": {
+    "title": "FAA PHAK · Chapter 12: Weather Theory",
+    "url": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf",
+    "section": "Temperature/Dew Point Relationship / Fog（印刷頁 12-14 至 12-15 附近）",
+    "version": "FAA-H-8083-25C；2023 章節 PDF，已核對引用段落"
+  },
+  "lesson_metar-basics": {
+    "title": "NOAA / NWS Aviation Weather Center · Aviation Weather Data",
+    "url": "https://aviationweather.gov/help/data/#metars",
+    "section": "METARs / Date and Time / Winds / Visibility / Sky Condition / Altimeter",
+    "version": "線上說明，查閱 2026-09-06；本文採美式報告慣例"
+  }
+});
+questions.push(...[
+  {
+    "id": "n1",
+    "track": "ICAO",
+    "subject": "飛行操縱",
+    "title": "副翼主要控制繞哪個軸的運動？",
+    "options": [
+      "縱軸滾轉",
+      "橫軸俯仰",
+      "垂直軸偏航",
+      "地球自轉軸"
+    ],
+    "answer": 0,
+    "explanation": "副翼主要控制繞機頭到機尾之縱軸的滾轉。升降舵主要控制俯仰，方向舵主要控制偏航。",
+    "source": "lesson_flight-controls",
+    "term": "Roll · 滾轉",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n2",
+    "track": "ICAO",
+    "subject": "飛行操縱",
+    "title": "配平的主要用途是什麼？",
+    "options": [
+      "自動取得起飛許可",
+      "減少持續操縱力",
+      "保證航向不變",
+      "取代所有舵面"
+    ],
+    "answer": 1,
+    "explanation": "配平降低維持特定飛行狀態所需的持續操縱力，不等於自動駕駛或飛航許可。",
+    "source": "lesson_flight-controls",
+    "term": "Roll · 滾轉",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n3",
+    "track": "ICAO",
+    "subject": "飛行儀表",
+    "title": "傳統空速表比較哪兩種壓力？",
+    "options": [
+      "總壓與靜壓",
+      "油壓與燃油壓",
+      "胎壓與艙壓",
+      "只有大氣溫度"
+    ],
+    "answer": 0,
+    "explanation": "空速表利用總壓與靜壓之差建立指示，不是 GPS 的地面速度。",
+    "source": "lesson_pitot-static",
+    "term": "Pitot · 皮托",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n4",
+    "track": "ICAO",
+    "subject": "飛行儀表",
+    "title": "哪些傳統儀表使用靜壓？",
+    "options": [
+      "只有空速表",
+      "只有高度表",
+      "空速表、高度表及升降率表",
+      "只有磁羅盤"
+    ],
+    "answer": 2,
+    "explanation": "這三種儀表都依賴靜壓；磁羅盤使用的是磁場方向。",
+    "source": "lesson_pitot-static",
+    "term": "Pitot · 皮托",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n5",
+    "track": "ICAO",
+    "subject": "重量平衡",
+    "title": "總力矩 1,500 kg·m、總重量 700 kg，重心力臂約多少？",
+    "options": [
+      "0.467 m",
+      "2.143 m",
+      "700 m",
+      "1,500 m"
+    ],
+    "answer": 1,
+    "explanation": "重心 = 總力矩 ÷ 總重量 = 1500÷700 ≈ 2.143 m，須再比對實機限制。",
+    "source": "lesson_weight-balance",
+    "term": "CG · 重心",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n6",
+    "track": "ICAO",
+    "subject": "重量平衡",
+    "title": "同一件行李往後移，總重不變時還會改變什麼？",
+    "options": [
+      "總力矩與重心",
+      "地球重力常數",
+      "所有機場標高",
+      "不會改變任何資料"
+    ],
+    "answer": 0,
+    "explanation": "力臂改變使力矩改變，重心因此移動，不能只檢查總重。",
+    "source": "lesson_weight-balance",
+    "term": "CG · 重心",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n7",
+    "track": "ICAO",
+    "subject": "飛行性能",
+    "title": "相同氣壓下，溫度升高通常對密度高度有何影響？",
+    "options": [
+      "降低",
+      "升高",
+      "永遠不變",
+      "等於跑道長度"
+    ],
+    "answer": 1,
+    "explanation": "溫度升高通常使密度降低，對應較高的密度高度。",
+    "source": "lesson_density-altitude",
+    "term": "Density altitude · 密度高度",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n8",
+    "track": "ICAO",
+    "subject": "飛行性能",
+    "title": "計算特定航空器的起飛性能，應優先回查哪個資料？",
+    "options": [
+      "其他機型論壇貼文",
+      "該航空器 AFM／POH 性能資料",
+      "本站虛構例題的數字",
+      "只有機場名稱"
+    ],
+    "answer": 1,
+    "explanation": "實機性能應使用對應機型、構型、重量及環境條件的核准或適用文件。",
+    "source": "lesson_density-altitude",
+    "term": "Density altitude · 密度高度",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n9",
+    "track": "ICAO",
+    "subject": "航空氣象",
+    "title": "潮濕空氣移過冷表面造成的霧，最符合哪一種類型？",
+    "options": [
+      "平流霧",
+      "只有輻射霧",
+      "永遠是冰霧",
+      "與冷卻無關"
+    ],
+    "answer": 0,
+    "explanation": "平流霧的核心機制是潮濕空氣移過冷表面而冷卻。",
+    "source": "lesson_clouds-fog",
+    "term": "Dew point · 露點",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n10",
+    "track": "ICAO",
+    "subject": "航空氣象",
+    "title": "溫度 18°C、露點 17°C，哪項判讀較適當？",
+    "options": [
+      "一分鐘後一定下雨",
+      "一定能安全起飛",
+      "接近飽和，還需查看其他氣象資訊",
+      "露點就是雲底 17 呎"
+    ],
+    "answer": 2,
+    "explanation": "小溫露差是接近飽和的線索，不能單獨保證天氣結果或飛行條件。",
+    "source": "lesson_clouds-fog",
+    "term": "Dew point · 露點",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n11",
+    "track": "FAA",
+    "subject": "航空氣象",
+    "title": "美式 METAR 的 BKN040 中，040 表示什麼？",
+    "options": [
+      "40 呎 MSL",
+      "4,000 呎 AGL",
+      "400 公尺 MSL",
+      "能見度 40 海里"
+    ],
+    "answer": 1,
+    "explanation": "雲底碼按百呎讀取，040 是 4,000 呎，參考地面 AGL。",
+    "source": "lesson_metar-basics",
+    "term": "METAR · 例行航空天氣報告",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  },
+  {
+    "id": "n12",
+    "track": "FAA",
+    "subject": "航空氣象",
+    "title": "美式 METAR 中的 10SM 是多少？",
+    "options": [
+      "10 海里",
+      "10 公尺",
+      "10 法定英里",
+      "10 節"
+    ],
+    "answer": 2,
+    "explanation": "SM 表示 statute miles，法定英里；NM 才是海里，KT 是速度單位。",
+    "source": "lesson_metar-basics",
+    "term": "METAR · 例行航空天氣報告",
+    "kind": "自編示範題",
+    "reviewed": "2026-09-06",
+    "effective": "概念練習；無獨立法規生效日"
+  }
+]);
