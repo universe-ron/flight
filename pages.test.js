@@ -1,0 +1,4 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync,existsSync} from 'node:fs';
+test('website assets resolve inside a GitHub Pages repository subpath',()=>{const html=readFileSync('index.html','utf8');const base='https://example.github.io/flightdeck/';for(const match of html.matchAll(/(?:src|href)="([^"#][^"]*)"/g)){const url=new URL(match[1],base);if(url.origin!==new URL(base).origin)continue;assert.ok(url.pathname.startsWith('/flightdeck/'));assert.ok(existsSync(url.pathname.slice('/flightdeck/'.length)));}for(const file of ['app.js','lessons.js','data.js']){for(const match of readFileSync(file,'utf8').matchAll(/from ['"]([^'"]+)['"]/g)){const url=new URL(match[1],base+file);assert.ok(url.pathname.startsWith('/flightdeck/'));assert.ok(existsSync(url.pathname.slice('/flightdeck/'.length)));}}});
