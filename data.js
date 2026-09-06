@@ -18,7 +18,7 @@ q('e1','EASA','航空法規','EASA 飛行組員執照相關規則的主要索引
 q('e2','EASA','航空法規','在 EASA Aircrew 文件中，FCL 的全名是什麼？',['Flight Crew Licensing','Flight Cargo Loading','Fuel Control Light','Final Cabin List'],0,'FCL 是 Flight Crew Licensing，表示飛行組員執照；其餘是干擾選項。','easa','Flight Crew Licensing · 飛行組員執照'),
 q('e3','EASA','航空法規','引用 EASA Aircrew 文件中的規則時，應保留哪些資訊以便回查？',['文件修訂版本與適用條文','只有搜尋結果排名','只有筆記的字體大小','只有答題速度'],0,'Easy Access Rules 是會修訂的文件。記錄版本與條文有助於回查適用內容，搜尋排名或答題速度無法識別規則版本。','easa','Revision · 修訂版本')
 ];
-export function pool(track,subject='all'){return questions.filter(q=>(q.track===track||q.track==='ICAO')&&(subject==='all'||q.subject===subject));}
+export function pool(track,subject='all',includeCommon=false){return questions.filter(q=>(q.track===track||(includeCommon&&q.track==='ICAO'))&&(subject==='all'||q.subject===subject));}
 export function score(items,answers){return items.reduce((n,q)=>n+(answers[q.id]===q.answer?1:0),0);}
 
 Object.assign(sources, {
