@@ -15,7 +15,7 @@ export const studyDocuments = [
         "number": 1,
         "title": "導論",
         "english": "Introduction",
-        "section": "1.1–1.4",
+        "section": "1.1–1.5",
         "goal": "建立安全管理的用途與角色觀念。",
         "primer": "安全管理以主動辨認與降低風險為方向；閱讀時先區分國家與服務提供者所扮演的角色。",
         "terms": [
@@ -36,7 +36,24 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%201",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "先理解目的：安全管理透過持續辨認與處理風險，改善安全績效。",
+          "閱讀時分開記錄國家與服務提供者的角色，以及彼此的工作接口。",
+          "實施需要有紀錄、可追蹤的流程；原文與補充頁的外部案例也要分辨來源。"
+        ],
+        "confusions": [
+          {
+            "title": "沒有事故＝沒有風險？",
+            "clarification": "事故紀錄是觀察結果，不能單靠它排除尚未造成事故的問題。",
+            "example": "交接錯漏已被多次回報，即使尚無事故，仍值得追查。"
+          },
+          {
+            "title": "有文件＝已落實？",
+            "clarification": "流程寫下來後，還要確認人員如何執行及如何追蹤效果。",
+            "example": "表單存在，但無人收件與回覆，仍無法形成有效的改善流程。"
+          }
+        ]
       },
       {
         "id": "smm4-2",
@@ -64,14 +81,31 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%202",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "先描述危害條件，再列可能後果，接著評估風險與控制措施。",
+          "人員行為需連同工作環境、組織條件與接口一起觀察。",
+          "風險降低可以從後果嚴重程度、發生可能性或暴露程度著手。"
+        ],
+        "confusions": [
+          {
+            "title": "危害、後果與風險",
+            "clarification": "危害是可能造成傷害的條件；後果是可能發生的結果；評估風險還要考量結果的可能性與嚴重程度。",
+            "example": "照明不足是條件，車輛撞人是可能後果；再評估何時容易發生及傷害程度。"
+          },
+          {
+            "title": "人的失誤＝全部原因？",
+            "clarification": "直接失誤與潛在組織條件可能共同作用，分析不能停在責怪個人。",
+            "example": "除了漏看交接欄，也檢查欄位設計、工作負荷和交接時間。"
+          }
+        ]
       },
       {
         "id": "smm4-3",
         "number": 3,
         "title": "安全文化",
         "english": "Safety Culture",
-        "section": "3.1–3.3",
+        "section": "3.1–3.2",
         "goal": "觀察回報意願與組織如何回應問題。",
         "primer": "管理者與員工如何看待安全，會影響回報和學習。閱讀本章時留意信任、回饋以及實際行動之間的關係。",
         "terms": [
@@ -92,7 +126,24 @@ export const studyDocuments = [
         ],
         "answer": 0,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%203",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "安全文化反映管理者與員工日常如何重視安全。",
+          "回報意願與信任、預期得到的支持及可能承受的後果有關。",
+          "觀察文化要看實際回應；可追蹤的回饋有助於理解回報制度如何運作。"
+        ],
+        "confusions": [
+          {
+            "title": "回報變多＝安全變差？",
+            "clarification": "回報量同時受作業量、回報意願與制度變動影響，不能直接等同事故量。",
+            "example": "新表單更方便後回報增加，需先查內容和使用情形。"
+          },
+          {
+            "title": "鼓勵回報＝員工信任？",
+            "clarification": "宣示是起點，員工的實際經驗才會影響是否願意繼續回報。",
+            "example": "主管說歡迎提問，卻從不回應問題，仍可能降低參與意願。"
+          }
+        ]
       },
       {
         "id": "smm4-4",
@@ -120,7 +171,24 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%204",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "安全目標說明改善方向，SPI 用來觀察，目標值用來表達預期表現。",
+          "指標需對應自己的安全問題，並說清楚定義、期間與計算方式。",
+          "解讀數字時搭配作業量、嚴重性與回報情境，避免單一數字主導判斷。"
+        ],
+        "confusions": [
+          {
+            "title": "目標、指標與目標值",
+            "clarification": "方向、測量方式與預期數值是不同層次。",
+            "example": "自編例：減少交接漏項是方向；每百次交接漏項率是指標；下季低於 1% 是假設目標值，並非 ICAO 門檻。"
+          },
+          {
+            "title": "件數與事件率",
+            "clarification": "件數未調整作業量；事件率必須註明分母，兩者回答的問題不同。",
+            "example": "2/100 為 2%，3/300 為 1%；件數增加仍可能伴隨事件率下降。"
+          }
+        ]
       },
       {
         "id": "smm4-5",
@@ -148,7 +216,24 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%205",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "先確定要支持什麼決策，再規劃資料蒐集與保存方式。",
+          "資料定義、分類與品質會影響後續分析是否可靠。",
+          "原始記錄與整理結果需保留關聯，才能追查統計如何產生。"
+        ],
+        "confusions": [
+          {
+            "title": "沒有資料與數值為零",
+            "clarification": "缺漏表示不知道；零表示依定義觀察後沒有事件，不能任意互換。",
+            "example": "尚未收到某班的紀錄，不能直接填為該班零事件。"
+          },
+          {
+            "title": "回報筆數與事件數",
+            "clarification": "不同人可能回報同一事件，應先確認統計單位與重複關係。",
+            "example": "同一地點同一時間收到兩張表單，先關聯核對，再決定事件計數。"
+          }
+        ]
       },
       {
         "id": "smm4-6",
@@ -176,7 +261,24 @@ export const studyDocuments = [
         ],
         "answer": 0,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%206",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "描述分析整理已觀察的資料，推論分析用樣本了解更大範圍，預測分析估計趨勢。",
+          "圖表與結論之間要交代依據、假設及資料限制。",
+          "分析應幫助辨識問題與支持決策；國家層級也能觀察跨組織的資訊。"
+        ],
+        "confusions": [
+          {
+            "title": "相關與因果",
+            "clarification": "兩件事一起變動，不足以證明其中一件造成另一件。",
+            "example": "表單改版後回報增加，還需查作業量與回報意願等因素。"
+          },
+          {
+            "title": "描述、推論與預測",
+            "clarification": "三者分別處理已見資料、更大母體與未來趨勢，不宜混用結論。",
+            "example": "本月 10 筆是描述；推估全體狀況是推論；估計下月數量是預測。"
+          }
+        ]
       },
       {
         "id": "smm4-7",
@@ -204,7 +306,24 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%207",
-        "verified": false
+        "verified": false,
+        "keyPoints": [
+          "閱讀時先找出原文保護的對象、用途與適用範圍，逐項記錄位置。",
+          "把存取、分享與揭露分開列為問題，核對誰可以在什麼條件下處理。",
+          "本章補充頁尚未查核成功；以下為一般資料閱讀提醒，不是保護條件或例外的摘要。"
+        ],
+        "confusions": [
+          {
+            "title": "移除姓名＝無法辨識？",
+            "clarification": "一般資料判讀上，其他欄位的組合仍可能透露身分；此提醒不是本章法律判定。",
+            "example": "姓名刪除後，唯一班別與特定時間仍可能讓同事認出當事人。"
+          },
+          {
+            "title": "能看到＝能公開？",
+            "clarification": "取得資料與獲准對外分享是不同問題，需回查權限與適用規定。",
+            "example": "能開啟內部回報表，不代表可以將完整內容放進公開簡報。"
+          }
+        ]
       },
       {
         "id": "smm4-8",
@@ -232,7 +351,24 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%208",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "SSP 處理國家的安全管理責任，包含安全監理。",
+          "跨機關與組織的責任、配合方式及資訊接口需要清楚記錄。",
+          "國家委由其他單位執行工作時，仍須確保受委託工作符合相關要求。"
+        ],
+        "confusions": [
+          {
+            "title": "SSP 與 SMS",
+            "clarification": "SSP 是國家層級的安全計畫；SMS 是服務提供者管理安全的系統，兩者需要銜接。",
+            "example": "國家制定監理安排，航空公司則管理自己的作業風險。"
+          },
+          {
+            "title": "委託執行與移轉責任",
+            "clarification": "工作由別人執行，不等於國家原有責任自動消失。",
+            "example": "由其他組織協助執行任務，仍需安排確認結果與履行情況。"
+          }
+        ]
       },
       {
         "id": "smm4-9",
@@ -260,7 +396,24 @@ export const studyDocuments = [
         ],
         "answer": 1,
         "source": "https://www.icao.int/safety-management/SMI/SMM/Chapter%209",
-        "verified": true
+        "verified": true,
+        "keyPoints": [
+          "SMS 包含政策與目標、風險管理、安全保證及安全推廣四個構面。",
+          "架構的實施方式需配合組織與活動，並持續辨識危害及評估風險。",
+          "措施執行後還要監測成效、管理變更與持續改進，訓練和溝通則支持實施。"
+        ],
+        "confusions": [
+          {
+            "title": "風險管理與安全保證",
+            "clarification": "風險管理處理危害、評估及降低風險；安全保證追蹤績效與系統是否持續有效。",
+            "example": "改善交接流程是控制措施；後續檢查漏項率與執行情形是成效追蹤。"
+          },
+          {
+            "title": "安全推廣＝只有上課？",
+            "clarification": "安全推廣涵蓋訓練教育，也包括安全溝通。",
+            "example": "除了教新流程，還需讓同仁知道回報的問題如何處理。"
+          }
+        ]
       }
     ]
   }
