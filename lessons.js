@@ -534,3 +534,262 @@ lessons.push(...[
     }
   }
 ]);
+
+export const annexes = [
+  {
+    "number": 1,
+    "title": "航空人員執照",
+    "english": "Personnel Licensing",
+    "group": "人員與航空器",
+    "lesson": "icao-reading"
+  },
+  {
+    "number": 2,
+    "title": "飛航規則",
+    "english": "Rules of the Air",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 3,
+    "title": "國際航空氣象服務",
+    "english": "Meteorological Service for International Air Navigation",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 4,
+    "title": "航空圖",
+    "english": "Aeronautical Charts",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 5,
+    "title": "空中與地面作業使用的度量單位",
+    "english": "Units of Measurement to be Used in Air and Ground Operations",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 6,
+    "title": "航空器運作",
+    "english": "Operation of Aircraft",
+    "group": "人員與航空器",
+    "lesson": null
+  },
+  {
+    "number": 7,
+    "title": "航空器國籍與登記標誌",
+    "english": "Aircraft Nationality and Registration Marks",
+    "group": "人員與航空器",
+    "lesson": null
+  },
+  {
+    "number": 8,
+    "title": "航空器適航性",
+    "english": "Airworthiness of Aircraft",
+    "group": "人員與航空器",
+    "lesson": null
+  },
+  {
+    "number": 9,
+    "title": "簡化手續",
+    "english": "Facilitation",
+    "group": "治理與保障",
+    "lesson": null
+  },
+  {
+    "number": 10,
+    "title": "航空通信",
+    "english": "Aeronautical Telecommunications",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 11,
+    "title": "飛航服務",
+    "english": "Air Traffic Services",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 12,
+    "title": "搜尋與救援",
+    "english": "Search and Rescue",
+    "group": "安全與應變",
+    "lesson": null
+  },
+  {
+    "number": 13,
+    "title": "航空器失事與事故調查",
+    "english": "Aircraft Accident and Incident Investigation",
+    "group": "安全與應變",
+    "lesson": null
+  },
+  {
+    "number": 14,
+    "title": "機場",
+    "english": "Aerodromes",
+    "group": "機場與環境",
+    "lesson": null
+  },
+  {
+    "number": 15,
+    "title": "航空情報服務",
+    "english": "Aeronautical Information Services",
+    "group": "運作與航行",
+    "lesson": null
+  },
+  {
+    "number": 16,
+    "title": "環境保護",
+    "english": "Environmental Protection",
+    "group": "機場與環境",
+    "lesson": null
+  },
+  {
+    "number": 17,
+    "title": "航空保安",
+    "english": "Security",
+    "group": "治理與保障",
+    "lesson": null
+  },
+  {
+    "number": 18,
+    "title": "危險物品安全航空運送",
+    "english": "The Safe Transport of Dangerous Goods by Air",
+    "group": "安全與應變",
+    "lesson": null
+  },
+  {
+    "number": 19,
+    "title": "安全管理",
+    "english": "Safety Management",
+    "group": "安全與應變",
+    "lesson": null
+  }
+];
+lessons.push({
+  "id": "icao-foundations",
+  "track": "ICAO",
+  "subject": "ICAO 文件導讀",
+  "title": "從哪裡開始理解 ICAO？",
+  "summary": "先建立公約、附件與各地主責機關的閱讀地圖。",
+  "minutes": 4,
+  "questionIds": [],
+  "terms": [
+    "Annex · 附件",
+    "SARPs · 標準與建議措施",
+    "PANS · 航行服務程序"
+  ],
+  "sections": [
+    {
+      "title": "把 ICAO 當成知識架構的起點",
+      "text": "ICAO 的標準與程序工作以《國際民用航空公約》（常稱芝加哥公約）為基礎。附件涵蓋不同航空領域，而不是一套單一的機師考卷。因此，本專區先以主題地圖引導閱讀；你可以從人員、航空器、航行、機場與安全等角度，理解不同文件如何分工。這裡的分組是本站的學習安排，不是 ICAO 的正式分類。",
+      "ref": 0
+    },
+    {
+      "title": "為什麼先讀範圍，再讀條文",
+      "text": "面對一個新文件，先確認它處理的對象與問題，再決定需要深入的章節。例如想了解人員資格時先定位 Annex 1；若關心機場，則先定位 Annex 14。這種閱讀方式可以幫助你辨認資料，而不是只把附件號碼當成要背的清單。每次學習都先寫出「我正在查哪一類問題」。",
+      "ref": 0
+    },
+    {
+      "title": "讀完一篇，不等於學完 ICAO",
+      "text": "本專區提供 19 個附件的索引與逐步擴充的教材，也保留程序、各國差異與文件版本的閱讀入口。學習進度只記錄已讀文章，不代表已掌握全部附件、所有分冊或每次修正。建議先完成三篇導讀，再選一個主題查官方來源，將不熟悉的詞彙與需要進一步查核的問題留在自己的筆記中。",
+      "ref": 0
+    }
+  ],
+  "refs": [
+    {
+      "title": "ICAO · How ICAO Develops Standards",
+      "url": "https://www.icao.int/how-icao-develops-standards",
+      "section": "公開說明；文件架構與差異資訊",
+      "version": "線上介紹頁；未據此判定個別條文生效日",
+      "checked": "2026-09-07"
+    }
+  ],
+  "updated": "2026-09-07"
+});
+lessons.push({
+  "id": "icao-document-types",
+  "track": "ICAO",
+  "subject": "ICAO 文件導讀",
+  "title": "SARPs、PANS 與 Doc：文件名稱怎麼讀？",
+  "summary": "用標準與程序的差別，建立文件層級感。",
+  "minutes": 4,
+  "questionIds": [],
+  "terms": [
+    "Annex · 附件",
+    "SARPs · 標準與建議措施",
+    "PANS · 航行服務程序"
+  ],
+  "sections": [
+    {
+      "title": "先辨認縮寫背後的文件性質",
+      "text": "SARPs 是 Standards and Recommended Practices 的合稱，中文可理解為標準與建議措施；PANS 是 Procedures for Air Navigation Services，屬於航行服務程序。ICAO 說明中明確區分 PANS 與理事會採納之標準的地位，因此不宜看到 ICAO 文件就把其中每一段都當成同一性質的規定。",
+      "ref": 0
+    },
+    {
+      "title": "編號方便定位，不能代替判讀",
+      "text": "閱讀時把文件全名與編號一起記下。例如 Doc 是文件編號的標示，單靠一個數字並不能說明適用的國家、版本或操作情境。本站建議筆記至少保留文件名稱、條文位置、版本以及引用目的。若搜尋結果只提供片段，就先回到原文確認前後文，再整理自己的理解。",
+      "ref": 0
+    },
+    {
+      "title": "自己做一次文件分類練習",
+      "text": "自編練習：在筆記畫三欄，分別寫「文件名稱」「內容性質」「我要確認的問題」。找到一份附件與一份程序文件，先填前兩欄，再用自己的話描述它們各自能幫你回答什麼。這不是把程序排成不重要的資料，而是避免把不同文件性質混用；具體內容仍需回查來源與適用條件。",
+      "ref": 0
+    }
+  ],
+  "refs": [
+    {
+      "title": "ICAO · Differences from ICAO Standards, Recommended Practices and Procedures",
+      "url": "https://www.icao.int/airnavigation/differences-from-icao-standards",
+      "section": "公開說明；文件架構與差異資訊",
+      "version": "線上介紹頁；未據此判定個別條文生效日",
+      "checked": "2026-09-07"
+    }
+  ],
+  "updated": "2026-09-07"
+});
+lessons.push({
+  "id": "icao-local-differences",
+  "track": "ICAO",
+  "subject": "ICAO 文件導讀",
+  "title": "國際規範如何連到各國 AIP？",
+  "summary": "讀懂差異查核，避免把國際概念直接當成當地操作答案。",
+  "minutes": 4,
+  "questionIds": [],
+  "terms": [
+    "Annex · 附件",
+    "SARPs · 標準與建議措施",
+    "PANS · 航行服務程序"
+  ],
+  "sections": [
+    {
+      "title": "一致性目標與差異資訊",
+      "text": "國際標準旨在促進協調一致，但研究當地規則時仍需要查核差異。ICAO 對差異的說明指出，公約第 38 條涉及與國際標準不同的通報；PANS 不具有相同的標準地位。理解這個區別能幫助你提出正確問題，而不是假設各國的每一項細節都與某段國際文件完全一致。",
+      "ref": 0
+    },
+    {
+      "title": "把 AIP 放進查閱路徑",
+      "text": "ICAO 的差異說明也指出，Annex 15 要求在航空情報出版品 AIP 中公布相關重大差異。因此，當問題涉及某個地區或機場時，可以把對應 AIP 納入查閱路徑。本文是資料閱讀導引，沒有提供任何機場目前的有效限制，也沒有用一份概述代替當地的完整資料。",
+      "ref": 0
+    },
+    {
+      "title": "自編案例：同一問題查兩個地方",
+      "text": "選一個主題，例如機場資料或飛航程序，分別記錄國際參考文件與某地官方資料的名稱、日期和位置。先比較兩份文件回答的問題是否相同，再看是否有明列的差異；若缺少原文或版本，就標記待確認。不要只因兩段文字長得不同便直接宣布違反標準，也不要因名稱相同就認為內容完全相同。",
+      "ref": 0
+    }
+  ],
+  "refs": [
+    {
+      "title": "ICAO · Differences from ICAO Standards, Recommended Practices and Procedures",
+      "url": "https://www.icao.int/airnavigation/differences-from-icao-standards",
+      "section": "公開說明；文件架構與差異資訊",
+      "version": "線上介紹頁；未據此判定個別條文生效日",
+      "checked": "2026-09-07"
+    }
+  ],
+  "updated": "2026-09-07"
+});
