@@ -16,3 +16,35 @@ test('ICAO atlas covers all 19 annexes independently of selected track',()=>{ass
 test('chapter navigation, notes and completion keep the original quiz history intact',()=>{const existing=JSON.stringify({track:'TW',attempts:[{id:'t1',correct:true}],wrong:['t2']});const env=environment('#chapter/smm4-1',existing);assert.match(env.element('#app').innerHTML,/官方唯讀文件/);assert.match(env.element('#app').innerHTML,/#chapter\/smm4-2/);env.events['app:input']({target:{id:'study-notes',dataset:{chapter:'smm4-1'},value:'<script>example</script>我的筆記'}});env.events.click({target:{closest:()=>({dataset:{studyRead:'smm4-1'}})}});const c=studyDocuments[0].chapters[0];env.events.click({target:{closest:()=>({dataset:{studyChapter:c.id,studyAnswer:String(c.answer)}})}});assert.match(env.element('#app').innerHTML,/本章閱讀與情境檢核已完成/);assert.match(env.element('#app').innerHTML,/&lt;script&gt;example&lt;\/script&gt;/);assert.ok(env.studyStored().read.includes(c.id));assert.equal(env.studyStored().notes[c.id],'<script>example</script>我的筆記');assert.equal(env.stored().attempts.length,1);assert.deepEqual(env.stored().wrong,['t2']);assert.match(environment('#chapter/missing').element('#app').innerHTML,/找不到這份文件或章節/);assert.match(environment('#document/smm4').element('#app').innerHTML,/0 \/ 9/);});
 
 test('chapter notes and completed state restore after reload',()=>{const c=studyDocuments[0].chapters[0];const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'下次複習這個例子'}});const env=environment('#chapter/'+c.id,undefined,saved);assert.match(env.element('#app').innerHTML,/下次複習這個例子/);assert.match(env.element('#app').innerHTML,/本章閱讀與情境檢核已完成/);assert.match(environment('#document/smm4',undefined,saved).element('#app').innerHTML,/1 \/ 9/);});
+
+test('PHAK entry and all chapters render FAA material without ICAO reader labels',()=>{
+ const d=studyDocuments.find(d=>d.id==='phak25c');
+ for(const route of ['#phak','#document/phak25c']){
+  const env=environment(route);assert.equal(env.element('#page-name').textContent,'PHAK 飛行知識');
+  assert.match(env.element('#app').innerHTML,/0 \/ 17/);assert.match(env.element('#app').innerHTML,/#chapter\/phak25c-17/);
+ }
+ for(const c of d.chapters){
+  const env=environment('#chapter/'+c.id),html=env.element('#app').innerHTML;
+  assert.equal(env.element('#page-name').textContent,'PHAK 飛行知識');
+  assert.ok(html.includes(c.reader));assert.ok(html.includes(c.detailSections[4].title));
+  assert.ok(html.includes(c.detailSections[0].locator));assert.match(html,/本章 FAA 原文 PDF/);
+  assert.doesNotMatch(html,/ICAO 官方補充|唯讀文件|ICAO 官方文件/);
+  if(c.number>1)assert.ok(html.includes('#chapter/phak25c-'+(c.number-1)));
+  if(c.number<17)assert.ok(html.includes('#chapter/phak25c-'+(c.number+1)));
+ }
+ const library=environment('#documents');assert.equal(library.element('#page-name').textContent,'官方文件學習庫');
+ assert.match(library.element('#app').innerHTML,/PHAK/);assert.match(library.element('#app').innerHTML,/Doc 9859/);
+ assert.match(environment('#learn').element('#app').innerHTML,/#phak/);
+});
+test('PHAK read, answer and note changes preserve ICAO records after reload',()=>{
+ const a=studyDocuments[0].chapters[0],b=studyDocuments.find(d=>d.id==='phak25c').chapters[9];
+ const old={read:[a.id],answers:{[a.id]:a.answer},notes:{[a.id]:'保留 ICAO'}};
+ const env=environment('#chapter/'+b.id,undefined,JSON.stringify(old));
+ env.events['app:input']({target:{id:'study-notes',dataset:{chapter:b.id},value:'重心＝總力矩÷總重量'}});
+ env.events.click({target:{closest:()=>({dataset:{studyRead:b.id}})}});
+ env.events.click({target:{closest:()=>({dataset:{studyChapter:b.id,studyAnswer:String(b.answer)}})}});
+ const state=env.studyStored();assert.equal(state.notes[a.id],'保留 ICAO');assert.ok(state.read.includes(a.id));
+ const reload=environment('#chapter/'+b.id,undefined,JSON.stringify(state));
+ assert.match(reload.element('#app').innerHTML,/重心＝總力矩÷總重量/);assert.match(reload.element('#app').innerHTML,/本章閱讀與情境檢核已完成/);
+ assert.match(environment('#phak',undefined,JSON.stringify(state)).element('#app').innerHTML,/1 \/ 17/);
+});

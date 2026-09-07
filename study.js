@@ -1,3 +1,4 @@
+import {phakDocument} from './phak.js';
 export const studyDocuments = [
   {
     "id": "smm4",
@@ -688,6 +689,7 @@ export const studyDocuments = [
     ]
   }
 ];
+studyDocuments.push(phakDocument);
 export function cleanStudyState(value){
  const state={read:[],answers:{},notes:{}};
  if(!value||typeof value!=='object')return state;

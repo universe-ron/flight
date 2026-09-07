@@ -19,11 +19,12 @@ jobs:
           node --check data.js
           node --check lessons.js
           node --check study.js
+          node --check phak.js
           npm test
       - name: Prepare public website files
         run: |
           mkdir -p _site
-          cp index.html style.css app.js data.js lessons.js study.js _site/
+          cp index.html style.css app.js data.js lessons.js study.js phak.js _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:
