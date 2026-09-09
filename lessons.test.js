@@ -48,3 +48,21 @@ test('PHAK read, answer and note changes preserve ICAO records after reload',()=
  assert.match(reload.element('#app').innerHTML,/重心＝總力矩÷總重量/);assert.match(reload.element('#app').innerHTML,/本章閱讀與情境檢核已完成/);
  assert.match(environment('#phak',undefined,JSON.stringify(state)).element('#app').innerHTML,/1 \/ 17/);
 });
+
+test('Chapter 1 hierarchical navigation reaches distinct sections and keeps chapter routes intact',()=>{
+ const env=environment('#chapter/phak25c-1'),html=env.element('#app').innerHTML;
+ assert.match(html,/本章分層目錄 · 54 節/);assert.match(html,/<ol>.*<ol>/s);
+ assert.match(html,/Chapter 1 : Introduction to Flying/);
+ for(const id of ['sport-privileges','recreational-privileges','medical','dpe-role']){
+  const target='detail-phak25c-1-'+id;
+  assert.equal(html.split('id="'+target+'"').length-1,1);
+  assert.ok(html.includes('data-detail-target="'+target+'"'));
+ }
+ assert.match(html,/FAA 本節原文 · 1-24/);assert.match(html,/版本與現行資料/);
+ let focused=false,scrolled=false;
+ env.context.document.getElementById=id=>id==='detail-phak25c-1-medical'?{setAttribute(){},focus(){focused=true;},scrollIntoView(){scrolled=true;}}:null;
+ env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-1-medical'}})}});
+ assert.ok(focused&&scrolled);assert.equal(env.context.location.hash,'#chapter/phak25c-1');
+ const index=environment('#phak').element('#app').innerHTML;
+ assert.match(index,/原書目錄逐節講解 · 54 節/);assert.match(index,/主題導讀 · 5 個主題/);
+});
