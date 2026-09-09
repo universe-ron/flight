@@ -12,7 +12,7 @@ test('PHAK covers all 17 chapters with FAA sources, locators and detailed teachi
  const ids=studyDocuments.flatMap(d=>d.chapters.map(c=>c.id));assert.equal(new Set(ids).size,ids.length);
  let lastPage=0;
  for(const c of d.chapters){
-  assert.ok(c.detailSections.length>=5);assert.equal(c.confusions.length,2);
+  assert.ok(c.detailSections.length>=5);assert.ok(c.confusions.length>=2);
   assert.ok(c.detailSections.every(s=>s.locator&&s.paragraphs.length===2&&s.paragraphs.every(p=>p.length>40)));
   const source=new URL(c.source);assert.equal(source.hostname,'www.faa.gov');
   const page=Number(source.hash.replace('#page=',''));assert.ok(page>lastPage);lastPage=page;
@@ -36,4 +36,19 @@ test('PHAK Chapter 1 preserves the supplied outline, parents and original page l
  for(const parent of ['sport','recreational'])assert.deepEqual(c.detailSections.filter(s=>s.parent===parent).map(s=>s.english),['Privileges:','Limitations:']);
  assert.ok(c.detailSections.find(s=>s.id==='practical').currentNote);
  assert.equal(c.checked,'2026-09-10');
+});
+
+test('Chapter 2 covers all 60 TOC sections with distinct model and automation hierarchies',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[1];
+ assert.equal(c.detailSections.length,60);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/04_phak_ch2.pdf#page='+s.printedPage.split('-')[1]);assert.ok(Number(s.printedPage.split('-')[1])<=32);}
+ const children=id=>c.detailSections.filter(s=>s.parent===id).map(s=>s.id);
+ assert.deepEqual(children('three-p'),['three-pave','care','team']);
+ assert.deepEqual(children('decide'),['decide-detect','decide-estimate','decide-choose','decide-identify','decide-do','decide-evaluate']);
+ assert.deepEqual(children('five-ps'),['five-plan','five-plane','five-pilot','five-passengers','five-programming']);
+ assert.equal(c.detailSections.filter(s=>s.english==='Risk Management').length,2);
+ assert.equal(c.detailSections.find(s=>s.id==='attitudes').points.length,5);
+ assert.equal(c.detailSections.find(s=>s.id==='pitfalls').points.length,12);
+ assert.equal(c.detailSections.at(-1).printedPage,'2-32');
+ assert.deepEqual(c.modelComparison.map(row=>row[0]),['PAVE','5P','3P','CARE','TEAM','DECIDE']);
 });

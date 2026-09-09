@@ -66,3 +66,18 @@ test('Chapter 1 hierarchical navigation reaches distinct sections and keeps chap
  const index=environment('#phak').element('#app').innerHTML;
  assert.match(index,/原書目錄逐節講解 · 54 節/);assert.match(index,/主題導讀 · 5 個主題/);
 });
+
+test('Chapter 2 renders model comparisons, subsection lists and preserves saved completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[1];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第二章原有筆記'}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ assert.match(html,/本章分層目錄 · 60 節/);assert.match(html,/Chapter 2 : Aeronautical Decision-Making/);
+ assert.match(html,/<caption>決策工具比較（本站整理）<\/caption>/);
+ assert.match(html,/第二章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+ assert.match(html,/FAA 本節原文 · 2-32/);
+ assert.ok(html.includes(c.detailSections.find(s=>s.id==='pitfalls').points[11]));
+ let reached=false;env.context.document.getElementById=id=>id==='detail-phak25c-2-automation-risk'?{setAttribute(){},focus(){},scrollIntoView(){reached=true;}}:null;
+ env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-2-automation-risk'}})}});
+ assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-2');
+});
