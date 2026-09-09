@@ -7,3 +7,5 @@
 .chapter-summary{border:1px solid var(--line);border-radius:8px;padding:22px}.chapter-confusion+.chapter-confusion{border-top:1px solid #e7ddce;margin-top:22px;padding-top:12px}.chapter-confusion h3{font-size:16px;line-height:1.8}.chapter-confusion p{font-size:14px;line-height:2}.confusion-example{background:#fffaf3;padding:12px 15px;border-radius:6px}@media(max-width:760px){.chapter-summary{padding:18px}}
 
 .detail-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#f0f5ee;border-radius:8px}.detail-nav .text-button{font-size:13px;text-align:left;line-height:1.8}.detail-part h3{font-size:18px;line-height:1.8}.article-body .detail-part{border-top:1px solid var(--line);padding-top:18px}.detail-part:focus{outline:2px solid #709774;outline-offset:8px}
+
+.bilingual-chapter>span{display:block;overflow-wrap:anywhere;line-height:1.6}.bilingual-chapter>span+span{margin-top:4px;font-size:.85em;font-weight:400;color:#52695d}.chapter-link .bilingual-chapter{display:block;white-space:normal}
