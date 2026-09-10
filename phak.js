@@ -5470,7 +5470,7 @@ export const phakDocument = {
       "number": 8,
       "title": "飛行儀表",
       "english": "Flight Instruments",
-      "section": "第 8 章；印刷頁碼 8-1 起",
+      "section": "第 8 章；8-1～8-28，全章目錄逐節講解",
       "goal": "從感測來源理解讀值、誤差與故障交叉檢查。",
       "primer": "空速表比較總壓與靜壓，高度表主要使用靜壓，升降速度表利用靜壓變化。它們雖顯示不同量，可能共享同一資訊來源，因此多個儀表同時異常不一定是多個獨立故障。",
       "terms": [
@@ -5479,54 +5479,901 @@ export const phakDocument = {
         "ADC · 大氣資料電腦"
       ],
       "prompts": [
-        "你能用自己的話解釋「先追感測來源，再看顯示」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "畫出空速、高度、VSI、姿態與航向的資料來源，找出哪些故障可能一次影響多項指示。",
+        "比較皮托入口堵塞但排水孔暢通、總壓完全被困、靜壓被困三種情況，說明推論的條件。"
       ],
       "keyPoints": [
-        "先追感測來源，再看顯示",
-        "IAS、CAS、TAS 與 GS",
-        "堵塞故障取決於堵在哪裡",
-        "陀螺、磁羅盤與電子資料"
+        "總壓、靜壓與排水孔的堵塞條件不同，三表反應也不同。",
+        "氣壓高度不等於離地高度；IAS、TAS 與地速不可互換。",
+        "ADC、AHRS 與螢幕各有不同功能，多個畫面可能共用來源。",
+        "姿態、迎角、轉彎率與協調狀態分別回答不同問題。",
+        "磁差、自差與動態誤差需分開，南北口訣必須註明磁半球。"
       ],
       "detailSections": [
         {
-          "title": "先追感測來源，再看顯示",
-          "locator": "Pitot-Static Flight Instruments；8-1 起",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：從感測來源理解指示",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-1",
+          "printedPage": "8-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=1",
           "paragraphs": [
-            "空速表比較總壓與靜壓，高度表主要使用靜壓，升降速度表利用靜壓變化。它們雖顯示不同量，可能共享同一資訊來源，因此多個儀表同時異常不一定是多個獨立故障。",
-            "電子顯示也需要感測器與計算單元。螢幕看起來不同，不代表背後資料獨立；交叉檢查應確認來源是否共用，而不只是數有幾個畫面。"
+            "飛行儀表將壓力、慣性、磁場或溫度轉成可讀資訊。學習時應先確認量測什麼，再追蹤訊號如何處理與顯示，最後思考故障會讓哪些指示一起出錯。",
+            "姿態、航向、航跡、高度與速度各自回答不同問題。自編例：機頭抬高不保證正在爬升，應交叉查看高度與垂直速度；單一數字看似合理，也不代表感測來源可靠。"
           ]
         },
         {
-          "title": "IAS、CAS、TAS 與 GS",
-          "locator": "Airspeed Indicator；8-8 起",
+          "id": "pitot-static",
+          "english": "Pitot-Static Flight Instruments",
+          "title": "皮托靜壓飛行儀表",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-1",
+          "printedPage": "8-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=1",
           "paragraphs": [
-            "IAS 是指示空速；CAS 修正儀表與位置誤差；TAS 描述相對空氣的真實速度；GS 則相對地面。從空速換到地速需要考慮風，不能只把名稱當成同一速度的不同單位。",
-            "自編例：相同 TAS 遇逆風時地速下降，飛同一地面距離需要更久。GPS 的地速不能直接取代機型所要求的指示空速限制。"
+            "典型系統以皮托管取得總壓，以靜壓口取得環境靜壓。空速表比較兩者，高度表以靜壓推算高度，垂直速度表則利用靜壓隨時間的變化，三者的共同來源形成共同故障風險。",
+            "低速近似下，總壓減靜壓等於動壓，動壓與空氣密度及空速平方相關。數位顯示仍可能依賴同樣的管路，換成玻璃座艙不會自動消除結冰、洩漏或靜壓位置誤差。"
           ]
         },
         {
-          "title": "堵塞故障取決於堵在哪裡",
-          "locator": "Blockage of the Pitot-Static System；8-10～8-11",
+          "id": "impact",
+          "english": "Impact Pressure Chamber and Lines",
+          "title": "總壓腔與管路",
+          "parent": "pitot-static",
+          "locator": "PHAK C 版 · 8-2",
+          "printedPage": "8-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=2",
           "paragraphs": [
-            "若皮托入口堵住但排水孔仍通，空速表可能趨近零；若入口與排水孔都封住而靜壓正常，困住的壓力會使讀值隨高度變化，呈現類似高度表的反應。描述故障時必須交代這些條件。",
-            "若靜壓來源堵塞，高度表可能停留在堵塞時讀值，升降速度指示也受影響。實際備用來源及程序因機型不同，不能僅靠通用故障故事決定操作。"
+            "皮托管迎向氣流的開口把流動空氣減速，將總壓送入管路；它並不是直接把純動壓送給空速表。動壓需透過總壓與靜壓的差求得，高速時還需考慮可壓縮性。",
+            "排水孔讓水分排出，也使入口堵塞但排水孔暢通時的反應，與整個腔室封死不同。飛行前按檢查單確認護套已移除、開口無異物；不可自行吹氣測試而損壞敏感儀表。"
           ]
         },
         {
-          "title": "陀螺、磁羅盤與電子資料",
-          "locator": "Gyroscopic Flight Instruments；Compass Systems；Electronic Flight Display",
+          "id": "static",
+          "english": "Static Pressure Chamber and Lines",
+          "title": "靜壓來源與備用靜壓",
+          "parent": "pitot-static",
+          "locator": "PHAK C 版 · 8-2",
+          "printedPage": "8-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=2",
           "paragraphs": [
-            "傳統陀螺儀表利用陀螺特性，磁羅盤受到地磁及航空器磁場影響；轉彎與加減速也可能產生誤差。電子系統則融合感測與計算，同樣需要理解資料有效性及限制。",
-            "姿態、航向和位置是不同資訊。看到航向正常不代表姿態來源必然正常；警示、失效旗標與其他獨立資訊，應一起用來理解顯示是否可信。"
+            "靜壓口位於選定機身位置，力求量到接近環境的壓力，但仍可能有位置誤差。部分機型備用靜壓取自座艙，其壓力受通風、門窗及機體流場影響，不能假定等於外界。",
+            "若備用來源壓力較低，高度與空速通常偏高，VSI 可能短暫顯示爬升。修正量與操作依 AFM／POH；原書提到破壞 VSI 玻璃的舊式作法，不可當成所有機型適用的通用程序。"
           ]
         },
         {
-          "title": "案例：兩個螢幕是否真的互相驗證",
-          "locator": "本站自編案例；對照 Electronic Flight Display",
+          "id": "altimeter",
+          "english": "Altimeter",
+          "title": "氣壓高度表",
+          "parent": "pitot-static",
+          "locator": "PHAK C 版 · 8-3",
+          "printedPage": "8-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=3",
           "paragraphs": [
-            "自編案例：兩個顯示器的空速完全相同，學員便認為空速一定正確。但若兩者共用同一個大氣資料來源，來源錯誤可能同時出現在兩個畫面。",
-            "先查系統架構與來源切換，再依核准程序進行交叉檢查。概念上要分清「顯示器有兩個」與「獨立量測有兩套」。"
+            "氣壓高度表把靜壓對照標準大氣的壓力高度關係，再依設定的基準顯示高度。它不是直接測量離地距離，地形改變時即使顯示不變，實際離地高度也可改變。",
+            "傳統儀表用密封、部分抽空的膜盒及機械連桿感測壓力，電子式則使用壓力感測器。不要把標準海平面設定 29.92 inHg 誤認成膜盒內固定壓力；設定窗與感測元件是不同概念。"
+          ]
+        },
+        {
+          "id": "altimeter-principle",
+          "english": "Principle of Operation",
+          "title": "高度表運作原理",
+          "parent": "altimeter",
+          "locator": "PHAK C 版 · 8-3",
+          "printedPage": "8-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=3",
+          "paragraphs": [
+            "周圍靜壓下降時膜盒膨脹，連桿使指示向較高高度移動；靜壓上升時則相反。校準以標準大氣為基礎，所以相同壓力在不同實際溫度分布下，不一定對應相同幾何高度。",
+            "多指針表要分清百呎、千呎與萬呎指針，數位式也要核對單位、設定與警示。自編練習：先讀完整高度再核對設定窗，避免只看長針便把相差一千呎的指示當成相同。"
+          ]
+        },
+        {
+          "id": "nonstandard",
+          "english": "Effect of Nonstandard Pressure and Temperature",
+          "title": "非標準氣壓與溫度的影響",
+          "parent": "altimeter",
+          "locator": "PHAK C 版 · 8-4",
+          "printedPage": "8-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=4",
+          "paragraphs": [
+            "維持同一指示高度而未更新設定，從高壓區飛向低壓區時，真實高度可能比預期低。更新氣壓基準可處理設定差異，但不會自動消除非標準溫度造成的高度誤差。",
+            "在比標準更冷的空氣中，壓力面間距縮小，相對設定來源上方的真實高度通常低於指示所暗示的高度。低溫修正需依適用程序，不能只改設定窗代替程序要求的修正與通報。"
+          ]
+        },
+        {
+          "id": "setting",
+          "english": "Setting the Altimeter",
+          "title": "設定氣壓基準",
+          "parent": "altimeter",
+          "locator": "PHAK C 版 · 8-5",
+          "printedPage": "8-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=5",
+          "paragraphs": [
+            "設定窗改變高度顯示所用的壓力基準。QNH 用於使地面指示接近海拔，標準設定用於壓力高度或飛航空層，QFE 則以指定場面基準為參考；必須先知道當前採用哪一種。",
+            "在相同靜壓下，調高設定值會使指示高度增加。自編例：把 29.82 改成 29.92 inHg，指示約增加 100 呎，這是近似敏感度，不代表飛機真的爬升；換設時機依所在地規則。"
+          ]
+        },
+        {
+          "id": "altimeter-operation",
+          "english": "Altimeter Operation",
+          "title": "讀值、換設與交叉核對",
+          "parent": "altimeter",
+          "locator": "PHAK C 版 · 8-6",
+          "printedPage": "8-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=6",
+          "paragraphs": [
+            "正確操作包含取得適用且及時的氣壓資料、確認 inHg 或 hPa 單位、設定數值並檢查結果是否合理。只抄到數字卻漏看單位或來源地點，可能把明顯偏差帶進飛行。",
+            "原書以美國航路情境解釋換設，不能將其中轉換高度直接套到世界各地。自編練習：先預測調高設定後指示應往哪邊移動，再觀察實際結果，並核對其他高度資訊的基準差異。"
+          ]
+        },
+        {
+          "id": "altitudes",
+          "english": "Types of Altitude",
+          "title": "五種高度與參考基準",
+          "parent": "altimeter",
+          "locator": "PHAK C 版 · 8-6",
+          "printedPage": "8-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=6",
+          "paragraphs": [
+            "指示高度是高度表當下讀值；真實高度是相對平均海平面的實際高度；絕對高度是相對正下方地面的高度。三者要分清參考面，氣壓高度表並不會隨腳下山谷自動改成離地指示。",
+            "壓力高度以標準氣壓基準表達，密度高度則以標準大氣中具有相同密度的高度描述性能環境。高密度高度不表示地面海拔變高，而是飛機在稀薄空氣中的起飛、爬升等性能改變。"
+          ],
+          "points": [
+            "Indicated altitude：讀值受設定、感測誤差與大氣條件影響。",
+            "True altitude：MSL；Absolute altitude：AGL，參考面不同。",
+            "Pressure altitude：標準設定 29.92 inHg，約 1013.25 hPa。",
+            "Density altitude：相同密度的標準大氣高度，用於理解性能。"
+          ]
+        },
+        {
+          "id": "altimeter-check",
+          "english": "Instrument Check",
+          "title": "高度表飛行前檢查",
+          "parent": "altimeter",
+          "locator": "PHAK C 版 · 8-7",
+          "printedPage": "8-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=7",
+          "paragraphs": [
+            "地面將高度表設為當地可靠來源提供的設定，與已知位置標高比較，可檢查讀值是否合理。機坪位置未必正好等於公布機場標高，還需確認設定時間、單位和飛機所在位置。",
+            "原書以偏差超過 75 呎作為需送檢的提示，不應倒推小於此值就證明所有適航與檢查要求均已滿足。多套高度資料也要比較，但共用靜壓來源可能使它們一起出錯。"
+          ]
+        },
+        {
+          "id": "vsi",
+          "english": "Vertical Speed Indicator (VSI)",
+          "title": "垂直速度表",
+          "parent": "pitot-static",
+          "locator": "PHAK C 版 · 8-7",
+          "printedPage": "8-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=7",
+          "paragraphs": [
+            "VSI 顯示氣壓高度變化率，常用每分鐘呎數，並非直接量測機頭俯仰角或相對地形的距離變化。爬升時地形也可能上升，因此正的垂直速度不保證離地裕度增加。",
+            "傳統 VSI 有反應延遲，應把初始趨勢與穩定後的數值分開解讀。自編例：剛改變姿態就追逐每一次指針擺動，容易造成過度修正；需要配合姿態、高度與功率交叉監控。"
+          ]
+        },
+        {
+          "id": "vsi-principle",
+          "english": "Principle of Operation",
+          "title": "校準漏孔與反應延遲",
+          "parent": "vsi",
+          "locator": "PHAK C 版 · 8-7",
+          "printedPage": "8-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=7",
+          "paragraphs": [
+            "傳統 VSI 的膜盒直接連通靜壓，外殼則經校準漏孔緩慢跟隨。壓力變化時兩側暫時形成差壓，穩定爬降中差壓對應變化率；平飛一段時間後兩側平衡，讀值回零。",
+            "原書描述典型穩定反應約需 6～9 秒，但不是所有裝置的固定延遲。IVSI 可加入加速度補償以加快反應，數位系統也可能使用濾波；都要分辨顯示趨勢與可依賴的穩定數值。"
+          ]
+        },
+        {
+          "id": "vsi-check",
+          "english": "Instrument Check",
+          "title": "VSI 零位與趨勢檢查",
+          "parent": "vsi",
+          "locator": "PHAK C 版 · 8-8",
+          "printedPage": "8-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=8",
+          "paragraphs": [
+            "地面靜止且壓力穩定時，VSI 應接近零，飛行中穩定爬升則應有相符的上升指示。檢查重點包含零位、反應方向及與高度變化的一致性，而不只是指針會不會動。",
+            "原書提及把小零位偏移當參考，但偏移是否可接受仍須依機型和維修要求判斷。自編例：高度表凍結且 VSI 持續為零，不能只認為飛機平飛，應思考共同靜壓來源是否異常。"
+          ]
+        },
+        {
+          "id": "asi",
+          "english": "Airspeed Indicator (ASI)",
+          "title": "空速表與空速種類",
+          "parent": "pitot-static",
+          "locator": "PHAK C 版 · 8-8",
+          "printedPage": "8-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=8",
+          "paragraphs": [
+            "空速表感測總壓與靜壓之差，刻度將差壓轉為速度。它量的是相對空氣運動的資訊，不是地速；逆風中即使空速不變，到地面目的地的速度仍可下降。",
+            "IAS 是直接指示，CAS 修正儀表與位置誤差，EAS 再修正可壓縮性，TAS 則反映實際密度下相對空氣的速度。性能表可能使用不同基準，查數字時必須連同 IAS／CAS 等標示一起讀。"
+          ],
+          "points": [
+            "IAS → CAS：依校正表處理儀表與位置誤差。",
+            "CAS → EAS → TAS：分別考慮可壓縮性與密度，低速時部分差異較小。",
+            "Groundspeed：TAS 與風向風速的向量合成結果，不是另一個空速刻度。"
+          ]
+        },
+        {
+          "id": "asi-markings",
+          "english": "Airspeed Indicator Markings",
+          "title": "色弧與速度標記",
+          "parent": "asi",
+          "locator": "PHAK C 版 · 8-9",
+          "printedPage": "8-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=9",
+          "paragraphs": [
+            "常見輕型飛機以白弧表示襟翼操作範圍、綠弧表示正常操作範圍、黃弧表示需符合平穩空氣等條件的警戒範圍，紅線標示不得超越速度。下界失速速度各有指定重量與構型。",
+            "白弧不是所有襟翼位置都可任意操作的保證，部分機型不同角度有不同限制。自編例：綠弧內仍可能因大負荷因數達到臨界迎角而失速，因此色弧不能取代迎角與負荷管理。"
+          ],
+          "points": [
+            "白弧：通常由 VS0 至 VFE；綠弧：通常由 VS1 至 VNO。",
+            "黃弧：VNO 至 VNE；紅線：VNE，須查機型限制。",
+            "刻度反映指定條件，實際失速與限制可能隨重量、構型及高度改變。"
+          ]
+        },
+        {
+          "id": "asi-limits",
+          "english": "Other Airspeed Limitations",
+          "title": "未完全畫在表上的速度限制",
+          "parent": "asi",
+          "locator": "PHAK C 版 · 8-9",
+          "printedPage": "8-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=9",
+          "paragraphs": [
+            "機動速度 VA、起落架操作速度 VLO、放下後最大速度 VLE 等未必都畫在空速表。VA 會隨重量改變，而且不是容許連續、反向或多軸滿舵操作的通用保護速度。",
+            "多引擎機的藍線常標 VYSE，紅色徑向線可標 VMC，但 VMC 是特定認證條件下的控制速度，不是單發能爬升的保證。自編練習：分別查收放起落架與保持放下的限制，避免混用。"
+          ]
+        },
+        {
+          "id": "asi-check",
+          "english": "Instrument Check",
+          "title": "空速表檢查",
+          "parent": "asi",
+          "locator": "PHAK C 版 · 8-10",
+          "printedPage": "8-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=10",
+          "paragraphs": [
+            "停在無風地面時空速表通常接近零，但迎面強風也可能產生指示。飛行前確認開口、護套與適用加熱檢查，起飛滑跑中則需按程序確認空速合理增加。",
+            "有指示不等於校準正確，兩支共用來源的空速表一致也不代表獨立驗證。自編例：滑跑加速但空速不動，應依既定起飛異常程序處理，不能用地速數字直接替代所需空速。"
+          ]
+        },
+        {
+          "id": "blockage",
+          "english": "Blockage of the Pitot-Static System",
+          "title": "堵塞與共同來源故障",
+          "parent": "pitot-static",
+          "locator": "PHAK C 版 · 8-10",
+          "printedPage": "8-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=10",
+          "paragraphs": [
+            "堵塞可能來自冰、水、昆蟲或未移除護套，其結果取決於哪個開口被封住以及壓力能否洩出。洩漏、感測器或處理器故障也會造成異常，不能將所有不一致都診斷為堵塞。",
+            "建立診斷時先比較哪些儀表共用總壓、哪些共用靜壓，再對照姿態、功率和獨立來源。以下為理想化機械系統案例，實際故障警示、備用來源選擇和操作順序依機型程序。"
+          ]
+        },
+        {
+          "id": "blocked-pitot",
+          "english": "Blocked Pitot System",
+          "title": "皮托入口與排水孔的不同堵塞",
+          "parent": "blockage",
+          "locator": "PHAK C 版 · 8-10",
+          "printedPage": "8-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=10",
+          "paragraphs": [
+            "若皮托入口堵住而排水孔暢通，總壓腔壓力可洩出，空速通常降向零；若入口與排水孔都封住，腔內總壓被困住，空速不再正常跟隨真實速度變化。",
+            "在總壓被困且靜壓正常時，爬升使外殼靜壓降低，空速指示反而增加；下降則減少，呈現類似高度表的反應。這不是飛機真的加減速，高度表與 VSI 若其靜壓正常可仍工作。"
+          ],
+          "points": [
+            "入口堵、排水孔通：空速通常向零下降。",
+            "入口與排水孔皆堵、靜壓通：爬升讀值增加，下降讀值減少。",
+            "上述結論依封閉條件成立；部分堵塞、洩漏或多重故障可有不同反應。"
+          ]
+        },
+        {
+          "id": "blocked-static",
+          "english": "Blocked Static System",
+          "title": "靜壓堵塞的三表反應",
+          "parent": "blockage",
+          "locator": "PHAK C 版 · 8-11",
+          "printedPage": "8-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=11",
+          "paragraphs": [
+            "靜壓被困住時，高度表通常停在堵塞時的讀值，VSI 經暫態後回到零。若皮托仍正常，空速表用錯誤的固定靜壓作比較，因此還會動，卻不再正確。",
+            "相對同條件下正常空速指示，在堵塞高度之上通常偏低，在其下通常偏高；不要把此敘述誤當成 IAS 與 TAS 的一般關係。若總壓也一起封閉，空速可能固定，需另作判讀。"
+          ]
+        },
+        {
+          "id": "efd",
+          "english": "Electronic Flight Display (EFD)",
+          "title": "電子飛行顯示與資料依賴",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-12",
+          "printedPage": "8-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=12",
+          "paragraphs": [
+            "EFD 將多項資訊整合到螢幕，PFD 以主要飛行資訊為主，MFD 可呈現導航、引擎或系統資訊。螢幕是顯示端，背後仍需壓力、慣性、磁場等感測來源與電力。",
+            "兩個畫面可能共用 ADC 或 AHRS，因此同時顯示相同數字不一定代表兩套獨立量測。應熟悉失效旗標、來源標示、備用儀表及重組顯示模式，避免將畫面恢復誤認為感測已恢復。"
+          ]
+        },
+        {
+          "id": "airspeed-tape",
+          "english": "Airspeed Tape",
+          "title": "空速帶",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-12",
+          "printedPage": "8-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=12",
+          "paragraphs": [
+            "空速帶以固定讀值窗口配合移動刻度呈現速度，常另有速度標記、色帶及趨勢線。數字位置與顏色依設備設計，設定的參考標記也不一定就是系統自動計算的限制。",
+            "空速資料通常來自 ADC，顯示解析度更細不代表壓力來源更準確。自編例：螢幕上的空速與地速不同時，先確認兩者定義及風的影響，不能直接認定其中一個故障。"
+          ]
+        },
+        {
+          "id": "efd-attitude",
+          "english": "Attitude Indicator",
+          "title": "電子姿態顯示",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "電子姿態顯示以地平線、俯仰刻度及傾斜標記呈現機體姿態，通常由 AHRS 提供資訊。較大的畫面有助於辨識，但仍需讀懂飛機符號、地平線與指令桿各代表什麼。",
+            "飛行指引給的是所選模式下的操縱指令，不是目前實際姿態；合成視景也不能證明外界已可見。自編例：先看姿態符號，再判斷指令是否合理，來源失效時按設備程序使用備援。"
+          ]
+        },
+        {
+          "id": "efd-altimeter",
+          "english": "Altimeter",
+          "title": "電子高度帶",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "電子高度帶以移動刻度和數值窗口顯示氣壓高度，常附選定高度、氣壓設定及告警。選定高度只是目標，不表示飛機已到達，也不保證自動駕駛已啟用高度捕獲。",
+            "電子式仍受氣壓設定與靜壓來源影響，GPS 高度若顯示則有不同基準。自編例：兩種高度不一致時應核對資料來源、設定和系統狀態，不能任意把其中一個數字抄到另一個儀表。"
+          ]
+        },
+        {
+          "id": "efd-vsi",
+          "english": "Vertical Speed Indicator (VSI)",
+          "title": "電子垂直速度",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "電子 VSI 可採指針、條帶或數字，顯示資料的處理與平滑方式依系統。垂直速度目標標記和當前量測值應分清，否則容易把自動駕駛的選定值當成已達成的爬升率。",
+            "ADC 或整合系統可由壓力變化推算垂直速度，但共用來源失效仍會影響結果。自編例：高度帶凍結而 VSI 接近零時，要和獨立來源交叉比對，不可只看螢幕仍亮著就相信讀值。"
+          ]
+        },
+        {
+          "id": "efd-heading",
+          "english": "Heading Indicator",
+          "title": "電子航向與 HSI",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "電子航向常整合到水平情況指示器 HSI，將航向、選定航道及偏離資訊放在一起。航向通常由 AHRS 與磁感測來源提供；航跡是實際地面移動方向，側風中兩者可以不同。",
+            "航道選擇旋鈕不會直接改變飛機航向，偏離指示還取決於選中的導航來源。自編例：設定相同航道但由 GPS 切換到 VOR，顯示所代表的路徑與靈敏度可能改變，需確認來源標示。"
+          ]
+        },
+        {
+          "id": "efd-turn",
+          "english": "Turn Indicator",
+          "title": "轉彎顯示與協調資訊",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "本節原文以傾斜指標下方的滑塊說明協調狀態，名稱容易與轉彎率混淆。閱讀時應分開三件事：傾斜角、轉彎率，以及是否側滑或側甩，它們不是同一個量。",
+            "滑塊偏離中央主要用於協調判讀，不能用其偏移量直接當每秒轉幾度。自編例：飛機可以在協調的轉彎中讓滑塊居中，同時航向持續改變；居中並不代表沒有轉彎。"
+          ]
+        },
+        {
+          "id": "tachometer",
+          "english": "Tachometer",
+          "title": "轉速表與引擎資訊位置",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "轉速表顯示指定引擎軸或螺旋槳的轉速，常位於引擎資訊區或 MFD，但實際配置依系統。定速槳下 RPM 保持不變時，功率仍可能因其他設定或負荷改變。",
+            "原書將轉速表稱為六大飛行儀表之一，這裡需釐清：傳統六表包含空速、姿態、高度、轉彎協調、航向及垂直速度，並不包含轉速表。轉速屬重要的動力監控資訊。"
+          ]
+        },
+        {
+          "id": "efd-slip",
+          "english": "Slip/Skid Indicator",
+          "title": "電子側滑／側甩指示",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "電子側滑／側甩符號常用橫條或滑塊，功能類似傳統小球，以橫向比力等資料呈現協調狀態。符號形狀與對準方式依製造商，不能把不同顯示器的像素位移當成相同量值。",
+            "穩定協調轉彎可保持居中，刻意側滑則可偏離，兩者需按飛行情境理解。自編練習：同時讀傾斜角、轉彎率與協調符號，逐一說明每個指示回答什麼問題。"
+          ]
+        },
+        {
+          "id": "efd-turn-rate",
+          "english": "Turn Rate Indicator",
+          "title": "電子轉彎率",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-13",
+          "printedPage": "8-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=13",
+          "paragraphs": [
+            "轉彎率指示描述航向隨時間改變的速率，常以航向刻度附近的線段呈現。標準率轉彎是每秒 3 度，完成一圈需兩分鐘，但相同轉彎率在不同空速下需要不同傾斜角。",
+            "刻度和預測時間需按設備說明確認，不能把每個短線都當成標準率。自編例：高速下保持相同傾斜角，轉彎率通常較小，因此固定傾斜角並不等於固定轉彎率。"
+          ]
+        },
+        {
+          "id": "adc",
+          "english": "Air Data Computer (ADC)",
+          "title": "大氣資料電腦",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-14",
+          "printedPage": "8-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=14",
+          "paragraphs": [
+            "ADC 接收總壓、靜壓及適用溫度資料，計算空速、高度、垂直速度等大氣資料，部分資料也送給自動駕駛與其他系統。它的功能和主要處理姿態、角速率的 AHRS 不同。",
+            "堵塞或錯誤輸入可讓運作正常的電腦產生錯誤結果，且影響不只一個畫面。自編例：兩個 PFD 使用同一 ADC 時，數字一致仍不能排除共同故障；確認來源與獨立備援比只比較畫面更有用。"
+          ]
+        },
+        {
+          "id": "trend",
+          "english": "Trend Vectors",
+          "title": "趨勢向量與預測條件",
+          "parent": "efd",
+          "locator": "PHAK C 版 · 8-14",
+          "printedPage": "8-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=14",
+          "paragraphs": [
+            "趨勢向量依目前變化率估算短時間後的速度或高度，原書範例使用六秒預測。它不是預定航跡，也不是保證將來到達的值，改變功率、姿態或遇到亂流後預測就會改變。",
+            "自編例：若垂直速度維持每分鐘 600 呎，六秒相當於約 60 呎高度變化；若開始平飛，這個外推就不再成立。利用趨勢提前辨識變化，同時核對實際讀值及設備預測時間。"
+          ]
+        },
+        {
+          "id": "gyro",
+          "english": "Gyroscopic Flight Instruments",
+          "title": "陀螺飛行儀表",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-15",
+          "printedPage": "8-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=15",
+          "paragraphs": [
+            "傳統姿態、航向與轉彎儀表利用旋轉陀螺的特性，但安裝方式、允許自由度及量測目的不同。現代固態慣性感測器也可提供相似資訊，不能由畫面外觀推定內部機構。",
+            "學習每個儀表時應列出感測軸、能源、限制及失效徵兆。自編例：真空故障可能同時影響姿態與航向，但電動轉彎儀仍可工作；這只適用於相應配置，需查實際機型。"
+          ]
+        },
+        {
+          "id": "gyro-principles",
+          "english": "Gyroscopic Principles",
+          "title": "陀螺原理",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-15",
+          "printedPage": "8-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=15",
+          "paragraphs": [
+            "旋轉物體具有角動量，轉子的轉速與質量分布會影響其保持方向及對外力矩反應的特性。儀表以支架和約束設計，將這些物理特性轉為姿態參考或轉動速率資訊。",
+            "自由陀螺與受約束的速率陀螺不能混為一談，前者偏重保持參考，後者利用反應量測速率。自編練習：比較姿態表與轉彎指針各自顯示角度還是角度變化率。"
+          ]
+        },
+        {
+          "id": "rigidity",
+          "english": "Rigidity in Space",
+          "title": "空間定向性",
+          "parent": "gyro-principles",
+          "locator": "PHAK C 版 · 8-15",
+          "printedPage": "8-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=15",
+          "paragraphs": [
+            "沒有外力矩時，陀螺角動量方向傾向保持，機體與外殼可相對這個參考旋轉。姿態與航向儀表利用此特性，讓飛行員觀察飛機相對參考的變化。",
+            "實際軸承摩擦、支架限制、重力校正與地球自轉會影響指示，並非轉子一旦旋轉便永遠指北。自編例：未自動校正的航向陀螺會漂移，需要在適當穩定條件下核對可靠航向來源。"
+          ]
+        },
+        {
+          "id": "precession",
+          "english": "Precession",
+          "title": "進動與外力矩",
+          "parent": "gyro-principles",
+          "locator": "PHAK C 版 · 8-15",
+          "printedPage": "8-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=15",
+          "paragraphs": [
+            "進動描述外力矩使陀螺角動量方向改變的反應。教材常用旋轉方向後方九十度的位置說明特定轉子上的反應，但必須先辨認轉向與施力方向，不能把口訣當成任意空間運動規則。",
+            "速率儀表利用受約束陀螺的進動偏轉配合彈簧，將轉動速率轉成指示；摩擦造成的非預期進動則會引起誤差。相同物理現象可以是量測機制，也可以是需要管理的漂移來源。"
+          ]
+        },
+        {
+          "id": "gyro-power",
+          "english": "Sources of Power",
+          "title": "真空、壓力與電力來源",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-16",
+          "printedPage": "8-16",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=16",
+          "paragraphs": [
+            "傳統陀螺可由真空或壓力系統的氣流驅動，也可由電動馬達驅動。典型真空系統讓經過濾的空氣流過儀表以帶動轉子，再由泵抽走，需有適當壓差和流量。",
+            "真空或電源故障後轉子可能逐漸減速，儀表未必立刻變成明顯空白。自編例：姿態顯示緩慢傾斜時，應交叉檢查供能與獨立儀表，而不是等它完全停止；備援是否獨立需查系統圖。"
+          ]
+        },
+        {
+          "id": "turn-indicators",
+          "english": "Turn Indicators",
+          "title": "轉彎儀表的量測差異",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-16",
+          "printedPage": "8-16",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=16",
+          "paragraphs": [
+            "轉彎儀表主要呈現方向及速率，常見轉彎側滑儀與轉彎協調儀的感測軸不同。兩者搭配的小球表示協調狀態，並不等於陀螺本身測得的轉彎率。",
+            "指示向右可能代表右轉趨勢，但小飛機圖示不一定提供真正的傾斜角。自編例：若把轉彎協調儀當姿態表讀取俯仰，會得到根本不存在的資訊；應注意 NO PITCH INFORMATION 標示。"
+          ]
+        },
+        {
+          "id": "turn-slip",
+          "english": "Turn-and-Slip Indicator",
+          "title": "轉彎側滑儀",
+          "parent": "turn-indicators",
+          "locator": "PHAK C 版 · 8-16",
+          "printedPage": "8-16",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=16",
+          "paragraphs": [
+            "傳統轉彎側滑儀的速率陀螺主要感測偏航轉動，針的偏轉顯示轉彎方向及速率。小球是另一套受重力與慣性作用的裝置，兩者同在一個表面卻有不同原理。",
+            "指針對準指定刻度才表示該儀表標定的轉彎率，需確認兩分鐘或其他刻度。自編例：右轉且小球居中，表示可同時存在轉彎與協調，不能把居中解釋成正在直線飛行。"
+          ]
+        },
+        {
+          "id": "turn-coordinator",
+          "english": "Turn Coordinator",
+          "title": "轉彎協調儀",
+          "parent": "turn-indicators",
+          "locator": "PHAK C 版 · 8-17",
+          "printedPage": "8-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=17",
+          "paragraphs": [
+            "轉彎協調儀的陀螺軸傾斜安裝，因此能對滾轉與偏航反應，進入轉彎時可較早顯示趨勢。穩定轉彎時，小飛機符號用於讀轉彎率，不是精確的機翼傾斜角。",
+            "快速滾轉時的瞬時偏轉不能直接當成穩定轉彎率，且此表沒有俯仰資訊。自編練習：區分進入轉彎的過渡指示與穩定兩分鐘轉彎刻度，並另看小球判斷協調。"
+          ]
+        },
+        {
+          "id": "inclinometer",
+          "english": "Inclinometer",
+          "title": "小球與協調狀態",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-18",
+          "printedPage": "8-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=18",
+          "paragraphs": [
+            "彎曲管中的球受重力與慣性作用，穩定協調轉彎時會位於中央。側滑時球通常在轉彎內側，側甩時在外側，反映傾斜與轉動的配合，而不是單純機身是否水平。",
+            "「踩球」只是一種協調修正提示，不能忽略傾斜、速度及飛行情境；刻意側滑也有其用途與限制。自編例：過度內舵造成的側甩不能只靠看機翼是否平穩來排除，需交叉監控協調與迎角。"
+          ]
+        },
+        {
+          "id": "yaw-string",
+          "english": "Yaw String",
+          "title": "偏航線與局部氣流",
+          "parent": "inclinometer",
+          "locator": "PHAK C 版 · 8-18",
+          "printedPage": "8-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=18",
+          "paragraphs": [
+            "偏航線以細線在氣流中的方向呈現局部相對風，常見於滑翔機等合適位置。它不需要電力或陀螺，但安裝位置須能代表相關氣流，螺旋槳滑流與局部擾流可能影響讀值。",
+            "偏航線量的是局部氣流方向，小球反映比力，二者不應在所有瞬態條件下一概視為相同。自編練習：先確認線的固定端與自由端，再依機型教學判讀，避免把小球修正口訣直接套到線尾。"
+          ]
+        },
+        {
+          "id": "turn-check",
+          "english": "Instrument Check",
+          "title": "轉彎指示與小球檢查",
+          "parent": "inclinometer",
+          "locator": "PHAK C 版 · 8-18",
+          "printedPage": "8-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=18",
+          "paragraphs": [
+            "飛行前檢查傳統小球管的液體、氣泡及外觀，球在地面會依飛機停放傾斜落到低處。滑行轉彎時，轉彎指示應反映相符方向，小球通常向轉彎外側移動。",
+            "滑行中的外側偏移不是空中協調轉彎的正常居中條件，因為地面受力不同。自編例：向右滑行轉彎時指示卻向左，需排查儀表或來源異常，不能以小球會動就判定全部正常。"
+          ]
+        },
+        {
+          "id": "gyro-attitude",
+          "english": "Attitude Indicator",
+          "title": "傳統姿態表",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-18",
+          "printedPage": "8-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=18",
+          "paragraphs": [
+            "姿態表利用陀螺參考呈現機體俯仰及傾斜，飛機符號與地平線的相對位置才是讀值核心。俯仰角不是迎角，因為迎角還取決於相對氣流方向。",
+            "傳統機械式可能有俯仰、傾斜限制，以及加速、轉彎等暫態誤差，超限或失去驅動可使顯示失真。自編例：不能因姿態表仍看似穩定就忽略真空警告，應按程序比較獨立姿態和其他資訊。"
+          ]
+        },
+        {
+          "id": "gyro-heading",
+          "english": "Heading Indicator",
+          "title": "航向陀螺與漂移",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-19",
+          "printedPage": "8-19",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=19",
+          "paragraphs": [
+            "未自動同步的航向陀螺提供平穩方向參考，但不會自己找到磁北。摩擦與地球自轉等因素會造成漂移，需在適當穩定飛行狀態下，對照可靠磁航向來源校正。",
+            "地球自轉是每小時十五度，但這不表示每一架飛機的航向表都固定每小時漂移十五度，還涉及緯度與機構。自編例：轉彎或加速時磁羅盤有暫態誤差，此時不宜盲目追著羅盤校正。"
+          ]
+        },
+        {
+          "id": "ahrs",
+          "english": "Attitude and Heading Reference System (AHRS)",
+          "title": "姿態與航向參考系統",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-20",
+          "printedPage": "8-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=20",
+          "paragraphs": [
+            "AHRS 整合角速率、加速度及適用磁場等資料估算姿態與航向，部分系統還使用其他輔助資訊。實作可採 MEMS 或其他慣性感測技術，不能將原書的雷射描述套到所有 AHRS。",
+            "沒有傳統轉子翻倒問題，不代表無初始化、對準或運動條件限制。自編例：失去磁感測來源可能影響航向而不立即失去所有姿態功能；實際退化模式與重啟限制需查設備手冊。"
+          ]
+        },
+        {
+          "id": "fluxgate",
+          "english": "The Flux Gate Compass System",
+          "title": "磁通閘羅盤系統",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-20",
+          "printedPage": "8-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=20",
+          "paragraphs": [
+            "磁通閘以受交流激磁的磁性材料與感應線圈，將外部磁場方向轉成可處理的電訊號。這讓磁感測器可放在較少機內干擾的位置，再把資訊傳到顯示或航向同步系統。",
+            "它量測的是當地磁場，並非直接接收衛星航向，也仍可能受附近電流或磁性物品干擾。自編例：新裝設備後航向出現偏差，應考慮安裝與校準問題，而不只是旋轉顯示器旋鈕。"
+          ]
+        },
+        {
+          "id": "remote-compass",
+          "english": "Remote Indicating Compass",
+          "title": "遠端指示羅盤",
+          "parent": "gyro",
+          "locator": "PHAK C 版 · 8-21",
+          "printedPage": "8-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=21",
+          "paragraphs": [
+            "遠端羅盤將磁感測、訊號處理及座艙顯示分開，可用磁參考修正航向陀螺，兼顧平穩顯示與長期方向基準。同步與自由模式的切換、失效指示和人工校正依系統。",
+            "RMI 可在航向卡上疊加電台方位指針，但方位指針所指目標和航向卡的資料來源不同。自編例：指針指向電台不代表機頭正對電台，應同時閱讀航向、相對方位及選定接收來源。"
+          ]
+        },
+        {
+          "id": "heading-check",
+          "english": "Instrument Check",
+          "title": "航向系統檢查",
+          "parent": "remote-compass",
+          "locator": "PHAK C 版 · 8-22",
+          "printedPage": "8-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=22",
+          "paragraphs": [
+            "飛行前確認航向顯示與可信參考大致一致，滑行轉彎時應平順且方向正確。具同步功能的系統還要檢查模式、電力與失效警告，不能只確認羅盤卡能轉動。",
+            "核對磁羅盤時須考慮附近金屬、地面設施與暫態誤差；過度漂移可能代表機構或供能問題。自編例：兩個航向畫面若都依賴同一磁感測器，其一致性仍不能排除共同干擾。"
+          ]
+        },
+        {
+          "id": "aoa",
+          "english": "Angle of Attack Indicators",
+          "title": "迎角指示與失速裕度",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-22",
+          "printedPage": "8-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=22",
+          "paragraphs": [
+            "迎角指示器提供當前迎角或距離臨界迎角的相關資訊，可補足只看空速的限制。失速與臨界迎角相關，重量、負荷因數或構型改變時，失速發生的空速也可能不同。",
+            "感測方式、校準、構型補償及保護範圍依裝置，不能假定顏色正常就保證所有情況安全。自編例：轉彎加大負荷時即使空速仍在平飛熟悉範圍，也應理解迎角裕度如何減少。"
+          ]
+        },
+        {
+          "id": "compass-systems",
+          "english": "Compass Systems",
+          "title": "羅盤系統與方向基準",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-23",
+          "printedPage": "8-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=23",
+          "paragraphs": [
+            "羅盤系統提供方向參考，直接讀取磁羅盤與遠端電子磁航向系統的機構、能源及失效方式不同。航向回答機頭指向，航道與航跡則用於描述計畫路徑和實際移動方向。",
+            "真北、磁北與羅盤讀值需要分層理解，再處理風修正。自編練習：先寫出資料是 true、magnetic 還是 compass，再做換算，避免把磁差修正與側風造成的偏流混在一起。"
+          ]
+        },
+        {
+          "id": "magnetic",
+          "english": "Magnetic Compass",
+          "title": "直接讀取磁羅盤",
+          "parent": "compass-systems",
+          "locator": "PHAK C 版 · 8-23",
+          "printedPage": "8-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=23",
+          "paragraphs": [
+            "傳統磁羅盤以磁鐵帶動浮動羅盤卡，液體支撐並抑制振盪，基準線代表機身讀取方向。磁鐵趨向沿當地磁場的水平分量排列，不是沿直線指向一個固定地理位置。",
+            "刻度從觀察者一側讀取，轉彎時容易有看似反向的視覺感受，需以基準線上的航向判斷。自編例：數字 33 代表 330 度而非 33 度；同時要留意氣泡、液位和附近磁性物品。"
+          ]
+        },
+        {
+          "id": "compass-errors",
+          "english": "Magnetic Compass Induced Errors",
+          "title": "磁羅盤誤差的分類",
+          "parent": "magnetic",
+          "locator": "PHAK C 版 · 8-24",
+          "printedPage": "8-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=24",
+          "paragraphs": [
+            "磁差來自真北與當地磁北的方向差，自差來自機上磁場對羅盤的影響；轉彎、加速與振盪則涉及機構和受力。前兩者的基準修正不能消除後面的動態誤差。",
+            "本節以下補入正文標題，將不同原因分開學習。原書城市磁差與等磁差線為教材時點例子，實際導航需查有效航圖；不能拿舊地圖數字當作目前地區的固定磁差。"
+          ]
+        },
+        {
+          "id": "variation",
+          "english": "Variation",
+          "title": "磁差：真北與磁北",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-24",
+          "printedPage": "8-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=24",
+          "paragraphs": [
+            "磁差是某地真北與磁北之間的角度差，隨位置和時間變化。等磁差線連接相同磁差的位置，零磁差線表示兩種北向在該處重合，而不是全世界只有一條永久不動的線。",
+            "由真方向換磁方向時，東磁差減、西磁差加；反向換算則反過來。自編例：真航向 090 度、東磁差 10 度，磁航向是 080 度；此例只做基準轉換，未包含風或自差。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "deviation",
+          "english": "Deviation",
+          "title": "自差：機上磁場干擾",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-24",
+          "printedPage": "8-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=24",
+          "paragraphs": [
+            "自差是飛機內磁性材料與電流等對羅盤造成的偏差，常隨航向與設備狀態不同。校正羅盤可減少誤差，剩餘修正記錄在適用校正卡上，不能用所在地磁差來替代。",
+            "校正卡要確認是指定「欲飛方向應操多少」還是帶正負號的修正值，再依其標示使用。自編例：把耳機磁鐵或磁性支架靠近羅盤，可造成額外干擾；換裝設備也可能需要重新評估校準。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "dip",
+          "english": "Dip Errors",
+          "title": "磁傾與動態誤差來源",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-25",
+          "printedPage": "8-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=25",
+          "paragraphs": [
+            "地磁場除水平分量外還有垂直分量，其與水平面的夾角稱磁傾角。直接讀取羅盤的懸掛與配重力求保持卡面近水平，但轉彎或加速使其傾斜時，垂直分量就可能影響指示。",
+            "接近磁極時水平分量變小，磁航向參考的可用性下降。後續南北口訣以北磁半球典型羅盤為前提，南磁半球的動態誤差方向相反；不能用地理緯度口訣忽略實際磁場和機構。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "north-error",
+          "english": "Northerly Turning Errors",
+          "title": "北向轉彎誤差",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-26",
+          "printedPage": "8-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=26",
+          "paragraphs": [
+            "在北磁半球，從北向開始轉彎時，傳統磁羅盤指示通常落後實際轉動，初期甚至可能顯示反向。談「羅盤卡運動」與「基準線讀出的航向」時觀察角度不同，必須明確指出讀的是哪一個。",
+            "向北航向改出時常用提前改平的訓練概念，但提前量受磁傾、轉彎率、傾斜及改平過程影響。不要把原書固定角度近似當成每次轉彎的精確程序，穩定後仍需核對實際航向。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "south-error",
+          "english": "Southerly Turning Errors",
+          "title": "南向轉彎誤差",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-26",
+          "printedPage": "8-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=26",
+          "paragraphs": [
+            "在北磁半球，從南向開始轉彎時，羅盤航向讀值通常領先實際轉動。此處的領先指讀值變化相對真實航向，而不是只看浮動卡在殼內朝哪個方向轉。",
+            "向南航向改出時常有延後改平的訓練概念，與北向情況配對理解。自編練習：分別描述「從南向開始轉」與「轉到南向結束」，不要把起始誤差和終止補償當成完全相同的句子。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "acceleration-error",
+          "english": "Acceleration Error",
+          "title": "加速與減速誤差",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-26",
+          "printedPage": "8-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=26",
+          "paragraphs": [
+            "在北磁半球、近東或西航向的典型直接讀取羅盤，加速會造成短暫向北的假轉彎指示，減速則向南，可用 ANDS 記憶。這來自磁傾與浮動組件受力，並不代表機頭真的轉向。",
+            "此類誤差在南磁半球方向相反，且南北航向與不同運動狀態不能直接套用相同大小的反應。自編例：東向直飛增加速度時，若羅盤短暫偏北，應先交叉核對航向而非立刻追著修正。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "oscillation",
+          "english": "Oscillation Error",
+          "title": "振盪與穩定讀值",
+          "parent": "compass-errors",
+          "locator": "PHAK C 版 · 8-27",
+          "printedPage": "8-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=27",
+          "paragraphs": [
+            "亂流與運動可使羅盤卡左右擺動，瞬間讀值可能不能代表穩定航向。液體阻尼降低擺動，但不能消除所有磁場和受力影響，也不能用擺動中心修正所有持續偏差。",
+            "核對航向陀螺時應先建立適當穩定條件，必要時觀察擺動的平均方向。自編例：一邊加速一邊把陀螺追著羅盤每次擺動重設，反而會把暫態誤差帶入較平穩的參考。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "vertical-card",
+          "english": "The Vertical Card Magnetic Compass",
+          "title": "垂直卡式磁羅盤",
+          "parent": "compass-systems",
+          "locator": "PHAK C 版 · 8-27",
+          "printedPage": "8-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=27",
+          "paragraphs": [
+            "垂直卡式以齒輪將磁感測組件的方向轉成面向飛行員的羅盤卡，讀法更接近航向表，減少傳統液體羅盤的視覺混淆。它仍以磁場為參考，不會因外觀像航向陀螺就變成陀螺儀。",
+            "這種設計可改善讀取與阻尼特性，但仍要理解磁差、自差及動態誤差，實際補償依裝置。自編例：看到直立刻度盤不能推定它需要電力或自動同步，應先識別設備型號和原理。"
+          ]
+        },
+        {
+          "id": "lags-leads",
+          "english": "Lags or Leads",
+          "title": "領先與落後的讀值觀點",
+          "parent": "vertical-card",
+          "locator": "PHAK C 版 · 8-27",
+          "printedPage": "8-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=27",
+          "paragraphs": [
+            "原文以從北向開始轉彎會落後、從南向開始轉彎會領先，說明典型北磁半球反應。應以基準線所讀航向與飛機實際航向比較，而不是用羅盤卡相對外殼的移動方向定義領先。",
+            "此記憶方式不應直接移植到南磁半球，也不能替代具體儀表的限制與訓練。自編練習：用兩個箭頭分別畫出真實航向與顯示航向，就能避免把卡片轉向與讀值誤差混為一談。"
+          ]
+        },
+        {
+          "id": "eddy",
+          "english": "Eddy Current Damping",
+          "title": "渦電流阻尼",
+          "parent": "vertical-card",
+          "locator": "PHAK C 版 · 8-27",
+          "printedPage": "8-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=27",
+          "paragraphs": [
+            "磁性組件振動時，相對導體的磁通量改變可產生渦電流，渦電流的磁場抵抗造成它的變化，從而降低振盪。能量以熱等形式耗散，使羅盤卡更容易穩定。",
+            "阻尼主要控制動態擺動，不會把錯誤磁場變成正確磁北，也不是增加導航精度的萬能校正。自編例：卡片停得很快但旁邊有磁性物品時，仍可能穩定地指向錯誤方向。"
+          ]
+        },
+        {
+          "id": "oat",
+          "english": "Outside Air Temperature (OAT) Gauge",
+          "title": "外氣溫度量測",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-28",
+          "printedPage": "8-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=28",
+          "paragraphs": [
+            "原書介紹雙金屬片因熱膨脹差異帶動指針的 OAT 表，電子系統則可採其他溫度探頭。安裝位置需減少日照、引擎熱及機體影響，顯示單位也要分清攝氏與華氏。",
+            "高速下探頭讀值可能包含撞擊升溫，總溫與靜溫的換算需依系統；不能把任何標作溫度的數字直接代入性能計算。自編例：計算密度高度或真空速時，先確認手冊要求的溫度種類與校正。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：量測、基準與交叉核對",
+          "parent": null,
+          "locator": "PHAK C 版 · 8-28",
+          "printedPage": "8-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page=28",
+          "paragraphs": [
+            "讀懂儀表需要同時知道量測來源、參考基準、顯示方式及故障反應。皮托靜壓提供大氣資料，慣性系統提供姿態與轉動資訊，磁系統提供方向參考，各自有不同限制與共同依賴。",
+            "自編複習：解釋空速表為何在堵塞後可能隨爬升增加、兩個螢幕一致為何仍可能錯誤，以及航向不變時羅盤為何暫時轉動。每題先列成立條件，再用獨立資訊驗證，而不是只背結論。"
           ]
         }
       ],
@@ -5540,6 +6387,31 @@ export const phakDocument = {
           "title": "螢幕數量與獨立性",
           "clarification": "相同來源可能造成共同錯誤。",
           "example": "兩個螢幕也可能使用同一 ADC。"
+        },
+        {
+          "title": "總壓與動壓",
+          "clarification": "皮托管取得總壓；低速近似下總壓減靜壓才是動壓。",
+          "example": "無相對氣流時總壓可等於靜壓，動壓則接近零。"
+        },
+        {
+          "title": "顯示一致與來源獨立",
+          "clarification": "兩個畫面可能由同一 ADC 或 AHRS 提供資料。",
+          "example": "共同靜壓堵塞可讓多個高度顯示一起出錯。"
+        },
+        {
+          "title": "傾斜角、轉彎率與協調",
+          "clarification": "機翼傾斜角、航向變化率及小球狀態是不同物理量。",
+          "example": "協調轉彎中小球可居中，航向仍持續改變。"
+        },
+        {
+          "title": "磁差與自差",
+          "clarification": "磁差屬真北與當地磁北基準差，自差屬機上磁干擾。",
+          "example": "更換磁性設備可能改變自差，不能靠套用航圖磁差修正。"
+        },
+        {
+          "title": "領先／落後與觀察對象",
+          "clarification": "需要指明是航向讀值還是羅盤卡運動，並說明磁半球。",
+          "example": "北磁半球從北向起轉時，航向讀值通常落後真實轉動。"
         }
       ],
       "scenario": "自編案例：兩個顯示器的空速完全相同，學員便認為空速一定正確。但若兩者共用同一個大氣資料來源，來源錯誤可能同時出現在兩個畫面。",
@@ -5553,7 +6425,10 @@ export const phakDocument = {
       "explanation": "獨立交叉檢查應考慮感測與計算來源，不能只比較顯示數量。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=203",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=203"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=203",
+      "detailMode": "outline",
+      "checked": "2026-09-11",
+      "coverageNote": "涵蓋提供的 59 個目錄小節，另補正文七個磁羅盤誤差標題，共 66 節。每節有英文原名、中文解釋、頁碼與 FAA 原文。案例為本站編寫；原書特定儀表、地區與年代的描述會另作適用範圍說明。"
     },
     {
       "id": "phak25c-9",
