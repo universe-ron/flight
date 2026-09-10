@@ -103,3 +103,17 @@ test('Chapter 4 renders all detailed sections and retains existing chapter recor
  for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
  assert.match(environment('#phak').element('#app').innerHTML,/原書目錄逐節講解 · 22 節/);
 });
+
+test('Chapter 5 full outline, formula examples and source notes render without losing study history',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[4];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第五章原有筆記'}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ assert.match(html,/Chapter 5 : Aerodynamics of Flight/);assert.match(html,/本章分層目錄 · 62 節/);
+ assert.match(html,/FAA 本節原文 · 5-51/);assert.match(html,/FAA AIM 7-4/);assert.match(html,/70.7 kt/);
+ assert.match(html,/第五章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+ let reached=false;env.context.document.getElementById=id=>id==='detail-phak25c-5-buffet'?{setAttribute(){},focus(){},scrollIntoView(){reached=true;}}:null;
+ env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-5-buffet'}})}});
+ assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-5');
+ assert.match(environment('#phak').element('#app').innerHTML,/原書目錄逐節講解 · 62 節/);
+});

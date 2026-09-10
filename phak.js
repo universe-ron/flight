@@ -2802,7 +2802,7 @@ export const phakDocument = {
       "number": 5,
       "title": "飛行空氣動力學",
       "english": "Aerodynamics of Flight",
-      "section": "第 5 章；印刷頁碼 5-1 起",
+      "section": "第 5 章；5-1～5-51，全章目錄逐節講解",
       "goal": "連結四力、阻力、穩定性、轉彎與失速。",
       "primer": "推力、阻力、升力與重量的方向需要相對飛行路徑和機體理解。在穩定直線平飛的簡化情境中，可討論升力與重量、推力與阻力的平衡；加速、爬升或轉彎時不能不加條件地照搬。",
       "terms": [
@@ -2811,54 +2811,863 @@ export const phakDocument = {
         "Induced drag · 誘導阻力"
       ],
       "prompts": [
-        "你能用自己的話解釋「四力平衡有適用條件」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "比較同傾斜角和同轉彎率兩種情境：真空速增加時，載荷、轉彎率或半徑如何改變？請列出假設。",
+        "選出尾流、VA、臨界迎角與高速操縱各一項限制，說明為什麼不能把原書示例當成所有機型的通則。"
       ],
       "keyPoints": [
-        "四力平衡有適用條件",
-        "失速看迎角，不只看速度",
-        "轉彎、載荷與速度平方根",
-        "穩定、尾流與高速效應"
+        "先辨認飛行狀態與力的方向，再使用受力平衡、升力與阻力關係。",
+        "靜穩定、動穩定與可操縱性不同，荷蘭滾、螺旋俯衝與尾旋也不能互換。",
+        "失速核心是迎角；載荷增加提高失速速度，VA 不是任意操縱的安全保證。",
+        "螺旋槳四種效應須保留旋向及作用軸前提；高速則須區分空速、Mach 與局部流動。"
       ],
       "detailSections": [
         {
-          "title": "四力平衡有適用條件",
-          "locator": "Forces Acting on the Aircraft；5-1～5-8",
+          "id": "forces",
+          "english": "Forces Acting on the Aircraft",
+          "title": "航空器受力：先選參考方向",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-1",
+          "printedPage": "5-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=1",
           "paragraphs": [
-            "推力、阻力、升力與重量的方向需要相對飛行路徑和機體理解。在穩定直線平飛的簡化情境中，可討論升力與重量、推力與阻力的平衡；加速、爬升或轉彎時不能不加條件地照搬。",
-            "寄生阻力隨速度增加通常變重要；在其他條件相同、需要維持升力時，低速所需較大迎角會使誘導阻力增加。總阻力曲線因此不是單純一直上升或下降。"
+            "推力、阻力、升力與重量共同決定飛機的運動。升力垂直於相對氣流，阻力沿相對氣流向後，重量朝向地心，推力則依動力裝置方向作用。分析時先畫出飛行路徑和各力方向，再判斷其分量是否平衡。",
+            "定常平直水平飛行常簡化為升力等於重量、推力等於阻力，但這不是所有飛行狀態的通則。爬升、轉彎或推力線傾斜時需重新分解；等速也不必然沒有加速度，因為速度方向仍可能改變。"
           ]
         },
         {
-          "title": "失速看迎角，不只看速度",
-          "locator": "Stalls；5-25～5-26",
+          "id": "thrust",
+          "english": "Thrust",
+          "title": "推力、速度與功率",
+          "parent": "forces",
+          "locator": "PHAK C 版 · 5-2",
+          "printedPage": "5-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=2",
           "paragraphs": [
-            "失速與達到臨界迎角有關，流動分離使升力特性明顯改變。機型公布的失速速度對應特定重量、構型與載荷條件，不能當成所有情境下永遠固定的界線。",
-            "自編例：拉高載荷的轉彎中，即使速度高於平飛時熟悉的失速速度，仍可能達到臨界迎角。學習失速應連同構型與受力理解，實作則由教官依核准訓練程序指導。"
+            "推力是動力系統對飛機提供的力，功率則是能量傳遞速率，兩者單位與意義不同。在推力沿速度方向的簡化模型中，推進功率等於推力乘速度；螺旋槳把引擎軸功率轉成推進功率時還有其效率。",
+            "增加推力後飛機可能加速、爬升或兩者兼有，結果取決於姿態、阻力及操縱配合。自編例：要在增加功率後仍保持高度，不能只改油門而假設其他狀態固定，必須觀察速度和升力的變化。"
           ]
         },
         {
-          "title": "轉彎、載荷與速度平方根",
-          "locator": "Forces in Turns；Load Factors；5-22、5-33 起",
+          "id": "lift",
+          "english": "Lift",
+          "title": "升力方程式與臨界迎角",
+          "parent": "forces",
+          "locator": "PHAK C 版 · 5-3",
+          "printedPage": "5-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=3",
           "paragraphs": [
-            "在協調且保持高度的轉彎中，升力要同時提供垂直支撐與水平轉彎分量；坡度增加，需要的總升力也增加。此條件下，載荷因數 n＝1/cosφ，60° 坡度對應約 2 g。",
-            "同重量及構型的簡化關係為失速速度隨 √n 增加。這不是所有轉彎的通用載荷公式；若不保持高度或不是穩定協調轉彎，必須重新看受力條件。"
+            "升力可寫成 L = ½ρV²SCL，其中 ρ 是空氣密度、V 是相對空氣的速度、S 是參考翼面積、CL 是升力係數。CL 隨迎角、構型及流動條件改變；因此速度平方關係只有在其他變數固定時才能直接比較。",
+            "在未失速範圍內，增加迎角通常提高 CL，直到最大值附近；再增加迎角，分離加劇而升力係數下降。維持相同重量的水平飛行時，速度較低通常需要較大的 CL；不能因公式有 V² 就說飛得越快，實際升力一定越大。"
+          ],
+          "points": [
+            "自編比較：密度、面積與 CL 固定，速度加倍，公式中的升力變成四倍。",
+            "若維持同一重量的定常水平飛行，速度增加時需相應降低所需 CL，而非讓升力任意增加。",
+            "原圖中的角度與曲線屬示例，不是所有翼型的臨界迎角或最佳性能角度。"
           ]
         },
         {
-          "title": "穩定、尾流與高速效應",
-          "locator": "Stability；Wingtip Vortices；High Speed Flight",
+          "id": "lift-drag",
+          "english": "Lift/Drag Ratio",
+          "title": "升阻比：效率與最大升力不同",
+          "parent": "lift",
+          "locator": "PHAK C 版 · 5-5",
+          "printedPage": "5-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=5",
           "paragraphs": [
-            "靜穩定描述受擾動後最初的回復傾向，動穩定描述反應隨時間如何發展。翼尖渦流與地面效應則影響附近氣流和誘導阻力；地面效應中離地，不等於一定具備正常爬升性能。",
-            "高速部分引入馬赫數、可壓縮性、震波與邊界層。此時不能只沿用低速直覺；重量、重心、速度限制和特定機型資料仍需一起查閱。"
+            "升阻比 L/D 表示每單位阻力對應多少升力；使用相同動壓和參考面積定義係數時，也等於 CL/CD。最大升阻比出現在特定狀態，通常不是最大升力係數或臨界迎角，因為接近失速時阻力也會大幅增加。",
+            "在定常、無動力且忽略其他推力的滑翔模型中，較高升阻比對應較平的空中滑翔路徑。最佳滑翔距離與最小下降率是不同目標；地面可達距離還受風影響，實際操作速度與構型應依機型資料。"
           ]
         },
         {
-          "title": "案例：同一飛機的失速速度會變",
-          "locator": "本站自編算例；對照 Load Factors and Stalling Speeds",
+          "id": "drag",
+          "english": "Drag",
+          "title": "阻力與速度曲線",
+          "parent": "forces",
+          "locator": "PHAK C 版 · 5-6",
+          "printedPage": "5-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=6",
           "paragraphs": [
-            "自編算例：假設某構型 1 g 失速速度為 50 kt，在相同重量與構型、協調等高 60° 轉彎的簡化條件下，n＝2，估算失速速度為 50×√2，約 70.7 kt。",
-            "算例用來展示載荷影響，不是任何機型的操作速度。作答時先寫條件，再代公式；若題目沒有等高轉彎條件，就不能只憑坡度直接套用。"
+            "阻力沿相對氣流方向反向作用，可從寄生阻力與誘導阻力建立低速飛行的入門模型。對一定重量及構型的定常水平飛行，低速端通常誘導阻力較大，高速端寄生阻力較大，總阻力形成有最低點的曲線。",
+            "讀曲線時要保留重量、密度、構型與平衡條件，不能把圖形當成任意加速過程的描述。高速壓縮性、起落架或襟翼改變都會影響阻力；最低阻力速度也不是最低所需功率速度，因為功率還乘上速度。"
+          ]
+        },
+        {
+          "id": "parasite",
+          "english": "Parasite Drag",
+          "title": "寄生阻力的三個來源",
+          "parent": "drag",
+          "locator": "PHAK C 版 · 5-6",
+          "printedPage": "5-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=6",
+          "paragraphs": [
+            "寄生阻力指不以產生升力為必要前提的阻力，原書分為形狀阻力、干擾阻力與表面摩擦阻力。物體外形影響分離與尾流，部件接合處的氣流互相干擾，黏性則造成表面剪力。",
+            "在密度、外形和阻力係數近似固定時，這類阻力通常隨速度平方增加。流線整流罩、適當接合外形及維持表面狀態各自處理不同來源；不能只靠把表面磨亮就消除所有寄生阻力。"
+          ],
+          "points": [
+            "Form drag／形狀阻力：外形和流動分離改變前後壓力分布。",
+            "Interference drag／干擾阻力：例如翼身接合的流場互相影響，總效果不只是單獨部件相加。",
+            "Skin friction drag／表面摩擦阻力：與黏性邊界層有關，光滑表面也不是零摩擦。"
+          ]
+        },
+        {
+          "id": "induced",
+          "english": "Induced Drag",
+          "title": "誘導阻力與有限翼展",
+          "parent": "drag",
+          "locator": "PHAK C 版 · 5-7",
+          "printedPage": "5-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=7",
+          "paragraphs": [
+            "有限翼展機翼產生升力時會形成三維流場及下洗，使局部氣動作用相對自由流具有向後分量，這與誘導阻力相關。可從力的方向或尾流能量理解同一現象，不要把兩種描述重複算成兩份阻力。",
+            "在重量、密度與構型固定的定常水平飛行模型中，較低速度需要較大 CL，誘導阻力通常隨之增加。這個「低速較大」結論依賴所需升力固定；若改成 CL 固定的比較，不能直接沿用反比速度平方的結論。"
+          ]
+        },
+        {
+          "id": "weight",
+          "english": "Weight",
+          "title": "重量與升力需求",
+          "parent": "forces",
+          "locator": "PHAK C 版 · 5-8",
+          "printedPage": "5-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=8",
+          "paragraphs": [
+            "重量是重力對航空器及其載荷的作用，方向朝向地心，作用線通過重心。它與質量相關，但不能和座椅支承力或飛行中所感受的 G 負荷混同；轉彎時人覺得更重，不表示飛機的質量突然增加。",
+            "在其他條件相同的水平飛行中，重量增加使所需升力增加，通常需要更大的 CL 或速度，也影響阻力及性能。燃油消耗會改變重量，還可能改變重心，因此飛行前後不能只用同一個裝載數字概括。"
+          ]
+        },
+        {
+          "id": "vortices",
+          "english": "Wingtip Vortices",
+          "title": "翼尖渦流與尾流風險",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-8",
+          "printedPage": "5-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=8",
+          "paragraphs": [
+            "產生升力的有限機翼在尾流中留下旋轉流動；翼尖附近的壓力差和展向流動是理解其形成的入口。尾流中的滾轉作用可能超過後機的操縱能力，不能只把渦流當成照片中可見的細線。",
+            "尾流是否可見取決於水氣與凝結等條件，看不到並不代表不存在。它的強度、位置及消散受產生者、風和大氣狀態影響；本節建立物理概念，實際避讓須結合下一節及現行操作指引。"
+          ]
+        },
+        {
+          "id": "formation",
+          "english": "Formation of Vortices",
+          "title": "渦流形成、下沉與漂移",
+          "parent": "vortices",
+          "locator": "PHAK C 版 · 5-8",
+          "printedPage": "5-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=8",
+          "paragraphs": [
+            "機翼上下表面壓力差促成翼尖繞流，並與尾緣流動形成尾隨渦系。原書用重量較大、速度較低時需要較大升力係數，解釋強渦流常見條件；clean 指收起高升力裝置等構型，並非機身洗得乾淨。",
+            "在常見情境中，渦流會下沉並隨風漂移，接近地面後還可能向兩側移動。小側風可能讓上風側渦流停留在跑道附近，也可能把另一側推向鄰近跑道，因此不能把「有風」一律當作尾流已清除。"
+          ]
+        },
+        {
+          "id": "wake-avoidance",
+          "english": "Avoiding Wake Turbulence",
+          "title": "尾流避讓：判斷路徑與風",
+          "parent": "vortices",
+          "locator": "PHAK C 版 · 5-9",
+          "printedPage": "5-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=9",
+          "paragraphs": [
+            "避讓先辨認前機的飛行路徑、離地或接地位置，再考慮尾流的下沉與風漂移。典型在較大飛機後方落地的指引包括保持在其進場路徑上方並在其接地點之後接地，但仍須同時滿足穩定進場、剩餘跑道及其他限制。",
+            "若無法安全安排路徑或不確定尾流位置，應與 ATC 協調額外間隔或採適當替代方案，不能為追求提早離地而低於機型要求速度強拉起飛。原書的時間、距離例子不是所有航空器及跑道組合的通用保證；直升機也會產生強尾流。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 7-4：Wake Turbulence",
+              "url": "https://www.faa.gov/Air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
+              "checked": "2026-09-10"
+            }
+          ],
+          "currentNote": "查閱 2026-09-10：本節依 FAA AIM 7-4 補充避讓情境。原書的約三分鐘敘述不作為尾流必然消失的保證；實際間隔、風及路徑須依適用情境判斷。"
+        },
+        {
+          "id": "ground-effect",
+          "english": "Ground Effect",
+          "title": "地面效應與離地後的性能",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-11",
+          "printedPage": "5-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=11",
+          "paragraphs": [
+            "靠近地面或水面時，表面限制機翼周圍的三維流動，改變下洗及渦流，通常降低相同升力所需的誘導阻力。這與翼高相對翼展有關，不能只當成一團被壓住的空氣墊，也不能用固定幾呎概括所有飛機。",
+            "地面效應可能讓飛機在尚不足以正常爬升的速度先離地，離開後阻力需求增加而下沉；落地時多餘速度則可能造成長距離飄浮。自編例：跑道上方能短暫飛起並不能證明能越障，起飛與構型變更仍依機型程序。"
+          ]
+        },
+        {
+          "id": "axes",
+          "english": "Axes of an Aircraft",
+          "title": "三軸與滾轉、俯仰、偏航",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-12",
+          "printedPage": "5-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=12",
+          "paragraphs": [
+            "航空器的縱軸、橫軸與垂直軸可視為通過重心的三條參考線。縱軸由機頭到機尾，繞它是滾轉；橫軸沿左右方向，繞它是俯仰；繞垂直軸則是偏航。軸名與運動名不是同一組字的直接對應。",
+            "操縱面主要對應某一軸，但實際運動可以耦合。例如副翼產生滾轉時也可能出現偏航，方向舵造成側滑時可能引起滾轉。先識別主要力矩方向，再看耦合效應，才能理解後面的穩定性和螺旋槳章節。"
+          ]
+        },
+        {
+          "id": "moment",
+          "english": "Moment and Moment Arm",
+          "title": "力矩與垂直力臂",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-13",
+          "printedPage": "5-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=13",
+          "paragraphs": [
+            "力矩描述力使物體繞某點或某軸轉動的作用，大小可寫成力乘垂直力臂。力臂是參考點到力作用線的垂直距離，而不是任意量一段零件長度；力相同但作用位置不同，造成的俯仰或偏航作用可能不同。",
+            "自編例：相同重量的行李放得離重心更遠，會有更大的重量力矩。重量平衡表使用指定基準面和正負號，不能直接把以基準面算的力臂當成機翼氣動力繞重心的力臂；計算前先確認參考點。"
+          ]
+        },
+        {
+          "id": "design",
+          "english": "Aircraft Design Characteristics",
+          "title": "設計特性與任務取捨",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-14",
+          "printedPage": "5-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=14",
+          "paragraphs": [
+            "飛機設計需要在穩定性、機動性與可操縱性之間取捨。穩定性關心受擾後的自然反應，機動性關心改變運動狀態的能力，可操縱性則關心機師能否透過控制完成所需動作；三者相關但不能互換。",
+            "適合長時間巡航的自然反應，不一定適合快速機動任務。評估某機型時要結合其核准用途、重心和速度範圍，而不是認為越穩定就一定越好轉彎，或容易轉動就代表更容易從異常狀態恢復。"
+          ]
+        },
+        {
+          "id": "stability",
+          "english": "Stability",
+          "title": "穩定性：受擾後如何反應",
+          "parent": "design",
+          "locator": "PHAK C 版 · 5-14",
+          "printedPage": "5-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=14",
+          "paragraphs": [
+            "穩定性以某個原先平衡狀態為起點，觀察小擾動後的反應。要分辨靜穩定與動穩定，也要指明俯仰、滾轉或偏航等方向；在一個方向穩定並不保證所有模態都同樣穩定。",
+            "自編例：陣風使機頭偏離原狀態，飛機可能先出現回復傾向，接著卻來回擺動且越擺越大。前半段觀察和長時間結果回答不同問題，不能只看到一次回頭便判定它最後會自己穩定。"
+          ]
+        },
+        {
+          "id": "static",
+          "english": "Static Stability",
+          "title": "靜穩定：最初的回復傾向",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 5-14",
+          "printedPage": "5-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=14",
+          "paragraphs": [
+            "正靜穩定表示偏離平衡後最初有回到原平衡的傾向；中性表示沒有回復或繼續偏離的初始傾向；負靜穩定則傾向進一步離開。判斷的是初始力或力矩方向，不是計時飛機多久回正。",
+            "原書的球在凹面、平面或凸面上的例子可幫助記憶，但真實飛機有多個相互影響的自由度。靜穩定本身不能說明振盪是否衰減，因此還要閱讀下一節的動穩定。"
+          ]
+        },
+        {
+          "id": "dynamic",
+          "english": "Dynamic Stability",
+          "title": "動穩定：隨時間的變化",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 5-14",
+          "printedPage": "5-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=14",
+          "paragraphs": [
+            "動穩定觀察受擾後的整段反應。振盪逐漸衰減是正動穩定的例子；振幅維持或增大則分別示意中性與負動穩定。回復力與阻尼共同影響結果，有回復方向不等於有足夠阻尼。",
+            "自編例：每次穿越原高度後偏離幅度變小，和每次偏離更大，是不同的時間反應。實際判斷還須看速度、姿態與模態，不應在未按訓練程序的情況下放手測試，把教材圖像當成自行試飛指令。"
+          ]
+        },
+        {
+          "id": "longitudinal",
+          "english": "Longitudinal Stability (Pitching)",
+          "title": "縱向穩定：俯仰力矩的平衡",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 5-15",
+          "printedPage": "5-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=15",
+          "paragraphs": [
+            "縱向穩定討論繞橫軸的俯仰反應，與重心、機翼氣動力矩、尾翼作用及推力線等有關。原書以傳統尾翼常提供向下作用力的設計說明平衡，但不能據此斷言所有飛機的尾翼都必須向下受力。",
+            "重心後移通常降低傳統設計的縱向靜穩定裕度，可能影響降低迎角和恢復的能力；重心過前則可能需要更多尾翼力與操縱能力。推力變更亦可能改變力矩及尾翼氣流，實際趨勢須依機型理解。"
+          ]
+        },
+        {
+          "id": "lateral",
+          "english": "Lateral Stability (Rolling)",
+          "title": "橫向穩定：側滑如何帶來滾轉",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 5-17",
+          "printedPage": "5-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=17",
+          "paragraphs": [
+            "橫向穩定討論繞縱軸的滾轉反應。上反角、後掠、翼身配置及側面受力等因素會影響側滑時的滾轉力矩；上反角的回復效果需要連到相對來流，並非機翼只要傾斜就自動被重力扳平。",
+            "自編例：陣風使一翼下降，伴隨的側滑可讓左右翼遇到不同有效迎角，產生回復滾轉。高翼與低翼可能透過不同設計取得所需效果，所以不能只看機翼位置就決定整架飛機的橫向穩定程度。"
+          ]
+        },
+        {
+          "id": "directional",
+          "english": "Directional Stability (Yawing)",
+          "title": "方向穩定：風標效應",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 5-19",
+          "printedPage": "5-19",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=19",
+          "paragraphs": [
+            "方向穩定討論繞垂直軸的偏航反應，垂直尾翼和重心前後的側面面積、力臂共同影響結果。常用風標比喻：側滑時尾部氣動作用提供回復力矩，使機身重新對準相對氣流。",
+            "對準相對氣流並不表示自動回到擾動前的地面航向或航跡。自編例：飛機消除側滑後仍可能在新的方向飛行，導航路徑要另行管理；穩定性不具備自動追蹤原航線的功能。"
+          ]
+        },
+        {
+          "id": "dutch-roll",
+          "english": "Free Directional Oscillations (Dutch Roll)",
+          "title": "荷蘭滾：偏航與滾轉耦合振盪",
+          "parent": "design",
+          "locator": "PHAK C 版 · 5-20",
+          "printedPage": "5-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=20",
+          "paragraphs": [
+            "荷蘭滾是橫向與方向運動耦合的振盪，滾轉和偏航通常有相位差。其阻尼隨機型和狀態而異，某些後掠翼飛機需要偏航阻尼系統協助抑制，不能將它視為單獨左右晃動或正常轉彎。",
+            "學習時可追蹤機頭與機翼如何交替偏離，而不是只看其中一軸。偏航阻尼系統的可用狀態、限制與失效程序應依機型資料；不能把「飛機原本穩定」當成該系統不重要的理由。"
+          ]
+        },
+        {
+          "id": "spiral",
+          "english": "Spiral Instability",
+          "title": "螺旋不穩定與螺旋俯衝",
+          "parent": "design",
+          "locator": "PHAK C 版 · 5-20",
+          "printedPage": "5-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=20",
+          "paragraphs": [
+            "螺旋不穩定是傾斜和轉彎狀態可能緩慢發散的模式，與方向穩定及橫向回復作用的相對效果有關。若未修正，傾斜角、下降與速度可能逐步增加，初期變化小不代表可一直放任。",
+            "螺旋俯衝與尾旋不同：前者不必失速，尾旋涉及失速與自轉。高速且大傾斜時一味向後拉桿可能增加載荷並收緊轉彎；辨識與恢復須依訓練及機型程序，不能直接把尾旋口訣套到螺旋俯衝。"
+          ]
+        },
+        {
+          "id": "planform",
+          "english": "Effect of Wing Planform",
+          "title": "平面形狀、展弦比與失速分布",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-20",
+          "printedPage": "5-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=20",
+          "paragraphs": [
+            "機翼平面形狀是從上方看的輪廓，與剖面翼型不同。展弦比一般可寫成翼展平方除以翼面積，矩形翼才可直接簡化成翼展除以翼弦；錐度及後掠也會改變展向載荷與失速傾向。",
+            "較大展弦比在適當比較下有助降低誘導阻力，卻也涉及結構重量與彎矩。矩形、橢圓或大錐度翼的實際失速分布還受扭轉、翼型和裝置影響，不能僅從輪廓保證翼根或翼尖一定先失速。"
+          ]
+        },
+        {
+          "id": "maneuvers",
+          "english": "Aerodynamic Forces in Flight Maneuvers",
+          "title": "飛行動作中的受力分析",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-22",
+          "printedPage": "5-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=22",
+          "paragraphs": [
+            "同樣四個基本力，在轉彎、爬升和下降中的方向分解不同。先判斷是否定常、是否協調以及沿哪個座標分析，再畫力的分量，能避免把水平飛行的等式套到所有動作。",
+            "尤其要分開「從一個狀態過渡」與「已經建立的穩定狀態」。拉起建立爬升時可能有垂直加速度，但穩定爬升不代表一直有向上的加速度；速度不變的轉彎則因方向持續變化仍有加速度。"
+          ]
+        },
+        {
+          "id": "turns",
+          "english": "Forces in Turns",
+          "title": "轉彎：升力的水平與垂直分量",
+          "parent": "maneuvers",
+          "locator": "PHAK C 版 · 5-22",
+          "printedPage": "5-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=22",
+          "paragraphs": [
+            "在簡化的協調定常水平轉彎中，升力傾斜後的水平分量提供向心加速度，垂直分量平衡重量。若只傾斜而不增加所需總升力，垂直支承會不足；維持高度需配合迎角與適當功率。",
+            "在地面慣性座標中，向心力是淨力的描述，不需另加一個真實離心力把它抵消。方向舵協助協調偏航，不能當成汽車方向盤；側滑與外滑也不能用更多拉桿掩蓋，應依機型和訓練正確協調。"
+          ]
+        },
+        {
+          "id": "climbs",
+          "english": "Forces in Climbs",
+          "title": "爬升：過渡與定常狀態",
+          "parent": "maneuvers",
+          "locator": "PHAK C 版 · 5-23",
+          "printedPage": "5-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=23",
+          "paragraphs": [
+            "若推力沿飛行路徑，定常直線爬升可簡化為 T − D = W sin γ，L = W cos γ，γ 是爬升路徑角。這說明沿路徑需要推力克服阻力及重量分量，並非穩定爬升時升力一定大於重量。",
+            "建立爬升的過渡階段可能先增加升力來改變路徑，之後重新達到受力平衡。爬升率與剩餘功率相關，爬升角與剩餘推力相關；最佳爬升率速度和最佳爬升角速度是不同目標，不應互換。"
+          ]
+        },
+        {
+          "id": "descents",
+          "english": "Forces in Descents",
+          "title": "下降與滑翔的能量來源",
+          "parent": "maneuvers",
+          "locator": "PHAK C 版 · 5-24",
+          "printedPage": "5-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=24",
+          "paragraphs": [
+            "在無動力定常直線滑翔的簡化模型中，重量沿下降路徑的分量平衡阻力，垂直於路徑的分量由升力平衡。飛機藉高度降低釋放位能以克服阻力，並非引擎停止就沒有相對氣流或沒有升力。",
+            "在下降中增加功率或改變姿態，可能改變速度、下降率及路徑角，不能只背一個控制對應一個結果。滑翔性能還受構型、風與機型限制影響；最佳空中滑翔比與最小下降率仍需分開理解。"
+          ]
+        },
+        {
+          "id": "stalls",
+          "english": "Stalls",
+          "title": "失速：臨界迎角與流動分離",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-25",
+          "printedPage": "5-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=25",
+          "paragraphs": [
+            "失速與超過適用狀態的臨界迎角有關，表現為分離加劇及升力係數下降，而不是升力瞬間完全歸零。低速、大載荷拉起或轉彎都可能到達臨界迎角，因此不能只用一個公布的 1G 失速速度判斷所有情況。",
+            "「同一臨界迎角」需限定翼型、構型和流動條件；冰霜污染、裝置變更及壓縮性等可能改變特性。恢復的必要核心是降低迎角，其他動作與高度管理依機型程序；單純加油門而持續維持過大迎角，不保證解除失速。"
+          ],
+          "points": [
+            "失速是空氣動力現象，不是引擎熄火；滑翔中的機翼也可正常產生升力。",
+            "失速可以出現在機頭向下的姿態；迎角相對氣流，俯仰姿態相對地平線。",
+            "原文臨界角度與結冰減損比例是背景例子，不是全機型固定數值。"
+          ]
+        },
+        {
+          "id": "aoa-indicators",
+          "english": "Angle of Attack Indicators",
+          "title": "迎角指示器與失速裕度",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-26",
+          "printedPage": "5-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=26",
+          "paragraphs": [
+            "迎角指示器用感測或推算資訊呈現迎角及接近臨界狀態的程度，能補充單看空速的不足。相同空速下，重量、轉彎載荷及構型不同，所需升力係數與失速裕度都可能不同。",
+            "指示器必須依其安裝、校準、適用構型與使用限制解讀，顏色及刻度不一定跨機型一致。它也不是完整能量或結構安全顯示器；看似足夠的迎角裕度不代表高度、速度限制與其他系統狀態都合適。"
+          ]
+        },
+        {
+          "id": "propeller",
+          "english": "Basic Propeller Principles",
+          "title": "螺旋槳：旋轉翼型與螺距",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-28",
+          "printedPage": "5-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=28",
+          "paragraphs": [
+            "槳葉相對氣流由旋轉速度、前進速度及誘導流共同決定。槳根與槳尖的周向速度不同，槳葉扭轉可讓不同半徑位置更接近設計工作迎角；幾何槳葉角、迎角及螺距各有不同定義。",
+            "固定螺距是在不同工況間取捨；可變螺距或定速系統則透過改變槳葉角配合功率與速度。定速不等於推力固定，螺旋槳效率也不是所有飛行條件的常數；槳葉設定和引擎限制需一起理解。"
+          ]
+        },
+        {
+          "id": "torque-pfactor",
+          "english": "Torque and P-Factor",
+          "title": "四種旋轉與偏航效應",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 5-30",
+          "printedPage": "5-30",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=30",
+          "paragraphs": [
+            "本節把扭矩反作用、螺旋滑流、陀螺作用及 P-factor 放在一起比較，但它們的成因與主要作用軸不同。原書以從駕駛座看螺旋槳順時針轉動的典型單引擎配置為主，方向判斷必須保留這個前提。",
+            "功率、空速、迎角、姿態變化及機體設計決定各效應相對強弱。不能把任何向左偏航都稱為 P-factor，也不能認為所有螺旋槳飛機永遠向左轉；反向旋轉或其他配置須重新分析。"
+          ]
+        },
+        {
+          "id": "torque-reaction",
+          "english": "Torque Reaction",
+          "title": "扭矩反作用：主要是滾轉",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 5-31",
+          "printedPage": "5-31",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=31",
+          "paragraphs": [
+            "引擎帶動槳朝一方向旋轉時，機體受到相反方向的扭矩。在原書順時針槳的例子中，空中主要傾向繞縱軸向左滾轉，而不是直接把這個扭矩當作繞垂直軸的偏航。",
+            "地面滑跑時，滾轉反作用還可能改變左右主輪負荷與摩擦，間接帶來偏航。自編辨別：說「左轉傾向」之前先指出是哪一軸，再看起落架接地與否，才不會把空中和地面的效果混在一起。"
+          ]
+        },
+        {
+          "id": "corkscrew",
+          "english": "Corkscrew Effect",
+          "title": "螺旋滑流與垂直尾翼",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 5-31",
+          "printedPage": "5-31",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=31",
+          "paragraphs": [
+            "螺旋槳後方氣流具有旋轉成分，繞機身的滑流可能以側向角度撞擊垂直尾翼，產生偏航力矩。原書的典型旋向與尾翼配置會形成左偏航，實際方向需結合旋向和幾何位置判斷。",
+            "高槳轉速而前進速度較低時，滑流形狀與尾翼受力常更明顯，隨速度改變其效果也變化。這是尾翼受到氣流作用的結果，和槳葉左右推力不均的 P-factor 或引擎扭矩反作用都不是同一機制。"
+          ]
+        },
+        {
+          "id": "gyroscopic",
+          "english": "Gyroscopic Action",
+          "title": "陀螺作用與姿態變化",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 5-31",
+          "printedPage": "5-31",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=31",
+          "paragraphs": [
+            "旋轉螺旋槳具有角動量，改變旋轉軸方向需要力矩，並會對機體產生耦合作用。原書用沿旋轉方向約 90° 的進動圖像幫助理解，重點是旋向與軸方向變化，而非所有姿態下都有固定左偏航。",
+            "在原書旋向的尾輪機例子中，起飛滑跑抬尾改變槳軸方向，會帶來偏航效應；相反的俯仰變化或不同旋向可能產生不同結果。效應也與姿態改變速率相關，不能只看目前迎角判斷。"
+          ]
+        },
+        {
+          "id": "p-factor",
+          "english": "Asymmetric Loading (P-Factor)",
+          "title": "P-factor：槳盤不對稱負荷",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 5-32",
+          "printedPage": "5-32",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=32",
+          "paragraphs": [
+            "當來流斜向穿過槳盤時，上行與下行槳葉的相對氣流不同，使平均推力分布偏向一側。在原書典型順時針槳、正迎角條件下，下行的右側槳葉貢獻較多推力，使推力中心右移並帶來左偏航。",
+            "這不是右邊槳葉比較長，也不是直接由飛機重心右移造成。自編比較：即使姿態變化已停止，只要斜向入流仍存在，P-factor 仍可存在；陀螺作用則需要考慮槳軸方向的改變，兩者不能混同。"
+          ]
+        },
+        {
+          "id": "load-factors",
+          "english": "Load Factors",
+          "title": "載荷因數與結構、失速的關係",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-33",
+          "printedPage": "5-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=33",
+          "paragraphs": [
+            "在本章常用的飛機法向受力模型中，載荷因數 n = L/W，是無因次比值，常以 G 表達。它比較氣動支承負荷與重量，不是說重力加速度本身變成好幾倍，也不是任意方向的淨力都可以直接當作 L。",
+            "增加載荷因數會增加結構負擔，也提高相同構型與重量下所需的升力能力，因此可能在高於 1G 失速速度時失速。自編例：2G 不是質量變成兩倍，而是相關支承載荷約為重量的兩倍。"
+          ]
+        },
+        {
+          "id": "design-loads",
+          "english": "Load Factors in Aircraft Design",
+          "title": "限制載荷與極限載荷",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-33",
+          "printedPage": "5-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=33",
+          "paragraphs": [
+            "結構設計需考慮預期操作、陣風與其他載荷情況。限制載荷是正常核准設計範圍的重要界線，極限載荷則包含設計安全係數；原書常見 1.5 倍的說明不是允許機師額外使用的操作裕度。",
+            "原文列舉舊分類系統的載荷數值，不能只按 normal 或 utility 名稱自行推定某架飛機可做的動作。實際依核准手冊、標牌、構型及重量限制；即使沒有立即斷裂，超載仍可能造成永久變形或累積損傷。"
+          ]
+        },
+        {
+          "id": "steep-turns",
+          "english": "Load Factors in Steep Turns",
+          "title": "大傾斜轉彎的載荷",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-34",
+          "printedPage": "5-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=34",
+          "paragraphs": [
+            "在協調、定常、保持高度且採簡化受力的轉彎中，L cos φ = W，因此 n = 1/cos φ。45° 時約 1.41G，60° 時為 2G；越接近 90°，此模型維持高度所需的升力越大。",
+            "這不是「任何 60° 傾斜都一定 2G」的定律。下降、卸載或非定常動作可有不同載荷；公式接近 90° 的發散也不是操作建議。使用前先說明水平協調轉彎的條件，並核對飛機的實際限制。"
+          ]
+        },
+        {
+          "id": "stall-speeds",
+          "english": "Load Factors and Stalling Speeds",
+          "title": "載荷增加如何提高失速速度",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-34",
+          "printedPage": "5-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=34",
+          "paragraphs": [
+            "在相同重量、構型與最大升力係數的準定常比較中，正載荷失速速度可近似寫為 Vs,n = Vs,1√n。這說明拉起或水平轉彎時，即使空速高於公布的 1G 數值，也可能達到臨界迎角。",
+            "自編例：若該條件下 1G 失速速度為 50 kt，2G 時約為 70.7 kt，並非直接加倍到 100 kt。這是條件化的理論比較，不能忽略結冰、構型、壓縮性或儀表差異，也不能反過來當作任意動作的安全速度。"
+          ]
+        },
+        {
+          "id": "maneuver-loads",
+          "english": "Load Factors and Flight Maneuvers",
+          "title": "不同動作與陣風的載荷",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-36",
+          "printedPage": "5-36",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=36",
+          "paragraphs": [
+            "拉起、急轉彎、陣風及突然操縱都可能改變載荷。從下降中恢復時，除了抵抗重量還需改變速度方向，若在高速下猛拉，可能同時逼近結構限制和升力能力界線。",
+            "機動速度 VA 不是「以下怎麼操作都安全」的保證；連續大幅反向操縱、多軸同時大幅輸入或其他載荷情況仍可能損害結構。遭遇亂流或需要恢復時，應使用機型規定的速度與程序，不能把通用圖示當成免受損傷的承諾。"
+          ],
+          "references": [
+            {
+              "title": "FAA：AFM 對快速反向與多軸操縱的限制說明（AC 25.1581-1）",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1581-1_with_change_1.pdf",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "vg",
+          "english": "Vg Diagram",
+          "title": "Vg 圖：速度與載荷包線",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-37",
+          "printedPage": "5-37",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=37",
+          "paragraphs": [
+            "Vg 圖以速度為橫軸、載荷因數為縱軸，把升力能力曲線、正負載荷限制及速度界線放在一起。低速端可能先到達最大升力能力，高速端則可能在失速前先超過結構負荷；圖形須對應指定重量與條件。",
+            "原書把某交點作為機動速度的概念說明，但簡化包線不涵蓋所有軸向、瞬態與陣風情境。較輕重量的適用 VA 通常較低，應查手冊；也不能把從未超過正 G 上限當成其他部件、負 G 或高速限制都未受影響。"
+          ],
+          "references": [
+            {
+              "title": "FAA：AFM 對快速反向與多軸操縱的限制說明（AC 25.1581-1）",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1581-1_with_change_1.pdf",
+              "checked": "2026-09-10"
+            }
+          ],
+          "currentNote": "原書以簡化 Vg 圖描述 VA 以下的保護，不能擴張為所有操縱與陣風組合皆不會損傷。FAA 補充資料明確提醒：快速、大幅交替輸入或多軸全幅輸入，即使低於機動速度仍可能造成結構損傷。實際以該機型 AFM／POH 為準。"
+        },
+        {
+          "id": "turn-rate",
+          "english": "Rate of Turn",
+          "title": "轉彎率與真空速",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-38",
+          "printedPage": "5-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=38",
+          "paragraphs": [
+            "在協調定常水平轉彎模型中，角速度 ω = g tan φ / V，V 使用真空速及一致單位。固定傾斜角時，速度越大轉彎率越小；固定速度時，增加傾斜角可提高轉彎率，但也提高維持高度所需載荷。",
+            "標準率轉彎是每秒 3° 的角度變化概念，不代表任何速度都用同一傾斜角。自編例：同傾斜角下真空速加倍，理論轉彎率減半；地面航跡還受風影響，不能把空中轉彎率公式直接當作地面路徑預測。"
+          ]
+        },
+        {
+          "id": "turn-radius",
+          "english": "Radius of Turn",
+          "title": "轉彎半徑與速度平方",
+          "parent": "load-factors",
+          "locator": "PHAK C 版 · 5-39",
+          "printedPage": "5-39",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=39",
+          "paragraphs": [
+            "在相同的協調定常水平轉彎模型中，R = V²/(g tan φ)。固定傾斜角時，真空速加倍使相對空氣的轉彎半徑變成四倍，而非兩倍；這也是高速時需要更多空間的重要原因。",
+            "增加傾斜角雖可縮小半徑，卻受載荷、失速裕度與機型限制約束。自編比較：固定轉彎率時 R = V/ω，半徑隨速度成正比；先辨識固定的是傾斜角還是轉彎率，才能選對關係，風中地面軌跡另需分析。"
+          ]
+        },
+        {
+          "id": "weight-balance",
+          "english": "Weight and Balance",
+          "title": "重量與平衡：兩種限制都要檢查",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-40",
+          "printedPage": "5-40",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=40",
+          "paragraphs": [
+            "重量平衡不只是確認總重量未超過最大值，還包括重心範圍、局部承載限制及飛行期間的變化。乘員、行李和燃油以不同位置加入，可能在總重量相同時形成不同重心與慣性特性。",
+            "自編例：滿座、滿油和滿行李不一定能同時成立，即使每個空間都放得下。起飛、燃油消耗及落地都應納入檢查；本節解釋背後物理，完整計算方法在第十章及機型重量平衡資料。"
+          ]
+        },
+        {
+          "id": "weight-performance",
+          "english": "Effect of Weight on Flight Performance",
+          "title": "重量如何影響性能",
+          "parent": "weight-balance",
+          "locator": "PHAK C 版 · 5-42",
+          "printedPage": "5-42",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=42",
+          "paragraphs": [
+            "重量增加會提高支撐所需的升力，通常使起飛及落地距離增加、爬升能力降低，並提高相同構型下的失速速度。這些結果與可用動力、阻力及能量需求相連，不能只看引擎是否能讓飛機離地。",
+            "自編例：跑道足夠讓較重的飛機短暫離地，仍不代表爬升梯度或越障能力足夠。實際變化不是固定百分比，應依手冊圖表同時考慮重量、壓力高度、溫度及跑道等指定條件。"
+          ]
+        },
+        {
+          "id": "weight-structure",
+          "english": "Effect of Weight on Aircraft Structure",
+          "title": "重量、G 負荷與局部結構",
+          "parent": "weight-balance",
+          "locator": "PHAK C 版 · 5-42",
+          "printedPage": "5-42",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=42",
+          "paragraphs": [
+            "相同載荷因數下，重量越大，結構承受的相關總負荷越大，例如 3G 時每增加一單位重量，對應支承負荷增加約三單位。總重量限制和座椅、地板、行李艙的局部承載限制都必須遵守。",
+            "自編例：總重與重心合格，但把重物集中在載重上限較低的行李位置，仍可能超出局部結構限制。超載不一定立刻看見變形，不能以「上次飛過沒事」作為結構安全證據。"
+          ]
+        },
+        {
+          "id": "weight-control",
+          "english": "Effect of Weight on Stability and Controllability",
+          "title": "重量與可操縱性",
+          "parent": "weight-balance",
+          "locator": "PHAK C 版 · 5-42",
+          "printedPage": "5-42",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=42",
+          "paragraphs": [
+            "重量及其分布會改變飛機的慣性、配平需求和操縱反應，超出核准範圍後不能沿用正常裝載下的操縱預期。穩定性是受擾後的反應，可操縱性是控制所能達成的能力，兩者須分別看待。",
+            "自編例：更大慣性可能使飛機對相同力矩反應較慢，但這不表示它更容易安全恢復或更有失速裕度。評估時應分辨總重與重心各自造成什麼影響，而不是用「重的比較穩」一句話取代限制。"
+          ]
+        },
+        {
+          "id": "distribution",
+          "english": "Effect of Load Distribution",
+          "title": "重心位置與分布慣性",
+          "parent": "weight-balance",
+          "locator": "PHAK C 版 · 5-43",
+          "printedPage": "5-43",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=43",
+          "paragraphs": [
+            "對典型傳統尾翼設計，較前重心常需要更大尾翼向下作用力，使機翼需承受額外升力需求及阻力；較後重心可能減少這項需求，卻降低縱向穩定和恢復裕度。這不是鼓勵把重心推到後界，更不能超界。",
+            "即使總重和重心相同，把重量分散到離轉軸更遠處，也會增加轉動慣量，改變操縱反應。自編例：將兩件相同貨物對稱向前後移動可保持重心，卻未必保持相同俯仰反應，顯示重心位置不是分布的全部資訊。"
+          ]
+        },
+        {
+          "id": "high-speed",
+          "english": "High Speed Flight",
+          "title": "高速飛行：壓縮性與控制範圍",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-44",
+          "printedPage": "5-44",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=44",
+          "paragraphs": [
+            "高速飛行需把局部流速、壓縮性、震波及操縱效能納入分析。整架飛機的自由流 Mach 數尚未到 1，翼面部分區域仍可能先達音速甚至超音速，造成阻力、壓力分布與俯仰力矩變化。",
+            "低速近似並非全部失效，但必須知道哪些假設不再足夠。實際飛行同時受速度、Mach、重量、高度及構型限制，不能只看空速指針未超過某值就推定高速裕度充足。"
+          ]
+        },
+        {
+          "id": "subsonic-supersonic",
+          "english": "Subsonic Versus Supersonic Flow",
+          "title": "次音速與超音速流動",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-44",
+          "printedPage": "5-44",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=44",
+          "paragraphs": [
+            "低 Mach 數時，常可在某些計算中忽略小幅密度變化；接近音速時，壓縮性對流場的重要性提高。空氣本身一直是可壓縮且有黏性的流體，近似不是材料性質突然改變，也沒有適用所有高度的單一節數門檻。",
+            "次音速擾動可向上游傳遞，超音速流動的資訊傳播方向受到限制，壓縮變化可能集中成震波。要分辨自由流和局部流速：同一機翼附近可同時存在次音速及超音速區域。"
+          ]
+        },
+        {
+          "id": "speed-ranges",
+          "english": "Speed Ranges",
+          "title": "速度區間與臨界 Mach",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-44",
+          "printedPage": "5-44",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=44",
+          "paragraphs": [
+            "Mach 數是真空速除以當地音速，音速隨絕對溫度而變。原書用約 0.75～1.20 示意穿音速區間，但這是概括分類；某翼面何時開始出現局部音速流，仍取決於設計、迎角及狀態。",
+            "臨界 Mach 是局部流動首次達音速時的自由流 Mach，不等於飛機整體已達 Mach 1，也不等於最大操作 Mach。VMO 與 MMO 是操作限制，需依該機型使用；教材區間和氣動現象不能代替限制值。"
+          ],
+          "points": [
+            "原書概略分區：次音速低於約 M 0.75；穿音速約 M 0.75～1.20。",
+            "超音速區間約 M 1.20～5.00，高超音速約 M 5 以上；分區邊界是概括描述。",
+            "臨界 Mach、阻力急增點與 MMO 各自回答不同問題，不能當作同一個速度名稱。"
+          ]
+        },
+        {
+          "id": "mach-airspeed",
+          "english": "Mach Number Versus Airspeed",
+          "title": "IAS、TAS 與 Mach 的差別",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-45",
+          "printedPage": "5-45",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=45",
+          "paragraphs": [
+            "IAS 是儀表指示，CAS 修正儀表及位置誤差，TAS 是相對空氣的實際速度，Mach 則以當地音速為分母。密度下降時，相同指示空速通常對應較高真空速，但高速還必須考慮可壓縮性修正，不能把所有空速視為相同量。",
+            "在溫度隨高度下降的區間，固定 Mach 的爬升可能伴隨 TAS 下降；若溫度不再下降，這個趨勢也需重新判斷。高空低速與高速限制可能逐漸靠近，但不是所有飛機都有固定同一高度的 coffin corner。"
+          ]
+        },
+        {
+          "id": "boundary-layer",
+          "english": "Boundary Layer",
+          "title": "邊界層：局部速度的變化",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-46",
+          "printedPage": "5-46",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=46",
+          "paragraphs": [
+            "黏性使靠近表面的氣流速度相對壁面較低，向外逐漸接近外部流速，形成邊界層。它雖薄，卻會影響摩擦、有效外形與分離；高速外部流動分析忽略黏性時，仍不能忽略邊界層帶來的實際後果。",
+            "層流與紊流是邊界層中的不同流動狀態，附著或分離則是另一個分類。自編辨別：一段紊流邊界層可以仍貼附於翼面，不表示該翼段已失速；層流也不保證永遠不會分離。"
+          ]
+        },
+        {
+          "id": "laminar",
+          "english": "Laminar Boundary Layer Flow",
+          "title": "層流邊界層",
+          "parent": "boundary-layer",
+          "locator": "PHAK C 版 · 5-46",
+          "printedPage": "5-46",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=46",
+          "paragraphs": [
+            "層流中的速度變化較有規律，橫向混合較弱，通常具有較低表面摩擦。維持層流有助降低某些阻力，但其發展受表面狀態、壓力梯度及流動條件影響，不是只靠外表光亮便能保證。",
+            "當下游壓力上升時，近壁低速流可能較容易失去向前流動的能力。這說明低摩擦不等於在所有條件下更抗分離；設計需要在摩擦、分離和其他需求間取捨。"
+          ]
+        },
+        {
+          "id": "turbulent",
+          "english": "Turbulent Boundary Layer Flow",
+          "title": "紊流邊界層",
+          "parent": "boundary-layer",
+          "locator": "PHAK C 版 · 5-46",
+          "printedPage": "5-46",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=46",
+          "paragraphs": [
+            "紊流包含速度脈動和混合，使外側較高動量流體更有效地交換到近壁區，通常增加摩擦阻力，也可能提高抵抗逆壓力梯度分離的能力。它不是整片氣流已經脫離機翼的同義詞。",
+            "原書描述層流轉成紊流的過程，但轉捩位置不是固定比例，也不是每一條流線都必然依同樣順序演變。自編例：渦流產生器可能增加局部混合來延緩分離，因此額外小渦流不必然使整體性能更差。"
+          ]
+        },
+        {
+          "id": "separation",
+          "english": "Boundary Layer Separation",
+          "title": "邊界層分離與渦流產生器",
+          "parent": "boundary-layer",
+          "locator": "PHAK C 版 · 5-46",
+          "printedPage": "5-46",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=46",
+          "paragraphs": [
+            "當近壁流動不足以克服沿程壓力上升等影響時，可能停滯、逆流並離開表面，改變壓力分布和尾流。分離可增加阻力並降低升力能力，範圍及影響視狀態而定，不能把小局部分離一概等同全翼完全失速。",
+            "渦流產生器藉混合把較高動量帶入近壁區，可在設計條件下延緩分離，包括某些震波造成的分離。位置、尺寸及適用範圍具有機型依據，不能自行加裝或把它視為不受迎角限制的裝置。"
+          ]
+        },
+        {
+          "id": "shock",
+          "english": "Shock Waves",
+          "title": "震波、波阻與壓力損失",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-46",
+          "printedPage": "5-46",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=46",
+          "paragraphs": [
+            "震波是壓力、密度、溫度及速度在很短距離內急劇改變的區域。對正震波，超音速流通過後變成次音速，靜壓和靜溫上升而總壓下降；不能把總壓損失誤說成所有能量憑空消失。",
+            "震波後的壓力上升可能促成邊界層分離，增加阻力並引起抖振、配平及操縱變化。局部超音速區可在自由流仍低於 Mach 1 時出現，因此不能等整架飛機達音速才開始考慮震波效應。"
+          ]
+        },
+        {
+          "id": "sweepback",
+          "english": "Sweepback",
+          "title": "後掠翼：延後壓縮性效應的取捨",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-48",
+          "printedPage": "5-48",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=48",
+          "paragraphs": [
+            "後掠可減少來流垂直於前緣的速度分量，作為理解延後某些壓縮性效應的入門模型。這不表示飛機的真空速真的降低，也不表示其他流向分量完全沒有氣動作用。",
+            "後掠與錐度可能增加翼尖先失速及俯仰上仰的設計挑戰；某些 T 尾設計在大迎角下還有尾翼陷入翼後尾流的深失速風險。實際有無此風險及抖桿、推桿裝置的觸發依機型，不能套用全機型固定門檻。"
+          ]
+        },
+        {
+          "id": "buffet",
+          "english": "Mach Buffet Boundaries",
+          "title": "高空抖振邊界與裕度",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-49",
+          "printedPage": "5-49",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=49",
+          "paragraphs": [
+            "高空可用速度範圍受到低速升力需求及高速壓縮性效應等界線限制。重量、載荷因數與高度變化可能縮小裕度；飛機即使處於平直巡航時的可接受速度，轉彎增加載荷後也不代表仍有相同餘裕。",
+            "低速側與高速側抖振的詳細機制取決於機翼和操作狀態，不能只憑「有抖動」就猜測應加速或減速。需要依機型顯示、限制和程序辨識，原圖或範例中的交會點不是所有飛機的通用飛行高度。"
+          ]
+        },
+        {
+          "id": "high-speed-controls",
+          "english": "High Speed Flight Controls",
+          "title": "高速操縱面、增升與配平",
+          "parent": "high-speed",
+          "locator": "PHAK C 版 · 5-49",
+          "printedPage": "5-49",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=49",
+          "paragraphs": [
+            "高速動壓下操縱面負荷增加，某些機型利用內外側副翼分工、擾流板協助滾轉及液壓或電力作動。擾流板也可用於減速或接地後卸升力，但各模式的展開邏輯及可用功能依系統而異。",
+            "前緣縫翼與襟翼改善低速升力能力，可變安裝角水平安定面處理較大配平需求，讓升降舵保有操縱範圍。不能把原書機型的副翼鎖定方式或人工備援套到所有飛機；失去助力後是否仍能人工操縱須查該機型。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：用條件連結概念",
+          "parent": null,
+          "locator": "PHAK C 版 · 5-51",
+          "printedPage": "5-51",
+          "source": "https://www.faa.gov/sites/faa.gov/files/07_phak_ch5_0.pdf#page=51",
+          "paragraphs": [
+            "本章從四力與阻力曲線，延伸到尾流、地面效應、穩定性、飛行動作、失速、螺旋槳、載荷與高速流動。閱讀成果應是能說明每個結論的條件，而不是背下速度越大、迎角越大之類未限定情境的句子。",
+            "自編複習：分別解釋 60° 傾斜何時等於 2G、P-factor 和扭矩作用在哪個軸、重心合格為何仍需查局部載重，以及紊流為何不等於分離。最後把任何涉及操作數值的答案對回 AFM／POH，避免以教學例子取代機型限制。"
           ]
         }
       ],
@@ -2872,6 +3681,31 @@ export const phakDocument = {
           "title": "靜穩定與動穩定",
           "clarification": "初始回復傾向不等於振盪一定隨時間減小。",
           "example": "最初回到平衡方向後，振幅仍可能增大。"
+        },
+        {
+          "title": "60° 傾斜與 2G",
+          "clarification": "2G 結論限於簡化的協調定常水平轉彎，不能只憑瞬間傾斜角推定載荷。",
+          "example": "卸載或下降時的 60° 傾斜不必有同樣載荷。"
+        },
+        {
+          "title": "VA 以下與任意操縱",
+          "clarification": "機動速度並非涵蓋連續反向、多軸輸入及所有陣風情境的結構保證。",
+          "example": "低於 VA 仍不能把方向舵快速反覆全幅踩到底。"
+        },
+        {
+          "title": "扭矩與 P-factor",
+          "clarification": "扭矩反作用主要造成滾轉，P-factor 是推力分布不對稱造成偏航；方向需保留旋向前提。",
+          "example": "不能把所有向左偏航都叫引擎扭矩。"
+        },
+        {
+          "title": "層流、紊流與分離",
+          "clarification": "層流和紊流都可能附著於翼面；分離是氣流離開表面的另一現象。",
+          "example": "渦流產生器增加混合，可能延緩分離。"
+        },
+        {
+          "title": "臨界 Mach 與 MMO",
+          "clarification": "前者是局部首次達音速的自由流條件，後者是機型最大操作 Mach 限制。",
+          "example": "自由流低於 Mach 1 時仍可能出現局部超音速區及震波。"
         }
       ],
       "scenario": "自編算例：假設某構型 1 g 失速速度為 50 kt，在相同重量與構型、協調等高 60° 轉彎的簡化條件下，n＝2，估算失速速度為 50×√2，約 70.7 kt。",
@@ -2885,7 +3719,10 @@ export const phakDocument = {
       "explanation": "相同重量與構型下使用 50×√2≈70.7 kt；結果不代表實際操作限制。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=98",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=98"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=98",
+      "detailMode": "outline",
+      "checked": "2026-09-10",
+      "coverageNote": "依 FAA-H-8083-25C 第五章的 62 個目錄小節逐節整理，保留英文標題、父節與印刷頁碼。中文講解與算例為本站編寫，公式均需配合所列假設；尾流與機動速度的易誤解敘述另附 FAA 補充資料。"
     },
     {
       "id": "phak25c-6",
