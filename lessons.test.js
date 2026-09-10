@@ -81,3 +81,14 @@ test('Chapter 2 renders model comparisons, subsection lists and preserves saved 
  env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-2-automation-risk'}})}});
  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-2');
 });
+
+test('Chapter 3 full outline renders supplemental headings, version note and retained study records',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[2];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第三章原有筆記'}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ assert.match(html,/Chapter 3 : Aircraft Construction/);assert.match(html,/本章分層目錄 · 30 節/);
+ assert.match(html,/補入原文標題/);assert.match(html,/FAA MOSAIC/);assert.match(html,/FAA 本節原文 · 3-13/);
+ assert.match(html,/第三章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+ assert.match(environment('#phak').element('#app').innerHTML,/原書目錄逐節講解 · 30 節/);
+});

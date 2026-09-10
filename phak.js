@@ -1884,7 +1884,7 @@ export const phakDocument = {
       "number": 3,
       "title": "航空器構造",
       "english": "Aircraft Construction",
-      "section": "第 3 章；印刷頁碼 3-1 起",
+      "section": "第 3 章；3-1～3-13，附圖至 3-16",
       "goal": "理解結構如何承載，以及主要部件如何配合。",
       "primer": "機身容納人員與設備，機翼提供主要升力，尾翼參與穩定與控制，起落架支撐地面作業，動力裝置提供推進。這些部件透過接合與結構把載荷傳遞，不能只把外形當作彼此無關的零件。",
       "terms": [
@@ -1893,54 +1893,440 @@ export const phakDocument = {
         "Semimonocoque · 半硬殼式"
       ],
       "prompts": [
-        "你能用自己的話解釋「從主要部件理解功能」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "半硬殼式蒙皮與複合材料表面各有哪些不能僅憑外觀判斷的事項？請指出原文位置。",
+        "設定爬升姿態後，哪些儀表告訴你控制設定、實際結果，以及相對航道的位置？"
       ],
       "keyPoints": [
-        "從主要部件理解功能",
-        "桁架、硬殼與半硬殼",
-        "機翼與尾翼的內部安排",
-        "複合材料的優點與觀察限制"
+        "辨識五個主要部件，從連接處理解載荷傳遞。",
+        "區分桁架、硬殼式與半硬殼式，以及纖維與基材的功能。",
+        "複材的重量優勢取決於設計；碰撞、熱、油液與雷擊需分別理解。",
+        "控制儀表看姿態與功率，性能儀表看實際結果，導航儀表看相對路徑。"
       ],
       "detailSections": [
         {
-          "title": "從主要部件理解功能",
-          "locator": "Major Components；3-3～3-7",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：從構造理解飛行",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-1",
+          "printedPage": "3-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=1",
           "paragraphs": [
-            "機身容納人員與設備，機翼提供主要升力，尾翼參與穩定與控制，起落架支撐地面作業，動力裝置提供推進。這些部件透過接合與結構把載荷傳遞，不能只把外形當作彼此無關的零件。",
-            "自編例：機翼受力最後要傳到機身接合位置；地面不平也會透過起落架把力傳入結構。理解力的路徑，可以讓檢查時的觀察更有方向。"
+            "Aircraft 是航空器的總稱，airplane 則是其中以動力推進、固定翼產生主要支承力的飛機。本章主要用飛機解釋構造，不能把其機翼、尾翼與操縱方式直接套用到旋翼機、氣球或重心移動控制航空器。",
+            "學習構造可以依序問三件事：這個部件做什麼、承受的力如何傳遞、它依賴哪些系統。先建立整架飛機的空間關係，再閱讀後續的空氣動力、飛行操縱與系統章節，名稱就能連到實際功能。"
           ]
         },
         {
-          "title": "桁架、硬殼與半硬殼",
-          "locator": "Types of Aircraft Construction；3-8～3-9",
+          "id": "certification",
+          "english": "Aircraft Design, Certification, and Airworthiness",
+          "title": "設計、認證與適航",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-2",
+          "printedPage": "3-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=2",
           "paragraphs": [
-            "桁架利用構件組合承載；硬殼式依靠承力外殼；半硬殼式則由外皮與內部框架、縱向構件共同承載。外皮在某些構造中具有結構作用，不能一概當成裝飾。",
-            "因此凹陷、裂紋或接合異常不能只按外觀大小判定重要性。真正的可接受損傷與修理方式需由適用維修資料及有資格人員判斷，教材只建立理解。"
+            "型別合格證（TC）處理產品型別設計是否符合適用標準；型別合格證資料表（TCDS）記載該型別的重要特性與限制。製造符合性檢查則確認實際製成的產品符合核准設計，不能用設計已通過來代替製造品質的確認。",
+            "適航證對應到個別航空器；對具有核准型別設計的航空器，理解適航還必須同時看符合其核准構型，以及處於安全操作狀態。自編例：同型號的兩架飛機即使依相同設計製造，其中一架發現未處理的結構損傷，也不能因另一架正常而判斷它能安全飛行。"
+          ],
+          "references": [
+            {
+              "title": "FAA：標準適航證與持續有效條件",
+              "url": "https://www.faa.gov/aircraft/air_cert/aw_cert/standard_aw_certificates",
+              "checked": "2026-09-10"
+            }
           ]
         },
         {
-          "title": "機翼與尾翼的內部安排",
-          "locator": "Wings；Empennage",
+          "id": "lsa",
+          "english": "A Note About Light Sport Aircraft",
+          "title": "輕型運動航空器的認證差異",
+          "parent": "certification",
+          "locator": "PHAK C 版 · 3-2",
+          "printedPage": "3-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=2",
           "paragraphs": [
-            "樑、肋與蒙皮共同維持翼型並傳遞載荷。尾翼的固定面與活動面在不同設計中可能有不同配置，例如傳統升降舵與全動式水平尾翼，不能假設外觀相似就作用完全相同。",
-            "學習時可對照飛機圖，把固定結構、活動控制面與連接位置分別標出，再查該機型文件確認名稱及動作。這為下一章的受力與操縱概念建立空間感。"
+            "這節用 LSA 引出另一條認證途徑：FAA 接受的產業共識標準可作為符合要求的依據。共識標準不是製造商自行宣稱安全即可，仍需對照適用要求、符合性文件與個別航空器的證件；也不能把運動類機師權限和航空器認證類別視為同一件事。",
+            "閱讀 2023 年原文時，要特別區分型別設計核准與個別適航證的核發。原文把 LSA 描述成整機取得 TC，容易造成誤解；請搭配下方 FAA 說明理解此差異，並以適用於該航空器及交付時間的文件查核實際認證依據。"
+          ],
+          "currentNote": "查閱 2026-09-10：FAA 的 MOSAIC 製造與認證 FAQ 明確說明，FAA 不向 light-sport category aircraft 或 experimental LSA 核發設計／生產核准，而依適用條文向個別航空器核發適航證。2026-07-24 起的 LSA 認證變更亦涉及 Part 22 與新的共識標準；本節不沿用原書「整機取得 TC」的說法作為現行規則。",
+          "references": [
+            {
+              "title": "FAA MOSAIC：LSA 製造與認證 FAQ",
+              "url": "https://www.faa.gov/aircraft/MOSAIC/mosaic_faq_manufacture_cert_LSA",
+              "checked": "2026-09-10"
+            }
           ]
         },
         {
-          "title": "複合材料的優點與觀察限制",
-          "locator": "Composite Construction；3-9～3-12",
+          "id": "forces",
+          "english": "Lift and Basic Aerodynamics",
+          "title": "升力、四力與三軸",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-2",
+          "printedPage": "3-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=2",
           "paragraphs": [
-            "複合材料可結合不同材料的特性，提供重量與外形設計上的優勢；同時也有損傷辨識、熱及化學影響等需要注意的面向。某些內部損傷不一定由外觀立即看出。",
-            "自編例：表面碰撞痕跡不深，不等於內部必然完整。反過來，看到痕跡也不能直接自行宣布結構失效；應記錄位置與事件，交由適用檢查程序判斷。"
+            "飛機的基本受力包括升力、重力、推力與阻力。升力方向垂直於相對氣流，阻力沿相對氣流方向向後，重力通過重心向地心作用；只有在相應的平衡條件下，才能用升力等於重量、推力等於阻力的簡化圖像，轉彎或加速時需重新分析。",
+            "三個轉動軸通過重心：縱軸對應滾轉、橫軸對應俯仰、垂直軸對應偏航。重心位置影響穩定與操縱能力，燃油消耗也可能改變重心；不能只查起飛時的裝載，還要依機型資料確認飛行中的重量與重心保持在限制內。"
+          ],
+          "points": [
+            "Roll／滾轉：繞機頭到機尾的縱軸轉動，並非繞翼尖連線。",
+            "Pitch／俯仰：繞橫軸轉動；機頭姿態改變不等於飛行路徑立即等量改變。",
+            "Yaw／偏航：繞垂直軸轉動；方向舵作用與協調轉彎需在操縱章節進一步理解。"
           ]
         },
         {
-          "title": "案例：把發現描述清楚",
-          "locator": "本站自編案例；對照結構與材料主題",
+          "id": "components",
+          "english": "Major Components",
+          "title": "主要部件與載荷路徑",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-3",
+          "printedPage": "3-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=3",
           "paragraphs": [
-            "自編案例：學員看到機翼表面有一處新凹痕。較有用的紀錄包含位置、大小、是否接近接合、發現時間及是否有已知碰撞，而不是只寫「應該沒事」。",
-            "接下來尋求合格人員依文件評估。讀完本章應能說出為什麼承力方式影響損傷的重要性，而不把學到的結構名稱當成自行核准航空器的資格。"
+            "多數傳統飛機可分成機身、機翼、尾翼組、起落架和動力裝置。外形會隨載人、運貨、訓練或其他設計任務而變，但每個部件的功能都必須和全機的重量、阻力、穩定性與結構需求配合。",
+            "自編例：落地衝擊由輪胎與起落架傳入機體，飛行時翼面受力則經翼內構件與接合處傳遞。檢視飛機時，除了認出部件，也應能指出它連到哪裡，以及連接處為什麼具有結構上的重要性。"
+          ]
+        },
+        {
+          "id": "fuselage",
+          "english": "Fuselage",
+          "title": "機身",
+          "parent": "components",
+          "locator": "PHAK C 版 · 3-3",
+          "printedPage": "3-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=3",
+          "paragraphs": [
+            "機身容納機組、旅客與貨物，也是機翼及尾翼組的主要結構連接中心。座艙空間與外表只是它的一部分，內部框架、外皮及接合位置還必須把不同方向的載荷傳遞到其他構件。",
+            "早期常見桁架骨架加覆面，另有硬殼式與半硬殼式構造。不同方式的外皮承力程度不同，因此不能因為看到的是薄板或布面，就用同一套直覺評估損傷；先辨識承力方式，才能理解為何檢查與修理依據不同。"
+          ]
+        },
+        {
+          "id": "wings",
+          "english": "Wings",
+          "title": "機翼：配置、骨架與活動面",
+          "parent": "components",
+          "locator": "PHAK C 版 · 3-3",
+          "printedPage": "3-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=3",
+          "paragraphs": [
+            "機翼是主要升力面，依安裝位置可分高翼、中翼及低翼，依翼面組數可分單翼與雙翼。半懸臂式利用外部支柱分擔載荷，全懸臂式由內部結構承載而不需這類外部支柱；看不到支柱不代表機翼缺少支撐。",
+            "翼樑、翼肋、縱向加強構件與蒙皮共同工作：翼肋維持翼型，翼樑等構件傳遞主要載荷，機翼內也可能設置油箱。典型副翼位於較外側後緣，以左右差動動作控制滾轉；襟翼較靠內側，通常同向放下以改變升阻特性，兩者不可只按位置背誦而忽略功能。"
+          ]
+        },
+        {
+          "id": "alternate-wings",
+          "english": "Alternate Types of Wings",
+          "title": "其他機翼形式",
+          "parent": "wings",
+          "locator": "PHAK C 版 · 3-5",
+          "printedPage": "3-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=5",
+          "paragraphs": [
+            "本節補入正文中的其他機翼形式。不同任務可採不同平面形狀、後掠與柔性設計，重心移動控制航空器更可能透過機體相對翼面的重量位置變化達到操縱，不能預設都有傳統副翼與升降舵。",
+            "自編練習：對照原圖，找出固定翼飛機與重心移動控制航空器各自改變什麼來控制飛行。重點是結構與控制方法的配合，不是把某一種翼型直接判定為所有速度與用途下都比較好。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "empennage",
+          "english": "Empennage",
+          "title": "尾翼組與配平面",
+          "parent": "components",
+          "locator": "PHAK C 版 · 3-6",
+          "printedPage": "3-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=6",
+          "paragraphs": [
+            "傳統尾翼組包括水平與垂直安定面，以及升降舵、方向舵和可能設置的配平片。安定面與活動面分工不同：前者參與穩定，後者提供控制力矩；配平片則協助減少機師持續施加的操縱力。",
+            "全動式水平尾翼（stabilator）由整個水平面轉動，不是固定安定面後面再接一片升降舵。原文示例的 antiservo tab 隨尾翼後緣同向偏轉，增加操縱回饋並可兼作配平；不要把它和所有其他種類的小翼片都視為相同機構。"
+          ]
+        },
+        {
+          "id": "gear",
+          "english": "Landing Gear",
+          "title": "起落架與地面支承",
+          "parent": "components",
+          "locator": "PHAK C 版 · 3-7",
+          "printedPage": "3-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=7",
+          "paragraphs": [
+            "起落架在停放、滑行、起飛與落地時支撐飛機，接地裝置可為輪子、浮筒或滑橇。常見輪式配置是兩個主輪加鼻輪或尾輪；鼻輪式稱三點式，尾輪式又稱 conventional gear，這裡的 conventional 是配置名稱。",
+            "地面方向控制可能透過可轉向鼻輪或尾輪，也可能配合差動煞車，實際連動依機型而異。自編例：同樣踩方向舵踏板，不能假設不同飛機的地面轉向角度與反應一致，必須先了解其轉向及煞車安排。"
+          ]
+        },
+        {
+          "id": "powerplant",
+          "english": "The Powerplant",
+          "title": "動力裝置與螺旋槳",
+          "parent": "components",
+          "locator": "PHAK C 版 · 3-7",
+          "printedPage": "3-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=7",
+          "paragraphs": [
+            "本章以引擎加螺旋槳的組合為主：引擎提供轉矩，旋轉的槳葉作為翼型把能量轉成推力。引擎也可能驅動發電或儀表所需的附屬設備，整流罩除了整理外部氣流，還引導冷卻氣流；不是每架飛機都使用相同的真空或供暖方式。",
+            "槳葉各半徑位置的周向速度不同，沿展向的扭轉讓各段更接近設計所需的工作迎角。槳葉幾何角度、相對氣流迎角與螺距不能混為一談；螺距描述理想一圈的前進距離，並不表示真實空氣中每轉必然前進同樣距離。"
+          ]
+        },
+        {
+          "id": "subcomponents",
+          "english": "Subcomponents",
+          "title": "機體、電力、操縱與煞車系統",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-8",
+          "printedPage": "3-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=8",
+          "paragraphs": [
+            "Airframe 是承受氣動力及燃油、人員、載荷所造成應力的基本機體結構。電力系統則負責發電、調節與分配，來源可隨飛機大小和配置包括引擎驅動發電機、輔助動力裝置或外部電源；閱讀列舉時不要當成每架訓練機都有的設備。",
+            "飛行操縱系統把機師或自動駕駛的命令傳到操縱面，煞車則透過摩擦吸收地面運動能量。這些系統與結構彼此依賴：例如電力異常可能影響儀表資訊，而起落架承力正常也不代表其煞車功能正常。"
+          ]
+        },
+        {
+          "id": "construction",
+          "english": "Types of Aircraft Construction",
+          "title": "構造方式：誰在承受載荷",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-8",
+          "printedPage": "3-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=8",
+          "paragraphs": [
+            "分類結構時，應看載荷由哪些部分分擔，而不只看材料名稱。桁架式以骨架承力，硬殼式高度依賴承力外殼，半硬殼式由外皮與內部加強構件共同工作；複合材料則是在描述材料系統，可用於不同結構安排。",
+            "自編比較：兩架外形相似的飛機，一架覆面主要整理氣流，另一架蒙皮承受重要的剪力與彎扭載荷。同樣大小的表面異常未必具有相同意義，結構名稱的用途是幫助理解力的路徑，並非自行制定可接受損傷尺寸。"
+          ]
+        },
+        {
+          "id": "truss",
+          "english": "Truss Structure",
+          "title": "桁架式結構",
+          "parent": "construction",
+          "locator": "PHAK C 版 · 3-8",
+          "printedPage": "3-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=8",
+          "paragraphs": [
+            "桁架透過縱向構件、支柱與斜撐形成穩定骨架，承受不同方向的載荷。整形框與縱向小構件可用來維持機身外形和支撐覆面；在典型桁架設計中，外部布面主要提供平順外形，不承擔與承力蒙皮相同的角色。",
+            "早期骨架外形不利於流線化，因此逐漸加入覆面整理氣流。自編例：看到一架覆布飛機時，可以分辨「讓外形平順的表面」與「在內部傳力的骨架」，但覆面本身仍需符合該機型的狀態要求，不能因非主要承力就忽視破損。"
+          ]
+        },
+        {
+          "id": "monocoque",
+          "english": "Monocoque",
+          "title": "硬殼式結構",
+          "parent": "construction",
+          "locator": "PHAK C 版 · 3-8",
+          "printedPage": "3-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=8",
+          "paragraphs": [
+            "硬殼式主要由承力外殼承受載荷，內部框形構件協助維持形狀。原文用飲料罐比喻薄殼：外形完整時可承受相當軸向力，局部變形卻可能明顯降低抵抗失穩的能力，說明外皮幾何形狀也是結構功能的一部分。",
+            "這個比喻不能用來計算航空器損傷允許值，也不表示硬殼式內部完全沒有構件。學習時要抓住它與桁架的核心差別：主要彎扭載荷更多透過外殼傳遞，因此不能將凹陷僅視為外觀問題。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "semimonocoque",
+          "english": "Semimonocoque",
+          "title": "半硬殼式結構",
+          "parent": "construction",
+          "locator": "PHAK C 版 · 3-9",
+          "printedPage": "3-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=9",
+          "paragraphs": [
+            "半硬殼式在承力外皮內加入隔框、整形框與縱向構件，讓外皮與骨架共同分擔載荷，維持形狀並提高抗彎等能力。「半」不是固定各負擔一半的數學比例，而是描述相較純承力外殼增加內部加強的構造概念。",
+            "機身主要結構還包括機翼連接處及防火牆。典型單引擎飛機的防火牆隔開引擎艙和座艙，以耐熱材料協助保護人員；它的功能與一般隔板不同，但也不能理解成發生引擎火災後可無限期隔絕所有熱與煙。"
+          ]
+        },
+        {
+          "id": "composites",
+          "english": "Composite Construction",
+          "title": "複合材料構造",
+          "parent": "construction",
+          "locator": "PHAK C 版 · 3-9",
+          "printedPage": "3-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=9",
+          "paragraphs": [
+            "複合材料把不同材料結合，利用纖維與基材的互補特性製成結構。玻璃纖維、碳纖維與芳綸纖維等名稱描述增強材料，樹脂則把纖維結合並形成構件；複材不是某一種單一塑膠的同義詞。",
+            "設計者可透過纖維方向、材料與構形配合受力需求，因此不能僅憑「碳纖維」三字推定重量、強度或耐撞能力。學習本節要同時看到設計自由度與檢查限制，避免把材料優勢等同整架飛機在所有情境都更安全。"
+          ]
+        },
+        {
+          "id": "composite-history",
+          "english": "History",
+          "title": "複合材料的應用歷史",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-9",
+          "printedPage": "3-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=9",
+          "paragraphs": [
+            "原文從二戰時玻璃纖維作為隔熱用途，談到後來滑翔機把它用作主要結構，呈現同一類材料如何從附屬用途進入承力用途。高性能滑翔機需要平順曲面與良好氣動外形，提供了複材應用的重要場景。",
+            "歷史段落中的年份、當時新機使用比例與產品例子，是技術演進的背景，並非目前市場統計。閱讀時可整理成「用途如何擴大、製造如何成熟、結構責任如何增加」三條線，不必把過去的比例當成今天選機的依據。"
+          ]
+        },
+        {
+          "id": "composite-materials",
+          "english": "Composite Materials in Aircraft",
+          "title": "纖維與基材如何共同工作",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-9",
+          "printedPage": "3-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=9",
+          "paragraphs": [
+            "纖維承受大部分主要載荷，基材把纖維結合、維持形狀並協助傳遞載荷。航空常見環氧樹脂屬熱固性材料，不同配方的固化條件、耐熱與結構性能各異；即使增強纖維相同，基材不同也可能改變構件表現。",
+            "玻璃纖維通常較容易加工且成本較低，碳纖維可提供較高剛性與重量方面的優勢，但脆性及撞擊反應也需考慮。原文強調材料與樹脂系統的選擇會影響結果，因此不能用一種複材的經驗推論所有複材。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "advantages",
+          "english": "Advantages of Composites",
+          "title": "複合材料的優點",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-10",
+          "printedPage": "3-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=10",
+          "paragraphs": [
+            "複材能形成平順且複雜的曲面，有助於降低外形阻力，也可能在適當設計下減輕重量。減重並非自動發生：纖維種類、結構尺寸、接合方式及實際載荷需求都會影響成品是否比其他方案輕。",
+            "相較金屬，複材具有不同的腐蝕與疲勞特性，適合某些反覆彎曲的結構用途。這不等於它永不老化或不需檢查；應把優點理解成工程設計可運用的特性，而不是對所有環境與損傷的免疫能力。"
+          ]
+        },
+        {
+          "id": "disadvantages",
+          "english": "Disadvantages of Composites",
+          "title": "隱藏損傷、熱與化學限制",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-10",
+          "printedPage": "3-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=10",
+          "paragraphs": [
+            "複材受撞後可能發生分層、纖維斷裂或基材損傷，外表痕跡卻不明顯。低能量碰撞也可能造成內部損傷範圍大於可見痕跡；有碰撞事實就應完整記錄並由熟悉該結構的人員依資料評估，而不是只摸表面是否平滑。",
+            "樹脂也有耐熱和化學相容性限制，塗裝顏色與吸熱會影響溫度，除漆劑可能損害材料。原文的溫度例子並非所有複材的通用限制；表面補土或臨時遮蓋也不等於恢復承力能力，真正的結構修理須使用適用資料。"
+          ]
+        },
+        {
+          "id": "fluids",
+          "english": "Fluid Spills on Composites",
+          "title": "液體接觸與材料相容性",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-11",
+          "printedPage": "3-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=11",
+          "paragraphs": [
+            "燃油、油液或液壓液是否影響複材，取決於樹脂、塗層、液體成分與接觸條件。原文說明某些現代環氧系統能承受常見油液接觸，但也指出不同聚酯樹脂與含乙醇燃油可能有相容性問題。",
+            "不能從「某些玻璃纖維油箱可直接接觸燃油」推論任何複材油箱都可加任何汽油。自編例：發現潑灑後，先辨識液體及接觸部位，再依該機型資料處置；表面漆色看似正常，並不是對所有材料和情況的充分證明。"
+          ]
+        },
+        {
+          "id": "lightning",
+          "english": "Lightning Strike Protection",
+          "title": "雷擊防護與導電路徑",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-11",
+          "printedPage": "3-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=11",
+          "paragraphs": [
+            "雷擊防護需要把電流經設計的路徑分散並導出，降低局部損害，同時保護燃油系統與航電。鋁蒙皮具有良好導電性，玻璃纖維偏向絕緣，碳纖維雖導電卻不能直接視同鋁，因此複材外層常需另設金屬網等導電安排。",
+            "修理具有雷擊防護的區域時，承力結構與導電防護都必須納入，不能只恢復表面形狀。原文亦提到內置天線需要與防護網及材料的無線電特性配合；這說明結構修理可能同時影響通訊與電氣防護。"
+          ]
+        },
+        {
+          "id": "future",
+          "english": "The Future of Composites",
+          "title": "複合材料的發展方向",
+          "parent": "composites",
+          "locator": "PHAK C 版 · 3-12",
+          "printedPage": "3-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=12",
+          "paragraphs": [
+            "本節以設計彈性、耐腐蝕特性及可能達成的高強度重量比，說明複材為何持續受到航空設計採用。從滑翔機到運輸機，材料的價值要和製造、檢查及全壽命維護能力一起評估，不能單靠外觀或新穎程度判斷。",
+            "原書使用的「未來」是該段文字的時代觀點，並非本站對最新產業趨勢的調查。自編閱讀問題：若一種材料更輕但需要不同損傷檢測方法，使用者和維修體系需要增加哪些能力，才能實際取得設計帶來的好處？"
+          ]
+        },
+        {
+          "id": "instrumentation",
+          "english": "Instrumentation: Moving into the Future",
+          "title": "從傳統儀表到整合顯示",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-12",
+          "printedPage": "3-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=12",
+          "paragraphs": [
+            "電子飛行顯示把原本分散的資訊整合到螢幕，常見主飛行顯示器 PFD 與多功能顯示器 MFD 分別呈現核心飛行資訊及地圖、系統等資料，實際配置依機型而異。顯示方式變了，資訊仍可依性能、控制與導航三種功能分類。",
+            "一個螢幕可能同時顯示多種功能，不代表它們都由同一種感測器取得，也不表示備援一定獨立。學習玻璃座艙時應連結第二章的自動化管理：辨識資料來源、模式與失效提示，並理解何時需要交叉核對其他資訊。"
+          ]
+        },
+        {
+          "id": "performance",
+          "english": "Performance Instruments",
+          "title": "性能儀表：實際達成的結果",
+          "parent": "instrumentation",
+          "locator": "PHAK C 版 · 3-12",
+          "printedPage": "3-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=12",
+          "paragraphs": [
+            "性能儀表反映飛機實際達成的狀態，例如空速、高度、垂直速度及航向等資訊。這裡的 performance 並不只指起飛距離或最大速度，而是用來回答目前飛機的表現如何，和控制設定是否達到想要的結果。",
+            "自編例：設定爬升姿態與功率後，仍要查看空速及垂直速度等變化，才能確認實際爬升狀態。性能資訊可能有反應延遲或感測限制，因此不能用一個瞬間讀值取代持續交叉檢查。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "control",
+          "english": "Control Instruments",
+          "title": "控制儀表：姿態與功率",
+          "parent": "instrumentation",
+          "locator": "PHAK C 版 · 3-13",
+          "printedPage": "3-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=13",
+          "paragraphs": [
+            "控制儀表呈現姿態與功率的變化，讓機師能精確建立與調整控制設定。姿態指示器說明飛機如何傾斜，適用的動力儀表反映功率相關參數；本分類不是指所有能被手操作的旋鈕或控制面。",
+            "機頭抬高和功率設定完成，並不能單靠這兩項就知道飛機現在的高度或空速。自編例：相似姿態在重量、阻力或其他條件不同時可能產生不同結果，因此要用性能儀表驗證，形成設定與結果的回饋。"
+          ]
+        },
+        {
+          "id": "navigation",
+          "english": "Navigation Instruments",
+          "title": "導航儀表：相對預定路徑的位置",
+          "parent": "instrumentation",
+          "locator": "PHAK C 版 · 3-13",
+          "printedPage": "3-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=13",
+          "paragraphs": [
+            "導航儀表呈現航空器相對於選定導航設施、定位點或航道的位置，資訊可包括方位、距離、航道偏差與下滑道偏差。它們可能使用 GPS、VOR、NDB 或 ILS 等不同來源；同一顯示器呈現的指針也可能因所選來源而改變意義。",
+            "導航偏差回答相對於目標路徑在哪裡，不直接告訴你目前姿態或應施加多少操縱量。自編例：看到偏差後，先確認選定的航道、訊號來源和有效性，再結合飛行狀態修正；詳細判讀與程序在導航章節繼續學習。"
+          ]
+        },
+        {
+          "id": "gps",
+          "english": "Global Positioning System (GPS)",
+          "title": "GPS 定位原理與使用限制",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-13",
+          "printedPage": "3-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=13",
+          "paragraphs": [
+            "GPS 接收器利用多顆衛星訊號解算位置；原文用三顆衛星與二維、四顆以上與三維定位的入門模型介紹。實際解算還涉及接收器時鐘誤差與衛星幾何，三顆衛星的二維解通常需要高度等額外約束，不能把衛星數量當成定位品質的唯一判準。",
+            "能顯示經緯度不等於已符合特定航空導航用途的完整性與設備要求。自編例：移動地圖上有飛機符號時，仍應確認資料有效性和設備提示；本節建立定位概念，航空使用方式與限制應搭配第十六章、適用 AIM 及設備文件。"
+          ],
+          "references": [
+            {
+              "title": "GPS.gov：定位與時間解算原理",
+              "url": "https://archive.gps.gov/cgsic/meetings/2008/kelley.pdf",
+              "checked": "2026-09-10"
+            },
+            {
+              "title": "GPS.gov：定位精度的影響因素",
+              "url": "https://www.gps.gov/gps-accuracy-0",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整與練習",
+          "parent": null,
+          "locator": "PHAK C 版 · 3-13",
+          "printedPage": "3-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=13",
+          "paragraphs": [
+            "讀完本章應能沿著機身、機翼、尾翼、起落架與動力裝置說明功能及連接關係，再比較桁架、硬殼式與半硬殼式的承力方式。複材部分要同時記得纖維與基材的分工、設計優勢及外觀難以顯示全部損傷的限制。",
+            "自編練習：選一張熟悉機型的圖，指出五個主要部件，再選三項座艙資訊分成控制、性能與導航，說明各自回答什麼問題。把尚不能確認的構造與設備記在筆記，對照原文及該機型資料；本章末的 3-14～3-16 尚有儀表比較圖可一併閱讀。"
           ]
         }
       ],
@@ -1954,6 +2340,21 @@ export const phakDocument = {
           "title": "看不見與不存在",
           "clarification": "外觀檢查可能不足以排除內部損傷。",
           "example": "複合材料受撞後可能需要特定檢查。"
+        },
+        {
+          "title": "材料與結構分類",
+          "clarification": "複合材料描述材料系統；半硬殼式描述承力安排，兩者不是必然互斥的類別。",
+          "example": "知道一架飛機使用碳纖維，仍需確認外皮與內部構件如何分擔載荷。"
+        },
+        {
+          "title": "控制、性能與導航儀表",
+          "clarification": "姿態與功率設定、飛機實際表現、相對導航路徑的位置，回答的是不同問題；同一螢幕可以整合三類資訊。",
+          "example": "抬頭姿態不保證正在爬升，航道指針置中也不表示高度正確。"
+        },
+        {
+          "title": "螺距與迎角",
+          "clarification": "螺距是幾何前進距離的概念，迎角是槳葉與相對氣流之間的角度。",
+          "example": "幾何設定不變時，飛行速度改變仍可能改變槳葉迎角。"
         }
       ],
       "scenario": "自編案例：學員看到機翼表面有一處新凹痕。較有用的紀錄包含位置、大小、是否接近接合、發現時間及是否有已知碰撞，而不是只寫「應該沒事」。",
@@ -1967,7 +2368,10 @@ export const phakDocument = {
       "explanation": "半硬殼式使用內部構件強化承力外皮，兩者共同工作。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=72",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=72"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=72",
+      "detailMode": "outline",
+      "checked": "2026-09-10",
+      "coverageNote": "依 FAA-H-8083-25C 第三章逐節整理，保留提供的目錄順序，另補正文中的 Alternate Types of Wings、Monocoque、Composite Materials in Aircraft、Performance Instruments 四個標題。原書正文至 3-13，儀表附圖延續至 3-16；中文講解與案例為本站編寫，法規版本差異另註。"
     },
     {
       "id": "phak25c-4",

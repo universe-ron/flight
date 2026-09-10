@@ -52,3 +52,14 @@ test('Chapter 2 covers all 60 TOC sections with distinct model and automation hi
  assert.equal(c.detailSections.at(-1).printedPage,'2-32');
  assert.deepEqual(c.modelComparison.map(row=>row[0]),['PAVE','5P','3P','CARE','TEAM','DECIDE']);
 });
+
+test('Chapter 3 preserves all 26 supplied headings and four original body supplements',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[2];
+ const expected=[['Introduction',1],['Aircraft Design, Certification, and Airworthiness',2],['A Note About Light Sport Aircraft',2],['Lift and Basic Aerodynamics',2],['Major Components',3],['Fuselage',3],['Wings',3],['Empennage',6],['Landing Gear',7],['The Powerplant',7],['Subcomponents',8],['Types of Aircraft Construction',8],['Truss Structure',8],['Semimonocoque',9],['Composite Construction',9],['History',9],['Advantages of Composites',10],['Disadvantages of Composites',10],['Fluid Spills on Composites',11],['Lightning Strike Protection',11],['The Future of Composites',12],['Instrumentation: Moving into the Future',12],['Control Instruments',13],['Navigation Instruments',13],['Global Positioning System (GPS)',13],['Chapter Summary',13]];
+ assert.equal(c.detailSections.length,30);
+ assert.deepEqual(c.detailSections.filter(s=>!s.supplementalHeading).map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Alternate Types of Wings','Monocoque','Composite Materials in Aircraft','Performance Instruments']);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.equal(c.detailSections.find(s=>s.id==='performance').parent,'instrumentation');
+ const lsa=c.detailSections.find(s=>s.id==='lsa');assert.ok(lsa.currentNote.includes('2026-07-24'));assert.ok(lsa.references[0].url.includes('MOSAIC'));
+});
