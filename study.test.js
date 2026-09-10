@@ -84,3 +84,13 @@ test('Chapter 5 preserves all 62 supplied TOC entries with source pages and pare
  assert.deepEqual(c.detailSections.filter(s=>s.parent==='maneuvers').map(s=>s.id),['turns','climbs','descents']);
  for(const id of ['vg','wake-avoidance']){const s=c.detailSections.find(s=>s.id===id);assert.ok(s.currentNote);assert.ok(s.references.every(r=>new URL(r.url).hostname==='www.faa.gov'));}
 });
+
+test('Chapter 6 covers 22 TOC entries and seven original body headings',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[5];
+ const expected=[['Introduction',1],['Flight Control Systems',2],['Flight Controls',2],['Primary Flight Controls',2],['Elevator',5],['T-Tail',6],['Stabilator',7],['Canard',7],['Rudder',8],['V-Tail',8],['Secondary Flight Controls',8],['Flaps',8],['Leading Edge Devices',9],['Spoilers',10],['Trim Tabs',10],['Balance Tabs',11],['Servo Tabs',11],['Antiservo Tabs',11],['Ground Adjustable Tabs',11],['Adjustable Stabilizer',12],['Autopilot',12],['Chapter Summary',12]];
+ assert.equal(c.detailSections.length,29);
+ assert.deepEqual(c.detailSections.filter(s=>!s.supplementalHeading).map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Ailerons','Adverse Yaw','Differential Ailerons','Frise-Type Ailerons','Coupled Ailerons and Rudder','Flaperons','Trim Systems']);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.equal(c.detailSections.find(s=>s.id==='flaps').points.length,4);
+});

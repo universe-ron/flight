@@ -3729,7 +3729,7 @@ export const phakDocument = {
       "number": 6,
       "title": "飛行操縱",
       "english": "Flight Controls",
-      "section": "第 6 章；印刷頁碼 6-1 起",
+      "section": "第 6 章；6-1～6-12，全章目錄逐節講解",
       "goal": "理解操縱面、配平及自動駕駛如何改變飛機反應。",
       "primer": "副翼主要控制滾轉，升降舵控制俯仰，方向舵控制偏航。名稱對應的是主要作用；真實飛機存在耦合，單一操縱可能伴隨其他軸的反應。",
       "terms": [
@@ -3738,54 +3738,420 @@ export const phakDocument = {
         "Trim · 配平"
       ],
       "prompts": [
-        "你能用自己的話解釋「主要操縱與三個軸」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "比較 balance tab、servo tab 與 antiservo tab：機師首先控制哪個部件、小翼片如何動、控制力增加還是減少？",
+        "從本章找一項尾翼和一項增升裝置，說明其設計作用及不能跨機型直接套用的操作假設。"
       ],
       "keyPoints": [
-        "主要操縱與三個軸",
-        "副翼不利偏航與協調",
-        "襟翼、前緣裝置與擾流板",
-        "配平與自動駕駛"
+        "從指令、傳動、作動器及回饋理解系統，電傳操縱不等於自動駕駛。",
+        "副翼主要滾轉、升降舵主要俯仰、方向舵主要偏航；混合機構可讓翼面兼具功能。",
+        "配平片、平衡片、伺服片與反伺服片的連動和目的不同，不能只看外觀或同一個方向口訣。",
+        "自動駕駛需要模式與路徑監控，不能以設備存在推定具備全部功能或通用解除方式。"
       ],
       "detailSections": [
         {
-          "title": "主要操縱與三個軸",
-          "locator": "Primary Flight Controls；6-2 起",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：從輸入到氣動力矩",
+          "parent": null,
+          "locator": "PHAK C 版 · 6-1",
+          "printedPage": "6-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=1",
           "paragraphs": [
-            "副翼主要控制滾轉，升降舵控制俯仰，方向舵控制偏航。名稱對應的是主要作用；真實飛機存在耦合，單一操縱可能伴隨其他軸的反應。",
-            "操縱面產生氣動力矩，再改變姿態及飛行路徑。把「動了哪個面」「產生哪個力矩」「飛機如何回應」分開，有助理解操縱並非按鈕式的單一結果。"
+            "飛行操縱系統把機師輸入傳到操縱面，再由氣流與壓力分布的改變產生力及力矩。機械式可用鋼索、滑輪、推拉桿等傳遞；較大或較快的飛機可能使用液壓助力及電傳操縱，不能假設座艙動作永遠直接拉動外部翼面。",
+            "電傳操縱以電訊號及控制邏輯連結輸入和作動器，不代表所有操縱面都由電動馬達直接推動，也不等於自動駕駛。原文的智慧控制研究屬歷史背景，閱讀重點是辨認指令、動力、回饋及備援路徑。"
           ]
         },
         {
-          "title": "副翼不利偏航與協調",
-          "locator": "Ailerons；Adverse Yaw",
+          "id": "systems",
+          "english": "Flight Control Systems",
+          "title": "飛行操縱系統的整體關係",
+          "parent": null,
+          "locator": "PHAK C 版 · 6-2",
+          "printedPage": "6-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=2",
           "paragraphs": [
-            "副翼差動改變兩翼升力時，也可能帶來不同阻力，造成與預期轉彎方向相反的偏航趨勢。差動副翼、Frise 型副翼等設計及適當協調，都是理解這個問題的線索。",
-            "方向舵並非在所有飛行情境中單獨「把飛機轉彎」。轉彎需要看升力方向與協調狀態；實際操縱量和時機應依飛機反應與教官指導。"
+            "同一架飛機可能結合機械連桿、液壓、電力與電腦控制。理解系統時可沿著機師輸入、訊號傳遞、作動器、操縱面和回饋逐段看，確認哪一段負責傳遞命令、哪一段提供實際移動所需能量。",
+            "助力或電傳系統可能利用人工感覺裝置提供操縱回饋，手上阻力不一定等於直接承受的氣動力。自編例：液壓失效後是否仍能人工操縱，不能由控制桿還能移動就判定，須查該機型的備援設計。"
           ]
         },
         {
-          "title": "襟翼、前緣裝置與擾流板",
-          "locator": "Secondary Flight Controls；6-8～6-10",
+          "id": "controls",
+          "english": "Flight Controls",
+          "title": "主要與次要操縱的分類",
+          "parent": "systems",
+          "locator": "PHAK C 版 · 6-2",
+          "printedPage": "6-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=2",
           "paragraphs": [
-            "襟翼改變機翼的升力與阻力特性，不同型式可能改變弧度、面積或流動。前緣裝置協助特定迎角下的流動；擾流板則破壞部分升力並增加阻力。",
-            "放下裝置也會改變力矩及性能，不能簡化成「越多越安全」。使用構型、限制速度及相應性能，都應依適用 AFM／POH，而不是只看通用原理。"
+            "原書將副翼、升降舵或全動式水平尾翼、方向舵列為主要操縱，用於控制滾轉、俯仰及偏航；襟翼、前緣裝置、擾流板與配平系統列為次要操縱，用於性能、氣流或持續操縱力的調整。",
+            "這是功能分類，不表示次要操縱不重要，也不表示一個翼面只能執行一種功能。襟副翼可同時執行增升與滾轉功能，擾流板也可參與滾轉；應從整個控制系統理解各部件的分工。"
           ]
         },
         {
-          "title": "配平與自動駕駛",
-          "locator": "Trim Tabs；Adjustable Stabilizer；Autopilot",
+          "id": "primary",
+          "english": "Primary Flight Controls",
+          "title": "主要操縱面與三軸",
+          "parent": "systems",
+          "locator": "PHAK C 版 · 6-2",
+          "printedPage": "6-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=2",
           "paragraphs": [
-            "配平用來降低維持所需狀態的持續操縱力，不是取代建立正確姿態與速度。不同配平設計可能透過小翼面或可調水平尾翼達成，不能以外觀推定工作方式。",
-            "自動駕駛也是透過控制系統執行命令，需要辨識模式、限制與解除方式。當系統行為不符預期，教材只能說明理解方向，實際程序要依核准資料和訓練。"
+            "操縱面偏轉改變周圍流場，產生使飛機繞重心轉動的力矩。副翼主要控制縱軸滾轉，升降舵或 stabilator 主要控制橫軸俯仰，方向舵主要控制垂直軸偏航；實際動作還可能伴隨其他軸的耦合。",
+            "低速時氣動操縱效能通常較低，高速時小偏轉也可能產生較大作用，但助力系統的手感與限制依機型而異。操縱止擋限制行程，不代表全行程在所有速度和多軸組合下都安全，仍須遵守操作限制。"
+          ],
+          "points": [
+            "Aileron → Roll → Longitudinal axis：副翼、滾轉、縱軸。",
+            "Elevator／Stabilator → Pitch → Lateral axis：升降舵／全動式水平尾翼、俯仰、橫軸。",
+            "Rudder → Yaw → Vertical axis：方向舵、偏航、垂直軸。"
           ]
         },
         {
-          "title": "案例：改變構型後為什麼還要調整",
-          "locator": "本站自編案例；對照襟翼與配平",
+          "id": "ailerons",
+          "english": "Ailerons",
+          "title": "副翼：左右升力差產生滾轉",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-3",
+          "printedPage": "6-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=3",
           "paragraphs": [
-            "自編案例：學員在模擬器改變襟翼後，發現原先操縱力與速度趨勢改變。先辨認構型導致的升力、阻力與力矩變化，再依訓練程序建立需要的狀態與配平。",
-            "若只把配平當成直接命令速度的旋鈕，就會漏掉功率、姿態及構型之間的關係。練習目標是解釋反應，不是在教材中提供跨機型的固定操縱步驟。"
+            "典型副翼位於機翼外側後緣，左右反向偏轉。向右輸入時，右副翼上偏降低該側翼型的升力貢獻，左副翼下偏提高另一側的升力貢獻，形成向右滾轉力矩；這是常規未失速流動下的入門描述。",
+            "副翼控制的是滾轉反應，不是把操縱盤固定某角度就保證飛機停在相同傾斜角。建立傾斜後仍需觀察並調整，偏轉帶來的阻力差也可能產生反向偏航，必須連同方向舵協調理解。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "adverse-yaw",
+          "english": "Adverse Yaw",
+          "title": "反向偏航與協調",
+          "parent": "ailerons",
+          "locator": "PHAK C 版 · 6-3",
+          "printedPage": "6-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=3",
+          "paragraphs": [
+            "副翼讓兩翼升力及阻力改變，可能使機頭暫時朝預期滾轉的反方向偏航。例如開始右滾時，左翼增加的阻力可使機頭偏左；這與需要向右建立傾斜的意圖相反，因此稱為反向偏航。",
+            "低速、大副翼偏轉等條件下效果可能更明顯，但所需協調量隨機型與狀態而異。自編辨別：機翼向右傾斜不保證機身已對準相對氣流；應以適當觀察與操縱保持協調，不能一律用固定踏板量。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "differential",
+          "english": "Differential Ailerons",
+          "title": "差動副翼",
+          "parent": "ailerons",
+          "locator": "PHAK C 版 · 6-4",
+          "printedPage": "6-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=4",
+          "paragraphs": [
+            "差動副翼讓上偏副翼的行程大於另一側下偏行程，藉調整兩側氣動作用減輕反向偏航。這裡的 differential 是上下偏轉幅度不同，不只是一般副翼左右反向動作。",
+            "它是減輕副作用的設計方式，不保證完全消除反向偏航或不需方向舵。自編練習：在原圖中比較上下偏角，再解釋為何僅看到兩邊都在動，還不足以辨認它是否具有差動安排。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "frise",
+          "english": "Frise-Type Ailerons",
+          "title": "Frise 型副翼",
+          "parent": "ailerons",
+          "locator": "PHAK C 版 · 6-4",
+          "printedPage": "6-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=4",
+          "paragraphs": [
+            "Frise 型副翼利用偏置鉸鏈，使上偏時部分前緣伸入翼下氣流，增加該側阻力，以協助平衡另一側副翼下偏所增加的阻力。原文也說明其縫隙安排可幫助下偏副翼的氣流。",
+            "這種方式與差動副翼不是互斥，某設計可以同時具有兩者。辨認時看鉸鏈位置及偏轉後前緣的相對位置，而不是只看外觀名稱；其作用仍是減輕反向偏航，不能視為所有狀態自動協調。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "coupled",
+          "english": "Coupled Ailerons and Rudder",
+          "title": "副翼與方向舵連動",
+          "parent": "ailerons",
+          "locator": "PHAK C 版 · 6-4",
+          "printedPage": "6-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=4",
+          "paragraphs": [
+            "某些系統以彈簧及連桿連結副翼和方向舵，滾轉輸入時同時提供部分方向舵偏轉，協助抵銷副翼造成的偏航。原書例子中的彈簧連動可由機師克服，以保留需要側滑等情況的操縱能力。",
+            "連動不是自動駕駛，也不是保證所有速度與功率下都完全協調。自編例：操縱盤轉動時踏板跟著動，可能是連動特性，應先理解該機型設計，不能僅憑這個現象判定方向舵由電腦控制。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "flaperons",
+          "english": "Flaperons",
+          "title": "襟副翼與混合機構",
+          "parent": "ailerons",
+          "locator": "PHAK C 版 · 6-5",
+          "printedPage": "6-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=5",
+          "paragraphs": [
+            "襟副翼將副翼與襟翼功能合在同一組活動面：差動偏轉提供滾轉，共同下偏提供襟翼效果。機師仍可有分開的滾轉與襟翼輸入，混合機構再將兩者組合成各翼面的實際位置。",
+            "自編例：左右襟副翼已共同下偏時，向右滾轉輸入是在這個基礎上增加左右差別，不代表其中一側一定回到原來收起的位置。可用行程、操縱效能及襟翼限制需依機型，不能直接套用傳統分離式副翼配置。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "elevator",
+          "english": "Elevator",
+          "title": "升降舵與俯仰力矩",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-5",
+          "printedPage": "6-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=5",
+          "paragraphs": [
+            "傳統尾翼的升降舵位於水平安定面後緣。向後拉控制桿通常使其後緣上偏，改變尾翼氣動力，對重心產生抬頭力矩；力矩大小與尾翼效能、力臂、局部氣流及重心位置有關。",
+            "升降舵直接影響俯仰與迎角，不是按一下就直接增加高度。自編例：機頭抬起後，飛機可能爬升或因速度不足而減速，需結合功率和整體飛行狀態判斷；尾翼受力方向也不能由這個典型例子推論所有構型。"
+          ]
+        },
+        {
+          "id": "t-tail",
+          "english": "T-Tail",
+          "title": "T 型尾翼的氣流與深失速",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-6",
+          "printedPage": "6-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=6",
+          "paragraphs": [
+            "T 型尾翼將水平尾翼設在垂直尾翼頂端，正常狀態下可避開部分機身、機翼或引擎排流，亦有安裝及離水高度等考量。它同時帶來結構剛性、重量與局部氣流的設計取捨，不能只按字形判定操縱優劣。",
+            "在某些大迎角狀態下，機翼分離尾流可能遮蔽高置水平尾翼，降低壓低機頭的能力，形成深失速風險。實際是否易發、控制力大小及保護裝置都依機型；後重心可能加重恢復困難，不能認為保護裝置允許超出重心範圍。"
+          ]
+        },
+        {
+          "id": "stabilator",
+          "english": "Stabilator",
+          "title": "全動式水平尾翼",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-7",
+          "printedPage": "6-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=7",
+          "paragraphs": [
+            "Stabilator 由整片水平尾翼繞樞軸轉動，結合安定面與升降舵的功能，和固定安定面後方附一片升降舵不同。整片翼面的氣動作用讓它能有效控制俯仰，也需適當的操縱力與平衡設計。",
+            "原書例子在後緣設置 antiservo tab，使操縱時的回饋力增加、降低過度敏感；也可能設平衡配重。配重是質量平衡部件，antiservo tab 則用氣動作用調整手感，不能把兩種「平衡」機制混成同一零件。"
+          ]
+        },
+        {
+          "id": "canard",
+          "english": "Canard",
+          "title": "鴨式前翼與升力分配",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-7",
+          "printedPage": "6-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=7",
+          "paragraphs": [
+            "Canard 把提供縱向功能的翼面放在主翼前方，常以向上的氣動力形成俯仰平衡，與原書典型後尾翼例子不同。全機需共同安排前翼、主翼的升力、力矩及相互氣流，而不是單把尾翼搬到前面即可。",
+            "不同前翼可為固定、可動或帶活動面，不能只看前方有翼面就認定整片都能轉動。原書的效率描述是設計概念，實際阻力與失速順序依整體設計；前翼構型也不自動代表不會失速或必然較省油。"
+          ]
+        },
+        {
+          "id": "rudder",
+          "english": "Rudder",
+          "title": "方向舵與偏航",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-8",
+          "printedPage": "6-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=8",
+          "paragraphs": [
+            "方向舵位於垂直尾翼後緣，偏轉後改變側向氣動力，使飛機繞垂直軸偏航。典型左踏板輸入使方向舵左偏，尾部受力向右，機頭偏左；效果取決於氣流速度，螺旋槳滑流也可能影響它。",
+            "方向舵可協助協調轉彎與處理側滑，但不是像汽車方向盤一樣單獨完成所有轉彎。大幅或快速反向輸入可能帶來高載荷，即使操縱行程允許也不表示任何速度皆適合；須依機型限制和訓練操作。"
+          ]
+        },
+        {
+          "id": "v-tail",
+          "english": "V-Tail",
+          "title": "V 型尾翼與舵面混合",
+          "parent": "primary",
+          "locator": "PHAK C 版 · 6-8",
+          "printedPage": "6-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=8",
+          "paragraphs": [
+            "V 型尾翼用兩片傾斜翼面共同提供水平及垂直尾翼的功能，其活動面常稱 ruddervators。俯仰輸入使兩側按俯仰需求共同動作，偏航輸入則透過差動作用形成所需側向力與力矩。",
+            "同時輸入升降舵與方向舵時，混合機構將兩種需求合成到各舵面，不能把單片簡單標成升降舵、另一片標成方向舵。結構、耦合反應與阻力效果依設計，不應僅因少一片尾翼就保證效率更高。"
+          ]
+        },
+        {
+          "id": "secondary",
+          "english": "Secondary Flight Controls",
+          "title": "次要操縱系統的角色",
+          "parent": "systems",
+          "locator": "PHAK C 版 · 6-8",
+          "printedPage": "6-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=8",
+          "paragraphs": [
+            "次要操縱系統包括襟翼、前緣裝置、擾流板及配平系統，協助調整性能、流動或持續操縱力。這些裝置的展開可能同時改變升力、阻力、力矩與操縱需求，所以不能把它們視為彼此獨立的開關。",
+            "自編例：放襟翼後即使目的是低速飛行，仍要管理姿態、速度與配平變化。分類中的「次要」不代表可忽略故障或限制，實際使用需確認對稱性、位置指示及機型允許的速度與構型。"
+          ]
+        },
+        {
+          "id": "flaps",
+          "english": "Flaps",
+          "title": "襟翼類型與增升、增阻",
+          "parent": "secondary",
+          "locator": "PHAK C 版 · 6-8",
+          "printedPage": "6-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=8",
+          "paragraphs": [
+            "襟翼改變後緣幾何，通常增加彎度及最大升力係數，某些設計也增加有效翼面積。原書依基本機制介紹簡單式、分裂式、開縫式及 Fowler 式，圖中另呈現開縫 Fowler 的組合；分類不是互斥的商品名稱。",
+            "小幅與大幅展開的升力、阻力增益不同，後段行程可能主要增加阻力，俯仰反應也依全機而異。不能把襟翼當成越多越能爬升的裝置，或一概認為會抬頭／低頭；操作速度、起飛設定及收放順序須查手冊。"
+          ],
+          "points": [
+            "Plain flap／簡單式：後緣整段下偏，改變翼型彎度。",
+            "Split flap／分裂式：下表面片下偏，常形成較大的尾流與阻力。",
+            "Slotted flap／開縫式：縫隙使氣流進入襟翼上表面，幫助延緩分離。",
+            "Fowler flap／Fowler 式：向後移動增加面積並配合下偏，亦可結合多段開縫。"
+          ]
+        },
+        {
+          "id": "leading-edge",
+          "english": "Leading Edge Devices",
+          "title": "前緣縫隙、縫翼、襟翼與袖套",
+          "parent": "secondary",
+          "locator": "PHAK C 版 · 6-9",
+          "printedPage": "6-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=9",
+          "paragraphs": [
+            "前緣裝置用於改善較大迎角下的流動及最大升力能力。Slot 是縫隙，slat 是可形成縫隙的前緣翼段，兩者不是同一零件名稱；固定縫隙與可動裝置的幾何和運作方式也不同。",
+            "某些縫翼會依氣動力自動伸出，另一些由機師或系統控制，不能只因名稱是 slat 就假定自動。前緣襟翼改變幾何，固定 cuff 則改變前緣輪廓；各方式在低速效能、阻力及複雜度間取捨。"
+          ],
+          "points": [
+            "Fixed slot：固定氣流通道；與活動翼段分開辨識。",
+            "Movable slat：前緣翼段可移動，展開形成適當氣流通道。",
+            "Leading edge flap：改變前緣幾何，常配合後緣增升裝置。",
+            "Leading edge cuff：固定的前緣外形修改，並非每次起降都收放。"
+          ]
+        },
+        {
+          "id": "spoilers",
+          "english": "Spoilers",
+          "title": "擾流板的三種用途",
+          "parent": "secondary",
+          "locator": "PHAK C 版 · 6-10",
+          "printedPage": "6-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=10",
+          "paragraphs": [
+            "擾流板展開會減少相關翼段升力並增加阻力，可用於下降與減速、輔助滾轉，以及接地後卸除升力。單側展開可使該翼下降；接地後減少翼面支承，能增加由輪子承受的重量並改善煞車條件。",
+            "各機型的飛行擾流板、地面擾流板與減速板邏輯可能不同，同一翼面也可兼用。展開後的速度和下降率仍取決於姿態、功率及控制，不保證自動維持速度；不得將接地專用展開方式直接搬到空中。"
+          ]
+        },
+        {
+          "id": "trim-systems",
+          "english": "Trim Systems",
+          "title": "配平：減輕持續操縱力",
+          "parent": "secondary",
+          "locator": "PHAK C 版 · 6-10",
+          "printedPage": "6-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=10",
+          "paragraphs": [
+            "配平讓機師在選定飛行狀態下不必長時間維持相同控制力，可透過小翼片、可調安定面或其他機構達成。目的在設定適當的力平衡，不是把飛機鎖在某高度，也不是移動行李來改變重心。",
+            "通常先建立所需功率、姿態和構型，再配平以減輕持續操縱力；狀態改變後可能需重新配平。自編例：巡航時手感輕鬆，放襟翼減速後又需要施力，是新狀態的力矩需求改變，不代表先前配平失效。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "trim-tabs",
+          "english": "Trim Tabs",
+          "title": "配平片與主操縱面的反向作用",
+          "parent": "trim-systems",
+          "locator": "PHAK C 版 · 6-10",
+          "printedPage": "6-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=10",
+          "paragraphs": [
+            "在典型升降舵配平片系統中，nose-up 配平使小翼片後緣向下，氣流作用再使升降舵傾向上偏，減輕原先需要持續向後拉的力。名稱 nose-up 描述對飛機的配平意圖，不是小翼片本身一定向上。",
+            "這個反向關係適用於此種配平片，不能直接套到全動尾翼的 antiservo tab 或可調安定面。閱讀原圖時依正文追蹤「配平片 → 升降舵 → 尾部受力 → 機頭」的順序，避免只記某一支箭頭。"
+          ]
+        },
+        {
+          "id": "balance-tabs",
+          "english": "Balance Tabs",
+          "title": "平衡片：減輕主操縱面負荷",
+          "parent": "trim-systems",
+          "locator": "PHAK C 版 · 6-11",
+          "printedPage": "6-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=11",
+          "paragraphs": [
+            "Balance tab 透過與主操縱面連結的機構，在主面偏轉時相對朝反方向偏轉。氣流對小翼片的作用協助抵銷部分主面鉸鏈力矩，讓機師更容易移動或保持主操縱面。",
+            "它與獨立設定的配平片外觀可能相近，但核心是隨主面動作的連動安排。若其連桿可由座艙調整，也可能兼具配平功能；不能只憑後緣有一片小翼面就判定其唯一用途。"
+          ]
+        },
+        {
+          "id": "servo-tabs",
+          "english": "Servo Tabs",
+          "title": "伺服片：先控制小翼片再帶動主面",
+          "parent": "trim-systems",
+          "locator": "PHAK C 版 · 6-11",
+          "printedPage": "6-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=11",
+          "paragraphs": [
+            "Servo tab 系統中，機師的輸入主要先移動小翼片，再利用小翼片的氣動作用帶動較大的主操縱面。它以氣動力協助產生主面動作，和機師直接移動主面、平衡片隨之助力的描述有所不同。",
+            "自編比較：兩種系統都可能減輕手力，但應追問「輸入首先連到哪個部件」。因作用依賴氣流，地面沒有足夠氣流時的反應不一定像空中；系統檢查必須按機型資料，不能以手感自行推定功能正常。"
+          ]
+        },
+        {
+          "id": "antiservo-tabs",
+          "english": "Antiservo Tabs",
+          "title": "反伺服片：增加操縱回饋",
+          "parent": "trim-systems",
+          "locator": "PHAK C 版 · 6-11",
+          "printedPage": "6-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=11",
+          "paragraphs": [
+            "Antiservo tab 通常隨全動式水平尾翼後緣同向偏轉，使氣動作用抵抗主面的偏轉，增加機師所需控制力，降低過度敏感。這與 balance tab 反向動作、減輕控制力的目的不同。",
+            "這類翼片也可能兼具配平功能，因此「增加動作回饋」和「減輕某狀態下持續操縱力」可以同時存在。自編例：尾翼上偏時小翼片也上偏，不應套用傳統升降舵配平片的反向口訣判定連桿裝反。"
+          ]
+        },
+        {
+          "id": "ground-tabs",
+          "english": "Ground Adjustable Tabs",
+          "title": "地面可調翼片",
+          "parent": "trim-systems",
+          "locator": "PHAK C 版 · 6-11",
+          "printedPage": "6-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=11",
+          "paragraphs": [
+            "某些小型飛機在方向舵上有地面可調的金屬翼片，設定後利用氣動作用改善某個巡航條件下的偏航或持續操縱力。其設定在飛行中不由座艙連續調整，和可操作的配平輪系統不同。",
+            "固定設定通常只對特定工況提供折衷，不代表各種速度及功率下都無需方向舵。原書描述地面調整的原理，並不是授權讀者自行彎折；調整、檢查與紀錄要依該機型資料及適用維修要求。"
+          ]
+        },
+        {
+          "id": "adjustable-stabilizer",
+          "english": "Adjustable Stabilizer",
+          "title": "可調安定面與配平行程",
+          "parent": "trim-systems",
+          "locator": "PHAK C 版 · 6-12",
+          "printedPage": "6-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=12",
+          "paragraphs": [
+            "可調水平安定面透過改變安裝角來提供俯仰配平，可能由螺桿、鋼索或馬達驅動。與只轉動升降舵後緣小配平片相比，它改變較大翼面的氣動條件，可處理較大的配平需求。",
+            "可調安定面不等於 stabilator：前者通常仍搭配升降舵，由安定面處理配平，後者以整片尾翼動作作主要俯仰操縱。兩者都可能看見水平翼面移動，必須依功能和控制路徑辨認，不能只看外觀。"
+          ]
+        },
+        {
+          "id": "autopilot",
+          "english": "Autopilot",
+          "title": "自動駕駛的軸向、模式與監控",
+          "parent": null,
+          "locator": "PHAK C 版 · 6-12",
+          "printedPage": "6-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=12",
+          "paragraphs": [
+            "自動駕駛根據感測資訊與所選模式，透過伺服作動器或整合控制系統操作飛機。單軸系統常控制滾轉，更完整系統可控制俯仰及偏航；航向保持、高度保持和導航耦合是不同功能，不能只因有 AP 就假定全部具備。",
+            "Flight director 可顯示操縱指令，但不代表自動駕駛已接通並移動操縱面。使用時需辨認模式、來源、限制與脫離方式，持續監控實際路徑；遇異常時按機型程序處置，不能假定所有系統都能安全地靠用力推拉控制桿解除。"
+          ],
+          "points": [
+            "模式已選擇、已待命與正在作用不同；確認目前實際控制的目標。",
+            "單軸自動駕駛不必具備高度保持；導航耦合也不等於可自動起降。",
+            "脫離自動駕駛後仍需留意配平及操縱力；實際限制依 AFM／POH 與補充手冊。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：功能、連動與機型差異",
+          "parent": null,
+          "locator": "PHAK C 版 · 6-12",
+          "printedPage": "6-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page=12",
+          "paragraphs": [
+            "本章可沿「輸入傳到哪裡、翼面怎麼動、氣流造成什麼力矩」整理。先掌握主要操縱的三軸，再比較尾翼構型與混合機構，最後以增升、增阻及操縱力調整來區分次要系統。",
+            "自編練習：說明為何 nose-up 配平不代表配平片向上，為何可調安定面不等於 stabilator，以及伺服片和反伺服片的目的差在哪裡。回到熟悉機型的 AFM／POH 核對名稱、限制與檢查方法，把通用概念連到實際配置。"
           ]
         }
       ],
@@ -3799,6 +4165,31 @@ export const phakDocument = {
           "title": "襟翼與擾流板",
           "clarification": "兩者對升力的作用不同。",
           "example": "不能把所有翼面伸出都當成增加升力。"
+        },
+        {
+          "title": "電傳操縱與自動駕駛",
+          "clarification": "電傳描述操縱指令傳遞與控制架構，自動駕駛則執行所選自動控制模式。",
+          "example": "機師可手動飛行一架電傳操縱飛機。"
+        },
+        {
+          "title": "配平片與反伺服片方向",
+          "clarification": "典型升降舵配平片靠反向作用助動；反伺服片隨全動尾翼同向偏轉以增加回饋。",
+          "example": "看到小翼片與主面同向不能立即判定機構錯誤。"
+        },
+        {
+          "title": "Stabilator 與 Adjustable Stabilizer",
+          "clarification": "前者是全動式主要俯仰操縱面，後者通常改變安定面安裝角來配平並搭配升降舵。",
+          "example": "兩者都可能使整片水平面改變角度，但控制角色不同。"
+        },
+        {
+          "title": "Slot 與 Slat",
+          "clarification": "Slot 是縫隙，slat 是前緣翼段，可移動後形成縫隙。",
+          "example": "固定縫隙不代表裝有自動伸出的縫翼。"
+        },
+        {
+          "title": "飛行指引與自動駕駛接通",
+          "clarification": "指引可顯示所需操縱，自動駕駛接通才由相應控制系統執行；可用功能依設備。",
+          "example": "看到飛行指引桿不代表飛機已自動保持高度。"
         }
       ],
       "scenario": "自編案例：學員在模擬器改變襟翼後，發現原先操縱力與速度趨勢改變。先辨認構型導致的升力、阻力與力矩變化，再依訓練程序建立需要的狀態與配平。",
@@ -3812,7 +4203,10 @@ export const phakDocument = {
       "explanation": "配平調整平衡與操縱力，仍需監控姿態、速度與適用限制。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=149",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=149"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=149",
+      "detailMode": "outline",
+      "checked": "2026-09-10",
+      "coverageNote": "涵蓋提供的 22 個目錄小節，另補正文中副翼、反向偏航、差動副翼、Frise 型副翼、連動操縱、襟副翼與配平系統 7 個標題，共 29 節。保留英文原名、印刷頁碼與 FAA 原文；中文講解及例子為本站編寫，具體操縱與檢查依機型資料。"
     },
     {
       "id": "phak25c-7",

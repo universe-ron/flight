@@ -117,3 +117,12 @@ test('Chapter 5 full outline, formula examples and source notes render without l
  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-5');
  assert.match(environment('#phak').element('#app').innerHTML,/原書目錄逐節講解 · 62 節/);
 });
+
+test('Chapter 6 renders all sections and preserves existing notes and completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[5];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第六章原有筆記'}});
+ const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
+ assert.match(html,/Chapter 6 : Flight Controls/);assert.match(html,/本章分層目錄 · 29 節/);assert.match(html,/補入原文標題/);
+ assert.match(html,/FAA 本節原文 · 6-12/);assert.match(html,/第六章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+});
