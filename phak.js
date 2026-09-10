@@ -2378,7 +2378,7 @@ export const phakDocument = {
       "number": 4,
       "title": "飛行基本原理",
       "english": "Principles of Flight",
-      "section": "第 4 章；印刷頁碼 4-1 起",
+      "section": "第 4 章；4-1～4-9，全章目錄逐節講解",
       "goal": "用空氣性質、壓力與流動建立升力的理解。",
       "primer": "空氣有密度、黏性與壓力，因此流過物體時會產生作用力。飛機並不是在空的背景中移動；機翼與周圍流場彼此影響，黏性也關係到貼近表面的流動。",
       "terms": [
@@ -2387,54 +2387,360 @@ export const phakDocument = {
         "Relative wind · 相對風"
       ],
       "prompts": [
-        "你能用自己的話解釋「空氣是具有質量的流體」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "同一機場在氣壓近似固定而升溫時，壓力高度、密度高度與幾何標高分別如何變化？",
+        "如何用對稱翼型反駁等時會合說法？壓力分布與下洗為什麼不能算成兩份升力相加？"
       ],
       "keyPoints": [
-        "空氣是具有質量的流體",
-        "壓力高度與密度高度",
-        "壓力分布與動量觀點互相補充",
-        "翼型、迎角與三維機翼"
+        "空氣有質量、黏性與壓力；邊界層具有速度分布，不只是一層黏住的分子。",
+        "壓力高度對應氣壓，密度高度對應密度；溫度與濕度的比較須說明固定條件。",
+        "牛頓與伯努利描述同一流動；上下氣流不必在後緣同時會合。",
+        "翼型、迎角與三維翼尖效應共同影響氣動力，固定上下升力占比並不適用。"
       ],
       "detailSections": [
         {
-          "title": "空氣是具有質量的流體",
-          "locator": "Air is a Fluid；4-2～4-3",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：環境、流動與受力",
+          "parent": null,
+          "locator": "PHAK C 版 · 4-1",
+          "printedPage": "4-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=1",
           "paragraphs": [
-            "空氣有密度、黏性與壓力，因此流過物體時會產生作用力。飛機並不是在空的背景中移動；機翼與周圍流場彼此影響，黏性也關係到貼近表面的流動。",
-            "理解升力時，應同時注意翼型、迎角、速度與空氣狀態。只記住「上面比較快」會漏掉流動為什麼改變，以及在不同條件下何時不再維持。"
+            "本章從空氣的物理性質出發，連到航空器的受力與性能。空氣具有質量、壓力和黏性，機翼在其中運動會改變周圍氣流；理解飛行不是只背四個力的名稱，而是說清楚環境及流動改變後，受力為什麼也改變。",
+            "可以把閱讀分成三步：先了解壓力、溫度與濕度如何影響密度，再用運動定律和壓力分布解釋升力，最後從二維翼型延伸到有翼尖的三維機翼。後續章節的失速、阻力與性能計算，都以這些觀念為基礎。"
           ]
         },
         {
-          "title": "壓力高度與密度高度",
-          "locator": "Pressure Altitude；Density Altitude；4-4",
+          "id": "atmosphere",
+          "english": "Structure of the Atmosphere",
+          "title": "大氣的組成與性質",
+          "parent": null,
+          "locator": "PHAK C 版 · 4-1",
+          "printedPage": "4-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=1",
           "paragraphs": [
-            "壓力高度以標準壓力面為基準；密度高度表達當時空氣密度相當於標準大氣的哪個高度。它不是飛機距離地面的高度，而是協助理解性能的環境量。",
-            "同一機場在炎熱時可能有較高密度高度，表示空氣較稀薄。較高溫度、較低壓力及濕度變化會影響密度；實際性能計算要依該機型圖表所指定的輸入與修正。"
+            "大氣是包圍地球的氣體混合物，具有質量並受到重力作用。乾空氣按體積約含 78% 氮、21% 氧及少量其他氣體；實際空氣還包含變動的水氣。這些比例描述組成，不能和每單位體積內有多少空氣的密度混為一談。",
+            "閱讀時要分開「氧氣占比」與「一定體積內的氧氣量」：大氣越稀薄，即使組成比例近似，單位體積中的分子數仍會下降。本章把重點放在空氣密度、壓力與性能的關係；不要用氧氣較重的單一描述推論日常飛行高度中的氣體完全分層。"
+          ],
+          "references": [
+            {
+              "title": "NASA：對流層的混合作用與大氣環境",
+              "url": "https://science.nasa.gov/wp-content/uploads/2023/09/chap3.pdf",
+              "checked": "2026-09-10"
+            }
           ]
         },
         {
-          "title": "壓力分布與動量觀點互相補充",
-          "locator": "Theories in the Production of Lift；4-5～4-6",
+          "id": "fluid",
+          "english": "Air is a Fluid",
+          "title": "空氣也是流體",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 4-2",
+          "printedPage": "4-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=2",
           "paragraphs": [
-            "升力可以從翼面壓力分布理解，也可以從流動動量改變理解。伯努力關係和牛頓運動定律不是互相排斥的選項，而是以不同方式描述相關物理現象。",
-            "不需要假設分開經過機翼上下的空氣必須同時抵達後緣。這種等時說法無法正確建立流場；學習應回到壓力、速度及氣流偏轉，而不是把錯誤故事當成必要條件。"
+            "Fluid 包括液體與氣體，不只指水或油。流體在剪力作用下會持續變形並流動，氣體還會膨脹以占據容器的可用空間；因此空氣能繞過機翼，卻同時對表面施加壓力與黏性剪力。",
+            "低速問題常可近似把空氣視為密度變化很小的流體，但空氣本身仍具有可壓縮性。這個近似是為了處理特定條件，不代表密度永遠固定；討論高度變化、高溫或高速流動時，必須重新檢查假設。"
           ]
         },
         {
-          "title": "翼型、迎角與三維機翼",
-          "locator": "Airfoil Design；A Third Dimension；4-6～4-9",
+          "id": "viscosity",
+          "english": "Viscosity",
+          "title": "黏性：流層之間的動量傳遞",
+          "parent": "fluid",
+          "locator": "PHAK C 版 · 4-2",
+          "printedPage": "4-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=2",
           "paragraphs": [
-            "翼弦是幾何參考，迎角是翼弦與相對風之間的角。俯仰姿態則相對於地平線，兩者基準不同。飛行路徑改變時，即使機頭姿態相似，迎角也可能不同。",
-            "真實機翼有翼尖，不是無限延伸的二維剖面，因此會出現三維流動效應。後續的誘導阻力與翼尖渦流，正是把剖面概念延伸到整片機翼的結果。"
+            "黏性描述流體抵抗相鄰流層相對滑動的特性，會使不同速度的流層互相影響。原文以油和水的流動作比喻；空氣雖然容易流動，黏性仍非零，靠近翼面時的黏性效應尤其重要。",
+            "不要把黏性和密度當成同一個量：密度是單位體積的質量，黏性則關係到速度差造成的剪力。自編例：知道某流體更重，並不足以判定它流動時的內部阻力更大；兩者必須分別辨識。"
           ]
         },
         {
-          "title": "案例：炎熱機場與相同指示",
-          "locator": "本站自編案例；對照密度高度",
+          "id": "friction",
+          "english": "Friction",
+          "title": "表面摩擦與邊界層",
+          "parent": "fluid",
+          "locator": "PHAK C 版 · 4-2",
+          "printedPage": "4-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=2",
           "paragraphs": [
-            "自編案例：同一架飛機在同一機場，早晨與炎熱午後起飛。機場標高相同，但空氣密度可能不同，因此不能直接沿用早晨的性能判斷。",
-            "先取得正確環境資料，再依機型手冊計算。此案例要學的是幾何高度與性能環境不同，不是提供一個可套用所有飛機的距離增加比例。"
+            "在通常的黏性流動模型中，貼近固體表面的空氣相對表面速度趨近零，往外才逐漸接近外部流速。這個速度明顯受表面影響的薄區域稱為邊界層，不只是貼住翼面的單一層分子；速度差形成壁面剪力與摩擦阻力。",
+            "表面粗糙、污染及流動狀態會影響邊界層發展，但即使表面非常光滑，也不代表摩擦完全消失。自編例：機翼外觀平整仍有黏性效應；而翼面異常也可能改變流動分離，影響不一定只是多一點表面摩擦。"
+          ]
+        },
+        {
+          "id": "pressure",
+          "english": "Pressure",
+          "title": "壓力：每單位面積的正向作用力",
+          "parent": "fluid",
+          "locator": "PHAK C 版 · 4-3",
+          "printedPage": "4-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=3",
+          "paragraphs": [
+            "壓力是單位面積上的正向力，常見單位有 Pa、hPa、psi 或 inHg；同一壓力作用在不同面積上，總力會不同。壓力與沿表面方向的剪力要分開，計算物體受力時還須考慮每一小片表面的方向。",
+            "在同一位置，靜止流體的壓力向各方向作用；這不表示整個物體各處必然有相同壓力。高度差或流動都可能造成壓力分布差異，將各處作用力按方向加總，才能判斷淨力，不能只挑一個測點代表整片機翼。"
+          ]
+        },
+        {
+          "id": "atmospheric-pressure",
+          "english": "Atmospheric Pressure",
+          "title": "大氣壓力與標準大氣",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 4-3",
+          "printedPage": "4-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=3",
+          "paragraphs": [
+            "大氣壓力與上方空氣的重量相關，一般隨高度增加而下降，也隨天氣、時間及位置改變。ISA 提供共同參考：海平面溫度 15°C、壓力約 1013.25 hPa（29.92 inHg）；這是比較性能與校準的模型，不是每天實際天氣的承諾。",
+            "原書用每千呎約下降 2°C 描述標準對流層溫度變化，並提供壓力對照表。氣壓隨高度的變化不是固定直線，不能把低空的每千呎約 1 inHg 粗估延伸到所有高度；使用性能資料時，應依指定的壓力與溫度輸入。"
+          ]
+        },
+        {
+          "id": "pressure-altitude",
+          "english": "Pressure Altitude",
+          "title": "壓力高度：把氣壓換成標準高度",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 4-4",
+          "printedPage": "4-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=4",
+          "paragraphs": [
+            "壓力高度是當地靜壓在標準大氣中對應的高度。把高度表設定為 29.92 inHg／約 1013.25 hPa 時，理想指示就是壓力高度；它使用共同壓力基準，而不是直接量測飛機到海面或地面的幾何距離。",
+            "同一座機場在不同氣壓下可以有不同壓力高度，標高本身則沒有改變。自編例：氣壓下降而機場位置不變，標準大氣會把該氣壓對應到更高的位置。這個量可供性能資料使用，但不要把計算示例理解為任意改動飛行中的高度表設定程序。"
+          ]
+        },
+        {
+          "id": "density-altitude",
+          "english": "Density Altitude",
+          "title": "密度高度：把空氣密度換成標準高度",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 4-4",
+          "printedPage": "4-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=4",
+          "paragraphs": [
+            "密度高度是當時空氣密度在標準大氣中所對應的高度。密度越低，等效高度越高；常見方法先求壓力高度，再修正非標準溫度。它描述性能環境，不能由高度表直接讀出，也不是飛機的離地高度。",
+            "在相同真空速、翼面積與升力係數下，密度降低會使升力減少；若要支撐相同重量，就需調整相應條件。稀薄空氣亦影響螺旋槳與引擎能力，程度依系統而異。實際起飛與爬升性能仍需查機型圖表，不能把「像在更高處」當成所有參數都完全相同。"
+          ],
+          "points": [
+            "同一機場：氣壓近似不變而溫度升高時，壓力高度近似不變，密度高度升高。",
+            "標準溫度條件下：常用乾空氣模型的壓力高度與密度高度相等。",
+            "圖表輸入：若手冊已要求壓力高度及溫度，不要擅自改填密度高度而重複修正。"
+          ]
+        },
+        {
+          "id": "density-pressure",
+          "english": "Effect of Pressure on Density",
+          "title": "壓力如何影響密度",
+          "parent": "density-altitude",
+          "locator": "PHAK C 版 · 4-4",
+          "printedPage": "4-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=4",
+          "paragraphs": [
+            "在溫度及氣體組成相同時，提高壓力會增加單位體積中的質量，因此密度與絕對壓力成正比。這裡的「其他條件相同」是結論的一部分；若壓縮同時讓溫度上升，就不能只用壓力倍數推算密度倍數。",
+            "自編例：比較兩個溫度相同、成分相同但氣壓不同的空氣樣本，較低壓的樣本密度較低。航空性能的壓力輸入也須用正確定義，不能把已換算到海平面的高度表設定值直接當作高地機場的實際站壓。"
+          ]
+        },
+        {
+          "id": "density-temperature",
+          "english": "Effect of Temperature on Density",
+          "title": "溫度如何影響密度",
+          "parent": "density-altitude",
+          "locator": "PHAK C 版 · 4-4",
+          "printedPage": "4-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=4",
+          "paragraphs": [
+            "在壓力與組成相同時，空氣密度與絕對溫度成反比，溫度升高便會降低密度。絕對溫度應使用 Kelvin；不能說攝氏溫度從 10°C 變成 20°C，密度就減半，因為攝氏零點不是分子熱運動的零點。",
+            "自編例：早晨與午後的機場標高相同，如果壓力近似不變而午後更熱，午後密度高度就較高。真實大氣中的溫度和壓力常同時變化，因此不能只因高空較冷就推論高空空氣一定比較密。"
+          ]
+        },
+        {
+          "id": "density-humidity",
+          "english": "Effect of Humidity (Moisture) on Density",
+          "title": "水氣如何影響密度",
+          "parent": "density-altitude",
+          "locator": "PHAK C 版 · 4-5",
+          "printedPage": "4-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=5",
+          "paragraphs": [
+            "在總壓力和溫度相同時，水氣比例增加會降低空氣密度，因為水分子的分子量小於乾空氣的平均值。這裡討論的是氣態水取代部分其他氣體，不是把可見水滴或雨水重量加進空氣的直覺模型。",
+            "相對濕度是相對於該溫度下飽和狀態的比例，不是空氣中水氣的質量百分比；不同溫度即使相對濕度相同，水氣量仍可能不同。濕度會影響密度，但常用性能圖表的處理方式不同，應遵循手冊，不能自行套用固定起飛距離加成。"
+          ]
+        },
+        {
+          "id": "lift-theories",
+          "english": "Theories in the Production of Lift",
+          "title": "升力的壓力與動量觀點",
+          "parent": null,
+          "locator": "PHAK C 版 · 4-5",
+          "printedPage": "4-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=5",
+          "paragraphs": [
+            "升力是氣動合力中垂直於相對氣流的分量。機翼改變周圍流場，翼面各處的壓力作用形成合力，同一流場也呈現空氣動量的改變；這是描述同一個物理作用的不同方式，不是各算一次再把兩份升力相加。",
+            "牛頓定律提供力與動量的關係，伯努利關係在適用條件下連結速度和壓力。定常平直水平飛行的簡化平衡中，升力與重量相等即可維持飛行；不必持續讓升力大於重量，轉彎或加速則要另外分析合力。"
+          ],
+          "references": [
+            {
+              "title": "NASA：Bernoulli and Newton — 壓力與動量的共同解釋",
+              "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "newton",
+          "english": "Newton’s Basic Laws of Motion",
+          "title": "牛頓三大運動定律",
+          "parent": "lift-theories",
+          "locator": "PHAK C 版 · 4-5",
+          "printedPage": "4-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=5",
+          "paragraphs": [
+            "第一定律說明沒有淨外力時物體維持靜止或等速直線運動；第二定律把淨力與動量變化相連，定質量時可寫成 F = ma。加速度包括速度大小或方向的變化，因此定速轉彎仍需要非零合力。",
+            "第三定律的作用力與反作用力作用在不同物體上。機翼對空氣施力、空氣對機翼施力，不能把它們放進同一張飛機受力圖互相抵消；同樣地，螺旋槳推動空氣向後，空氣對槳提供向前的作用力。"
+          ],
+          "points": [
+            "第一定律：平衡的是同一物體上的外力，不是沒有任何力存在。",
+            "第二定律：比較相同淨力時，質量越大，加速度越小；速度方向改變也算加速。",
+            "第三定律：機翼作用於空氣的力與空氣作用於機翼的力是一對；升力與重量不是這一對。"
+          ]
+        },
+        {
+          "id": "bernoulli",
+          "english": "Bernoulli’s Principle of Differential Pressure",
+          "title": "伯努利原理與壓力差",
+          "parent": "lift-theories",
+          "locator": "PHAK C 版 · 4-6",
+          "printedPage": "4-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=6",
+          "paragraphs": [
+            "對穩定、可近似不可壓縮且黏性耗散可忽略的流動，沿同一流線可用 p + ½ρV² + ρgh 為常數來理解能量關係。同高度時，流速增加對應靜壓降低；不能在不同能量來源的任意兩股氣流之間直接套用這句話。",
+            "文氏管在適用近似下以流通面積縮小、流速增加示範此關係，但機翼周圍沒有形成相同的封閉管壁。要預測翼面壓力，仍須知道正確流場；「上方路程長所以必須趕上」不是可用來決定流速的物理條件。"
+          ],
+          "references": [
+            {
+              "title": "NASA：Bernoulli and Newton — 壓力與動量的共同解釋",
+              "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "airfoil",
+          "english": "Airfoil Design",
+          "title": "翼型幾何與設計取捨",
+          "parent": null,
+          "locator": "PHAK C 版 · 4-6",
+          "printedPage": "4-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=6",
+          "paragraphs": [
+            "翼型是機翼等部件的剖面形狀。前緣、後緣的連線是翼弦線，平均弧線描述上下表面中間的彎曲趨勢；厚度與彎度是不同幾何特性。迎角是翼弦與相對氣流之間的角度，不能直接拿機頭相對地平線的俯仰角代替。",
+            "不同任務在升力、阻力、速度範圍及其他需求間取捨，沒有適合所有條件的單一最佳翼型。襟翼等裝置可改變翼型或有效面積以配合低速需求；「上凸下平」只是某些設計的外形，對稱翼型和薄板也能在適當條件下產生升力。"
+          ]
+        },
+        {
+          "id": "low-pressure",
+          "english": "Low Pressure Above",
+          "title": "上表面的低壓區",
+          "parent": "airfoil",
+          "locator": "PHAK C 版 · 4-7",
+          "printedPage": "4-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=7",
+          "paragraphs": [
+            "在許多產生正升力的流動狀態下，上表面外側氣流加速，靜壓相較自由流降低。低壓區沿翼弦並不均勻，位置與強度隨翼型、迎角及流動條件而變，不能用上表面的一個速度值代表全翼。",
+            "上下分開的氣流沒有必須在後緣同時會合的規則；也不需要先指定一條較長路徑才能形成升力。自編練習：若某解釋無法說明對稱翼型在正迎角產生升力，就應重新檢查它對流場所做的假設。"
+          ],
+          "references": [
+            {
+              "title": "NASA：Bernoulli and Newton — 壓力與動量的共同解釋",
+              "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+              "checked": "2026-09-10"
+            }
+          ],
+          "currentNote": "原文 4-8 的壓差與下洗描述容易被讀成兩份升力。NASA 補充說明以完整壓力分布或流動動量變化皆可求得同一氣動力；本站採此方式講解，並排除「上下氣流必須等時抵達」與「機翼是半個文氏管」的假設。"
+        },
+        {
+          "id": "high-pressure",
+          "english": "High Pressure Below",
+          "title": "下表面的壓力貢獻",
+          "parent": "airfoil",
+          "locator": "PHAK C 版 · 4-8",
+          "printedPage": "4-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=8",
+          "paragraphs": [
+            "典型正迎角流動中，下表面部分區域可能出現高於自由流的靜壓，提供升力貢獻；前緣附近的停滯區流速低、靜壓較高。但下表面不是在每種翼型及迎角下都整片維持正壓，必須看實際壓力分布。",
+            "上下表面都參與氣流轉向與表面受力，不能把下表面專門歸給牛頓、上表面專門歸給伯努利。原書也提醒兩側升力占比不是固定值；背誦固定的上方百分比與下方百分比，會掩蓋飛行條件改變的影響。"
+          ],
+          "references": [
+            {
+              "title": "NASA：Bernoulli and Newton — 壓力與動量的共同解釋",
+              "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "distribution",
+          "english": "Pressure Distribution",
+          "title": "壓力分布與壓力中心",
+          "parent": "airfoil",
+          "locator": "PHAK C 版 · 4-8",
+          "printedPage": "4-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=8",
+          "paragraphs": [
+            "壓力分布圖中的正負通常是相對自由流壓力而言，負值不代表絕對壓力小於零。各處壓力需乘上對應面積並考慮方向，才能加總成氣動力；壓力中心 CP 描述合力作用線的位置，不是簡單取幾個壓力數值的算術平均。",
+            "原圖示範特定翼型在不同迎角下的 CP 移動，不能把其移動方向視為所有翼型及失速狀態的定律。CP 是氣動概念，重心 CG 由質量分布決定；即使位置接近，也不能互換，兩者相對關係會影響俯仰力矩。"
+          ],
+          "references": [
+            {
+              "title": "NASA：Bernoulli and Newton — 壓力與動量的共同解釋",
+              "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "behavior",
+          "english": "Airfoil Behavior",
+          "title": "翼型行為：形狀與迎角共同作用",
+          "parent": "airfoil",
+          "locator": "PHAK C 版 · 4-8",
+          "printedPage": "4-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=8",
+          "paragraphs": [
+            "對稱翼型的上下表面形狀相同，仍可因相對氣流的入射角而形成不對稱流場和升力。這說明翼型外形與迎角需要一起考慮；同一翼型在不同迎角下，不會具有完全相同的壓力與流動分布。",
+            "增加迎角在一定範圍內通常能增加升力係數，但不能無限制延伸，流動分離與失速會改變這個關係。自編練習：說明「翼弦如何對著氣流」與「飛機機頭朝哪裡」各自的基準，再到第五章連結臨界迎角與失速。"
+          ]
+        },
+        {
+          "id": "third-dimension",
+          "english": "A Third Dimension",
+          "title": "從二維翼型到三維機翼",
+          "parent": null,
+          "locator": "PHAK C 版 · 4-9",
+          "printedPage": "4-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=9",
+          "paragraphs": [
+            "真實機翼具有有限翼展，翼尖附近有上下表面壓力差造成的繞流，形成尾隨渦流及下洗。這些三維效應會改變機翼遇到的局部氣流方向與有效迎角，並與誘導阻力相連，因此不能把二維剖面的結果原封不動套到整片機翼。",
+            "翼尖小翼和其他翼尖設計可改善流場、降低適當條件下的誘導阻力，但不會讓尾流或翼尖渦流完全消失。原書以堤防比喻阻隔繞流，學習時應理解為減弱或重新安排三維效應，而非安裝小翼後就沒有尾流。"
+          ],
+          "references": [
+            {
+              "title": "NASA：Winglets 的作用與限制",
+              "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/winglets/",
+              "checked": "2026-09-10"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整與自我解釋",
+          "parent": null,
+          "locator": "PHAK C 版 · 4-9",
+          "printedPage": "4-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page=9",
+          "paragraphs": [
+            "本章串起兩條主線：壓力、溫度與水氣決定空氣密度，而翼型、迎角及周圍流動共同決定氣動力。壓力高度與密度高度協助描述環境，牛頓與伯努利觀點協助理解流動和受力，最後再加入有限翼展的三維效應。",
+            "自編練習：同一機場午後升溫時，先說明哪些高度概念改變；再用對稱翼型說明為什麼不需要等時會合假設；最後解釋翼尖小翼為何可以減少某些阻力卻不會消除尾流。每題都回到本章小節和來源核對，而非只背答案。"
           ]
         }
       ],
@@ -2448,6 +2754,31 @@ export const phakDocument = {
           "title": "密度高度與地面高度",
           "clarification": "密度高度描述空氣密度，不是離地距離。",
           "example": "炎熱天密度高度升高，機場本身並沒有升高。"
+        },
+        {
+          "title": "氣壓、密度與高度",
+          "clarification": "壓力與密度成正比需固定溫度及組成；壓力高度和密度高度不必相同。",
+          "example": "同一氣壓下升溫，壓力高度不變但密度高度升高。"
+        },
+        {
+          "title": "濕空氣是否比較重",
+          "clarification": "同溫同總壓下，水氣比例增加使空氣密度降低；相對濕度也不是水氣質量百分比。",
+          "example": "不能因霧滴看似有重量，就把氣態水增加的密度效果說反。"
+        },
+        {
+          "title": "兩種觀點不是兩份升力",
+          "clarification": "完整壓力分布與氣流動量變化描述同一受力；等時會合不是伯努利原理的要求。",
+          "example": "不能先算壓差升力再額外加上相同氣流的下洗反作用力。"
+        },
+        {
+          "title": "壓力中心與重心",
+          "clarification": "CP 關係到氣動合力作用位置，CG 關係到質量分布。",
+          "example": "迎角變化可改變壓力分布，不表示機內貨物因此移位。"
+        },
+        {
+          "title": "翼尖小翼與尾流",
+          "clarification": "翼尖小翼可改善流場及誘導阻力，不能完全消除渦流。",
+          "example": "不能因前機裝有翼尖小翼就認為沒有尾流影響。"
         }
       ],
       "scenario": "自編案例：同一架飛機在同一機場，早晨與炎熱午後起飛。機場標高相同，但空氣密度可能不同，因此不能直接沿用早晨的性能判斷。",
@@ -2461,7 +2792,10 @@ export const phakDocument = {
       "explanation": "密度高度以標準大氣的等效高度表示空氣密度，性能仍應查機型資料。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=88",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=88"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=88",
+      "detailMode": "outline",
+      "checked": "2026-09-10",
+      "coverageNote": "依 FAA-H-8083-25C 第四章的 22 個目錄小節逐節整理。保留英文原名、層級及印刷頁碼；移除貼上目錄中的頁尾 ix 與多餘符號。中文說明與案例由本站編寫，對升力及翼尖小翼的簡化描述另附 NASA 補充來源。"
     },
     {
       "id": "phak25c-5",

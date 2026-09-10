@@ -92,3 +92,14 @@ test('Chapter 3 full outline renders supplemental headings, version note and ret
  for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
  assert.match(environment('#phak').element('#app').innerHTML,/原書目錄逐節講解 · 30 節/);
 });
+
+test('Chapter 4 renders all detailed sections and retains existing chapter records',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[3];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第四章複習筆記'}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ assert.match(html,/Chapter 4 : Principles of Flight/);assert.match(html,/本章分層目錄 · 22 節/);
+ assert.match(html,/FAA 本節原文 · 4-9/);assert.match(html,/NASA：Bernoulli and Newton/);
+ assert.match(html,/第四章複習筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+ assert.match(environment('#phak').element('#app').innerHTML,/原書目錄逐節講解 · 22 節/);
+});

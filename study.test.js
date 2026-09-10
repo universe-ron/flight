@@ -63,3 +63,13 @@ test('Chapter 3 preserves all 26 supplied headings and four original body supple
  assert.equal(c.detailSections.find(s=>s.id==='performance').parent,'instrumentation');
  const lsa=c.detailSections.find(s=>s.id==='lsa');assert.ok(lsa.currentNote.includes('2026-07-24'));assert.ok(lsa.references[0].url.includes('MOSAIC'));
 });
+
+test('Chapter 4 covers the supplied 22 headings with source pages and hierarchy',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[3];
+ const expected=[['Introduction',1],['Structure of the Atmosphere',1],['Air is a Fluid',2],['Viscosity',2],['Friction',2],['Pressure',3],['Atmospheric Pressure',3],['Pressure Altitude',4],['Density Altitude',4],['Effect of Pressure on Density',4],['Effect of Temperature on Density',4],['Effect of Humidity (Moisture) on Density',5],['Theories in the Production of Lift',5],['Newton’s Basic Laws of Motion',5],['Bernoulli’s Principle of Differential Pressure',6],['Airfoil Design',6],['Low Pressure Above',7],['High Pressure Below',8],['Pressure Distribution',8],['Airfoil Behavior',8],['A Third Dimension',9],['Chapter Summary',9]];
+ assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/06_phak_ch4_0.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.deepEqual(c.detailSections.filter(s=>s.parent==='density-altitude').map(s=>s.id),['density-pressure','density-temperature','density-humidity']);
+ assert.equal(c.detailSections.find(s=>s.id==='newton').points.length,3);
+ for(const id of ['low-pressure','third-dimension'])assert.ok(c.detailSections.find(s=>s.id===id).references.some(r=>new URL(r.url).hostname==='www1.grc.nasa.gov'));
+});
