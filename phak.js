@@ -4213,7 +4213,7 @@ export const phakDocument = {
       "number": 7,
       "title": "航空器系統",
       "english": "Aircraft Systems",
-      "section": "第 7 章；印刷頁碼 7-1 起",
+      "section": "第 7 章；7-1～7-41，全章目錄逐節講解",
       "goal": "用能量與流路理解動力、燃油、電氣及防冰系統。",
       "primer": "活塞引擎透過燃燒循環帶動軸，螺旋槳把軸功率轉成推進作用。固定槳距與可變槳距的反應不同；定速系統透過調整槳距控制轉速，但仍有工作範圍及限制。",
       "terms": [
@@ -4222,54 +4222,1193 @@ export const phakDocument = {
         "Anti-ice / Deice · 防冰／除冰"
       ],
       "prompts": [
-        "你能用自己的話解釋「活塞引擎、螺旋槳與渦輪」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "選一項引擎與一項機體系統，畫出其來源、主要流路、控制及監控資料，並說明備援限制。",
+        "比較 hot start／hung start、爆震／提前點火、供油中斷／燃油耗盡，各需要哪些資訊才能分辨？"
       ],
       "keyPoints": [
-        "活塞引擎、螺旋槳與渦輪",
-        "進氣、混合比與燃燒異常",
-        "燃油、潤滑、冷卻與電氣",
-        "液壓、增壓、氧氣與結冰防護"
+        "先沿來源、流路、控制與回饋理解系統，正常單一指示不保證整體正常。",
+        "固定螺距與定速槳、化油器與噴射、磁電機與 FADEC 的依賴不同。",
+        "燃油需符合核准，存量、可用量與能否送達引擎是三個不同問題。",
+        "座艙增壓、氧氣供應與血氧估計不同；防冰裝備不代表所有結冰條件都可飛行。"
       ],
       "detailSections": [
         {
-          "title": "活塞引擎、螺旋槳與渦輪",
-          "locator": "Powerplant；7-1 起；Turbine Engines；7-20 起",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：用流向理解系統",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-1",
+          "printedPage": "7-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=1",
           "paragraphs": [
-            "活塞引擎透過燃燒循環帶動軸，螺旋槳把軸功率轉成推進作用。固定槳距與可變槳距的反應不同；定速系統透過調整槳距控制轉速，但仍有工作範圍及限制。",
-            "渦輪系統包含壓縮、燃燒與膨脹過程，依設計可輸出噴流推力或軸功率。讀儀表時要知道顯示的是轉速、扭矩、溫度還是壓力比，不能跨機型直接比較相同數字。"
+            "本章介紹常見動力與機體系統，讀法是沿著能量、空氣、燃油、油液或訊號的路徑追蹤。每個系統都可問：來源在哪裡、如何分配和控制、如何顯示狀態，以及失去一部分功能會影響哪些其他系統。",
+            "圖中的零件與操作例子屬特定配置的說明，不是每架飛機都相同。先用教材建立原理，再查實際機型的 AFM／POH 及補充資料，才能把概念轉成正確的檢查、限制與異常處置。"
           ]
         },
         {
-          "title": "進氣、混合比與燃燒異常",
-          "locator": "Induction Systems；7-7 起；Combustion；7-18 起",
+          "id": "powerplant",
+          "english": "Powerplant",
+          "title": "動力裝置與附屬系統",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-1",
+          "printedPage": "7-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=1",
           "paragraphs": [
-            "化油器內壓力降低與燃油汽化會造成降溫，因此外氣高於冰點也可能形成化油器冰。燃油噴射避免某些化油器問題，但不表示整個進氣系統完全不會結冰。",
-            "爆震是未燃混合氣異常劇烈燃燒，早燃則是預定點火前已被高溫來源點燃。兩者不同，也可能相互影響；辨識概念後，處置和混合比設定仍需按機型程序。"
+            "動力裝置把燃料能量轉成可用推進作用，同時可能驅動發電、液壓或其他附件。活塞引擎多透過螺旋槳產生推力，渦輪引擎則可主要輸出噴流或軸功率；不能僅按外觀是否有螺旋槳判斷內部引擎類型。",
+            "動力是否可用不只取決於燃燒，還依賴供油、進氣、冷卻、潤滑及控制。自編例：燃油充足卻供不到引擎，和油箱真正耗盡，最後都可能失去動力，但原因與應對依據不同。"
           ]
         },
         {
-          "title": "燃油、潤滑、冷卻與電氣",
-          "locator": "Fuel Systems；7-25 起；Oil Systems；Electrical System",
+          "id": "reciprocating",
+          "english": "Reciprocating Engines",
+          "title": "往復式引擎與四行程",
+          "parent": "powerplant",
+          "locator": "PHAK C 版 · 7-2",
+          "printedPage": "7-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=2",
           "paragraphs": [
-            "燃油系統涉及油箱、通氣、選擇、供油與污染檢查；潤滑和冷卻協助控制摩擦與熱。理解一個系統時，先畫來源、流路、控制點、指示與失效後影響。",
-            "傳統磁電機點火可獨立於主電氣系統工作，但不能推廣到所有電子控制引擎。電瓶、發電機與匯流排的角色也不同；看到電氣故障不應未核對設計就直接判定引擎一定停止或一定不受影響。"
+            "活塞在汽缸內往復，透過連桿及曲軸把氣體膨脹的作用轉成旋轉輸出。常見四行程依序為進氣、壓縮、作功與排氣；每個汽缸完成一循環需曲軸轉兩圈，多汽缸依點火順序平順地接續輸出。",
+            "汽缸可採水平對臥、星型等排列，點火可為火花點火或壓縮點火，不能把所有活塞航空引擎都當成磁電機加 AVGAS。原文的廠商與產品發展是歷史背景，燃料及操作方式仍依實際引擎核准資料。"
           ]
         },
         {
-          "title": "液壓、增壓、氧氣與結冰防護",
-          "locator": "Hydraulic Systems；Pressurized Aircraft；Oxygen Systems；Anti-Ice and Deice",
+          "id": "propeller",
+          "english": "Propeller",
+          "title": "螺旋槳的能量轉換",
+          "parent": "powerplant",
+          "locator": "PHAK C 版 · 7-4",
+          "printedPage": "7-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=4",
           "paragraphs": [
-            "液壓可驅動起落架、煞車等裝置；增壓與氧氣系統處理不同的座艙環境需求。設備存在不等於沒有高度、時間、供給量或使用條件限制。",
-            "防冰以預防積冰為目的，除冰以移除已形成的冰為目的。具備某項裝置不等於航空器獲准進入所有結冰條件；核准範圍、限制與程序需回查實機文件。"
+            "螺旋槳以旋轉翼型改變空氣動量，把引擎軸功率轉成推進作用。槳葉各半徑的旋轉速度不同，扭轉設計用來配合局部相對氣流；槳葉角、迎角和螺距各有不同定義，不能只用轉速判定推力。",
+            "螺旋槳與引擎、減速機構及機體需要配合，效率隨速度和設定改變。自編例：轉速相同時若槳葉角或空速不同，推力可不同，因此後面要分開固定螺距與定速系統來理解儀表。"
           ]
         },
         {
-          "title": "案例：外氣不冷也要理解化油器冰",
-          "locator": "本站自編案例；對照 Carburetor Icing",
+          "id": "fixed-pitch",
+          "english": "Fixed-Pitch Propeller",
+          "title": "固定螺距螺旋槳",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 7-5",
+          "printedPage": "7-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=5",
           "paragraphs": [
-            "自編案例：學員以為外氣 15°C 就不可能出現化油器冰。回到流路思考，文氏管壓降與燃油汽化可能使內部比外氣更冷，因此只看外氣是否低於 0°C 不足以判斷。",
-            "若實際飛行出現動力異常，應依機型核准程序處理。本例只檢查成因理解，不提供一套可適用所有引擎的故障排除順序。"
+            "固定螺距的槳葉角在操作中不改變，是起飛爬升與巡航工況間的折衷。較低螺距通常偏重低速爬升，較高螺距偏重巡航，但不能直接把一種設定當成所有狀態效率最高。",
+            "轉速由引擎扭矩與螺旋槳負荷平衡決定，受油門及空速共同影響。自編例：油門未動而下降加速時轉速仍可能上升，所以 RPM 是重要指示，卻不是脫離飛行條件即可換算的固定功率數字。"
+          ]
+        },
+        {
+          "id": "adjustable-pitch",
+          "english": "Adjustable-Pitch Propeller",
+          "title": "可調螺距與定速調速器",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 7-6",
+          "printedPage": "7-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=6",
+          "paragraphs": [
+            "原書先介紹只能在地面調整的螺旋槳，再延伸到飛行中可變螺距與定速系統。定速調速器在可用範圍內自動改變槳葉角，以維持選定 RPM；它控制轉速，不是保證推力固定。",
+            "到達高低螺距止擋後，槳葉角無法再補償，轉速便可能隨負荷或空速變化。歧管絕對壓力 MAP 與 RPM 要配合解讀，允許組合及功率調整順序依引擎手冊，不能只比較兩個表面數字大小。"
+          ]
+        },
+        {
+          "id": "overspeed",
+          "english": "Propeller Overspeed in Piston Engine Aircraft",
+          "title": "活塞機螺旋槳超轉",
+          "parent": "propeller",
+          "locator": "PHAK C 版 · 7-7",
+          "printedPage": "7-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=7",
+          "paragraphs": [
+            "螺旋槳調速或變距異常可能使槳葉停在低螺距，造成高轉速但推力不足。這種狀態和引擎完全停止不同，剩餘動力、槳阻力及速度之間的關係都可能改變。",
+            "原書以 2010 年 SAIB 個案說明某機型在這種故障下的最佳狀態未必等於公布的熄火滑翔速度。它不是通用減速指令，也不應套用案例速度；應先依機型超轉程序處置，不能在低高度自行試驗。"
+          ]
+        },
+        {
+          "id": "induction",
+          "english": "Induction Systems",
+          "title": "進氣路徑與備用氣源",
+          "parent": "powerplant",
+          "locator": "PHAK C 版 · 7-7",
+          "printedPage": "7-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=7",
+          "paragraphs": [
+            "進氣系統把外界空氣經入口、濾清及管路送往引擎，並視設計經化油器或其他計量裝置。進氣口阻塞可能降低可用功率，備用氣源提供另一條路徑，但不一定具有相同溫度或過濾效果。",
+            "自編例：引擎仍在轉不代表進氣完全正常，功率變化需與 MAP、RPM 及其他指示交叉判讀。備用氣源是自動或手動、是否繞過濾芯，以及使用限制都應查機型資料。"
+          ]
+        },
+        {
+          "id": "carburetor",
+          "english": "Carburetor Systems",
+          "title": "化油器如何計量燃油",
+          "parent": "powerplant",
+          "locator": "PHAK C 版 · 7-8",
+          "printedPage": "7-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=8",
+          "paragraphs": [
+            "浮筒式化油器以浮筒和針閥維持油面，文氏管造成的壓力差使燃油進入氣流，再經節氣門控制混合氣流量。浮筒計量與節氣門不是同一功能：前者管理油室供油，後者影響送進引擎的氣流。",
+            "壓力式化油器以加壓方式供油，其配置和蒸發位置不同。原書比較兩者的機動與結冰特性，不能因此認為壓力式或其他供油方式絕對不會遭遇進氣口阻塞或所有形式的冰。"
+          ]
+        },
+        {
+          "id": "mixture",
+          "english": "Mixture Control",
+          "title": "混合比控制的條件",
+          "parent": "carburetor",
+          "locator": "PHAK C 版 · 7-9",
+          "printedPage": "7-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=9",
+          "paragraphs": [
+            "混合比描述燃油與空氣的比例；密度降低時，未補償的供油系統可能變得相對過濃。調貧是減少相對供油，調濃則增加，目的在依功率與環境維持適當燃燒，不是越稀越省就越好。",
+            "EGT、CHT、燃油流量及運轉狀態可提供資訊，但各引擎允許的調整方式不同。過熱或爆震風險不能只靠「過稀」一個字概括，需結合功率、溫度、燃油及核准程序，不以通用圈數或單一溫度取代手冊。"
+          ]
+        },
+        {
+          "id": "carb-icing",
+          "english": "Carburetor Icing",
+          "title": "化油器結冰的原因與徵兆",
+          "parent": "carburetor",
+          "locator": "PHAK C 版 · 7-9",
+          "printedPage": "7-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=9",
+          "paragraphs": [
+            "燃油蒸發與文氏管壓力降低會使化油器內部降溫，因此外界溫度高於冰點仍可能結冰。冰可縮小文氏管或節氣門附近的通道，限制混合氣流量，造成逐漸失去功率或運轉粗糙。",
+            "固定螺距常先見 RPM 下降，定速槳在仍能補償時則可能 MAP 下降而 RPM 保持。自編辨別：轉速沒有變並不排除功率正在減少，也不能因機翼未結冰就認定化油器內不可能有冰。"
+          ]
+        },
+        {
+          "id": "carb-heat",
+          "english": "Carburetor Heat",
+          "title": "化油器加熱與暫時功率變化",
+          "parent": "carburetor",
+          "locator": "PHAK C 版 · 7-10",
+          "printedPage": "7-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=10",
+          "paragraphs": [
+            "化油器加熱提高進氣溫度，用於適用情境的防冰或除冰；較熱的空氣密度較低，因此使用時可能先降低功率並改變混合比。若有冰，融冰過程亦可能暫時粗糙，不能只因初始 RPM 下降就判定加熱無效。",
+            "是否需全熱、預防使用時機及地面限制依機型，部分熱量也不能一律視為較安全的折衷。應了解正常檢查的預期反應，發現異常按手冊處置，不把原書示例的功率百分比或恢復時間當作固定門檻。"
+          ]
+        },
+        {
+          "id": "carb-temperature",
+          "english": "Carburetor Air Temperature Gauge",
+          "title": "化油器空氣溫度表",
+          "parent": "carburetor",
+          "locator": "PHAK C 版 · 7-11",
+          "printedPage": "7-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=11",
+          "paragraphs": [
+            "此表反映化油器指定感測位置的溫度，可協助評估結冰條件，與外氣溫度不是同一量。標示的警戒區表示需注意的溫度範圍，不是單憑指針進入就已證明有冰。",
+            "水氣、操作功率及感測位置仍會影響判斷。自編例：OAT 在冰點以上而化油器溫度進入警戒區並不矛盾，因為進氣內部可能降溫；標色、最大溫度和加熱用法需依設備說明。"
+          ]
+        },
+        {
+          "id": "oat",
+          "english": "Outside Air Temperature Gauge",
+          "title": "外氣溫度表",
+          "parent": "powerplant",
+          "locator": "PHAK C 版 · 7-11",
+          "printedPage": "7-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=11",
+          "paragraphs": [
+            "OAT 提供外界空氣溫度資訊，可用於性能、空速換算及結冰環境的判斷。它不直接量到化油器內部、汽缸頭或燃油溫度，因此不能把不同溫度表視為彼此替代。",
+            "安裝位置與氣流加熱等可能影響指示，高速機還需分辨總溫與靜溫。自編例：使用計算表前先確認要求的是哪種溫度及單位，而不是把座艙任何標有 °C 的讀值都代入。"
+          ]
+        },
+        {
+          "id": "fuel-injection",
+          "english": "Fuel Injection Systems",
+          "title": "燃油噴射系統",
+          "parent": "powerplant",
+          "locator": "PHAK C 版 · 7-11",
+          "printedPage": "7-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=11",
+          "paragraphs": [
+            "燃油噴射以泵、計量裝置、分配器與噴嘴送油，常見活塞機是在進氣閥附近噴入，並非全都直接噴進汽缸。相較浮筒化油器，它改變燃油分配及蒸發位置，減少典型化油器蒸發結冰問題。",
+            "它仍可能有進氣口結冰、熱起動或燃油汽化問題，不能把 fuel injected 當成沒有任何冰或供油風險。輔助泵何時使用、熱機起動如何進行及備用氣源配置，都應按特定機型程序。"
+          ]
+        },
+        {
+          "id": "boost",
+          "english": "Superchargers and Turbosuperchargers",
+          "title": "增壓的目的與能量來源",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-12",
+          "printedPage": "7-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=12",
+          "paragraphs": [
+            "增壓器提高進氣壓力，使引擎在指定範圍內取得較多空氣或補償高度造成的壓力下降。壓縮也會升溫，因此壓力、溫度、燃油和冷卻能力需一起考慮，不能只追求更高 MAP。",
+            "機械增壓與渦輪增壓的主要差別是驅動壓縮機的能量來源，並非一種只增加速度、另一種只增加高度。實際核准壓力與維持功率能力依系統，增壓不代表可以無限制提升輸出。"
+          ]
+        },
+        {
+          "id": "supercharger",
+          "english": "Superchargers",
+          "title": "機械增壓器",
+          "parent": "boost",
+          "locator": "PHAK C 版 · 7-12",
+          "printedPage": "7-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=12",
+          "paragraphs": [
+            "機械增壓器由引擎透過機械傳動驅動壓縮機，消耗部分軸功率來提高進氣壓力。原書介紹不同段數與轉速配置，說明系統可針對不同高度提供增壓能力。",
+            "獲得更多進氣的效益要扣除驅動與熱管理成本。自編例：同樣 MAP 不表示不同進氣溫度下有相同空氣質量，因此需依引擎資料評估設定，不能把壓力表讀值等同所有性能資訊。"
+          ]
+        },
+        {
+          "id": "turbocharger",
+          "english": "Turbosuperchargers",
+          "title": "排氣渦輪增壓器",
+          "parent": "boost",
+          "locator": "PHAK C 版 · 7-13",
+          "printedPage": "7-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=13",
+          "paragraphs": [
+            "渦輪增壓器以排氣驅動渦輪，軸上壓縮機再壓縮進氣；燃燒後的排氣與乾淨進氣並非混在一起。Wastegate 控制繞過渦輪的排氣比例，影響渦輪取得的能量及增壓程度。",
+            "Intercooler 若有安裝，可降低壓縮後進氣溫度，與控制排氣流量的 wastegate 功能不同。自編練習：沿圖分別畫出進氣、排氣與油路，才能看出為什麼排氣側故障或潤滑異常也會影響增壓。"
+          ]
+        },
+        {
+          "id": "turbo-operation",
+          "english": "System Operation",
+          "title": "增壓控制與潤滑限制",
+          "parent": "turbocharger",
+          "locator": "PHAK C 版 · 7-14",
+          "printedPage": "7-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=14",
+          "paragraphs": [
+            "Wastegate 可由自動感壓控制或手動安排調整，部分系統以引擎油壓驅動作動器。控制反應、油溫及高度改變可能影響 MAP，自動控制也不代表完全不會過度增壓。",
+            "渦輪高速高溫運轉需要合適潤滑與熱管理，功率變更及關車要求應依引擎資料。原書的暖機與冷卻說明是原理背景，不應改寫為所有渦輪增壓引擎一律需要相同等待分鐘數。"
+          ]
+        },
+        {
+          "id": "turbo-altitude",
+          "english": "High Altitude Performance",
+          "title": "臨界高度與可維持功率",
+          "parent": "turbocharger",
+          "locator": "PHAK C 版 · 7-14",
+          "printedPage": "7-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=14",
+          "paragraphs": [
+            "爬升時系統可逐漸減少繞流以維持設定進氣壓力，直到控制或壓縮能力達到限制。臨界高度描述在規定條件下能維持指定性能的高度界線，超過後不能再假定 MAP 或功率不變。",
+            "臨界高度不是飛機最大操作高度，也不保證到那裡仍有足夠爬升率、供氧或其他裕度。實際表現還受溫度及系統狀態影響，若與手冊預期明顯不同，需查明原因而非加大設定補償。"
+          ]
+        },
+        {
+          "id": "ignition",
+          "english": "Ignition System",
+          "title": "磁電機、火星塞與獨立點火",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-15",
+          "printedPage": "7-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=15",
+          "paragraphs": [
+            "傳統磁電機由引擎帶動自行發電，通常不依賴主電池維持點火。雙磁電機各帶一組火星塞，兼顧可靠性與燃燒；選擇單側時的轉速變化需和核准檢查標準比較。",
+            "磁電機關閉通常靠接地抑制點火，接地故障可能使開關看似 OFF 而仍有點火能力，因此主電源關閉不代表螺旋槳可安全搬動。電子點火與 FADEC 的依賴不同，不可直接套用磁電機獨立供電的結論。"
+          ]
+        },
+        {
+          "id": "oil",
+          "english": "Oil Systems",
+          "title": "潤滑、散熱與油壓",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-16",
+          "printedPage": "7-16",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=16",
+          "paragraphs": [
+            "滑油降低摩擦、帶走部分熱量，並可協助密封、清潔或驅動特定部件。濕式油底殼把油儲在引擎下方，乾式系統另有油箱及回油安排；油量檢查時機與方式因此可能不同。",
+            "油壓、油溫與油量回答不同問題，有壓力不等於存量足夠，低溫也不保證潤滑正常。自編例：油壓異常並伴隨溫度變化時應依程序處置，不能只補看另一支正常表便忽略警訊。"
+          ]
+        },
+        {
+          "id": "cooling",
+          "english": "Engine Cooling Systems",
+          "title": "引擎冷卻與氣流管理",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-17",
+          "printedPage": "7-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=17",
+          "paragraphs": [
+            "氣冷引擎利用鰭片、導流隔板與罩內氣流帶走熱量，液冷則透過冷卻液及散熱器轉移熱量。系統需要有效流路，外界很冷或速度很快也不代表所有汽缸自然得到足夠冷卻。",
+            "CHT 反映汽缸頭溫度，油溫反映另一部分熱狀態；功率、混合比、空速與 cowl flap 等可能影響冷卻。如何調整必須依機型，不可把單一熱管理口訣套到所有引擎。"
+          ]
+        },
+        {
+          "id": "exhaust",
+          "english": "Exhaust Systems",
+          "title": "排氣、熱交換與洩漏",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-18",
+          "printedPage": "7-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=18",
+          "paragraphs": [
+            "排氣系統將高溫燃燒產物導離引擎及機體，可能同時驅動渦輪或為熱交換提供熱源。用排氣管外部熱量加熱座艙空氣，不代表把廢氣正常送進座艙。",
+            "裂損可能造成熱損傷、火災或廢氣進入座艙，不能因引擎功率看似正常就忽略。排氣氣味也不是可靠的一氧化碳量測方式；教材著重辨識流路隔離，疑似洩漏須依機型異常程序與檢修資料處理。"
+          ]
+        },
+        {
+          "id": "starting",
+          "english": "Starting System",
+          "title": "起動馬達與供電",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-18",
+          "printedPage": "7-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=18",
+          "paragraphs": [
+            "起動系統以電池或外部電源供能，經接觸器帶動起動馬達使曲軸轉動，讓進氣、供油和點火建立自持運轉。馬達、起動控制電路與引擎持續點火不是同一件事。",
+            "起動馬達具有運轉時間及冷卻限制，未起動成功不能無限連續帶轉。自編例：主電源有燈光不代表電池能承受起動負荷；起動前後仍需依程序確認人員淨空、指示及馬達是否解除嚙合。"
+          ]
+        },
+        {
+          "id": "combustion",
+          "english": "Combustion",
+          "title": "正常燃燒、爆震與提前點火",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-18",
+          "printedPage": "7-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=18",
+          "paragraphs": [
+            "正常火花點火燃燒由火焰有序傳播，壓力配合活塞行程建立。爆震涉及未燃混合氣異常自燃及壓力波；提前點火則在正常點火時刻之前被熱點等引燃，兩者原因與發生時序不同。",
+            "兩種異常可能互相促成並造成高溫與損傷，僅憑座艙徵兆未必能準確分辨。燃油抗爆性、功率與溫度限制應一起遵守；不是只把混合比調到某一端就能保證免除所有異常燃燒。"
+          ]
+        },
+        {
+          "id": "fadec",
+          "english": "Full Authority Digital Engine Control (FADEC)",
+          "title": "全權限數位引擎控制",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-20",
+          "printedPage": "7-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=20",
+          "paragraphs": [
+            "FADEC 依感測資料及控制邏輯管理引擎燃油、點火或其他參數，具體功能依引擎而異，部分系統整合螺旋槳控制。減少手動調整不代表機師不需監控，只是日常控制角色不同。",
+            "控制電源、備援通道及感測器是系統的重要依賴，雙通道也不表示所有共同來源失效都可排除。自編例：不能把傳統磁電機引擎不依賴主電池的特性直接套到 FADEC，須查其獨立供電和故障限制。"
+          ]
+        },
+        {
+          "id": "turbines",
+          "english": "Turbine Engines",
+          "title": "渦輪引擎的連續流動",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-20",
+          "printedPage": "7-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=20",
+          "paragraphs": [
+            "渦輪引擎經進氣、壓縮、燃燒、渦輪與排氣連續處理氣流；渦輪從熱氣流取出功以帶動壓縮機和負載。這與活塞在同一汽缸內依時間進行各行程不同。",
+            "引擎可把更多能量留給噴流、風扇或輸出軸，不同用途形成不同型式。燃燒是否維持、轉軸是否轉動及是否有足夠推力也不是同一判斷，不能只看一個轉速仍存在就認為引擎正常。"
+          ]
+        },
+        {
+          "id": "turbine-types",
+          "english": "Types of Turbine Engines",
+          "title": "渦輪引擎的分類",
+          "parent": "turbines",
+          "locator": "PHAK C 版 · 7-20",
+          "printedPage": "7-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=20",
+          "paragraphs": [
+            "壓縮機可採離心式、軸流式或混合配置，描述的是如何壓縮進氣。Turbojet、turbofan、turboprop、turboshaft 則按推進及功率使用方式分類，兩組分類不是互斥選項。",
+            "自編例：知道引擎使用軸流壓縮機，仍不足以判斷它主要驅動螺旋槳還是以噴流產生推力。應先辨識核心，再追蹤能量送到哪個推進裝置。"
+          ]
+        },
+        {
+          "id": "turbojet",
+          "english": "Turbojet",
+          "title": "渦輪噴射引擎",
+          "parent": "turbine-types",
+          "locator": "PHAK C 版 · 7-20",
+          "printedPage": "7-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=20",
+          "paragraphs": [
+            "渦輪噴射引擎主要利用通過核心後的高速排氣提供推力，渦輪先抽取維持壓縮機等所需的功。推力來自氣流動量及出口壓力作用，不是渦輪葉片本身推著機身前進。",
+            "其性能與速度及環境有關，不能只用最大額定推力比較全航程效率。自編辨別：噴流速度較高不必然適合所有低速任務，要連同整個飛行需求看待。"
+          ]
+        },
+        {
+          "id": "turboprop",
+          "english": "Turboprop",
+          "title": "渦輪螺旋槳引擎",
+          "parent": "turbine-types",
+          "locator": "PHAK C 版 · 7-21",
+          "printedPage": "7-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=21",
+          "paragraphs": [
+            "渦輪螺旋槳引擎將主要可用功經軸及減速機構送到螺旋槳，排氣也可能貢獻部分推力。減速機構讓渦輪與槳各在適當轉速工作，因此兩者 RPM 不必相同。",
+            "常見操作需同時關注扭矩、溫度及槳或核心轉速，並非只用一個油門位置判斷輸出。定速、順槳、反推等功能和限制依機型，不能由有螺旋槳便推定全部具備。"
+          ]
+        },
+        {
+          "id": "turbofan",
+          "english": "Turbofan",
+          "title": "渦輪風扇引擎",
+          "parent": "turbine-types",
+          "locator": "PHAK C 版 · 7-21",
+          "printedPage": "7-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=21",
+          "paragraphs": [
+            "渦輪風扇引擎由核心供能驅動風扇，部分氣流通過核心、部分旁通核心。旁通比描述兩股流量的比例，風扇流與核心流共同影響推力及效率。",
+            "不能把旁通氣流當成沒有做功的廢氣，或把風扇只視為冷卻裝置。不同旁通比和設計適合不同任務，原書示意圖用於理解路徑，並不是所有渦扇引擎的固定推力分配。"
+          ]
+        },
+        {
+          "id": "turboshaft",
+          "english": "Turboshaft",
+          "title": "渦輪軸引擎",
+          "parent": "turbine-types",
+          "locator": "PHAK C 版 · 7-21",
+          "printedPage": "7-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=21",
+          "paragraphs": [
+            "渦輪軸引擎以輸出軸功率為主要用途，例如驅動直升機旋翼。部分設計使用自由動力渦輪，使負載轉軸與氣體產生器可在不同轉速下運作。",
+            "旋翼或其他負載的控制還需與傳動及調速系統配合，不能把氣體產生器轉速等同旋翼轉速。自編練習：沿能量路徑指出哪一段維持引擎本身、哪一段輸出到外部負載。"
+          ]
+        },
+        {
+          "id": "turbine-instruments",
+          "english": "Turbine Engine Instruments",
+          "title": "渦輪儀表：各自量什麼",
+          "parent": "turbines",
+          "locator": "PHAK C 版 · 7-22",
+          "printedPage": "7-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=22",
+          "paragraphs": [
+            "渦輪引擎儀表可表示壓力比、氣流溫度、扭矩及各轉軸速度，不同引擎選用的主要設定參考不同。它們之間有關聯，但不能互相當作同一個量的不同名稱。",
+            "自編例：達到目標 N1 不表示溫度必然在限制內，扭矩未超限也不代表槳轉速正常。應以所屬機型的限制及指示組合判斷，並注意目前是起動、起飛還是持續運轉。"
+          ]
+        },
+        {
+          "id": "epr",
+          "english": "Engine Pressure Ratio (EPR)",
+          "title": "引擎壓力比",
+          "parent": "turbine-instruments",
+          "locator": "PHAK C 版 · 7-22",
+          "printedPage": "7-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=22",
+          "paragraphs": [
+            "EPR 是指定排出端與進氣端壓力的比值，部分引擎用它作為推力設定參考。它是比值而非某條管路的單一壓力，也不是直接以力的單位量到實際推力。",
+            "測點及補償方式依系統，環境及探頭狀態可能影響解讀。自編例：不同引擎相同 EPR 不保證相同推力，因此不能將一架飛機的設定值直接用在另一架。"
+          ]
+        },
+        {
+          "id": "egt",
+          "english": "Exhaust Gas Temperature (EGT)",
+          "title": "排氣及渦輪氣流溫度",
+          "parent": "turbine-instruments",
+          "locator": "PHAK C 版 · 7-22",
+          "printedPage": "7-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=22",
+          "paragraphs": [
+            "EGT、ITT、TIT、TOT 等名稱反映不同測溫位置，常用來監控熱限制及引擎狀態。表上的數字不一定是整個引擎最熱零件的實際溫度，但與核准限制相配合。",
+            "各位置的數值不能直接互換，起動與持續運轉也可能有不同門檻及允許時間。自編例：不能把另一型引擎的 EGT 紅線套到本機 ITT，應確認儀表名稱、單位與限制階段。"
+          ]
+        },
+        {
+          "id": "torquemeter",
+          "english": "Torquemeter",
+          "title": "扭矩表與軸功率",
+          "parent": "turbine-instruments",
+          "locator": "PHAK C 版 · 7-22",
+          "printedPage": "7-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=22",
+          "paragraphs": [
+            "扭矩表量測或推算輸出軸上的扭轉作用，可用百分比、力矩或經校準的壓力單位顯示。軸功率需由扭矩乘角速度得到，扭矩和功率的物理意義不能直接畫上等號。",
+            "在轉速固定的工況下，扭矩可方便地反映功率變化，但轉速改變時需要重新比較。自編例：相同扭矩、不同轉速的兩個狀態，不保證輸出軸功率相同。"
+          ]
+        },
+        {
+          "id": "n1",
+          "english": "N1 Indicator",
+          "title": "N1 轉速指示",
+          "parent": "turbine-instruments",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "原書雙轉子軸流引擎例子中，N1 表示低壓轉子速度，以設計參考 RPM 的百分比顯示，常涉及風扇或低壓壓縮機。百分比是相對參考值，不是節氣門開度。",
+            "不同引擎的命名可能不同，尤其氣體產生器或自由渦輪系統需依資料確認。自編例：N1 100% 不應自動解讀成「所有限制都恰好達到最大」或任何引擎都同一實際轉速。"
+          ]
+        },
+        {
+          "id": "n2",
+          "english": "N2 Indicator",
+          "title": "N2 轉速指示",
+          "parent": "turbine-instruments",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "原書雙轉子例子以 N2 表示高壓轉子速度，其渦輪和壓縮機以同軸配置的另一根軸相連，可與低壓轉子不同速。它能提供起動加速與核心運轉的重要資訊。",
+            "N1 和 N2 不是兩具引擎的編號，也不是兩支儀表必須保持相同百分比。實際起動應監控哪個轉軸、何時供油及起動完成條件皆依機型，不由名稱自行推定。"
+          ]
+        },
+        {
+          "id": "turbine-operation",
+          "english": "Turbine Engine Operational Considerations",
+          "title": "渦輪運轉的交叉監控",
+          "parent": "turbines",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "渦輪運轉需同時維持適當氣流、燃油、點火與轉速關係，並受溫度、機械及其他限制約束。起動、加速、穩態及減速時的瞬態不同，不能只套用巡航的正常指示。",
+            "本節整理過熱、異物、起動異常、壓縮機失速與熄火的辨識概念。具體中止起動或恢復方式須依檢查單，不將書中的概述排列成任何機型都能照做的緊急程序。"
+          ]
+        },
+        {
+          "id": "temperature-limits",
+          "english": "Engine Temperature Limitations",
+          "title": "引擎熱限制",
+          "parent": "turbine-operation",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "渦輪熱端受到高溫氣流和旋轉負荷作用，溫度限制保護材料與零件壽命。監控儀表可能設在不同位置，必須使用該位置對應的限制，不能用另一支較低溫的表證明安全。",
+            "瞬間峰值、持續時間及運轉階段都可能影響超限判斷。自編例：起動時短暫超過規定界線，即使之後恢復正常，也不能自行當作沒有事件，需依手冊處理與檢查。"
+          ]
+        },
+        {
+          "id": "thrust-variation",
+          "english": "Thrust Variations",
+          "title": "環境與可用推力",
+          "parent": "turbine-operation",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "氣溫、壓力、流量與引擎控制限制共同影響可用推力。高溫或高地常降低可用性能，但額定控制及 flat-rating 可能在部分範圍維持特定輸出，因此不能對所有條件套用單一密度比例。",
+            "自編例：相同推力手柄位置在不同日子不一定得到相同推力或爬升能力。性能應依重量與環境資料計算，不能只因儀表接近上次讀值就沿用上次的越障判斷。"
+          ]
+        },
+        {
+          "id": "fod",
+          "english": "Foreign Object Damage (FOD)",
+          "title": "異物損傷",
+          "parent": "turbine-operation",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "石粒、工具、冰或鳥等異物進入引擎可損害葉片、改變氣流並造成失效。地面進氣吸力及某些入口渦流使跑道或機坪上的小物也有影響，並非只有大型鳥擊才算 FOD。",
+            "預防從淨空、作業環境及規定檢查做起；沒有明顯振動不代表吸入後必然無損。自編例：發現新葉片缺口或已知吸入事件，應依檢修要求確認，而不是自行用外觀大小決定可接受性。"
+          ]
+        },
+        {
+          "id": "hot-hung",
+          "english": "Turbine Engine Hot/Hung Start",
+          "title": "熱起動與懸滯起動",
+          "parent": "turbine-operation",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "Hot start 是起動溫度超過適用限制，可能與燃油和氣流不匹配有關；hung start 則是已點火卻未能正常加速至所需自持轉速。兩者描述不同指示，也可能在同一事件中交互出現。",
+            "只看到有點火或溫度上升，不代表起動已成功，需追蹤轉速、溫度及時間。中止、吹轉、重試與維修判定均依機型程序，不能自訂多等幾秒或反覆重新供油來碰運氣。"
+          ]
+        },
+        {
+          "id": "compressor-stall",
+          "english": "Compressor Stalls",
+          "title": "壓縮機失速與流動失配",
+          "parent": "turbine-operation",
+          "locator": "PHAK C 版 · 7-23",
+          "printedPage": "7-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=23",
+          "paragraphs": [
+            "壓縮機葉片也是翼型，入流與轉速不匹配可能使局部迎角過大並分離，降低壓縮能力。嚴重時系統可出現大幅壓力及流量振盪，甚至倒流，常以聲響、振動或指示變化表現。",
+            "局部失速和整體 surge 的細節不同，不是每一次輕微指示都代表同等嚴重。可變導流葉片等設計有助維持裕度，但不消除所有情況；發生異常須依該引擎程序，而非套用通用加速或減速口訣。"
+          ]
+        },
+        {
+          "id": "flameout",
+          "english": "Flameout",
+          "title": "燃燒熄火與重新點火條件",
+          "parent": "turbine-operation",
+          "locator": "PHAK C 版 · 7-24",
+          "printedPage": "7-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=24",
+          "paragraphs": [
+            "Flameout 指引擎燃燒意外中斷，可能由供油中斷、混合與流動條件不合或其他因素造成。即使轉子因慣性或風車效應仍轉動，也不能據此認定正在燃燒或提供正常推力。",
+            "空中重新點火需要合適高度、速度、轉速及系統條件，不是只把點火開關打開便必然恢復。自編例：若原因是燃油供應本身未恢復，重複點火並不能消除根因，須依檢查單與性能條件處置。"
+          ]
+        },
+        {
+          "id": "performance-comparison",
+          "english": "Performance Comparison",
+          "title": "比較推力與功率",
+          "parent": "turbines",
+          "locator": "PHAK C 版 · 7-24",
+          "printedPage": "7-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=24",
+          "paragraphs": [
+            "比較動力系統要把軸功率、推進功率和淨推力的定義分清楚。推進功率涉及推力乘速度，螺旋槳效率又連結軸功率，因此不同單位的額定數字不能直接判斷哪一種引擎「比較強」。",
+            "原圖是在概念上比較速度範圍與推力曲線，並非特定引擎測試資料。若飛機大小、阻力或任務不同，結果也不能直接比較；應先說明比較的是爬升、巡航速度、油耗還是其他目標。"
+          ]
+        },
+        {
+          "id": "airframe",
+          "english": "Airframe Systems",
+          "title": "機體系統的相互依賴",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-25",
+          "printedPage": "7-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=25",
+          "paragraphs": [
+            "機體系統把燃油、電力、液壓及環境控制等能力分配到飛機各處。它們常共享能源或訊號，因此一個源頭失效可能同時影響看似無關的裝置，備援也可能只保留部分功能。",
+            "自編練習：從一個已知負載反向追蹤其泵、母線或引氣來源，再確認備援走哪條路。這比只背每個開關名稱更能理解為什麼異常檢查單會要求減載或隔離。"
+          ]
+        },
+        {
+          "id": "fuel",
+          "english": "Fuel Systems",
+          "title": "燃油從油箱到引擎",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-25",
+          "printedPage": "7-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=25",
+          "paragraphs": [
+            "燃油系統儲存、選擇、過濾並輸送合格燃油到引擎，重點是可用燃油能否以所需壓力及流量送達。油箱內有油只是起點，不代表所有姿態和選擇位置都能持續供油。",
+            "Fuel exhaustion 是燃油耗盡，fuel starvation 則可在別處仍有油時因路徑或選擇問題斷供。自編例：選到空油箱與整機無油的儀表結果可能相似，但剩餘資源與原因不同。"
+          ]
+        },
+        {
+          "id": "gravity",
+          "english": "Gravity-Feed System",
+          "title": "重力供油",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-25",
+          "printedPage": "7-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=25",
+          "paragraphs": [
+            "重力供油利用油箱相對引擎的高度差提供供油壓差，常見於某些高翼配置。管路、通氣及燃油選擇閥仍需正常，不能把「沒有泵」解讀為不存在供油失效。",
+            "油箱通氣阻塞可影響燃油流出，姿態及可用油量亦受設計限制。自編例：看到油箱位置較高，仍需查系統圖確認是否全程重力供油及是否存在輔助泵，而非由外形下結論。"
+          ]
+        },
+        {
+          "id": "fuel-pump",
+          "english": "Fuel-Pump System",
+          "title": "燃油泵系統",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-25",
+          "printedPage": "7-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=25",
+          "paragraphs": [
+            "泵供油利用引擎驅動或電動泵建立所需壓力，可能設輔助泵以支援起動、特定階段或異常。泵的串並聯、旁通及控制邏輯依機型而異，開啟某泵不一定能克服所有故障。",
+            "自編例：輔助泵正在運轉的聲音不能證明引擎入口已得到足夠供油。應看適用壓力或流量指示，使用時機及失效程序依手冊，不能一概認為多開一個泵一定更安全。"
+          ]
+        },
+        {
+          "id": "primer",
+          "english": "Fuel Primer",
+          "title": "起動注油器",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-25",
+          "printedPage": "7-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=25",
+          "paragraphs": [
+            "Primer 將少量燃油送到適當進氣位置以協助起動，與正常運轉的連續計量供油不同。需要量受溫度、引擎和起動狀態影響，不能把每次起動都固定推拉同樣次數當成原理。",
+            "手動注油器通常需要按設計回位及鎖定，避免不正常供油；過量注油也可能造成淹油或火災風險。自編例：起動不順應先按程序辨別冷機、熱機或淹油，不能持續追加燃油。"
+          ]
+        },
+        {
+          "id": "tanks",
+          "english": "Fuel Tanks",
+          "title": "油箱、通氣與可用量",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-25",
+          "printedPage": "7-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=25",
+          "paragraphs": [
+            "油箱除了儲油，還需通氣、膨脹空間及適當出口安排，部分位於翼內或結構中。總容量、可用燃油與不可用燃油不同，規定姿態下無法可靠送達的部分不能列入可用航程。",
+            "自編例：加到目視很滿也不能自行假設等於手冊的可用容量，機身姿態與指定加油位置都會影響判讀。通氣口、油蓋和洩漏狀態同樣是供油可靠性的一部分。"
+          ]
+        },
+        {
+          "id": "fuel-gauges",
+          "english": "Fuel Gauges",
+          "title": "燃油量指示與交叉確認",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-26",
+          "printedPage": "7-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=26",
+          "paragraphs": [
+            "燃油量表以感測器估計油箱存量，可能受姿態、系統設計及故障影響。流量積算器則從已設定的起始量扣除計算耗油，與直接量油箱是不同資訊來源。",
+            "兩者應配合目視或核准量測、加油紀錄及耗油計畫交叉檢查，不能把「油量表只在空時準」當成可忽略異常的理由。積算器起始量輸錯也可能一直顯示看似合理卻不正確的剩餘量。"
+          ]
+        },
+        {
+          "id": "selectors",
+          "english": "Fuel Selectors",
+          "title": "燃油選擇器",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-26",
+          "printedPage": "7-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=26",
+          "paragraphs": [
+            "選擇器決定從哪個油箱或路徑供油，位置可能有 LEFT、RIGHT、BOTH、OFF 或其他安排，但不是每架飛機都有同樣選項。手柄方向、定位及指示都需依實際裝置辨識。",
+            "自編例：某機型允許 BOTH 起飛，不代表另一架的左右選擇系統也能這樣使用。切換後要依程序確認位置及供油反應，不能在不熟悉標示時猜測，也不能把交輸與轉移燃油視為同一功能。"
+          ]
+        },
+        {
+          "id": "strainers",
+          "english": "Fuel Strainers, Sumps, and Drains",
+          "title": "濾網、低點與放油檢查",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-27",
+          "printedPage": "7-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=27",
+          "paragraphs": [
+            "Sump 是讓游離水或沉積物可能聚集的低點，drain 提供取樣排放，strainer 則過濾指定污染物。各油箱與管路可能有多個取樣點，單一取樣乾淨不能保證其他位置也正常。",
+            "應依機型使用合適容器及完整取樣程序辨識燃油、水和顆粒，發現污染需查明並處理。低溫凍結或姿態可使水未流到取樣點，因此不能把一次清澈樣本當成排除所有供油問題的證明。"
+          ]
+        },
+        {
+          "id": "grades",
+          "english": "Fuel Grades",
+          "title": "燃油牌號與核准相容性",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-27",
+          "printedPage": "7-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=27",
+          "paragraphs": [
+            "AVGAS 的牌號涉及抗爆性能，不代表熱量、燃燒溫度或品質高低的通用排名；Jet fuel 與航空汽油亦不能任意互換。有些壓燃活塞引擎使用核准的噴射燃油，不能僅按是否有螺旋槳選油。",
+            "使用哪種燃油必須核對引擎及航空器核准資料、標牌和適用補充核准。顏色與氣味僅是辨識線索，不足以證明正確，無鉛燃油也不能僅憑辛烷值相近便視為適用。"
+          ],
+          "references": [
+            {
+              "title": "FAA：航空汽油無鉛轉換與核准途徑",
+              "url": "https://www.faa.gov/unleaded",
+              "checked": "2026-09-10"
+            }
+          ],
+          "currentNote": "查閱 2026-09-10：原書牌號表不是目前所有燃油的完整清單。無鉛燃油等選項仍需確認航空器及引擎的適用核准，不將原書「使用下一個較高牌號」當成通用替代授權。"
+        },
+        {
+          "id": "contamination",
+          "english": "Fuel Contamination",
+          "title": "燃油污染與水的辨識",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-27",
+          "printedPage": "7-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=27",
+          "paragraphs": [
+            "污染可包括水、顆粒或錯誤燃油，來源可能是加油、儲存、油蓋或系統狀態。游離水常沉在燃油下方，微小懸浮水則可能造成混濁；完全清澈也不能單靠外觀排除全水樣本或其他污染。",
+            "自編例：首次取樣出水後，不應只倒掉那杯便繼續飛行，要依程序確認各低點及污染原因。加油來源、沉降時間、取樣與維修需共同控制，不能把任何臨時濾布都當成可靠除水設備。"
+          ]
+        },
+        {
+          "id": "fuel-icing",
+          "english": "Fuel System Icing",
+          "title": "燃油中的水如何結冰",
+          "parent": "fuel",
+          "locator": "PHAK C 版 · 7-28",
+          "printedPage": "7-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=28",
+          "paragraphs": [
+            "燃油系統結冰多與水有關：游離水、懸浮微滴和溶解水是不同狀態。溫度下降可使部分溶解水析出，形成微滴或冰晶，堵塞濾網與管路，即使不處於典型化油器結冰條件也可能發生。",
+            "放油能處理某些低點游離水，卻不能保證去除所有溶解水。自編辨別：化油器加熱處理進氣內部冰，不等於已解決油箱或濾芯中的結冰，應先確認異常發生的系統位置。"
+          ]
+        },
+        {
+          "id": "fuel-ice-prevention",
+          "english": "Prevention Procedures",
+          "title": "燃油結冰的預防條件",
+          "parent": "fuel-icing",
+          "locator": "PHAK C 版 · 7-28",
+          "printedPage": "7-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=28",
+          "paragraphs": [
+            "預防燃油結冰需依系統控制水分、燃油溫度及適用防冰方式，部分機型可使用核准添加劑或加熱系統。添加劑適用性、濃度與混合方式具有明確資料，不能自行猜比例。",
+            "原書列舉的是特定燃料及系統背景，不代表所有引擎都可加酒精或同一種抑冰劑。自編例：選購標為防冰的產品後，仍須確認該燃油、引擎及航空器是否允許，而非只看商品用途。"
+          ]
+        },
+        {
+          "id": "refueling",
+          "english": "Refueling Procedures",
+          "title": "加油時的辨識與靜電控制",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-29",
+          "printedPage": "7-29",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=29",
+          "paragraphs": [
+            "加油需確認正確燃油、所需數量及航空器適用程序，並控制點火源與靜電。Bonding 讓加油設備和航空器之間維持電位連接，與單純把其中一方接地不是同一概念，不能互相當作替代。",
+            "實際連接順序、設備、引擎及電氣狀態依核准程序和作業規定。自編例：油車停在旁邊且油槍能插入，不代表燃料相容或靜電控制已完成，加油後還須依程序確認油蓋、數量及污染檢查。"
+          ]
+        },
+        {
+          "id": "heating",
+          "english": "Heating System",
+          "title": "座艙加熱的熱源與隔離",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-29",
+          "printedPage": "7-29",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=29",
+          "paragraphs": [
+            "座艙加熱可能來自燃油燃燒、排氣熱交換或壓縮機引氣，目的都是把熱量送到可呼吸的座艙氣流。需要分辨熱源、通風流及廢氣路徑，不能把熱源所在流體當成直接送入座艙的流體。",
+            "各系統有不同控制、過熱保護與檢查要求，同樣開啟 cabin heat 不代表內部機制相同。自編例：加熱不正常時應先按機型資料辨識熱源，而非一律判成引擎冷卻故障。"
+          ]
+        },
+        {
+          "id": "fuel-heater",
+          "english": "Fuel Fired Heaters",
+          "title": "燃油加熱器",
+          "parent": "heating",
+          "locator": "PHAK C 版 · 7-29",
+          "printedPage": "7-29",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=29",
+          "paragraphs": [
+            "燃油加熱器以專用燃燒室產生熱量，風扇將另一股空氣流經熱交換表面後送入座艙。它通常還依賴電力、點火及供油，並以通風和過熱保護控制燃燒條件。",
+            "它與下方 combustion heater 的名稱有重疊，原書分節著重配置及保護，不應硬分成完全互斥技術。燃燒廢氣仍需和通風氣隔離，安全開關存在也不代表可以忽略洩漏、維修或異常警示。"
+          ]
+        },
+        {
+          "id": "exhaust-heating",
+          "english": "Exhaust Heating Systems",
+          "title": "排氣熱交換式暖氣",
+          "parent": "heating",
+          "locator": "PHAK C 版 · 7-29",
+          "printedPage": "7-29",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=29",
+          "paragraphs": [
+            "此系統使乾淨空氣流過排氣管外部的熱交換區吸熱，再送入座艙或指定入口。正常情況下，排氣管內廢氣和供暖空氣不混合；故障重點之一是隔離表面是否完整。",
+            "若排氣管裂損，廢氣可能污染暖氣流並形成一氧化碳風險。自編例：暖氣仍然很熱不代表隔離正常，應依檢查與異常程序判斷，不能用嗅覺或熱量大小取代完整性檢查。"
+          ]
+        },
+        {
+          "id": "combustion-heater",
+          "english": "Combustion Heater Systems",
+          "title": "燃燒式加熱器的控制循環",
+          "parent": "heating",
+          "locator": "PHAK C 版 · 7-29",
+          "printedPage": "7-29",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=29",
+          "paragraphs": [
+            "原書此節進一步說明恆溫器、燃油電磁閥及過熱保護如何控制燃燒：需要熱量時供油燃燒，達到設定條件後停止供油，通風氣從燃燒室外側帶走熱量。",
+            "某些壓差安排可降低廢氣外洩的機會，但不能據此保證完全沒有一氧化碳或火災風險。自編練習：在系統圖分別標出燃燒空氣、廢氣及座艙通風氣，確認故障時哪個閥或保護可以中止熱源。"
+          ]
+        },
+        {
+          "id": "bleed-heating",
+          "english": "Bleed Air Heating Systems",
+          "title": "引氣加熱",
+          "parent": "heating",
+          "locator": "PHAK C 版 · 7-30",
+          "printedPage": "7-30",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=30",
+          "paragraphs": [
+            "引氣系統可從渦輪引擎壓縮機抽取熱的壓縮空氣，經調節、冷卻或混合後供應座艙。這是在燃燒之前取得的壓縮機氣流，不是把引擎排氣正常導入座艙。",
+            "引氣可同時服務環境控制、防冰或其他負載，使用會影響引擎及系統能力，具體依設計而異。溫度感測、閥門與管路故障需按機型判斷，不能因引氣仍有壓力就假定送入座艙的溫度正確。"
+          ]
+        },
+        {
+          "id": "electrical",
+          "english": "Electrical System",
+          "title": "電源、母線與負載",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-30",
+          "printedPage": "7-30",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=30",
+          "paragraphs": [
+            "電氣系統以發電機或交流發電機、電池、調壓及母線向負載供電，保險絲和斷路器保護指定電路。電池可支援起動或備援，但容量有限；發電正常與電池仍有存量是不同問題。",
+            "電流表可能顯示電池充放電，負載表則可能顯示發電輸出，須先理解接線位置。斷路器跳脫不能反覆復位當作修理，應按檢查單；電源失效後哪些儀表、泵及控制仍可用，要依母線與備援圖確認。"
+          ]
+        },
+        {
+          "id": "hydraulics",
+          "english": "Hydraulic Systems",
+          "title": "液壓：壓力、流量與作動",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-31",
+          "printedPage": "7-31",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=31",
+          "paragraphs": [
+            "液壓系統由油箱、泵、控制閥、管路與作動器傳遞能量，壓力配合作動面積產生力，流量影響動作速度。液壓油近似不可壓縮，但系統仍需洩壓、過濾及適用儲壓安排。",
+            "不同液壓液未必相容，顏色也不是可混用的授權。自編例：油壓正常而某作動器不動，仍可能是選擇閥或局部故障；不能僅憑一支壓力表判定整個系統正常。"
+          ]
+        },
+        {
+          "id": "gear",
+          "english": "Landing Gear",
+          "title": "起落架系統",
+          "parent": "hydraulics",
+          "locator": "PHAK C 版 · 7-33",
+          "printedPage": "7-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=33",
+          "paragraphs": [
+            "起落架支撐地面運動及承受接地負荷，可由輪胎、減震及結構分擔。可收放設計還需作動、鎖定、位置感測及警告系統，這些功能不能只用外觀看到輪子伸出來概括。",
+            "本節列在液壓之後，但不表示所有起落架都用液壓收放。自編例：手柄選擇 DOWN 是命令，安全鎖定指示才是另一層回饋，具體確認方法與備用放下方式依機型。"
+          ]
+        },
+        {
+          "id": "tricycle",
+          "english": "Tricycle Landing Gear",
+          "title": "前三點式起落架",
+          "parent": "gear",
+          "locator": "PHAK C 版 · 7-33",
+          "printedPage": "7-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=33",
+          "paragraphs": [
+            "鼻輪在前、兩主輪在後的配置通常具有較好的前方視野及地面方向穩定特性，主輪相對重心的位置是理解差異的關鍵。鼻輪可採連動轉向或自由偏轉等方式，不能一概而論。",
+            "自編例：踩方向舵踏板不一定直接讓鼻輪按固定比例轉動，某些機型需配合差動煞車。正確轉向、接地與煞車方式仍取決於設計，不能因為是鼻輪機就忽略側風或鼻輪負荷限制。"
+          ]
+        },
+        {
+          "id": "tailwheel",
+          "english": "Tailwheel Landing Gear",
+          "title": "尾輪式起落架",
+          "parent": "gear",
+          "locator": "PHAK C 版 · 7-33",
+          "printedPage": "7-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=33",
+          "paragraphs": [
+            "尾輪機的主輪通常在重心前方，地面偏離方向後的慣性與幾何關係可能加劇偏轉，需理解其方向控制特性。尾輪可轉向、鎖定或自由偏轉，取決於機型。",
+            "機頭較高也影響前方視野與地面操縱，煞車及側風管理不能照搬鼻輪機經驗。自編例：地面滑跑仍需持續方向控制，不能因尾翼空氣動力穩定就假定地面偏轉一定自行恢復。"
+          ]
+        },
+        {
+          "id": "fixed-retractable",
+          "english": "Fixed and Retractable Landing Gear",
+          "title": "固定式與可收放起落架",
+          "parent": "gear",
+          "locator": "PHAK C 版 · 7-34",
+          "printedPage": "7-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=34",
+          "paragraphs": [
+            "固定式簡化機構但保留外部阻力，可收放式以增加機構、重量及操作需求換取較低巡航阻力。收放裝置可能採電動、液壓或其他方式，且需適當鎖定。",
+            "可用速度限制可能區分操作與已放下狀態，警告也不一定能涵蓋所有配置。自編例：沒有聽到警報不證明已放下鎖定，應依檢查單確認指示，異常放下程序不可跨機型套用。"
+          ]
+        },
+        {
+          "id": "brakes",
+          "english": "Brakes",
+          "title": "煞車與接地能量",
+          "parent": "hydraulics",
+          "locator": "PHAK C 版 · 7-34",
+          "printedPage": "7-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=34",
+          "paragraphs": [
+            "煞車以摩擦把地面運動能量轉成熱量，常用液壓使煞車片壓向碟盤。差動煞車可協助地面方向控制，防滑系統若有則調節制動以管理輪胎滑移。",
+            "煞車能力仍受輪胎附著、跑道和熱限制影響，不是腳踩更用力就必然更快停住。自編例：相同速度而重量增加，需吸收的能量也增加，因此落地重量、速度與冷卻要求都要考慮。"
+          ]
+        },
+        {
+          "id": "pressurization",
+          "english": "Pressurized Aircraft",
+          "title": "增壓、座艙高度與壓差",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-34",
+          "printedPage": "7-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=34",
+          "paragraphs": [
+            "增壓使座艙壓力高於外界，通常以持續進氣及控制排氣流量維持所需狀態。座艙高度是艙壓對應的標準高度，壓差是艙內外壓力差，座艙升降率則描述變化速度，三者不能互換。",
+            "外界壓力隨爬升下降，維持固定艙壓會增加壓差，達限制後座艙高度可能必須上升。失壓可有不同速度，需依警示與機型緊急供氧及下降程序處置，不能因沒有巨響就排除危險，也不能把增壓當作增加氧氣比例。"
+          ],
+          "points": [
+            "Outflow valve：控制排出的空氣以調節艙壓，不是氧氣供應閥。",
+            "正壓與負壓保護：限制艙內外壓差的不同方向，保護結構。",
+            "失壓辨識：交叉監控座艙高度、變化率、壓差及警告，不只看飛機高度。"
+          ]
+        },
+        {
+          "id": "oxygen",
+          "english": "Oxygen Systems",
+          "title": "氧氣來源、供應與適用要求",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-37",
+          "printedPage": "7-37",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=37",
+          "paragraphs": [
+            "供氧系統透過儲存來源、調節器、管路及面罩或鼻導管增加吸入氧氣，與座艙增壓是不同功能。可用量取決於容量、壓力、溫度、流量、使用人數及供應方式，不能只看壓力表還有指示。",
+            "供氧的配備、提供及使用要求要按適用規則和座艙壓力高度辨識，法規門檻也不是個人不會缺氧的保證。本章建立設備原理，不以某個血氧讀值取代法規、機型供氧要求或醫療判斷。"
+          ]
+        },
+        {
+          "id": "masks",
+          "english": "Oxygen Masks",
+          "title": "面罩相容性與密合",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-38",
+          "printedPage": "7-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=38",
+          "paragraphs": [
+            "面罩需和調節器及供氧方式相容，機組面罩與乘客面罩可能有不同密合、通訊及佩戴設計。氧氣流得到面罩入口，不表示吸入者一定取得預期濃度，洩漏與佩戴狀態會影響結果。",
+            "清潔、消毒及檢查應採設備製造商規定的方法，不能沿用舊教材中的通用化學配方。自編例：更換外觀相似的面罩前，仍需確認接頭、供應方式及核准用途，而非只看能否接上。"
+          ]
+        },
+        {
+          "id": "cannula",
+          "english": "Cannula",
+          "title": "鼻導管及其使用邊界",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-38",
+          "printedPage": "7-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=38",
+          "paragraphs": [
+            "鼻導管把氧氣送到鼻部，通常較輕便，但效果受呼吸方式、供氧裝置和環境影響。其適用高度及流量不是只按「有氧氣流出」判定，必須查該系統的核准範圍。",
+            "自編例：口呼吸或未正常觸發需求式裝置時，使用者可能沒有得到預期供應。不能用鼻導管任意代替要求密合面罩的用途，指示正常亦需結合佩戴與系統檢查理解。"
+          ]
+        },
+        {
+          "id": "diluter-demand",
+          "english": "Diluter-Demand Oxygen Systems",
+          "title": "稀釋需求式供氧",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-38",
+          "printedPage": "7-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=38",
+          "paragraphs": [
+            "需求式系統在吸氣時供應氧氣，稀釋需求式可依調節器設定及條件混入座艙空氣，或提供較高氧濃度。這個正文標題補足連續流與壓力需求式之間的概念，不是固定每分鐘持續送相同流量。",
+            "面罩密合及調節器功能會影響混合結果，不能僅把 100% 設定等同所有高度都足夠。系統適用界線與檢查方式依設備資料，亦不能把需求式誤認為一定由電池感測吸氣。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "pressure-demand",
+          "english": "Pressure-Demand Oxygen Systems",
+          "title": "壓力需求式供氧",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-38",
+          "printedPage": "7-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=38",
+          "paragraphs": [
+            "壓力需求式在適用條件下向密合面罩供應正壓氧氣，和只在吸氣時提供混合氣的方式不同。重點不只是濃度，還包括供應壓力與面罩密合，可用於較高高度的特定需求。",
+            "何時進入正壓、可用高度及緊急設定依設備，不應把原書示例數字當成所有調節器相同。自編例：面罩與調節器不匹配時，氣瓶有充足壓力也不能證明系統能提供所需保護。"
+          ]
+        },
+        {
+          "id": "continuous",
+          "english": "Continuous-Flow Oxygen System",
+          "title": "連續流供氧",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-38",
+          "printedPage": "7-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=38",
+          "paragraphs": [
+            "連續流系統在使用期間持續供氣，乘客面罩可能帶儲氣袋，在呼氣階段累積部分氧氣供下次吸氣使用。袋子與面罩閥門配合控制流向，不應把它當成完全封閉的呼吸循環。",
+            "流量設定、可用時間與適用高度依系統，不能只以儲氣袋是否一直鼓起判定供氧正常。自編例：外觀相似的乘客面罩與需求式機組面罩，不一定可互換連接或使用。"
+          ]
+        },
+        {
+          "id": "pulse-demand",
+          "english": "Electrical Pulse-Demand Oxygen System",
+          "title": "電控脈衝需求式供氧",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-38",
+          "printedPage": "7-38",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=38",
+          "paragraphs": [
+            "脈衝需求式以感測吸氣在適當時段送出氧氣脈衝，降低非吸氣階段的浪費，部分設備還會依高度調整供應。節氧效果取決於呼吸與系統條件，不能保證固定節省比例。",
+            "電源、感測、佩戴及觸發是否正常都是依賴，不能只確認氧氣瓶仍有壓力。自編例：若沒有偵測到吸氣，設備未必會按預期送氧，因此警告、備援與使用限制需在地面熟悉。"
+          ]
+        },
+        {
+          "id": "oximeter",
+          "english": "Pulse Oximeters",
+          "title": "血氧機：估計值與限制",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-39",
+          "printedPage": "7-39",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=39",
+          "paragraphs": [
+            "血氧機以光學訊號估計周邊血氧飽和度 SpO₂ 和脈搏，並非直接量血液氧分壓或證明全身供氧充足。FDA 提醒其有誤差與限制，包含皮膚色素、循環、溫度及使用條件等影響。",
+            "它可作為輔助觀察，但不能以單次正常數字排除問題，或跳過供氧規則與機型要求。原書聲稱接近直接量測的固定精度不應當成所有裝置的保證；異常、症狀與飛行情境應綜合處理。"
+          ],
+          "references": [
+            {
+              "title": "FDA：Pulse Oximeters 的用途與限制",
+              "url": "https://www.fda.gov/medical-devices/products-and-medical-procedures/pulse-oximeters",
+              "checked": "2026-09-10"
+            }
+          ],
+          "currentNote": "查閱 2026-09-10：FDA 說明血氧機是估計工具且存在誤差，不能把原書的固定精度描述或讀值單獨作為是否需要氧氣的依據。"
+        },
+        {
+          "id": "oxygen-servicing",
+          "english": "Servicing of Oxygen Systems",
+          "title": "氧氣系統補充與清潔",
+          "parent": "oxygen",
+          "locator": "PHAK C 版 · 7-39",
+          "printedPage": "7-39",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=39",
+          "paragraphs": [
+            "氧氣會強化燃燒，高壓設備與油脂污染的組合尤其需要避免。補充時使用適當規格的氣源、相容工具與清潔程序，不能把一般潤滑油或密封材料帶到氧氣接頭。",
+            "壓力隨溫度改變，充填上限、檢驗週期及洩漏檢查均依設備和維修資料。這節解釋為何需要專門作業，並非提供自行充瓶步驟；飛行前使用者應按檢查單確認可用量、流量及設備狀態。"
+          ]
+        },
+        {
+          "id": "ice",
+          "english": "Anti-Ice and Deice Systems",
+          "title": "防冰與除冰的差異",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-40",
+          "printedPage": "7-40",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=40",
+          "paragraphs": [
+            "Anti-ice 以防止形成冰為目的，deice 則用於移除已形成的冰，某些裝置可具有兩種作用。保護位置可能是翼面、入口、螺旋槳或感測器，各自防護不能代替全機能力。",
+            "有皮托管加熱不代表獲准在結冰條件飛行，有全套裝備也不等於任何結冰都可持續承受。應查核准條件、限制與脫離程序，不能把設備清單當成所有天氣的通行證。"
+          ]
+        },
+        {
+          "id": "airfoil-ice",
+          "english": "Airfoil Anti-Ice and Deice",
+          "title": "翼面防除冰方式",
+          "parent": "ice",
+          "locator": "PHAK C 版 · 7-40",
+          "printedPage": "7-40",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=40",
+          "paragraphs": [
+            "充氣除冰靴以變形破裂冰層，熱防冰用引氣或電熱提高表面溫度，滲液翼則以指定液體降低積冰與附著。這些系統的能源、消耗品與指示不同，不能使用同一套啟動與檢查方式。",
+            "除冰靴不應因過時的冰橋說法一律等待大量積冰才用，實際啟動依 AFM／POH。系統作動後仍可能有殘冰或未保護區積冰，應監控性能及環境，不能只見指示燈亮就認定機翼已完全恢復。"
+          ]
+        },
+        {
+          "id": "windscreen-ice",
+          "english": "Windscreen Anti-Ice",
+          "title": "風擋防冰",
+          "parent": "ice",
+          "locator": "PHAK C 版 · 7-41",
+          "printedPage": "7-41",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=41",
+          "paragraphs": [
+            "風擋可用指定液體或導電加熱層維持視野，需控制溫度及供應狀態。加熱式的供電需求和保護範圍依設計，不能以普通除霧或座艙暖氣代替核准防冰功能。",
+            "是否允許地面使用、何時開啟及可能的儀表影響均依機型。原書的地面禁用敘述不宜套到所有風擋系統；自編例：不同運輸機與小型機即使都有 windshield heat，也可能有不同的控制邏輯。"
+          ]
+        },
+        {
+          "id": "propeller-ice",
+          "english": "Propeller Anti-Ice",
+          "title": "螺旋槳防除冰",
+          "parent": "ice",
+          "locator": "PHAK C 版 · 7-41",
+          "printedPage": "7-41",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=41",
+          "paragraphs": [
+            "螺旋槳可用電熱片或指定液體保護，部分系統分區循環加熱以管理功率。此處的加熱 boot 不應和機翼的充氣除冰靴當成相同作動方式，名稱相近但原理不同。",
+            "各槳葉保護不均可能造成不平衡與振動，電流表的變化需按正常循環解讀。自編例：一段有電流不代表所有加熱區都正常，檢查及異常處置仍需核對系統指示與程序。"
+          ]
+        },
+        {
+          "id": "other-ice",
+          "english": "Other Anti-Ice and Deice Systems",
+          "title": "入口、感測器與通氣防冰",
+          "parent": "ice",
+          "locator": "PHAK C 版 · 7-41",
+          "printedPage": "7-41",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=41",
+          "paragraphs": [
+            "皮托管、部分靜壓口、失速感測器、燃油通氣口及其他入口可採不同防冰安排，並非每個開口都一定有加熱。感測口結冰可能造成錯誤指示，與翼面升力損失是不同問題。",
+            "自編練習：列出熟悉機型哪些部位受保護、依賴哪個電源或引氣，以及故障會失去哪類資訊。加熱功能檢查須按手冊，不能用手觸摸加熱表面或只看開關位置推定工作正常。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：來源、路徑、控制與回饋",
+          "parent": null,
+          "locator": "PHAK C 版 · 7-41",
+          "printedPage": "7-41",
+          "source": "https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page=41",
+          "paragraphs": [
+            "本章將燃燒與推進連到機體所需的電力、液壓、熱及呼吸環境。掌握系統的方法是為每個系統列出來源、路徑、控制、指示及備援，再說明故障可能影響哪些其他功能。",
+            "自編複習：解釋油箱有油卻供不到引擎、轉速穩定卻功率下降、氣瓶有壓力卻供氧不足，以及防冰開啟卻仍受結冰限制的可能原因。各題都應回到機型資料確認，而不是用單一正常指示作保證。"
           ]
         }
       ],
@@ -4283,6 +5422,31 @@ export const phakDocument = {
           "title": "防冰與進入結冰核准",
           "clarification": "有裝置不等於所有結冰情境都可飛。",
           "example": "仍需查航空器限制與核准範圍。"
+        },
+        {
+          "title": "扭矩與功率",
+          "clarification": "扭矩是軸上的扭轉作用，功率還需乘上角速度。",
+          "example": "不同轉速下即使扭矩相同，軸功率也不一定相同。"
+        },
+        {
+          "title": "燃油耗盡與供油中斷",
+          "clarification": "耗盡是存量問題，斷供可能在其他油箱仍有油時因選擇或路徑造成。",
+          "example": "選到空油箱不等於所有油箱都沒有油。"
+        },
+        {
+          "title": "加熱空氣與燃燒廢氣",
+          "clarification": "熱交換將熱量送入通風氣，正常設計並非將燃燒廢氣送入座艙。",
+          "example": "排氣熱交換器裂損可污染供暖空氣，即使仍然有熱。"
+        },
+        {
+          "title": "座艙高度與飛機高度",
+          "clarification": "座艙高度由艙壓換算，增壓下可不同於外部高度。",
+          "example": "飛機繼續爬升時，艙壓與壓差需同時符合限制。"
+        },
+        {
+          "title": "有防冰設備與可飛結冰",
+          "clarification": "設備保護範圍及核准限制不同，不代表所有結冰條件均可飛行。",
+          "example": "皮托管加熱不會保護主翼的升力表面。"
         }
       ],
       "scenario": "自編案例：學員以為外氣 15°C 就不可能出現化油器冰。回到流路思考，文氏管壓降與燃油汽化可能使內部比外氣更冷，因此只看外氣是否低於 0°C 不足以判斷。",
@@ -4296,7 +5460,10 @@ export const phakDocument = {
       "explanation": "內部降溫可使濕氣結冰，外氣是否低於冰點不是唯一判斷條件。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=161",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=161"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=161",
+      "detailMode": "outline",
+      "checked": "2026-09-10",
+      "coverageNote": "涵蓋提供的 88 個目錄小節，另補正文 Diluter-Demand Oxygen Systems，共 89 節。每節保留英文原名、頁碼與 FAA 原文；中文解釋與案例為本站編寫。燃油及血氧機另附查核來源，操作、維修與供氧要求仍需對照適用資料。"
     },
     {
       "id": "phak25c-8",

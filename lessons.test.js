@@ -126,3 +126,13 @@ test('Chapter 6 renders all sections and preserves existing notes and completion
  assert.match(html,/FAA 本節原文 · 6-12/);assert.match(html,/第六章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
  for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
 });
+
+test('Chapter 7 renders all sections and restores notes and completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[6];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第七章原有筆記'}});
+ const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
+ assert.match(html,/Chapter 7 : Aircraft Systems/);assert.match(html,/本章分層目錄 · 89 節/);
+ assert.match(html,/FAA 本節原文 · 7-41/);assert.match(html,/第七章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/Diluter-Demand Oxygen Systems/);assert.match(html,/www.fda.gov/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+});

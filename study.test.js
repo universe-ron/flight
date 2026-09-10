@@ -94,3 +94,14 @@ test('Chapter 6 covers 22 TOC entries and seven original body headings',()=>{
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf#page='+s.printedPage.split('-')[1]);}
  assert.equal(c.detailSections.find(s=>s.id==='flaps').points.length,4);
 });
+
+test('Chapter 7 covers 88 TOC entries plus diluter-demand oxygen',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[6];
+ assert.equal(c.detailSections.length,89);
+ assert.equal(c.detailSections.filter(s=>!s.supplementalHeading).length,88);
+ assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Diluter-Demand Oxygen Systems']);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/09_phak_ch7.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.equal(c.detailSections.find(s=>s.id==='diluter-demand').parent,'oxygen');
+ assert.ok(c.detailSections.find(s=>s.id==='grades').references.some(r=>new URL(r.url).hostname==='www.faa.gov'));
+ assert.ok(c.detailSections.find(s=>s.id==='oximeter').references.some(r=>new URL(r.url).hostname==='www.fda.gov'));
+});
