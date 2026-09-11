@@ -176,3 +176,19 @@ test('Chapter 10 renders calculations and preserves existing notes and completio
  env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-10-addition-removal'}})}});
  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-10');
 });
+
+for(const [number,count,english,note,last] of [[11,34,'Aircraft Performance','第十一章原有筆記','obstacles'],[12,51,'Weather Theory','第十二章原有筆記','water-ingestion']]){
+ test('Chapter '+number+' renders its full outline and restores saved progress',()=>{
+  const c=studyDocuments.find(d=>d.id==='phak25c').chapters[number-1];
+  const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:note}});
+  const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+  assert.ok(html.includes('Chapter '+number+' : '+english));assert.ok(html.includes('本章分層目錄 · '+count+' 節'));
+  assert.ok(html.includes(note));assert.match(html,/本章閱讀與情境檢核已完成/);
+  for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+  const target='detail-'+c.id+'-'+last;let reached=false;env.context.document.getElementById=id=>id===target?{setAttribute(){},focus(){},scrollIntoView(){reached=true;}}:null;
+  env.events.click({target:{closest:()=>({dataset:{detailTarget:target}})}});
+  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/'+c.id);
+  if(number===11){assert.match(html,/400 ft\/NM/);assert.match(html,/1,320 ft/);assert.match(html,/121.189/);}
+  else{assert.match(html,/SCT010 BKN025/);assert.match(html,/chap7_section_1/);assert.match(html,/8083-28B/);}
+ });
+}

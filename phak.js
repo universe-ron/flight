@@ -7655,7 +7655,7 @@ export const phakDocument = {
       "number": 11,
       "title": "航空器性能",
       "english": "Aircraft Performance",
-      "section": "第 11 章；印刷頁碼 11-1 起",
+      "section": "第 11 章；11-1～11-28，全章目錄逐節講解",
       "goal": "理解性能輸入、圖表條件與起飛爬升的差別。",
       "primer": "性能數字對應重量、壓力高度、溫度、風、跑道與構型等條件。若忽略註記，計算可能很精確卻不適用；先確認資料輸入，比急著找答案更重要。",
       "terms": [
@@ -7664,54 +7664,480 @@ export const phakDocument = {
         "Interpolation · 內插"
       ],
       "prompts": [
-        "你能用自己的話解釋「性能圖背後有條件」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "以 600 ft/min 和不同地速重算爬升梯度，解釋相同爬升率為何有不同越障結果。",
+        "選一張本機起飛或落地表，列出其輸入、假設、修正次序和輸出，再說明目前資料能與不能支持哪些結論。"
       ],
       "keyPoints": [
-        "性能圖背後有條件",
-        "密度高度如何影響性能",
-        "爬升角與爬升率回答不同問題",
-        "起飛、落地與低速功率需求"
+        "PA、DA 與 OAT 是不同輸入，避免重複溫度修正。",
+        "爬升角看距離，爬升率看時間；越障還受地速影響。",
+        "最大航程與最長續航不同，螺旋槳與噴射機不可共用口訣。",
+        "性能表需核對全部假設，內插不能變成任意外推。",
+        "跑道足夠正常離地，不保證故障情況、越障和落地評估都合格。"
       ],
       "detailSections": [
         {
-          "title": "性能圖背後有條件",
-          "locator": "Importance of Performance Data；Performance Charts",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：把環境轉成性能判斷",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-1",
+          "printedPage": "11-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=1",
           "paragraphs": [
-            "性能數字對應重量、壓力高度、溫度、風、跑道與構型等條件。若忽略註記，計算可能很精確卻不適用；先確認資料輸入，比急著找答案更重要。",
-            "自編例：圖表假設特定跑道狀態和技術，不能直接保證另一種表面也達到同樣距離。應依核准修正與適當規劃程序處理，不能自行外推到圖表之外。"
+            "航空器性能描述在指定重量、構型、動力及環境下可以達成的速度、距離、爬升與續航。它不只是飛機型錄上的數字，同一架飛機在炎熱高地和寒冷低地會有不同能力。",
+            "本章先解釋影響性能的物理原因，再練習讀取手冊圖表。所有自編數字只用來驗證方法，實際放行仍需本機核准資料、當日條件與適用操作要求，不能把教材例子當成機型限制。"
           ]
         },
         {
-          "title": "密度高度如何影響性能",
-          "locator": "Density Altitude；11-3～11-5",
+          "id": "data",
+          "english": "Importance of Performance Data",
+          "title": "性能資料的適用性",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-1",
+          "printedPage": "11-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=1",
           "paragraphs": [
-            "空氣稀薄會影響機翼、螺旋槳與引擎的表現，程度依設計而異。同一指示空速對應的真空速可能較高，地面滑跑和爬升表現也需要重新計算。",
-            "因此「同一跑道以前飛過」不足以取代當天計算。重量、溫度、壓力與風一起改變時，不能只記得其中一項比較有利便忽略其餘項目。"
+            "AFM／POH 的性能數據有特定假設，例如重量、襟翼、跑道、風、功率與操縱技術。不同手冊可能用壓力高度加溫度，也可能要求密度高度，輸入錯誤會讓讀圖正確卻結果失真。",
+            "自編例：一張圖已要求壓力高度與 OAT，若先換算密度高度再把 OAT 加進去，可能重複修正溫度。使用前逐一核對圖名、條件、單位、附註及最後輸出是滑跑還是越障距離。"
           ]
         },
         {
-          "title": "爬升角與爬升率回答不同問題",
-          "locator": "Angle of Climb；Rate of Climb；11-7",
+          "id": "atmosphere",
+          "english": "Structure of the Atmosphere",
+          "title": "大氣結構與密度",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-2",
+          "printedPage": "11-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=2",
           "paragraphs": [
-            "爬升角關注水平距離內取得多少高度；爬升率關注每單位時間取得多少高度。Vx 與 Vy 分別對應這兩種最大化目標，實際數值隨機型與條件改變。",
-            "風會改變對地進展，因而影響對地爬升梯度；ft/min 與 ft/NM 也不能混用。障礙物問題需要距離與高度的關係，不能只看到較大爬升率就宣布能越障。"
+            "空氣是具有質量、可壓縮且能流動的氣體混合物，密度代表單位體積的質量。高度上升通常伴隨壓力與密度降低，使機翼、螺旋槳和自然進氣引擎在相同設定下呈現不同反應。",
+            "乾空氣中氧氣體積比例在一般飛行高度並非突然消失，主要是總壓下降使氧分壓及單位體積氧量減少。不要把高空性能下降理解成超過某高度就沒有氧氣，而應追蹤密度、功率與真空速。"
           ]
         },
         {
-          "title": "起飛、落地與低速功率需求",
-          "locator": "Takeoff and Landing Performance；Region of Reversed Command",
+          "id": "pressure",
+          "english": "Atmospheric Pressure",
+          "title": "氣壓與標準大氣",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-2",
+          "printedPage": "11-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=2",
           "paragraphs": [
-            "地面滑跑距離與越過指定障礙高度的總距離是不同數字。落地圖也有進場條件、構型和技術假設，不能把跑道長度只和某個較小的地面距離比較。",
-            "在反操縱區域，降低速度可能需要更多功率來維持相同飛行狀態。這有助理解低速時功率與阻力的關係，但不能取代機型程序與飛行訓練。"
+            "氣壓反映上方空氣柱重量及大氣狀態，隨高度變化並非全程固定線性。ISA 海平面參考約為 15 °C、1013.25 hPa 或 29.92 inHg，提供性能比較的共同基準。",
+            "低高度常用每千呎約一英吋汞柱與溫度每千呎約降 2 °C 作粗估，但不能延伸為整個大氣的精確定律。自編例：高山機場性能應按圖表壓力高度處理，而非只使用公布海拔。"
           ]
         },
         {
-          "title": "案例：內插只能在適用範圍內",
-          "locator": "本站自編算例；對照 Interpolation",
+          "id": "pressure-altitude",
+          "english": "Pressure Altitude",
+          "title": "壓力高度與設定",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-3",
+          "printedPage": "11-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=3",
           "paragraphs": [
-            "自編算例：假設同一張教學表在 20°C 為 1,000 ft、30°C 為 1,200 ft，其他條件相同且允許線性內插，25°C 得 1,100 ft。",
-            "這僅示範中間值算法，不是 FAA 公布的某機型性能。若溫度超過圖表範圍或跑道條件不同，不能照比例延伸並保證結果。"
+            "壓力高度是目前壓力對應到標準大氣的高度，可由高度表標準設定讀取，或依手冊與計算工具求得。它不必等於機場海拔，也不是離地高度。",
+            "近似式 PA = 場高 + (29.92 − 氣壓設定 inHg) × 1,000。自編例：場高 2,000 ft、設定 29.42 inHg，PA 約 2,500 ft；此為學習粗估，不能拿來替代飛行中依法所需的高度表設定。"
+          ]
+        },
+        {
+          "id": "density-altitude",
+          "english": "Density Altitude",
+          "title": "密度高度與性能環境",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-3",
+          "printedPage": "11-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=3",
+          "paragraphs": [
+            "密度高度是標準大氣中具有相同密度的高度，常以壓力高度再修正非標準溫度理解。高密度高度意味空氣較稀薄，並不表示地面高度改變，或所有儀表都應改顯示此值。",
+            "同一 IAS 的起飛通常對應更高 TAS，再加上可能降低的功率和推進能力，起飛滑跑及爬升會受影響。增壓引擎可在一定範圍維持功率，但不能消除翼面、螺旋槳及較高地速等所有影響。"
+          ]
+        },
+        {
+          "id": "density-pressure",
+          "english": "Effects of Pressure on Density",
+          "title": "壓力對密度的影響",
+          "parent": "density-altitude",
+          "locator": "PHAK C 版 · 11-4",
+          "printedPage": "11-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=4",
+          "paragraphs": [
+            "在溫度及組成不變下，提高壓力會增加單位體積內的空氣質量，密度隨之上升。比較密度時必須固定其他條件，不能只看到高壓便認定任何情況都比低壓更稠密。",
+            "自編例：同溫兩天，較低氣壓設定通常使同一機場的壓力高度較高，性能較不利。實際計算仍要加入當日溫度，因為氣壓與溫度的影響可能同時出現或互相抵銷。"
+          ]
+        },
+        {
+          "id": "density-temperature",
+          "english": "Effects of Temperature on Density",
+          "title": "溫度對密度的影響",
+          "parent": "density-altitude",
+          "locator": "PHAK C 版 · 11-5",
+          "printedPage": "11-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=5",
+          "paragraphs": [
+            "固定壓力及組成下，氣體升溫膨脹，密度下降；理想氣體關係使用絕對溫度，不是攝氏數字直接成比例。實際大氣中壓力和溫度會一起變，不能只用一個變數推斷全部。",
+            "自編例：同一壓力高度，炎熱午後通常比涼爽清晨有更高密度高度，起飛和爬升可能更差。可調整出發時間或裝載，但仍需使用預定時段的資料，不能沿用早上算好的性能。"
+          ]
+        },
+        {
+          "id": "density-humidity",
+          "english": "Effects of Humidity (Moisture) on Density",
+          "title": "濕度對密度的影響",
+          "parent": "density-altitude",
+          "locator": "PHAK C 版 · 11-5",
+          "printedPage": "11-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=5",
+          "paragraphs": [
+            "在相同總壓與溫度下，水蒸氣比例增加會使混合氣體平均分子量下降，因而降低密度。這裡說的是氣態水蒸氣，不能用水滴比空氣重來反駁，也不能省略固定壓溫的前提。",
+            "簡易性能圖未必提供濕度修正，並不代表濕度沒有物理影響。應依手冊接受的方法處理，不自行加一個通用百分比；尤其不能把濕跑道造成的摩擦變化與空氣濕度的密度效應混在一起。"
+          ]
+        },
+        {
+          "id": "performance",
+          "english": "Performance",
+          "title": "性能目標與取捨",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-5",
+          "printedPage": "11-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=5",
+          "paragraphs": [
+            "短場起飛、快速巡航、長續航與高酬載是不同性能目標，不一定由同一速度或設定最佳化。飛機設計和引擎特性決定可用推力／功率，氣動與重量則決定需求。",
+            "自編練習：先說明任務要最短越障距離、最快爬升還是最少耗油，再選對圖表和速度。不能因某速度名為「最佳」就認為它適用所有階段，限制與安全裕度仍需一併考慮。"
+          ]
+        },
+        {
+          "id": "level",
+          "english": "Straight-and-Level Flight",
+          "title": "平直飛行的需求與可用量",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-5",
+          "printedPage": "11-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=5",
+          "paragraphs": [
+            "在簡化穩定平直飛行模型中，升力平衡重量，推力平衡阻力；有效推進功率等於推力乘真空速。低速時誘導阻力較重要，高速時寄生阻力較重要，最低阻力點並非最低功率點。",
+            "固定密度和構型等條件下，寄生阻力約隨速度平方增加，其功率需求約隨速度立方增加。自編例：速度加倍時此部分阻力約四倍、功率約八倍；這不是說整架飛機總阻力在任何狀態都恰好四倍。"
+          ]
+        },
+        {
+          "id": "climb",
+          "english": "Climb Performance",
+          "title": "爬升與能量",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-6",
+          "printedPage": "11-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=6",
+          "paragraphs": [
+            "持續定速爬升需要把可用能量的一部分轉成位能，核心在多餘推力或多餘功率。短暫拉高機頭也可用空速換高度，但若速度持續下降，不能把這種短暫爬升當成持續爬升能力。",
+            "推力是力，功率是作功能力的速率，兩者不是同義詞。自編例：一架飛機瞬間抬頭上升但逐漸失速，並未證明它具備清越障礙所需的穩定爬升性能。"
+          ]
+        },
+        {
+          "id": "aoc",
+          "english": "Angle of Climb (AOC)",
+          "title": "爬升角與 VX",
+          "parent": "climb",
+          "locator": "PHAK C 版 · 11-7",
+          "printedPage": "11-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=7",
+          "paragraphs": [
+            "爬升角關心每單位水平距離換得多少高度，簡化定速模型有 sin γ = (T − D)/W。VX 針對最佳爬升角，通常用於相關越障需求；它與追求每分鐘最高高度增加的 VY 不同。",
+            "手冊爬升角概念與地面障礙梯度還要透過風和地速連結。同樣爬升率下，順風會讓每海里取得的高度變少；自編例：不能只看到垂直速度正常，就忽略飛向山脊時地速變快造成的梯度下降。"
+          ]
+        },
+        {
+          "id": "roc",
+          "english": "Rate of Climb (ROC)",
+          "title": "爬升率與 VY",
+          "parent": "climb",
+          "locator": "PHAK C 版 · 11-7",
+          "printedPage": "11-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=7",
+          "paragraphs": [
+            "爬升率關心每單位時間增加的高度，定速時可由多餘有效功率除以重量理解。VY 對應最佳爬升率，與 VX 的目標不同，兩者實際數值還會隨高度、重量和構型改變。",
+            "自編例：爬升率 600 ft/min、地速 90 kt 即 1.5 NM/min，地面梯度為 400 ft/NM。若地速變成 120 kt 而爬升率不變，梯度降為 300 ft/NM；每分鐘表現相同卻不代表越障效果相同。"
+          ],
+          "points": [
+            "地面梯度 ft/NM = ROC ft/min × 60 ÷ GS kt。",
+            "百分比梯度需把水平距離換成同單位；400 ft/NM 約為 6.58%。",
+            "轉換公式只描述當下穩定條件，不能保證未來整段航跡都維持相同性能。"
+          ]
+        },
+        {
+          "id": "climb-factors",
+          "english": "Climb Performance Factors",
+          "title": "爬升因素與升限",
+          "parent": "climb",
+          "locator": "PHAK C 版 · 11-8",
+          "printedPage": "11-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=8",
+          "paragraphs": [
+            "重量、密度高度、功率、機體阻力及構型共同影響多餘功率。起落架、襟翼或結冰增加阻力後，即使引擎輸出未變，可用來爬升的剩餘能量也可能大幅減少。",
+            "實用升限與絕對升限的定義要看適用性能資料，不能用單一通用爬升率代表所有航空器。雙引擎失去一具也不等於爬升能力只少一半，因為原先可用的爬升功率只是扣除平飛需求後的差額。"
+          ]
+        },
+        {
+          "id": "range",
+          "english": "Range Performance",
+          "title": "航程、續航與比航程",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-9",
+          "printedPage": "11-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=9",
+          "paragraphs": [
+            "航程衡量能飛多遠，續航時間衡量能飛多久；比航程可用速度除燃油流量表達。對螺旋槳與噴射機而言，燃油流量和所需功率／推力的關係不同，因此不能共用同一最佳速度口訣。",
+            "自編例：120 kt 地速、10 gal/h，地面比航程為 12 NM/gal；逆風後只有 90 kt，則為 9 NM/gal。最大續航通常看較低燃油流量，最大航程需比較距離與燃油，並扣除實際所需備份。"
+          ],
+          "points": [
+            "理想化螺旋槳模型：最低功率常與最長續航相關，最佳升阻比附近常與最大無風航程相關。",
+            "噴射機燃油流量較直接連到推力需求，最佳航程／續航點不能照搬螺旋槳模型。",
+            "實際最佳設定需查重量、高度、引擎及螺旋槳效率、風與手冊資料。"
+          ]
+        },
+        {
+          "id": "reversed",
+          "english": "Region of Reversed Command",
+          "title": "反操縱區與低速功率需求",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-11",
+          "printedPage": "11-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=11",
+          "paragraphs": [
+            "在最低所需功率速度以下，為維持同一高度而再減速，反而需要更多功率，稱反操縱區。這是穩定平飛需求曲線的描述，不是油門減少就一定使速度增加，也不是操縱面反向作用。",
+            "自編例：低速進場持續抬頭想維持高度，若功率不足，可能讓速度更低而下降更快。應依機型程序協調姿態與功率、維持迎角裕度，不能把「用更多油門」視為超出可用功率後仍能解決一切。"
+          ]
+        },
+        {
+          "id": "takeoff-landing",
+          "english": "Takeoff and Landing Performance",
+          "title": "起降性能的組成",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-12",
+          "printedPage": "11-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=12",
+          "paragraphs": [
+            "起飛距離包含加速滑跑與相應空中越障段，落地距離則包含從指定起始高度到接地及停止的過程。地面滑跑長度不等於全部所需跑道距離，兩者資料不能互換。",
+            "風、坡度、表面、重量、密度及操縱技術都會影響結果。自編例：查到滑跑 900 ft，不能直接宣稱長 1,000 ft 且末端有障礙的跑道足夠，還須查相應距離與適用裕度。"
+          ]
+        },
+        {
+          "id": "runway",
+          "english": "Runway Surface and Gradient",
+          "title": "跑道表面與坡度",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-12",
+          "printedPage": "11-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=12",
+          "paragraphs": [
+            "草地、鬆軟地面和污染物會改變滾動阻力與制動，坡度則改變沿跑道方向的重力分量。上坡通常不利起飛加速，卻可能協助落地減速；下坡通常呈相反趨勢。",
+            "百分比坡度是高度差除水平長度，不是角度本身。自編例：2% 坡度代表每 100 ft 水平距離約變高 2 ft，並不等於 2 度；實際修正依手冊，不能為了選下坡而忽略順風和障礙。"
+          ]
+        },
+        {
+          "id": "hydroplaning",
+          "english": "Water on the Runway and Dynamic Hydroplaning",
+          "title": "積水與動態水漂",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-13",
+          "printedPage": "11-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=13",
+          "paragraphs": [
+            "輪胎與跑道之間的水層可能讓接觸和摩擦大幅減少，使制動與方向控制惡化。動態水漂與速度、胎壓及積水等條件有關，但濕滑道面也可在未達此狀態前就明顯降低制動。",
+            "原書近似 V ≈ 9√p，p 用 psi、V 用 kt；36 psi 得 54 kt。此值不是低於它就安全的硬門檻，也不能用來改變核准胎壓；其他水漂機制、持續水漂及污染條件仍需考慮，處置依機型。"
+          ]
+        },
+        {
+          "id": "takeoff",
+          "english": "Takeoff Performance",
+          "title": "起飛距離與可用能力",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-14",
+          "printedPage": "11-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=14",
+          "paragraphs": [
+            "起飛性能需確認加速至適當離地速度、離地後建立爬升及越障的整個過程。高密度高度和重量增加可能同時提高所需地速、降低加速與爬升能力，影響可能相互累加。",
+            "逆風常降低相同空速下的地速，但不能假設起飛途中風永遠不變。自編例：早上冷空氣與逆風下的成功起飛，不能作為炎熱午後順風滿載的證據；每次都要用預定條件重新核對性能。"
+          ]
+        },
+        {
+          "id": "landing",
+          "english": "Landing Performance",
+          "title": "落地距離與能量管理",
+          "parent": "performance",
+          "locator": "PHAK C 版 · 11-16",
+          "printedPage": "11-16",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=16",
+          "paragraphs": [
+            "落地距離受進場起始高度、速度、重量、構型、接地位置、坡度及制動條件影響。過快或過高會增加空中段和需消耗的能量，不能只在接地後才開始考慮距離。",
+            "自編例：相同質量下地速增加 10%，動能增加約 21%，但實際落地距離不必恰好增加 21%，還受浮飄、阻力與制動影響。以手冊和適用著陸評估決定可行性，並按穩定進場與重飛政策操作。"
+          ]
+        },
+        {
+          "id": "speeds",
+          "english": "Performance Speeds",
+          "title": "性能速度的不同目的",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-18",
+          "printedPage": "11-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=18",
+          "paragraphs": [
+            "VX、VY、最佳滑翔和其他性能速度分別服務爬升角、爬升率、滑翔或特定操作目標。速度數值須連同重量、構型、高度和 IAS／CAS 等定義閱讀，不能只背一個機型常見數字。",
+            "VA 與結構和操縱條件有關，VLE 與 VLO 分別涉及起落架放下和操作，VMC 不保證單發爬升。自編練習：對照本機手冊列出速度目的、適用條件及來源頁碼，不將「最佳」理解為所有場合都最佳。"
+          ],
+          "points": [
+            "VX：最佳爬升角；VY：最佳爬升率，數值與高度變化依機型。",
+            "VFE：襟翼限制可能分角度；VLO／VLE：操作與保持放下需分開。",
+            "VNE、VNO、VA：各有不同限制與前提，VA 不是任意反覆滿舵的保護。",
+            "V1、VR、V2 若適用，依運輸機核准性能與程序，不能當成輕型機的通用起飛速度。"
+          ]
+        },
+        {
+          "id": "charts",
+          "english": "Performance Charts",
+          "title": "讀性能圖表的順序",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-19",
+          "printedPage": "11-19",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=19",
+          "paragraphs": [
+            "先確認本機、版本及所需輸出，再讀條件和單位，依指定方向沿參考線處理每個變數。複合圖的多個區域可能依序修正重量、風及障礙，不能任意交換步驟或漏讀附註。",
+            "結果應做方向與量級檢查，例如炎熱重載不應因抄錯欄位得到反而更短的起飛距離。數位軟體也需要相同核對，輸入錯誤不會因畫面漂亮或數字多位小數而被自動修正。"
+          ]
+        },
+        {
+          "id": "interpolation",
+          "english": "Interpolation",
+          "title": "內插與外推的界線",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-20",
+          "printedPage": "11-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=20",
+          "paragraphs": [
+            "內插是在資料範圍內，依手冊允許方式估算兩個已知點之間的值。線性內插使用位置比例，而多變數表需逐軸處理；圖表若有特殊曲線或限制，不能擅自假設所有區段都線性。",
+            "自編例：20 °C 距離 1,000 ft、30 °C 距離 1,200 ft，25 °C 位於一半，線性內插得 1,100 ft。40 °C 已超出這兩點涵蓋範圍，不能把同一算式的延長線當成已驗證性能。"
+          ]
+        },
+        {
+          "id": "da-chart",
+          "english": "Density Altitude Charts",
+          "title": "密度高度圖與近似驗算",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-20",
+          "printedPage": "11-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=20",
+          "paragraphs": [
+            "讀密度高度圖先由場高和氣壓求壓力高度，再按圖加入 OAT。若使用簡易近似 DA ≈ PA + 120 × (OAT − ISA溫度)，高度用 ft、溫差用 °C，結果僅為有限範圍的粗估。",
+            "自編例：PA 2,500 ft，ISA 溫度約 10 °C，OAT 30 °C，DA 約 4,900 ft。若性能圖直接要求 PA 與 OAT，就輸入這兩者，不能又把 4,900 當 PA，造成溫度修正重複。"
+          ]
+        },
+        {
+          "id": "takeoff-chart",
+          "english": "Takeoff Charts",
+          "title": "起飛圖：輸入、修正與輸出",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-20",
+          "printedPage": "11-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=20",
+          "paragraphs": [
+            "起飛圖可能分滑跑與越障距離，並要求指定襟翼、最大功率、短場技術及乾燥平整跑道。依手冊順序處理氣壓、溫度、重量與風，確認每個修正適用於哪一欄。",
+            "自編例：若題目明示先對 1,000 ft 增加 10%，再乘 1.2 的表面修正，得到 1,320 ft，而不是把百分比任意相加成 1,300。真實手冊未提供這些因子時，不可自行借用本例作放行。"
+          ]
+        },
+        {
+          "id": "climb-cruise-charts",
+          "english": "Climb and Cruise Charts",
+          "title": "爬升與巡航表",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-21",
+          "printedPage": "11-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=21",
+          "paragraphs": [
+            "爬升表可提供瞬時爬升率，或從基準高度到某高度的累計時間、燃油和距離；巡航表則常以高度、功率與溫度給出 TAS 和油耗。不同輸出不能混用，尤其累計表要取差值。",
+            "自編例：到 3,000 ft 累計需 4 分鐘、到 6,000 ft 需 10 分鐘，該段爬升時間是 6 分鐘而非 10。巡航油耗還需加起飛、爬升、下降及所需備份，不能用一個巡航數字乘整趟時間。"
+          ]
+        },
+        {
+          "id": "wind-chart",
+          "english": "Crosswind and Headwind Component Chart",
+          "title": "側風與逆風分量",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-25",
+          "printedPage": "11-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=25",
+          "paragraphs": [
+            "相對跑道方向的風可分解為沿跑道及橫向分量，需確保風向與跑道方位使用同一真／磁基準。夾角 θ 下，逆風分量為 V cosθ，側風大小為 V sinθ，超過九十度時沿跑道分量成順風。",
+            "自編例：20 kt 風與跑道夾角 30°，側風 10 kt、逆風約 17.3 kt。最大展示側風是否屬操作限制要查手冊及營運政策，不能一概當硬限制，也不能因不是硬限制就忽略濕跑道與操縱能力。"
+          ]
+        },
+        {
+          "id": "landing-chart",
+          "english": "Landing Charts",
+          "title": "落地圖與到場評估",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-26",
+          "printedPage": "11-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=26",
+          "paragraphs": [
+            "落地表的指定重量、越障高度、進場速度、襟翼與制動條件要全部核對。計畫落地時還應考慮到場風、污染、坡度與所需裕度，而非直接沿用出發時的最佳條件。",
+            "自編例：查得越過指定高度到停止的距離，不表示可以接地到跑道中段仍用同一剩餘長度。若制動報告或風改變，應重新評估；認證數據、航前放行距離及到場評估可能有不同規定。"
+          ]
+        },
+        {
+          "id": "stall-chart",
+          "english": "Stall Speed Performance Charts",
+          "title": "失速速度與負荷因數",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 11-27",
+          "printedPage": "11-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=27",
+          "paragraphs": [
+            "失速表可能依重量、功率、構型和傾斜角列值，先確認是協調定高轉彎等何種假設。定高協調轉彎負荷因數 n = 1/cosφ，失速速度在其他條件相近時約乘 √n。",
+            "自編例：60° 傾斜定高轉彎 n = 2，若原失速速度 50 kt，估算約 70.7 kt。不是任何傾斜六十度瞬間都必然兩倍負荷，下降或其他操縱可不同；失速根本條件仍是臨界迎角。"
+          ]
+        },
+        {
+          "id": "transport",
+          "english": "Transport Category Aircraft Performance",
+          "title": "運輸類別的性能架構",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-28",
+          "printedPage": "11-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=28",
+          "paragraphs": [
+            "運輸類別性能把正常與規定故障情況、跑道可用距離、爬升和障礙限制結合評估。運輸類飛機與直升機的認證框架不同，不能把輕型單引擎的起飛表直接套到多引擎運輸機。",
+            "理解加速停止、繼續起飛、淨起飛航跡等概念時，要連同本機 AFM 及適用營運要求閱讀。自編例：跑道足以正常離地，不代表規定的拒絕起飛或發動機失效後越障條件也已滿足。"
+          ]
+        },
+        {
+          "id": "obstacles",
+          "english": "Air Carrier Obstacle Clearance Requirements",
+          "title": "航空運輸越障與淨航跡",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-28",
+          "printedPage": "11-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=28",
+          "paragraphs": [
+            "航空運輸越障評估需使用適用的起飛航跡與淨性能資料，考慮跑道、重量、環境、障礙及轉彎。公布離場程序與營運人的發動機失效分析目的不同，遵循一條離場線不自動證明所有失效性能要求合格。",
+            "FAA §121.189 對適用渦輪飛機起飛距離與越障有具體條件，不能從本章幾句概要推導適用全球的單一梯度。應由核准資料及營運分析確認路徑和重量，原書另指向 Instrument Procedures Handbook 延伸學習。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §121.189：適用渦輪飛機起飛限制",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-G/part-121/subpart-I/section-121.189",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：輸入正確才能判讀",
+          "parent": null,
+          "locator": "PHAK C 版 · 11-28",
+          "printedPage": "11-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/13_phak_ch11.pdf#page=28",
+          "paragraphs": [
+            "性能判斷需要連結大氣、重量、阻力、動力與跑道條件，再使用正確圖表算出距離、時間、燃油或梯度。結果還需核對限制與實際飛行可維持的條件，不能只追求一個精確數字。",
+            "自編複習：說明 VX／VY、航程／續航、PA／DA、滑跑／越障距離各有何差別；再用一張手冊圖列出所有輸入與假設。當條件超出資料範圍時，辨識未知比自行外推更能支持正確決策。"
           ]
         }
       ],
@@ -7725,6 +8151,21 @@ export const phakDocument = {
           "title": "滑跑與越障距離",
           "clarification": "越障總距離還包含離地後的飛行。",
           "example": "只比較滑跑距離可能漏掉障礙要求。"
+        },
+        {
+          "title": "爬升率與梯度",
+          "clarification": "ft/min 是每時間，ft/NM 是每距離，換算需用地速。",
+          "example": "600 ft/min 在 90 kt 是 400 ft/NM，在 120 kt 是 300 ft/NM。"
+        },
+        {
+          "title": "反操縱區與操縱反向",
+          "clarification": "描述低速維持高度的功率需求，不表示操縱面或油門作用反轉。",
+          "example": "再減速可能需要更高功率才能保持高度。"
+        },
+        {
+          "title": "水漂近似與安全門檻",
+          "clarification": "9√p 是有條件的動態水漂近似，低於它仍可能制動很差。",
+          "example": "36 psi 算出 54 kt，不代表 53 kt 一定安全。"
         }
       ],
       "scenario": "自編算例：假設同一張教學表在 20°C 為 1,000 ft、30°C 為 1,200 ft，其他條件相同且允許線性內插，25°C 得 1,100 ft。",
@@ -7738,14 +8179,17 @@ export const phakDocument = {
       "explanation": "25°C 位於兩點中間，1,000＋0.5×200＝1,100 ft；僅在題設條件成立時有效。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=257",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=257"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=257",
+      "detailMode": "outline",
+      "checked": "2026-09-11",
+      "coverageNote": "依提供目錄完整展開 34 節，每節附雙語標題、中文解釋與 FAA 原文頁碼。計算例子為本站編寫並標明近似條件，不能替代本機核准性能或營運分析。"
     },
     {
       "id": "phak25c-12",
       "number": 12,
       "title": "氣象原理",
       "english": "Weather Theory",
-      "section": "第 12 章；印刷頁碼 12-1 起",
+      "section": "第 12 章；12-1～12-25，全章目錄逐節講解",
       "goal": "連結大氣運動、水氣、穩定度與飛行危害。",
       "primer": "壓力差提供氣流運動的驅動，地球自轉與地面摩擦等因素改變風向及速度。地形、障礙與對流又會造成局部差異，因此地面一個測站不能代表整段航路的風。",
       "terms": [
@@ -7754,54 +8198,735 @@ export const phakDocument = {
         "Wind shear · 風切"
       ],
       "prompts": [
-        "你能用自己的話解釋「壓力差驅動氣流，環境改變風」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "選一種霧和一種鋒面，說明水氣來源、冷卻或抬升機制，以及為何日出後不一定立即消散。",
+        "列出雷暴在可見雲外的三種危害，說明資料鏈圖像為何適合整區避讓而不能當成即時穿越導航。"
       ],
       "keyPoints": [
-        "壓力差驅動氣流，環境改變風",
-        "水氣、露點與凝結",
-        "穩定度決定垂直擾動的反應",
-        "鋒面、雷暴、結冰與風切"
+        "大氣穩定度要比較氣塊與環境，不能只看地面冷暖或乾濕。",
+        "相對濕度受溫度影響，溫露差小不保證立即有霧。",
+        "不同霧、雲與鋒面有不同形成和消散條件，不使用固定好壞天氣口訣。",
+        "雷暴危害可延伸到雲外，少雨、無可見漏斗或回波空隙都不是安全證據。",
+        "所有天氣判斷需核對地點、高度、有效時間與產品限制。"
       ],
       "detailSections": [
         {
-          "title": "壓力差驅動氣流，環境改變風",
-          "locator": "Atmospheric Circulation；Wind and Currents",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：用機制理解天氣",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-1",
+          "printedPage": "12-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=1",
           "paragraphs": [
-            "壓力差提供氣流運動的驅動，地球自轉與地面摩擦等因素改變風向及速度。地形、障礙與對流又會造成局部差異，因此地面一個測站不能代表整段航路的風。",
-            "自編例：跑道附近測得的風與山谷內的風可能不同。看天氣時應把大尺度系統與局部地形一起理解，而不是只背高低壓符號。"
+            "天氣是特定時間和地點的大氣狀態，包含溫度、濕度、風、氣壓、雲與能見度。理解形成機制可以幫助判讀觀測和預報，但理論不能取代當次航路、時段及高度的最新資料。",
+            "本章從大氣受熱與運動，連到飽和、雲、鋒面和雷暴。自編練習：每遇到一個現象，都問水氣從哪裡來、空氣如何被抬升或冷卻，以及對性能、視野和操縱造成什麼影響。"
           ]
         },
         {
-          "title": "水氣、露點與凝結",
-          "locator": "Moisture and Temperature；12-13 起",
+          "id": "atmosphere",
+          "english": "Atmosphere",
+          "title": "大氣與分層",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-2",
+          "printedPage": "12-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=2",
           "paragraphs": [
-            "相對濕度描述在當時溫度下接近飽和的程度；露點提供空氣冷卻至飽和的線索。溫度與露點接近可提示凝結可能性增加，但仍需考慮水氣供給、混合及冷卻機制。",
-            "雲、霧、露和霜有不同形成條件。簡化雲底估算法只能作概念練習，不能保證實際雲底，也不能取代觀測與預報。"
+            "大氣的溫度、壓力和密度隨高度改變，對流層容納大部分日常天氣，其頂部高度隨緯度與季節不同。分層是依溫度等特徵描述，不是固定高度的硬殼。",
+            "對流層上方不等於完全沒有亂流、雲或對流突破，強雷暴可影響很高的空域。自編例：不能只因巡航接近對流層頂就排除天氣風險，仍需對照該時段的高空風和危害資訊。"
           ]
         },
         {
-          "title": "穩定度決定垂直擾動的反應",
-          "locator": "Atmospheric Stability；Inversion；12-12～12-13",
+          "id": "composition",
+          "english": "Composition of the Atmosphere",
+          "title": "氣體組成與水氣",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 12-2",
+          "printedPage": "12-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=2",
           "paragraphs": [
-            "若一團空氣被抬升後傾向回到原位置，代表較穩定；若傾向持續離開，代表較不穩定。這與雲型、對流和亂流可能性相關，但不能單靠一種外觀判斷所有條件。",
-            "逆溫常抑制垂直混合，可能伴隨霾或低層能見度問題。穩定並不等於對飛行完全沒有危害；低雲與差能見度同樣重要。"
+            "乾空氣約含 78% 氮、21% 氧及少量其他氣體；水蒸氣含量則隨環境變動，並對雲、降水與能量交換有重要作用。氧氣比例與氧分壓不同，不能由比例大致相同推論高空呼吸條件不變。",
+            "氣態水蒸氣通常不可見，看到的雲或霧主要是小水滴或冰晶。自編例：天空透明不代表完全沒有水氣，空氣抬升冷卻後，原本不可見的水蒸氣就可能凝結成可見雲。"
           ]
         },
         {
-          "title": "鋒面、雷暴、結冰與風切",
-          "locator": "Fronts；Thunderstorms；12-18 起",
+          "id": "circulation",
+          "english": "Atmospheric Circulation",
+          "title": "受熱差異與環流",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 12-3",
+          "printedPage": "12-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=3",
           "paragraphs": [
-            "鋒面是不同氣團的交界，相關天氣依水氣、穩定度及抬升而變。雷暴可伴隨強烈垂直氣流、冰雹、結冰與風切，危害不只存在於最深顏色的降水核心。",
-            "結冰會改變翼型與性能，風切則是風在短距離內明顯改變。地面天氣良好不代表航路或高度層沒有這些現象；應結合多種官方資訊及適用規劃程序。"
+            "太陽加熱並不均勻，陸海、緯度與日夜差異造成溫度和壓力分布，驅動大尺度與地方環流。上升、下沉及水平輸送共同搬運能量與水氣，不能只用「熱空氣一定向上」描述所有流動。",
+            "自編例：海岸的日間地面風可能受海風影響，但同時存在的天氣系統可加強或抵銷它。全球環流圖適合建立概念，不能直接當成某機場某時刻的風向預報。"
           ]
         },
         {
-          "title": "案例：天空穩定也可能難以目視飛行",
-          "locator": "本站自編案例；對照 Stability 與 Visibility",
+          "id": "pressure",
+          "english": "Atmospheric Pressure",
+          "title": "氣壓與壓力梯度",
+          "parent": "atmosphere",
+          "locator": "PHAK C 版 · 12-3",
+          "printedPage": "12-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=3",
           "paragraphs": [
-            "自編案例：某地無明顯對流，但低層逆溫、霾和低雲使能見度差。若只把「沒有雷暴」當成天氣可接受，就漏掉了目視飛行所需的其他條件。",
-            "先列出能見度、雲底、地形與航路資料，再評估飛行需求。這個案例強調多項天氣條件要一起看，而非用單一現象給出放行結論。"
+            "氣壓是空氣作用在單位面積的壓力，水平壓差產生推動氣流的壓力梯度力。天氣圖中的高低壓是相對周圍的壓力分布，並不直接等於高低溫或好壞天氣。",
+            "同一位置氣壓會隨時間改變，高度上升也通常使氣壓降低，兩種變化需分開。自編例：爬升時高度表感測壓力下降，並不表示飛機必然飛進一個天氣低壓系統。"
+          ]
+        },
+        {
+          "id": "coriolis",
+          "english": "Coriolis Force",
+          "title": "科氏效應與半球",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-3",
+          "printedPage": "12-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=3",
+          "paragraphs": [
+            "在隨地球旋轉的參考系中，運動空氣的路徑呈現偏轉，北半球向運動方向右側、南半球向左側。效應隨緯度與速度等改變，在赤道水平偏轉項為零。",
+            "科氏效應不是讓靜止空氣自動開始流動的起因，壓力梯度與摩擦仍需一起考慮。自編練習：先畫空氣原本的移動方向，再標左右偏轉，避免把北半球所有風一概畫成向東。"
+          ]
+        },
+        {
+          "id": "measurement",
+          "english": "Measurement of Atmosphere Pressure",
+          "title": "氣壓量測與基準",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-4",
+          "printedPage": "12-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=4",
+          "paragraphs": [
+            "水銀與無液式氣壓計用不同機構感測壓力，航空資料常以 hPa 或 inHg 表達。站壓、海平面修正氣壓和供高度表使用的設定具有不同用途，不能看到相近數字就互換。",
+            "自編例：高山站的實際站壓較低，但天氣圖可能用海平面修正值比較水平分布。核對高度表設定時要看資料種類和單位，而不是將天氣圖任意一個壓力數字直接輸入。"
+          ]
+        },
+        {
+          "id": "altitude-pressure",
+          "english": "Altitude and Atmospheric Pressure",
+          "title": "高度與壓力關係",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-5",
+          "printedPage": "12-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=5",
+          "paragraphs": [
+            "上升時上方空氣柱通常減少，壓力下降，但下降速率不是全程固定。標準大氣提供換算基準，實際溫度分布則影響兩個壓力面之間的幾何距離。",
+            "原書每千呎約一英吋汞柱是低高度粗估，不宜用於整個高空範圍。自編例：同樣兩個壓力面在冷空氣中距離較小，因此氣壓高度相同不保證相對地形的實際高度相同。"
+          ]
+        },
+        {
+          "id": "altitude-flight",
+          "english": "Altitude and Flight",
+          "title": "高度對性能與判讀的影響",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-6",
+          "printedPage": "12-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=6",
+          "paragraphs": [
+            "高度、壓力和溫度共同影響密度，進而影響起飛、爬升及相同 IAS 下的 TAS。氣壓高度主要提供操作和計算參考，密度高度描述密度對性能的影響。",
+            "自編例：高溫高地機場即使跑道海拔固定，密度高度仍可顯著上升，需回到本機性能表。不能把「高度表已設對」當成性能也已自動修正，兩者需要不同的資料處理。"
+          ]
+        },
+        {
+          "id": "altitude-body",
+          "english": "Altitude and the Human Body",
+          "title": "壓力、氧分壓與人體",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-6",
+          "printedPage": "12-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=6",
+          "paragraphs": [
+            "環境壓力降低會降低吸入氧分壓，也使體內封閉氣體在壓力差下膨脹，涉及缺氧及耳鼻等壓力平衡問題。增壓與供氧各有不同功能，不可僅用飛機外部高度判斷座艙環境。",
+            "個人症狀可能不易察覺，不能以感覺良好或單次血氧值替代設備、供氧和適用程序。這節建立氣象與人體的連結，詳細生理及操作限制需搭配 Chapter 17 與機型資料學習。"
+          ]
+        },
+        {
+          "id": "wind",
+          "english": "Wind and Currents",
+          "title": "風與垂直氣流",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-7",
+          "printedPage": "12-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=7",
+          "paragraphs": [
+            "風通常指水平空氣運動，氣流也包含上升與下降分量。航空風向一般表示風吹來的方向，和航跡箭頭指向目的地的用法不同，讀圖前應確認慣例。",
+            "自編例：西風由西往東吹，若飛機向西飛則是逆風；上升氣流可能增加地面爬升率，下降氣流也可能超過飛機能力。不能只看水平風速就判定整個空氣運動平穩。"
+          ]
+        },
+        {
+          "id": "wind-patterns",
+          "english": "Wind Patterns",
+          "title": "高低壓、摩擦與風向",
+          "parent": "wind",
+          "locator": "PHAK C 版 · 12-7",
+          "printedPage": "12-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=7",
+          "paragraphs": [
+            "高空風受壓力梯度與科氏等效應影響，常大致沿等壓線或等高線流動；近地面摩擦改變平衡，風可跨線朝低壓側。北半球典型低壓環流與南半球方向相反。",
+            "自編例：從天氣圖推估風時，先辨別半球、地面或高空以及地形摩擦，不能只背順逆時針。局部谷風、海風和對流外流還可能使機場實測風不同於大尺度概念。"
+          ]
+        },
+        {
+          "id": "convection",
+          "english": "Convective Currents",
+          "title": "熱對流與地方環流",
+          "parent": "wind",
+          "locator": "PHAK C 版 · 12-7",
+          "printedPage": "12-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=7",
+          "paragraphs": [
+            "地表受熱不均使某些空氣團相對周圍較暖而上升，周圍空氣補入，形成熱對流和地方環流。陸地通常比水面更快加熱或冷卻，因此日夜可能出現海陸風差異。",
+            "自編例：晴熱午後越過深色耕地與水面，可能交替遇到上升和較弱或下降氣流。無雲不表示沒有熱亂流，雲是否形成還取決於水氣和上升過程是否達到飽和。"
+          ]
+        },
+        {
+          "id": "obstructions",
+          "english": "Effect of Obstructions on Wind",
+          "title": "障礙物、地形與亂流",
+          "parent": "wind",
+          "locator": "PHAK C 版 · 12-8",
+          "printedPage": "12-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=8",
+          "paragraphs": [
+            "建物、樹木和山脈使風改向、加速並產生渦流，背風側可能有明顯亂流與下降氣流。穩定分層與跨山風也可形成山岳波，雲的有無不能單獨判斷波動是否存在。",
+            "自編例：跑道風向袋顯示可接受風速，附近樹列背風側仍可能造成接近地面的擾動。飛越山脊時要評估風向、風速、波動與逃逸空間，不用單一「高過山頂」數字作保證。"
+          ],
+          "points": [
+            "機械亂流：風與障礙物作用產生，強度和分布受形狀、地形與風速影響。",
+            "山岳波：可在穩定空氣與適當跨山風下形成，背風下降可顯著影響高度保持。",
+            "透鏡雲與轉子雲可提供線索，但沒有這些雲不等於沒有危害。"
+          ]
+        },
+        {
+          "id": "shear",
+          "english": "Low-Level Wind Shear",
+          "title": "低空風切與微下擊暴流",
+          "parent": "wind",
+          "locator": "PHAK C 版 · 12-11",
+          "printedPage": "12-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=11",
+          "paragraphs": [
+            "風切是風向或速度在空間中的變化，飛機穿越時相對氣流、空速和航徑可能迅速改變。近地面缺乏高度和時間恢復，雷暴外流、鋒面、逆溫與地形都可能造成低空風切。",
+            "微下擊暴流可先帶來逆風增加，接著下降氣流和順風，使初期性能改善很快轉為惡化。地面沒有大雨也不能排除乾微下擊暴流；應依告警、避讓與本機訓練處置，而非套用普通進場修正。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM Chapter 7 Section 1：風切、雷暴與天氣資料使用",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "weather-map",
+          "english": "Wind and Pressure Representation on Surface Weather Maps",
+          "title": "地面圖的風與壓力表示",
+          "parent": "wind",
+          "locator": "PHAK C 版 · 12-12",
+          "printedPage": "12-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=12",
+          "paragraphs": [
+            "地面分析圖以等壓線、站點符號及風羽呈現氣壓與風。等壓線較密常暗示較大壓力梯度，但局部風還受摩擦和地形影響，不能從線距直接讀出精確機場風速。",
+            "讀風羽先確認方向和符號單位，再核對圖的有效時間。常見半羽、全羽、旗分別代表 5、10、50 kt；自編例：一旗加一全羽可表示 60 kt，但仍應以該產品圖例為準。"
+          ]
+        },
+        {
+          "id": "stability",
+          "english": "Atmospheric Stability",
+          "title": "大氣穩定度與氣塊比較",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-12",
+          "printedPage": "12-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=12",
+          "paragraphs": [
+            "穩定度取決於被抬升或壓低的氣塊與周圍環境相比是否更具浮力，不能只由地面冷暖或乾濕判定。需比較環境遞減率與氣塊上升時的溫度變化，並考慮是否已飽和。",
+            "未飽和氣塊乾絕熱冷卻約每千呎 3 °C，飽和後因凝結釋熱通常較慢且數值可變。ISA 的約 2 °C/千呎是另一種參考，不能當成所有上升氣塊的冷卻率或當天穩定度。"
+          ],
+          "points": [
+            "穩定：氣塊偏離後有回復傾向，常抑制強烈垂直發展。",
+            "不穩定：抬升後可繼續上升，但仍需水氣與觸發條件才能形成特定天氣。",
+            "穩定空氣仍可能有低雲、霧或山岳波；不穩定也不等於每處都有雷暴。"
+          ]
+        },
+        {
+          "id": "inversion",
+          "english": "Inversion",
+          "title": "逆溫與混合受限",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-13",
+          "printedPage": "12-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=13",
+          "paragraphs": [
+            "逆溫是某層氣溫隨高度上升而增加，抑制氣塊垂直混合。地面夜間輻射冷卻、暖空氣覆蓋冷空氣或下沉等過程都可形成逆溫，不限於地表附近。",
+            "逆溫下方可能累積水氣、煙霧與污染，能見度變差；頂部附近若風差顯著也可能有風切。自編例：地面風小且平穩，不表示爬升穿過逆溫層時風速與方向也不會迅速改變。"
+          ]
+        },
+        {
+          "id": "moisture-temperature",
+          "english": "Moisture and Temperature",
+          "title": "水的相變與潛熱",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-13",
+          "printedPage": "12-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=13",
+          "paragraphs": [
+            "水在氣、液、固態間變化會交換能量，蒸發和昇華吸熱，凝結、凝華與凍結釋熱。這些能量交換影響氣塊浮力與雲發展，不只是把水換一種外觀。",
+            "較高溫度通常對應較高飽和水氣壓，但「空氣能裝水」只是簡化比喻，也不是每增加固定溫度就精確翻倍。自編例：降水在乾燥空氣中蒸發可冷卻氣流，助長下降與外流。"
+          ]
+        },
+        {
+          "id": "humidity",
+          "english": "Relative Humidity",
+          "title": "相對濕度不是絕對水量",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-13",
+          "printedPage": "12-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=13",
+          "paragraphs": [
+            "相對濕度比較實際水氣壓與該溫度的飽和水氣壓，所以會隨溫度改變。即使沒有增加水蒸氣，夜間冷卻也可以使相對濕度升高，不能把百分比增加直接解讀為水量增加。",
+            "自編例：寒冷空氣即使接近飽和，其水蒸氣總量仍可能少於較暖但相對濕度較低的空氣。比較潮濕程度和雲霧風險時，需一起看溫度、露點及冷卻機制。"
+          ]
+        },
+        {
+          "id": "dewpoint",
+          "english": "Temperature/Dew Point Relationship",
+          "title": "溫露差與雲底近似",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-13",
+          "printedPage": "12-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=13",
+          "paragraphs": [
+            "露點是在相應條件下把空氣冷卻至飽和所需的溫度；溫度與露點接近，表示離飽和較近，但不保證立即形成霧或降水。混合、抬升與凝結核等仍影響實際現象。",
+            "對適當近地面對流氣塊，可用溫露差估算抬升凝結高度。自編例：T = 25 °C、Td = 15 °C，採約 400 ft/°C 得雲底約 4,000 ft AGL；這不是鋒面層雲或實際報告雲幕的通用預測。"
+          ]
+        },
+        {
+          "id": "saturation",
+          "english": "Methods by Which Air Reaches the Saturation Point",
+          "title": "達到飽和的途徑",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-14",
+          "printedPage": "12-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=14",
+          "paragraphs": [
+            "空氣可因冷卻、增加水蒸氣或混合不同氣團而接近飽和。抬升膨脹造成冷卻不必向外界大量放熱，與夜間接觸冷地面所造成的冷卻機制不同。",
+            "自編練習：將夜間谷地霧、暖濕空氣移到冷海面、冷空氣越過暖水面及氣流爬坡分別配對其機制。知道觸發原因，才能判斷日出、風向改變或水氣供應停止後是否容易消散。"
+          ]
+        },
+        {
+          "id": "dew-frost",
+          "english": "Dew and Frost",
+          "title": "露、霜與表面污染",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-15",
+          "printedPage": "12-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=15",
+          "paragraphs": [
+            "露是水蒸氣在較冷表面凝結成液滴，霜可由水蒸氣在低於冰點的表面凝華成冰晶；露滴再凍結也是可能的結冰途徑。表面溫度可能低於報告氣溫，所以不能只看 OAT 略高於零便排除霜。",
+            "翼面微小污染也可改變氣流、升力與阻力，不能憑厚度不明顯便認定可忽略。自編例：晴冷夜後飛行前需按機型與適用清潔機翼要求檢查和處理，不能只等待引擎運轉時自行融化。"
+          ]
+        },
+        {
+          "id": "fog",
+          "english": "Fog",
+          "title": "不同霧的形成與持續",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-15",
+          "printedPage": "12-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=15",
+          "paragraphs": [
+            "霧是接近地面的懸浮水滴或冰晶造成的能見度降低，形成途徑不同，消散條件也不同。輻射霧常與晴夜地表冷卻、濕氣和微風有關，但日出不保證在固定時間內消散。",
+            "平流霧與上坡霧可持續獲得冷卻或水氣供應，不一定隨陽光就消失；冰霧和過冷水滴的凍霧也應分清。自編例：海岸霧由暖濕氣流不斷移入，不能只因陸地升溫就假定整條航路很快放晴。"
+          ],
+          "points": [
+            "輻射霧：地表夜間冷卻使近地空氣達飽和，低窪處較易累積。",
+            "平流霧：暖濕空氣移過較冷表面；上坡霧：濕空氣沿坡抬升冷卻。",
+            "蒸發霧／海煙：冷空氣越過暖水面，水氣加入並混合冷卻。",
+            "冰霧以冰晶為主；凍霧可由過冷液滴形成，接觸表面可能結冰。",
+            "降水造成的蒸發增濕也可促成霧，不能只把低能見度歸因於夜間冷卻。"
+          ]
+        },
+        {
+          "id": "clouds",
+          "english": "Clouds",
+          "title": "雲的形狀、層次與發展",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-15",
+          "printedPage": "12-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=15",
+          "paragraphs": [
+            "雲由小水滴、冰晶或兩者混合形成，外觀與高度可提供抬升、穩定度和水氣線索。層狀雲常呈廣泛覆蓋，積狀雲反映垂直發展，但只看外觀不能保證內部沒有結冰或亂流。",
+            "讀雲名時可把 cirro、alto、strato、cumulo、nimbo 等詞根連到高度、形狀與降水特徵。高度分組隨緯度和資料定義不同，不能把手冊分組當成全球固定界面；實際雲底仍需觀測。"
+          ],
+          "points": [
+            "高雲：卷雲、卷層雲、卷積雲；常有冰晶，可提示高空水氣與系統接近。",
+            "中雲：高層雲、高積雲；低雲：層雲、層積雲等，需留意低雲底和視野。",
+            "雨層雲常伴較廣泛降水；積雨雲有深厚對流及多種航空危害。",
+            "積雲的垂直發展趨勢比一張靜態外觀更有資訊，但仍不能取代預報和雷達判讀。"
+          ]
+        },
+        {
+          "id": "ceiling",
+          "english": "Ceiling",
+          "title": "雲幕高與最低雲層",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-17",
+          "printedPage": "12-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=17",
+          "paragraphs": [
+            "航空雲幕通常是最低 BKN 或 OVC 雲層的高度，天空被遮蔽時可用垂直能見度表示。FEW 或 SCT 雖可能更低，通常不構成報告雲幕，卻仍可能影響實際飛行與離雲間隔。",
+            "自編例：SCT010 BKN025 表示雲幕為 2,500 ft，而不是 1,000 ft；METAR 雲高通常相對機場地面。雲幕不能直接換算整條航路的地形裕度，山區還需注意周邊地勢與局部雲。"
+          ]
+        },
+        {
+          "id": "visibility",
+          "english": "Visibility",
+          "title": "能見度、斜視與跑道視程",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-17",
+          "printedPage": "12-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=17",
+          "paragraphs": [
+            "能見度描述辨識目標的能力，受霧、降水、煙、塵與光照影響。地面主導能見度、飛行中所見能見度及跑道視程 RVR 是不同觀測或使用概念，不能只用單一數字互換。",
+            "自編例：地面水平方向可見很遠，向陽斜視進場卻可能因薄霧和眩光難以辨識跑道。規劃需對照適用飛行規則、程序和實際趨勢，而非把單站一筆觀測當作整段航路的保證。"
+          ]
+        },
+        {
+          "id": "precipitation",
+          "english": "Precipitation",
+          "title": "降水型態與垂直溫度結構",
+          "parent": "stability",
+          "locator": "PHAK C 版 · 12-17",
+          "printedPage": "12-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=17",
+          "paragraphs": [
+            "雨、毛毛雨、雪、冰粒、凍雨與冰雹反映不同形成和落下過程。地面降水種類受到上方融化層及近地冷層影響，單看地面溫度不能完整判斷高空結冰情況。",
+            "凍雨可為過冷液滴撞擊後結冰，冰粒則已在空中凍結；地面看到雨不代表高處沒有冰雹。自編例：航路上有融化層和下方冷層時，要連結結冰、能見度與跑道污染，而非只問雨大不大。"
+          ]
+        },
+        {
+          "id": "air-masses",
+          "english": "Air Masses",
+          "title": "氣團來源與改變",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-17",
+          "printedPage": "12-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=17",
+          "paragraphs": [
+            "氣團是在大範圍具有相對相似溫濕特性的空氣，其來源地常決定初始冷暖與乾濕。海洋性和大陸性、極地和熱帶等分類提供概念，但氣團移動後會受新下墊面加熱、冷卻或增濕。",
+            "自編例：冷空氣越過暖水面後可能變得較不穩定並形成陣性天氣，不能只因起源寒冷就預期平穩。判讀氣團需同時看來源、移動路徑及垂直溫度結構。"
+          ]
+        },
+        {
+          "id": "fronts",
+          "english": "Fronts",
+          "title": "鋒面是三維過渡區",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-18",
+          "printedPage": "12-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=18",
+          "paragraphs": [
+            "鋒面是不同密度與溫濕特性氣團間的過渡區，在天氣圖上常畫成地面位置的一條線，實際卻有寬度、傾斜與垂直結構。天氣可在地面鋒線之前、附近或之後出現。",
+            "自編例：飛機尚未跨過圖上鋒線，就可能進入暖空氣爬升形成的雲和降水。應綜合溫度、露點、風、氣壓與雲系，而不是只用地圖上是否越線判定有無風險。"
+          ]
+        },
+        {
+          "id": "warm-front",
+          "english": "Warm Front",
+          "title": "暖鋒與緩坡抬升",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-18",
+          "printedPage": "12-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=18",
+          "paragraphs": [
+            "暖鋒是暖氣團推進到原冷氣團區域，暖空氣常沿冷空氣上方較緩的斜面抬升。若水氣足夠，可有從高雲到較低厚層雲及廣泛降水的序列，但並非每個暖鋒都完全相同。",
+            "暖鋒也可能包含不穩定層與嵌入雷暴，不能只將它等同平穩小雨。自編例：前方雲底逐漸降低時，要檢查整條航路的備降與結冰條件，而非只等地面氣溫轉暖才更新判斷。"
+          ]
+        },
+        {
+          "id": "approach-warm",
+          "english": "Flight Toward an Approaching Warm Front",
+          "title": "飛向暖鋒的天氣演變",
+          "parent": "warm-front",
+          "locator": "PHAK C 版 · 12-19",
+          "printedPage": "12-19",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=19",
+          "paragraphs": [
+            "接近暖鋒時可能先看到高雲增厚，之後出現更低雲層、降水及能見度下降，地面冷空氣中也可能有霧。實際順序取決於水氣、穩定度和飛行方向，原書情境不是固定時間表。",
+            "自編練習：沿預定到達時間比較各站觀測、預報和鋒面移動，辨識雲底下降或溫露差縮小是否影響返航與備降。不能只靠出發機場當下仍晴朗就假設前方保持可目視。"
+          ]
+        },
+        {
+          "id": "cold-front",
+          "english": "Cold Front",
+          "title": "冷鋒與較陡抬升",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-20",
+          "printedPage": "12-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=20",
+          "paragraphs": [
+            "冷鋒是冷空氣推進並迫使較暖空氣上升，常有較陡的鋒面坡度。若暖側潮濕不穩定，較集中強烈的對流、陣雨和風變化可能出現；若乾燥穩定，表現可不同。",
+            "冷鋒後常有降溫及氣壓上升趨勢，但雲雨何時結束並非保證。自編例：不能把越過鋒線當成即時天氣轉好的信號，後方仍可有低雲、陣雨、強風或地形效應。"
+          ]
+        },
+        {
+          "id": "fast-cold",
+          "english": "Fast-Moving Cold Front",
+          "title": "快速冷鋒與天氣突變",
+          "parent": "cold-front",
+          "locator": "PHAK C 版 · 12-20",
+          "printedPage": "12-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=20",
+          "paragraphs": [
+            "快速冷鋒可使溫度、風和天氣在較短時間內改變，潮濕不穩定環境下可能伴隨強對流或鋒前颮線。天氣移動速度與雲內風速不是同一件事，也不能只用遠方外觀估算到達時間。",
+            "自編例：原本可繞過的降水帶快速擴展時，需重新評估航線和降落選項，不能把上一張雷達圖中的空隙當作持續開放。資料時間與系統發展趨勢同樣重要。"
+          ]
+        },
+        {
+          "id": "approach-cold",
+          "english": "Flight Toward an Approaching Cold Front",
+          "title": "飛向冷鋒的預先判讀",
+          "parent": "cold-front",
+          "locator": "PHAK C 版 · 12-20",
+          "printedPage": "12-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=20",
+          "paragraphs": [
+            "朝冷鋒飛行可能遇到雲帶、降水、風向突變、亂流和氣壓變化。是否看到連續雲牆並非唯一線索，嵌入或夜間對流也可能讓危害難以目視辨認。",
+            "自編練習：將地面鋒位、雷達、雷暴預報與沿線風和氣壓趨勢一起看，預先保留避讓和落地空間。不要靠飛近一點再看看，來取代對快速移動系統的航前與途中評估。"
+          ]
+        },
+        {
+          "id": "front-comparison",
+          "english": "Comparison of Cold and Warm Fronts",
+          "title": "冷暖鋒的典型差異",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-20",
+          "printedPage": "12-20",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=20",
+          "paragraphs": [
+            "暖鋒常有較緩抬升與較廣雲雨區，冷鋒常有較陡抬升及較集中的天氣變化，但這些都是典型模式。水氣、穩定度、移速及地形能改變實際危害，暖鋒也可有強對流。",
+            "自編例：把「冷鋒危險、暖鋒安全」當成二分法會漏掉暖鋒結冰、低雲及嵌入雷暴。比較時應逐項看雲、降水、風切、能見度及其出現位置，而不只看鋒面名稱。"
+          ]
+        },
+        {
+          "id": "wind-shifts",
+          "english": "Wind Shifts",
+          "title": "鋒面風向轉變",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-21",
+          "printedPage": "12-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=21",
+          "paragraphs": [
+            "鋒面附近風向和風速常隨氣團及壓力分布改變，過境前後的風變化可協助辨識，但方向不是全球固定的一套。半球、系統位置與地面摩擦都會影響實際轉向。",
+            "自編例：某機場鋒面過境後原本逆風跑道可能變成側風或順風，起降性能也需重算。風向改變本身未必能唯一證明鋒面通過，仍要對照溫度、露點、氣壓與其他資料。"
+          ]
+        },
+        {
+          "id": "stationary",
+          "english": "Stationary Front",
+          "title": "滯留鋒與持續影響",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-21",
+          "printedPage": "12-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=21",
+          "paragraphs": [
+            "滯留鋒的地面位置移動較慢，但不表示沿鋒沒有風或雲雨不再發展。暖空氣仍可被抬升，水氣輸送也可能維持降水，使同一地區長時間受低雲與能見度影響。",
+            "自編例：預報鋒面停滯時，等待一小時不一定就能得到天氣窗口，沿鋒新對流也可能持續生成。規劃要看預測演變及可持續的替代方案，而不以鋒線速度小等同危害小。"
+          ]
+        },
+        {
+          "id": "occluded",
+          "english": "Occluded Front",
+          "title": "囚錮鋒的氣團配置",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-21",
+          "printedPage": "12-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=21",
+          "paragraphs": [
+            "囚錮鋒常在較快冷鋒追上暖鋒後形成，暖空氣被抬離地面，前後兩側較冷空氣的相對冷暖決定不同結構。它不是冷暖氣團完全混合後變成沒有邊界。",
+            "雲雨可能結合暖鋒與冷鋒特徵，也可能出現嵌入對流、低雲及結冰。自編練習：在剖面畫出暖空氣位於何處，再看航路高度會穿過哪些雲層，避免只用地面溫度推斷上方全部狀態。"
+          ]
+        },
+        {
+          "id": "thunderstorms",
+          "english": "Thunderstorms",
+          "title": "雷暴條件與生命週期",
+          "parent": "fronts",
+          "locator": "PHAK C 版 · 12-22",
+          "printedPage": "12-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=22",
+          "paragraphs": [
+            "雷暴需要足夠水氣、不穩定與觸發抬升。典型單胞由上升氣流主導的積雲期，進入上下氣流並存的成熟期，再到下降氣流占優勢的消散期，但組織化多胞或超胞可持續更新。",
+            "消散中的單一胞不表示整片系統都在減弱，旁邊可同時發展新胞。自編例：若避讓路線仍穿過持續生成的對流區，不能只靠一個回波減弱就判斷安全，需評估全區演變和可用替代航路。"
+          ],
+          "points": [
+            "積雲期：上升氣流與凝結發展，未見地面降雨不代表沒有強上升。",
+            "成熟期：降水、上升與下降氣流並存，多種危害可同時出現。",
+            "消散期：下降氣流占優勢，外流與其他殘留危害仍可存在。"
+          ]
+        },
+        {
+          "id": "hazards",
+          "english": "Hazards",
+          "title": "雷暴危害與避讓範圍",
+          "parent": "thunderstorms",
+          "locator": "PHAK C 版 · 12-23",
+          "printedPage": "12-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=23",
+          "paragraphs": [
+            "雷暴可能同時帶來亂流、風切、冰雹、結冰、雷擊、低能見度及強降水，外觀不能可靠判斷內部強度。可見雲邊不等於危害邊界，砧狀雲下方與外流區也可能危險。",
+            "PHAK 以至少 20 NM（海里）說明嚴重或強烈回波雷暴的避讓，FAA AIM 亦提供相應避讓指引，不能將此距離當成所有條件下的安全保證。資料鏈回波有時間差，適合規劃避開整區，不適合即時選擇狹小穿越縫隙。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM Chapter 7 Section 1：風切、雷暴與天氣資料使用",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
+              "checked": "2026-09-11"
+            }
+          ],
+          "currentNote": "查閱 2026-09-11：AIM 7-1 的雷暴避讓與 FIS 說明強調避開整片危害區；資料鏈 NEXRAD 圖像不適合即時穿越雷暴間隙。距離建議不是所有環境下的保證邊界。"
+        },
+        {
+          "id": "squall",
+          "english": "Squall Line",
+          "title": "颮線與成帶對流",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-23",
+          "printedPage": "12-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=23",
+          "paragraphs": [
+            "颮線是一條活躍雷暴帶，可能在冷鋒上、前方或遠離鋒面的不穩定區形成。它的連續性、強外流及快速發展會限制繞行空間，不能只把它當成一列互不影響的小雲。",
+            "自編例：線上某段回波較弱，可能仍有風切、雲中亂流或快速填補的新胞。應考慮繞過整區、延後或落地等待，而不是依單張圖把低回波缺口當成可用通道。"
+          ]
+        },
+        {
+          "id": "tornadoes",
+          "english": "Tornadoes",
+          "title": "龍捲與漏斗雲",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-23",
+          "printedPage": "12-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=23",
+          "paragraphs": [
+            "龍捲是與對流雲相連且接觸地面的強烈旋轉氣柱，可見凝結漏斗未必延伸到地面。只有雲漏斗外觀不足以判定是否接地，地面碎屑或旋轉也可提供線索。",
+            "旋轉危害可隱藏在降水或雲內，沒有看到完整漏斗不代表安全；水龍捲同樣不能靠近觀察。自編例：夜間或儀器天氣下，需依雷暴與龍捲相關資訊避讓，不將目視確認當成必要前提。"
+          ]
+        },
+        {
+          "id": "turbulence",
+          "english": "Turbulence",
+          "title": "雷暴內外亂流",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-24",
+          "printedPage": "12-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=24",
+          "paragraphs": [
+            "強烈上升、下降氣流及兩者間風切使雷暴內有嚴重亂流潛勢，雲外的陣風鋒與外流也可延伸很遠。飛在雲底以下或砧狀雲旁，並不等於避開整個對流系統。",
+            "自編例：尚未進入降雨卻突然遇到地面風大幅改變，可能已進入外流影響區。若遇意外亂流需依機型程序處理，但亂流穿越速度不能把原本不可接受的雷暴穿越變成安全計畫。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM Chapter 7 Section 1：風切、雷暴與天氣資料使用",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "icing",
+          "english": "Icing",
+          "title": "過冷水滴與對流結冰",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-24",
+          "printedPage": "12-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=24",
+          "paragraphs": [
+            "雷暴上升氣流可支持大量過冷液態水，與機體接觸後快速結冰；不同滴徑和溫度可形成不同積冰。不能把某一溫度當成絕對分界，認為更冷就必然沒有液態水或其他冰相關危害。",
+            "防除冰裝備有核准範圍，不能保證抵抗雷暴中的所有過冷水或高空冰晶影響。自編例：系統開啟後仍需監控未保護部位和性能，並依限制脫離；本節不提供跨機型的啟動時機口訣。"
+          ]
+        },
+        {
+          "id": "hail",
+          "english": "Hail",
+          "title": "冰雹與雲外落區",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-25",
+          "printedPage": "12-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=25",
+          "paragraphs": [
+            "強上升氣流可讓冰粒在雲中持續收集過冷水並長大，最後落下或被風帶離主要回波區。地面落雨可能是冰雹已融化的結果，不足以證明飛行高度沒有冰雹。",
+            "自編例：繞到砧狀雲下方但未進入主雲，仍可能遇到冰雹造成風擋、翼面與引擎損害。避讓需要考慮整個對流系統和風，不只依肉眼看到的降雨柱邊緣飛行。"
+          ]
+        },
+        {
+          "id": "storm-ceiling",
+          "english": "Ceiling and Visibility",
+          "title": "雷暴的雲幕與能見度",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-25",
+          "printedPage": "12-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=25",
+          "paragraphs": [
+            "雷暴內外的雲、強降水、吹塵與碎屑可使能見度迅速降低，並與亂流和風切同時發生。雲底仍高或偶爾可看見跑道，不代表下方進場路徑沒有嚴重氣流危害。",
+            "自編例：先前符合目視條件的機場，在外流到達後可能突然轉為低能見度或強側風。應把天氣趨勢、到達時間和替代方案一起評估，而不是只依上一筆雲幕數字繼續。"
+          ]
+        },
+        {
+          "id": "altimeter-effects",
+          "english": "Effect on Altimeters",
+          "title": "雷暴附近的壓力變化",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-25",
+          "printedPage": "12-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=25",
+          "paragraphs": [
+            "雷暴接近與冷外流到達時，地面壓力可能快速改變，使先前取得的高度表設定不再代表附近狀態。氣壓高度表會把壓力變化轉成指示變化，不能單看指針就認定飛機真的改變同等幾何高度。",
+            "自編例：沿用舊設定進場可能減少預期地形裕度，需按程序取得適用更新並交叉核對。原書的時間和百呎量級是例示，不是每個雷暴必定相同，也不能靠更新設定來消除其他雷暴危害。"
+          ]
+        },
+        {
+          "id": "lightning",
+          "english": "Lightning",
+          "title": "雷擊與系統影響",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-25",
+          "printedPage": "12-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=25",
+          "paragraphs": [
+            "雷擊可損傷機體、天線、電氣與航電，附近閃光也可能暫時影響視覺。設計上的防護降低部分風險，卻不代表雷暴內其他危害也受控制，沒有頻繁閃電也不能證明安全。",
+            "自編例：雷擊後引擎和螢幕看似正常，仍可能需要按機型程序檢查並安排維修評估。雷電偵測顯示的是相關電活動資訊，不能獨自畫出所有亂流、冰雹或可穿越區域。"
+          ]
+        },
+        {
+          "id": "water-ingestion",
+          "english": "Engine Water Ingestion",
+          "title": "強降水與引擎吞水",
+          "parent": "hazards",
+          "locator": "PHAK C 版 · 12-25",
+          "printedPage": "12-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=25",
+          "paragraphs": [
+            "強對流可使局部液態水或冰雹含量很高，超過引擎在相應條件下可承受的範圍，可能造成燃燒不穩、熄火或損害。引擎認證包含一定環境測試，不表示可以承受所有雷暴核心。",
+            "自編例：飛機有防冰與連續點火功能，不代表穿越強降水區就有保證。這些系統的使用與異常處置需依機型，規劃仍以避開不可接受的對流環境為主。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：形成機制與飛行影響",
+          "parent": null,
+          "locator": "PHAK C 版 · 12-25",
+          "printedPage": "12-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page=25",
+          "paragraphs": [
+            "天氣由受熱、壓力差、水氣、地形與大氣運動共同形成，單一數字或雲名不足以概括其影響。判讀應連結觀測、預報、位置、高度和有效時間，再評估性能、視野、結冰與氣流。",
+            "自編複習：比較輻射霧和平流霧、冷鋒和暖鋒、相對濕度和露點，再說明雷暴為何在雲外仍有危害。進一步資料可閱讀 FAA Aviation Weather Handbook；原書列出的舊 AC 與資料入口需另核對現行版本。"
+          ],
+          "references": [
+            {
+              "title": "FAA-H-8083-28B：Aviation Weather Handbook 官方入口",
+              "url": "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/faa-h-8083-28b-aviation-weather-handbook",
+              "checked": "2026-09-11"
+            }
           ]
         }
       ],
@@ -7815,6 +8940,26 @@ export const phakDocument = {
           "title": "風與風切",
           "clarification": "風切強調風向或風速隨空間快速變化。",
           "example": "平均風速小不代表沒有局部風切。"
+        },
+        {
+          "title": "相對濕度與實際水氣量",
+          "clarification": "相對濕度同時受溫度影響，百分比高不一定代表水氣總量更多。",
+          "example": "夜間沒有增加水氣，單靠冷卻也可能讓相對濕度上升。"
+        },
+        {
+          "title": "雲幕與最低可見雲層",
+          "clarification": "報告雲幕通常取最低 BKN／OVC 或遮蔽的垂直能見度。",
+          "example": "SCT010 BKN025 的雲幕為 2,500 ft，仍不能忽略較低散雲。"
+        },
+        {
+          "title": "穩定與好天氣",
+          "clarification": "穩定空氣可有低雲霧，不穩定也需其他條件才形成雷暴。",
+          "example": "逆溫下能見度可能很差。"
+        },
+        {
+          "title": "雲邊與危害邊界",
+          "clarification": "冰雹、風切和亂流可出現在可見雷暴雲外。",
+          "example": "從砧狀雲下方穿過不等於避開雷暴。"
         }
       ],
       "scenario": "自編案例：某地無明顯對流，但低層逆溫、霾和低雲使能見度差。若只把「沒有雷暴」當成天氣可接受，就漏掉了目視飛行所需的其他條件。",
@@ -7828,7 +8973,10 @@ export const phakDocument = {
       "explanation": "穩定度不是整體天氣適飛判定，仍需看雲底、能見度及其他條件。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=285",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=285"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=285",
+      "detailMode": "outline",
+      "checked": "2026-09-11",
+      "coverageNote": "依提供目錄完整展開 51 節，逐節有雙語標題、中文解釋及 FAA 原文頁碼。雲霧、鋒面與雷暴依形成機制解說，補充來源連至 FAA AIM 及現行 Aviation Weather Handbook；案例為本站編寫。"
     },
     {
       "id": "phak25c-13",
