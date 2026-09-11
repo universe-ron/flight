@@ -192,3 +192,21 @@ for(const [number,count,english,note,last] of [[11,34,'Aircraft Performance','�
   else{assert.match(html,/SCT010 BKN025/);assert.match(html,/chap7_section_1/);assert.match(html,/8083-28B/);}
  });
 }
+
+
+for(const [number,count,english,last] of [[13,45,'Aviation Weather Services','fisb'],[14,90,'Airport Operations','emas-pilot'],[15,33,'Airspace','vfr-minima']]){
+ test('Chapter '+number+' renders its bilingual full outline, sources and saved learning state',()=>{
+  const c=studyDocuments.find(d=>d.id==='phak25c').chapters[number-1],note='原有第 '+number+' 章筆記';
+  const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:note}});
+  const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+  assert.ok(html.includes('Chapter '+number+' : '+english));assert.ok(html.includes('Chapter '+number+' : '+c.title));
+  assert.ok(html.includes('本章分層目錄 · '+count+' 節'));assert.ok(html.includes(note));assert.match(html,/本章閱讀與情境檢核已完成/);
+  for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));assert.ok(html.includes(s.source));}
+  const target='detail-'+c.id+'-'+last;let reached=false;env.context.document.getElementById=id=>id===target?{setAttribute(){},focus(){},scrollIntoView(){reached=true;}}:null;
+  env.events.click({target:{closest:()=>({dataset:{detailTarget:target}})}});
+  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/'+c.id);
+  if(number===13){assert.match(html,/2025-01-27/);assert.match(html,/978 MHz/);assert.match(html,/A2992/);}
+  if(number===14){assert.match(html,/16_phak_ch14_0/);assert.match(html,/14-30/);assert.match(html,/LUAW/);}
+  if(number===15){assert.match(html,/1,200 ft AGL/);assert.match(html,/remain outside/);assert.match(html,/91.225/);}
+ });
+}

@@ -154,3 +154,51 @@ test('Chapter 12 covers every supplied heading and source page',()=>{
  assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/14_phak_ch12.pdf#page='+s.printedPage.split('-')[1]);}
 });
+
+
+test('Chapter 13 preserves every supplied heading, hierarchy and source page',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[12];
+ const expected=[["Introduction", 1], ["Observations", 2], ["Surface Aviation Weather Observations", 2], ["Air Route Traffic Control Center (ARTCC)", 2], ["Upper Air Observations", 2], ["Radar Observations", 3], ["Satellite", 4], ["Service Outlets", 4], ["Flight Service Station (FSS)", 4], ["Telephone Information Briefing Service (TIBS)", 4], ["Hazardous Inflight Weather Advisory Service (HIWAS)", 4], ["Transcribed Weather Broadcast (TWEB) (Alaska Only)", 4], ["Weather Briefings", 5], ["Standard Briefing", 5], ["Abbreviated Briefing", 5], ["Outlook Briefing", 5], ["Aviation Weather Reports", 5], ["Aviation Routine Weather Report (METAR)", 6], ["Pilot Weather Reports (PIREPs)", 8], ["Aviation Forecasts", 9], ["Terminal Aerodrome Forecasts (TAF)", 9], ["Area Forecasts (FA)", 10], ["Inflight Weather Advisories", 11], ["AIRMET", 11], ["SIGMET", 12], ["Convective Significant Meteorological Information (WST)", 12], ["Winds and Temperature Aloft Forecast (FB)", 13], ["Weather Charts", 13], ["Surface Analysis Chart", 13], ["Weather Depiction Chart", 15], ["Significant Weather Prognostic Charts", 15], ["ATC Radar Weather Displays", 16], ["Weather Avoidance Assistance", 18], ["Electronic Flight Displays (EFD) /Multi-Function Display (MFD) Weather", 18], ["Weather Products Age and Expiration", 18], ["What Can Pilots Do?", 19], ["NEXRAD Abnormalities", 21], ["NEXRAD Limitations", 21], ["AIRMET/SIGMET Display", 21], ["Graphical METARs", 21], ["Data Link Weather", 21], ["Data Link Weather Products", 23], ["Flight Information Service- Broadcast (FIS-B)", 23], ["Pilot Responsibility", 24], ["Chapter Summary", 24]];
+ assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,45);
+ assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.equal(c.checked,'2026-09-11');
+});
+
+
+test('Chapter 14 preserves every supplied heading, hierarchy and source page',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[13];
+ const expected=[["Introduction", 1], ["Airport Categories", 1], ["Types of Airports", 2], ["Towered Airport", 2], ["Nontowered Airport", 2], ["Sources for Airport Data", 3], ["Aeronautical Charts", 3], ["Chart Supplement U.S. (formerly Airport/Facility Directory)", 3], ["Notices to Airmen (NOTAM)", 4], ["Automated Terminal Information Service (ATIS)", 5], ["Airport Markings and Signs", 5], ["Runway Markings and Signs", 5], ["Relocated Runway Threshold", 5], ["Displaced Threshold", 5], ["Runway Safety Area", 6], ["Runway Safety Area Boundary Sign", 6], ["Runway Holding Position Sign", 6], ["Runway Holding Position Marking", 8], ["Runway Distance Remaining Signs", 8], ["Runway Designation Marking", 8], ["Land and Hold Short Operations (LAHSO)", 10], ["Taxiway Markings and Signs", 11], ["Enhanced Taxiway Centerline Markings", 12], ["Destination Signs", 12], ["Holding Position Signs and Markings for an Instrument Landing System (ILS) Critical Area", 12], ["Holding Position Markings for Taxiway/Taxiway Intersections", 14], ["Marking and Lighting of Permanently Closed Runways and Taxiways", 14], ["Temporarily Closed Runways and Taxiways", 15], ["Other Markings", 15], ["Airport Signs", 15], ["Airport Lighting", 16], ["Airport Beacon", 16], ["Approach Light Systems", 16], ["Visual Glideslope Indicators", 16], ["Visual Approach Slope Indicator (VASI)", 16], ["Other Glidepath Systems", 16], ["Runway Lighting", 17], ["Runway End Identifier Lights (REIL)", 17], ["Runway Edge Lights", 17], ["In-Runway Lighting", 18], ["Control of Airport Lighting", 18], ["Taxiway Lights", 19], ["Omnidirectional", 19], ["Clearance Bar Lights", 19], ["Runway Guard Lights", 19], ["Stop Bar Lights", 19], ["Obstruction Lights", 19], ["New Lighting Technologies", 19], ["Wind Direction Indicators", 20], ["Traffic Patterns", 20], ["Example: Key to Traffic Pattern Operations— Single Runway", 21], ["Example: Key to Traffic Pattern Operations— Parallel Runways", 21], ["Radio Communications", 22], ["Radio License", 22], ["Radio Equipment", 22], ["Using Proper Radio Procedures", 22], ["Lost Communication Procedures", 23], ["Air Traffic Control (ATC) Services", 24], ["Primary Radar", 24], ["ATC Radar Beacon System (ATCRBS)", 24], ["Transponder", 25], ["Automatic Dependent Surveillance– Broadcast (ADS-B)", 26], ["Radar Traffic Advisories", 26], ["Wake Turbulence", 26], ["Vortex Generation", 26], ["Terminal Area", 27], ["En Route", 27], ["Vortex Behavior", 27], ["Vortex Avoidance Procedures", 28], ["Collision Avoidance", 28], ["Clearing Procedures", 28], ["Training Operations", 30], ["Scanning Techniques for Traffic Avoidance", 30], ["Best Practices to See and Avoid", 30], ["Pilot Deviations (PDs)", 31], ["Runway Incursion Avoidance", 31], ["Causal Factors of Runway Incursions", 32], ["Runway Confusion", 32], ["Causal Factors of Runway Confusion", 32], ["ATC Instructions", 33], ["ATC Instructions—“Hold Short”", 33], ["ATC Instructions—Explicit Runway Crossing", 34], ["ATC Instructions—“Line Up and Wait” (LUAW)", 34], ["ATC Instructions—“Runway Shortened”", 35], ["Pre-Landing, Landing, and After-Landing", 35], ["Engineered Materials Arresting Systems (EMAS)", 36], ["Incidents", 36], ["EMAS Installations and Information", 37], ["Pilot Considerations", 37], ["Chapter Summary", 38]];
+ assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,90);
+ assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.equal(c.checked,'2026-09-11');
+});
+
+
+test('Chapter 15 preserves every supplied heading, hierarchy and source page',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[14];
+ const expected=[["Introduction", 1], ["Controlled Airspace", 2], ["Class A Airspace", 2], ["Class B Airspace", 2], ["Class C Airspace", 2], ["Class D Airspace", 2], ["Class E Airspace", 2], ["Uncontrolled Airspace", 3], ["Class G Airspace", 3], ["Special Use Airspace", 3], ["Prohibited Areas", 3], ["Restricted Areas", 3], ["Warning Areas", 4], ["Military Operation Areas (MOAs)", 4], ["Alert Areas", 4], ["Controlled Firing Areas (CFAs)", 4], ["Other Airspace Areas", 4], ["Local Airport Advisory (LAA)", 6], ["Military Training Routes (MTRs)", 6], ["Temporary Flight Restrictions (TFR)", 6], ["Published VFR Routes", 6], ["Terminal Radar Service Areas (TRSAs)", 7], ["National Security Areas (NSAs)", 7], ["Air Traffic Control and the National Airspace System", 7], ["Coordinating the Use of Airspace", 7], ["Operating in the Various Types of Airspace", 7], ["Basic VFR Weather Minimums", 7], ["Operating Rules and Pilot/Equipment Requirements", 8], ["Ultralight Vehicles", 11], ["Unmanned Free Balloons", 11], ["Unmanned Aircraft Systems", 11], ["Parachute Jumps", 11], ["Chapter Summary", 11]];
+ assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,33);
+ assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/17_phak_ch15.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.equal(c.checked,'2026-09-11');
+});
+
+
+test('Chapters 13–15 distinguish retired weather services, runway clearances and airspace requirements',()=>{
+ const chapters=studyDocuments.find(d=>d.id==='phak25c').chapters;
+ const section=(n,id)=>chapters[n-1].detailSections.find(s=>s.id===id);
+ for(const id of ['tibs','hiwas','tweb','fa','airmet']){const s=section(13,id);assert.ok(s.currentNote);assert.ok(s.references.length);}
+ assert.match(section(13,'airmet').currentNote,/2025-01-27/);
+ assert.ok(section(13,'metar').points.some(p=>p.includes('AGL')));
+ assert.ok(section(13,'age').points.some(p=>p.includes('延遲')));
+ for(const id of ['training','scanning','see-avoid']){assert.equal(section(14,id).printedPage,'14-30');assert.ok(section(14,id).currentNote);}
+ assert.equal(section(14,'luaw').parent,'atc-instructions');
+ assert.ok(section(14,'stop-bar').points.some(p=>p.includes('矛盾')));
+ assert.ok(section(15,'class-b').points.some(p=>p.includes('明確')));
+ assert.ok(section(15,'class-c').points.some(p=>p.includes('remain outside')));
+ assert.ok(section(15,'vfr-minima').points.some(p=>p.includes('1,200 ft AGL')));
+ assert.ok(section(15,'vfr-minima').references.some(r=>r.url.includes('chap3_section_1')));
+ for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.equal(r.checked,'2026-09-11');}
+});
