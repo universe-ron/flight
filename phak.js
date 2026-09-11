@@ -7226,7 +7226,7 @@ export const phakDocument = {
       "number": 10,
       "title": "重量與平衡",
       "english": "Weight and Balance",
-      "section": "第 10 章；印刷頁碼 10-1 起",
+      "section": "第 10 章；10-1～10-11，全章目錄逐節講解",
       "goal": "能計算重心，並理解重量、分布與飛行中的變化。",
       "primer": "總重量影響所需升力與性能，重心位置則影響力矩平衡、穩定性與操縱能力。兩者需要同時符合適用範圍；總重低於上限，不代表任何座位與行李配置都可用。",
       "terms": [
@@ -7236,54 +7236,369 @@ export const phakDocument = {
         "CG · 重心"
       ],
       "prompts": [
-        "你能用自己的話解釋「重量合格不等於重心合格」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "用本章 2,100 lb 算例重算總力矩與重心，再說明還缺哪些本機資料才能判斷可否起飛。",
+        "比較把後艙行李前移與直接卸下兩種方案，列出各自的總重量、力矩和 CG，並解釋分母為何不同。"
       ],
       "keyPoints": [
-        "重量合格不等於重心合格",
-        "基準面、力臂與力矩",
-        "燃油消耗與移動載重",
-        "計算完還要對照包線"
+        "重量與 CG 都要合格，且須核對不同飛行階段和局部承重。",
+        "M = w × a；CG = ΣM/Σw；所有項目共用基準與單位。",
+        "圖解與表格法仍在處理力矩，指數倍率不能混用。",
+        "移動重量的總重量不變；增加、移除重量要用新總重量。",
+        "燃油消耗的 CG 方向取決於油箱位置，少加油不會降低 ZFW。"
       ],
       "detailSections": [
         {
-          "title": "重量合格不等於重心合格",
-          "locator": "Weight Control；Balance, Stability, and Center of Gravity；10-1 起",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：重量與重心要同時合格",
+          "parent": null,
+          "locator": "PHAK C 版 · 10-1",
+          "printedPage": "10-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=1",
           "paragraphs": [
-            "總重量影響所需升力與性能，重心位置則影響力矩平衡、穩定性與操縱能力。兩者需要同時符合適用範圍；總重低於上限，不代表任何座位與行李配置都可用。",
-            "前重心可能增加操縱需求，後重心可能降低穩定性並影響失速回復能力。具體限制依機型核准包線，不能把一般趨勢當成自行擴大範圍的理由。"
+            "重量平衡要回答兩個問題：飛機有多重，以及這些重量集中在哪裡。即使總重量低於上限，裝載分布仍可能使重心超限；即使重心在包線內，也可能因超重而不符合限制。",
+            "計算必須使用本機最新空重、力矩與設備資料，並核對滑行、起飛、航程中與落地等相關狀態。本章數字是學習算例，不是任何實機的放行資料，實際限制以適用 AFM／POH 及補充為準。"
           ]
         },
         {
-          "title": "基準面、力臂與力矩",
-          "locator": "Terms and Definitions；Principles of Weight and Balance Computations；10-4～10-6",
+          "id": "weight-control",
+          "english": "Weight Control",
+          "title": "重量控制與性能需求",
+          "parent": null,
+          "locator": "PHAK C 版 · 10-1",
+          "printedPage": "10-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=1",
           "paragraphs": [
-            "基準面由製造商定義，力臂是相對它的位置，力矩＝重量×力臂。各項力矩相加後，重心位置＝總力矩÷總重量；負力臂與力矩縮放指數都需依文件處理。",
-            "必須維持一致單位，例如 lb 與 in 對應 lb·in。若表格使用 moment/1000，應確認是否需還原或全程沿用同一縮放，避免差三個數量級。"
+            "重量是重力作用的力，實務裝載資料依手冊以磅或公斤等單位表達。增加重量會改變所需升力、起飛與落地能量以及爬升能力，因此座位、行李空間與油箱能裝多少，不等於都能同時裝滿。",
+            "穩定平直飛行的受力平衡不能直接套到所有機動，轉彎時還需考慮負荷因數。自編例：先確認結構重量限制，再查當天天氣、跑道和障礙下的性能，取能滿足所有條件的裝載。"
           ]
         },
         {
-          "title": "燃油消耗與移動載重",
-          "locator": "Determining Loaded Weight and CG；Shifting, Adding, and Removing Weight",
+          "id": "weight-effects",
+          "english": "Effects of Weight",
+          "title": "重量增加的影響",
+          "parent": "weight-control",
+          "locator": "PHAK C 版 · 10-2",
+          "printedPage": "10-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=2",
           "paragraphs": [
-            "燃油燃燒會改變重量及力矩，重心如何移動取決於油箱位置與消耗方式。因此起飛時合格，不代表飛行中或降落時都自動合格。",
-            "同一件行李向後移動時，總重量不變但力矩改變；新增或移除載重則兩者都變。把「移動」與「增減」分清楚，可以避免誤用分母。"
+            "其他條件相近時，重量增加通常提高所需起飛與失速速度，延長滑跑，並降低爬升率與爬升角。落地時也需處理較多能量，影響距離、煞車與起落架負荷。",
+            "固定構型、負荷因數與最大升力係數下，失速速度約隨重量平方根變化。自編例：重量由 2,000 增至 2,420 lb，若原失速速度為 50 kt，估算變為 50 × √(2,420/2,000) = 55 kt；這不是核准性能表的替代。"
           ]
         },
         {
-          "title": "計算完還要對照包線",
-          "locator": "Weight and Balance Restrictions；10-6 起",
+          "id": "weight-changes",
+          "english": "Weight Changes",
+          "title": "燃油、設備與裝載變動",
+          "parent": "weight-control",
+          "locator": "PHAK C 版 · 10-2",
+          "printedPage": "10-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=2",
           "paragraphs": [
-            "算出重心不是終點，需把總重量與重心配對，放到適用包線或表格中檢查。還可能有行李艙、座位、地板載荷及其他限制，不能只看一個總值。",
-            "實務資料應使用目前空重與裝備紀錄，燃油重量換算也要依適用資料。圖表讀取、四捨五入與單位均應清楚記錄，讓結果可被覆核。"
+            "乘客、行李、燃油與固定設備變更都會影響重量，還可能因位置不同改變重心。燃油消耗要同時減去重量與相應力矩；改裝後則需使用已更新的空重和設備紀錄。",
+            "原書算例將 AVGAS 取為 6 lb/US gal，所以 30 US gal 約為 180 lb；這不是所有燃料與溫度的固定密度。減少燃油也會影響航程與所需備份，不能只為讓重量過關而忽略燃油計畫。"
           ]
         },
         {
-          "title": "案例：一個簡化的重心計算",
-          "locator": "本站自編算例；對照 Computational Method",
+          "id": "balance",
+          "english": "Balance, Stability, and Center of Gravity",
+          "title": "平衡、穩定性與重心",
+          "parent": null,
+          "locator": "PHAK C 版 · 10-2",
+          "printedPage": "10-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=2",
           "paragraphs": [
-            "自編算例：把兩項重量簡化為 1,000 lb 在 40 in、200 lb 在 70 in，總力矩為 40,000＋14,000＝54,000 lb·in，總重量 1,200 lb，重心為 45 in。",
-            "這不是完整航空器載重表，沒有提供任何核准包線，因此只能得到數學位置，不能宣稱可飛。若把 200 lb 移到更後方，總重不變而重心向後移。"
+            "重心是整體質量分布的平衡點，具有縱向、橫向與垂直位置。本章主要計算縱向重心，但側向燃油或貨物不平衡仍可能影響操縱與阻力，尤其不能忽略機型明定的橫向限制。",
+            "重心會隨裝載、燃油消耗或物品移動改變，並不是機身上永久固定的標記。配平可以減少持續操縱力，卻不會改變超限裝載本身；自編例：用配平把桿力消除，不能證明重心已回包線。"
+          ]
+        },
+        {
+          "id": "adverse",
+          "english": "Effects of Adverse Balance",
+          "title": "不良平衡的影響",
+          "parent": "balance",
+          "locator": "PHAK C 版 · 10-3",
+          "printedPage": "10-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=3",
+          "paragraphs": [
+            "重心過前或過後會改變力矩平衡、操縱裕度與穩定特性，影響可能在低速起飛、拉平或失速恢復時才明顯。不能以巡航時還能保持平飛，推論所有飛行階段都可控制。",
+            "自編例：後行李艙加入少量但力臂很長的貨物，可能比前座同重量更顯著地改變重心。評估應同時看重量與位置，也需固定貨物，避免飛行中滑動讓原計算失效。"
+          ]
+        },
+        {
+          "id": "stability",
+          "english": "Stability",
+          "title": "重心與縱向穩定性",
+          "parent": "adverse",
+          "locator": "PHAK C 版 · 10-3",
+          "printedPage": "10-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=3",
+          "paragraphs": [
+            "對典型傳統尾翼飛機，重心後移通常減少縱向靜穩定裕度，操縱力可能變輕，失速或旋轉恢復也可能受影響。較輕的桿力不是更安全的證據，反而可能增加過度操縱風險。",
+            "重心前移常提高所需尾翼配平作用，並可能增加阻力和操縱需求。這些是理解趨勢的概念，實際機型構型與限制仍需個別判讀，不能把「越靠前越穩」當成無限制往前裝載的理由。"
+          ]
+        },
+        {
+          "id": "stability-cg",
+          "english": "Stability and Center of Gravity",
+          "title": "重心界限與核准資料",
+          "parent": "adverse",
+          "locator": "PHAK C 版 · 10-3",
+          "printedPage": "10-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=3",
+          "paragraphs": [
+            "正文另以此標題說明前後重心界限：它們是經核准的操作範圍，應由適用手冊、規格與相關資料確認。界限可以隨總重量、構型或操作種類改變，不一定是一條固定寬度的區間。",
+            "自編例：同一重心位置在較輕重量時合格，在較重重量時可能落到包線外，因此必須用當時重量查界限。若不合格，應先調整裝載或計畫，再重新驗證整個航程的相關狀態。"
+          ],
+          "supplementalHeading": true
+        },
+        {
+          "id": "control",
+          "english": "Control",
+          "title": "前後重心與操縱裕度",
+          "parent": "adverse",
+          "locator": "PHAK C 版 · 10-3",
+          "printedPage": "10-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=3",
+          "paragraphs": [
+            "重心過前可能需要更多抬頭操縱，低速時升降舵不足以完成起飛旋轉或落地拉平；重心過後則可能減少恢復所需的穩定和操縱裕度。前後界限因此不只是舒適或效率建議。",
+            "自編例：把後艙貨物移到前艙可修正後重，但仍需檢查前限與前艙承重，不能無限前移。燃油箱位置、起落架狀態或特殊設備也可能影響重心，應按本機程序納入計算。"
+          ]
+        },
+        {
+          "id": "management",
+          "english": "Management of Weight and Balance Control",
+          "title": "資料更新與重量平衡管理",
+          "parent": "balance",
+          "locator": "PHAK C 版 · 10-4",
+          "printedPage": "10-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=4",
+          "paragraphs": [
+            "可靠管理先建立本機最新空重、力矩、設備清單及適用包線，再依實際乘員、行李與燃油確認裝載。維修或改裝後資料沒有更新，後續算式即使正確也會產生錯誤結果。",
+            "FAA §91.9 要求遵守適用操作限制，不能把原書對是否需逐次書面計算的討論讀成可不確認重量平衡。不同營運制度另有核准方法與紀錄要求；重秤週期或可忽略變更門檻不可概括套用。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.9：遵守飛行手冊操作限制",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-A/section-91.9",
+              "checked": "2026-09-11"
+            }
+          ],
+          "currentNote": "查閱 2026-09-11：以 §91.9 核對遵守操作限制的要求。原書舊制認證條號、重秤週期與可忽略變更說明需按本機認證基礎及適用營運制度另查，不作通用豁免。"
+        },
+        {
+          "id": "terms",
+          "english": "Terms and Definitions",
+          "title": "術語、基準與單位",
+          "parent": "balance",
+          "locator": "PHAK C 版 · 10-4",
+          "printedPage": "10-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=4",
+          "paragraphs": [
+            "Datum 是由製造商指定的參考基準，arm 是從該基準量到項目重心的力臂，station 表示位置，moment 是重量乘力臂。所有項目必須使用同一基準、方向和單位，才可相加。",
+            "空重定義隨年代與手冊而異，GAMA 標準空重包含不可用燃油與全量引擎油，基本空重再包含已安裝選配設備。不能重複加入已含的油量，亦不能把基本空重、有效載重與酬載當成同一概念。"
+          ],
+          "points": [
+            "CG limits／range：前後界限及其範圍；ΔCG 表示重心變化量，不是新重心位置。",
+            "Moment index：力矩除以指定常數，合計前要確認所有項目採同一縮放比例。",
+            "Payload：乘員、貨物與行李；Useful load 常由相應最大允許重量減基本空重求得，再依手冊定義分配。",
+            "Ramp、takeoff、landing weight：分別對應停機坪／滑行前、起飛及落地狀態，最大值未必相同。",
+            "Zero fuel weight：不含可用燃油的重量；不可用燃油通常已在適用空重內。",
+            "MAC 是平均氣動弦，不宜只當幾何弦長的簡單平均。%MAC = (CG station − LEMAC station) ÷ MAC × 100%，必須共用單位與基準。",
+            "Floor load limit：局部地板承載限制；即使總行李重量合格，接觸面積太小仍可能超限。"
+          ]
+        },
+        {
+          "id": "principles",
+          "english": "Principles of Weight and Balance Computations",
+          "title": "力矩與加權平均原理",
+          "parent": "balance",
+          "locator": "PHAK C 版 · 10-5",
+          "printedPage": "10-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=5",
+          "paragraphs": [
+            "每項力矩 M = w × a，合計重量 W = Σw、力矩 M總 = Σ(w × a)，重心位置 xCG = M總/W。這是位置依重量加權的平均，不是把各座位或貨物力臂直接算術平均。",
+            "自編例：100 lb 在 20 in，50 lb 在 80 in，總力矩為 2,000 + 4,000 = 6,000 lb·in，重心為 6,000/150 = 40 in。20 與 80 的平均是 50，但較重項目會把真正重心拉近 20。"
+          ],
+          "points": [
+            "先固定正方向，例如基準後方為正、前方為負。",
+            "單位示例：lb × in = lb·in；除以 lb 後得到 in。",
+            "改變參考基準會改變所有力臂與力矩數字，不會改變實際裝載的物理重心。"
+          ]
+        },
+        {
+          "id": "restrictions",
+          "english": "Weight and Balance Restrictions",
+          "title": "包線、局部限制與性能",
+          "parent": "balance",
+          "locator": "PHAK C 版 · 10-6",
+          "printedPage": "10-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=6",
+          "paragraphs": [
+            "限制核對包含各階段最大重量、隨重量變動的前後重心界限，以及座位、行李艙、地板和側向不平衡等適用限制。手冊示範空重或其他同型機數值不能取代本機紀錄。",
+            "最大核准起飛重量也不代表每條跑道、每種溫度都能安全起飛，當日性能可能要求更低重量。自編例：重量和重心都合格，卻無足夠越障爬升能力，仍需調整計畫而非只保留「包線內」的結論。"
+          ]
+        },
+        {
+          "id": "loaded",
+          "english": "Determining Loaded Weight and CG",
+          "title": "求裝載重量與重心的流程",
+          "parent": null,
+          "locator": "PHAK C 版 · 10-7",
+          "printedPage": "10-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=7",
+          "paragraphs": [
+            "計算法、圖解法與表格法都在追蹤同一組重量及力矩關係，差別在如何取得或呈現數值。先列完整裝載，再使用本機允許的方法，最後對照相符的重量—重心或重量—力矩包線。",
+            "檢查輸入是否為當前設備、正確燃油單位、實際乘員與行李，並分別扣除相關燃油消耗。自編例：起飛合格但落地重心因後方油箱耗油而前移，仍可能需要重新檢查落地前限。"
+          ]
+        },
+        {
+          "id": "computational",
+          "english": "Computational Method",
+          "title": "計算法：逐項相加",
+          "parent": "loaded",
+          "locator": "PHAK C 版 · 10-7",
+          "printedPage": "10-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=7",
+          "paragraphs": [
+            "自編學習例使用基本空重 1,500 lb、力臂 40 in；前座 300 lb 在 37 in；燃油 240 lb 在 48 in；行李 60 lb 在 100 in。先各自求力矩，再加總，不可先把所有力臂平均。",
+            "四項力矩分別為 60,000、11,100、11,520、6,000 lb·in，總重量 2,100 lb，總力矩 88,620 lb·in，因此 CG = 42.20 in。只有再比對該重量的真實包線和局部承重，才能判斷裝載是否允許。"
+          ],
+          "points": [
+            "基本空重：1,500 × 40 = 60,000 lb·in。",
+            "前座：300 × 37 = 11,100；燃油：240 × 48 = 11,520；行李：60 × 100 = 6,000 lb·in。",
+            "合計：W = 2,100 lb；M = 88,620 lb·in；CG = 88,620 ÷ 2,100 = 42.20 in。",
+            "此例只驗證算法，未提供任何實機核准重量或重心範圍。"
+          ]
+        },
+        {
+          "id": "graph",
+          "english": "Graph Method",
+          "title": "圖解法：載重圖與包線圖",
+          "parent": "loaded",
+          "locator": "PHAK C 版 · 10-7",
+          "printedPage": "10-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=7",
+          "paragraphs": [
+            "載重圖以各位置的線條把重量轉成力矩或力矩指數；先找該項重量、移到正確位置線，再讀另一軸。之後加上本機空重力矩，將總重量與合計力矩放入對應包線圖。",
+            "圖上的 moment/1,000 不是力臂，也不能與未縮放的力矩直接相加。沿用前例，88,620 lb·in 對應指數 88.62；在重量—力矩指數圖上應用 (88.62, 2,100)，而不是把 CG 42.20 當成力矩指數。"
+          ],
+          "points": [
+            "先看軸名、單位、縮放與各載重線的標籤，不假設每張圖方向相同。",
+            "靠近邊界時，線寬和讀圖誤差可能影響判斷，應依手冊允許方法提高精度。",
+            "重量—CG 包線與重量—moment 包線是不同座標，不能拿同一個橫軸數字互換。"
+          ]
+        },
+        {
+          "id": "table",
+          "english": "Table Method",
+          "title": "表格法：查值與內插",
+          "parent": "loaded",
+          "locator": "PHAK C 版 · 10-9",
+          "printedPage": "10-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=9",
+          "paragraphs": [
+            "表格法將特定位置、重量所對應的力矩預先列出，再依規定合計並查允許區間。某些表使用力矩指數，另一些直接提供可接受的總力矩範圍，必須先讀清欄位與倍率。",
+            "自編例：固定 40 in 力臂，200 lb 的力矩為 8,000，300 lb 為 12,000 lb·in，允許線性內插時 250 lb 對應 10,000。可移動座椅、非線性燃油力臂或超出表格範圍時，不能擅自套同樣比例。"
+          ]
+        },
+        {
+          "id": "negative-arm",
+          "english": "Computations With a Negative Arm",
+          "title": "負力臂與代數符號",
+          "parent": "loaded",
+          "locator": "PHAK C 版 · 10-10",
+          "printedPage": "10-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=10",
+          "paragraphs": [
+            "負力臂表示項目在指定基準前方，不表示它沒有重量或重量本身為負。加入正重量而力臂為負，新增力矩就是負值；移除該項時，則扣掉原本的負力矩。",
+            "自編例：原機 2,000 lb、CG 40 in，總力矩 80,000 lb·in；加入 20 lb 在 −10 in，得到 W = 2,020、M = 79,800，CG 約 39.505 in。重量增加而力矩減少完全可能，不能把負號改成絕對值。"
+          ],
+          "points": [
+            "新增：(+20 lb) × (−10 in) = −200 lb·in。",
+            "移除同一項：ΔW = −20 lb，ΔM = (−20) × (−10) = +200 lb·in，應回復原結果。",
+            "先按代數運算，再檢查方向是否合理；加入前方重量應把 CG 拉向前方。"
+          ]
+        },
+        {
+          "id": "zero-fuel",
+          "english": "Computations With Zero Fuel Weight",
+          "title": "零燃油重量與階段核對",
+          "parent": "loaded",
+          "locator": "PHAK C 版 · 10-10",
+          "printedPage": "10-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=10",
+          "paragraphs": [
+            "零燃油重量是不含可用燃油的裝載重量，並非把所有液體或空重內的不可用燃油都扣掉。最大零燃油重量若有公布，通常涉及結構載荷分布，不能以未超最大起飛重量代替此項核對。",
+            "自編例：ZFW 4,300 lb、MZFW 4,400 lb；加可用燃油 700 lb 得停機坪重量 5,000，耗用滑行燃油 20 得起飛 4,980，航程再耗 400 得落地 4,580 lb。各階段仍須分別核對重量、力矩及重心，不能只做重量減法。"
+          ],
+          "points": [
+            "若 ZFW 已是 4,500 lb 而 MZFW 為 4,400，少加可用燃油無法修正，須減少非燃油載重等。",
+            "起飛重量 = 停機坪重量 − 起動／滑行等起飛前消耗；落地重量再扣航程消耗。",
+            "燃油力臂可能隨油量或油箱使用次序改變，應用手冊資料逐段計算。"
+          ]
+        },
+        {
+          "id": "changes",
+          "english": "Shifting, Adding, and Removing Weight",
+          "title": "三種改變方式的共同原理",
+          "parent": "loaded",
+          "locator": "PHAK C 版 · 10-10",
+          "printedPage": "10-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=10",
+          "paragraphs": [
+            "移動既有重量只改變分布，增加或移除重量則同時改變分子總力矩與分母總重量。最可靠的方法是把每個變動寫成 ΔW 與 ΔM，再用新總力矩除以新總重量。",
+            "自編練習：同樣把後艙影響減小，可以前移行李，也可以卸下行李，但兩者新重量不同，不能共用一個不變分母的公式。改完還需重新查新重量的包線與局部限制，而非只看 CG 方向正確。"
+          ]
+        },
+        {
+          "id": "shifting",
+          "english": "Weight Shifting",
+          "title": "移動重量：總重量不變",
+          "parent": "changes",
+          "locator": "PHAK C 版 · 10-10",
+          "printedPage": "10-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=10",
+          "paragraphs": [
+            "重量 w 由力臂 a1 移到 a2 時，ΔM = w(a2 − a1)，因此 ΔCG = w(a2 − a1)/W，W 為不變的整機重量。用有符號的距離，向後移得到正變化，向前移得到負變化。",
+            "自編例：W = 2,000 lb、原 CG 40 in，把 100 lb 由 100 in 移到 60 in，ΔCG = 100 × (−40)/2,000 = −2 in，新 CG 38 in。原總力矩 80,000 減 4,000 得 76,000，除以 2,000 亦為 38。"
+          ],
+          "points": [
+            "反求搬動重量：w = W × ΔCG ÷ (a2 − a1)，符號需一致。",
+            "若同例只需前移 CG 1 in，移動 50 lb 跨越 −40 in 即得 −1 in 的變化。",
+            "搬動前仍需確認前艙承重、可固定位置與人員座位限制，不只求出數學答案。"
+          ]
+        },
+        {
+          "id": "addition-removal",
+          "english": "Weight Addition or Removal",
+          "title": "增減重量：使用新的分母",
+          "parent": "changes",
+          "locator": "PHAK C 版 · 10-11",
+          "printedPage": "10-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=11",
+          "paragraphs": [
+            "以帶符號的增量 δw 表示加入或移除，x新 = (W × x舊 + δw × a)/(W + δw)，亦可寫 ΔCG = δw(a − x舊)/(W + δw)。a 是增減項目的力臂，距離要相對舊 CG，不能用移動貨物的公式硬套。",
+            "自編例：原 2,000 lb、CG 40 in，加入 100 lb 在 100 in，新 CG = 90,000/2,100 ≈ 42.857 in；若改成從原機移除同位置既有 100 lb，新 CG = 70,000/1,900 ≈ 36.842 in。兩例是各自從原狀態開始，不是連續兩步。"
+          ],
+          "points": [
+            "加入項目通常把 CG 拉向該位置；移除項目通常把 CG 推離該位置。",
+            "加入後分母用 2,100；移除後用 1,900，不能都除以原 2,000。",
+            "燃油消耗也是移除重量：若油箱在舊 CG 後方，消耗會使 CG 前移；在前方則可後移。",
+            "所有算例保留精度到最後再依手冊處理進位，貼近界限時不可用四捨五入掩蓋超限。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：從數據到裝載判斷",
+          "parent": null,
+          "locator": "PHAK C 版 · 10-11",
+          "printedPage": "10-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page=11",
+          "paragraphs": [
+            "重量平衡計算以正確本機資料為起點，統一基準與單位後求總重量、總力矩與重心，再核對各階段包線、局部限制與性能。計算正確只是必要一步，貨物固定和資料更新同樣不可缺少。",
+            "自編複習：不用重新背公式，先判斷前移、加入前方重量、移除後方重量各會讓 CG 往哪裡，再用總力矩驗證。最後說明為何減少燃油不能解決超過 MZFW，以及起飛合格為何不保證落地也合格。"
           ]
         }
       ],
@@ -7297,6 +7612,26 @@ export const phakDocument = {
           "title": "力臂與力矩",
           "clarification": "力臂是位置，力矩還包括重量。",
           "example": "同位置放兩倍重量，力矩也加倍。"
+        },
+        {
+          "title": "負力臂與負重量",
+          "clarification": "負力臂是基準前方的位置；負重量增量用於表示移除。",
+          "example": "加入 20 lb 在 −10 in，新增重量為正而力矩為 −200 lb·in。"
+        },
+        {
+          "title": "重心與力矩指數",
+          "clarification": "CG 是距離，力矩指數是力矩除以特定倍率。",
+          "example": "88,620 lb·in 的千分之一是 88.62，不是 CG 42.20 in。"
+        },
+        {
+          "title": "移動與增減的分母",
+          "clarification": "移動現有重量不改變整機重量，增減則必須用新重量。",
+          "example": "2,000 lb 原機加入 100 lb，計算新 CG 的分母為 2,100。"
+        },
+        {
+          "title": "零燃油重量與低油量",
+          "clarification": "ZFW 不含可用燃油，少加可用燃油不會降低 ZFW。",
+          "example": "ZFW 超限時不能只抽掉可用燃油來修正。"
         }
       ],
       "scenario": "自編算例：把兩項重量簡化為 1,000 lb 在 40 in、200 lb 在 70 in，總力矩為 40,000＋14,000＝54,000 lb·in，總重量 1,200 lb，重心為 45 in。",
@@ -7310,7 +7645,10 @@ export const phakDocument = {
       "explanation": "54,000÷1,200＝45 in；仍須另查航空器包線，算例不能判定適航。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=245",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=245"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=245",
+      "detailMode": "outline",
+      "checked": "2026-09-11",
+      "coverageNote": "涵蓋提供的 22 個目錄小節，另補正文 Stability and Center of Gravity，共 23 節。逐節有雙語標題、中文解釋、FAA 頁碼與來源；算例為本站編寫，不代表實機限制。計算涵蓋力矩、圖表座標、負力臂、零燃油重量與增減／移動載重。"
     },
     {
       "id": "phak25c-11",

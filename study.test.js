@@ -129,3 +129,13 @@ test('Chapter 9 covers all 38 TOC entries plus the original AFM heading',()=>{
  assert.ok(c.detailSections.find(s=>s.id==='registration').currentNote);
  assert.ok(c.detailSections.find(s=>s.id==='mel').currentNote);
 });
+
+test('Chapter 10 covers all 22 TOC entries and the body stability heading',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[9];
+ const expected=[['Introduction',1],['Weight Control',1],['Effects of Weight',2],['Weight Changes',2],['Balance, Stability, and Center of Gravity',2],['Effects of Adverse Balance',3],['Stability',3],['Control',3],['Management of Weight and Balance Control',4],['Terms and Definitions',4],['Principles of Weight and Balance Computations',5],['Weight and Balance Restrictions',6],['Determining Loaded Weight and CG',7],['Computational Method',7],['Graph Method',7],['Table Method',9],['Computations With a Negative Arm',10],['Computations With Zero Fuel Weight',10],['Shifting, Adding, and Removing Weight',10],['Weight Shifting',10],['Weight Addition or Removal',11],['Chapter Summary',11]];
+ assert.equal(c.detailSections.length,23);
+ assert.deepEqual(c.detailSections.filter(s=>!s.supplementalHeading).map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Stability and Center of Gravity']);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/12_phak_ch10.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.deepEqual(c.detailSections.filter(s=>s.parent==='changes').map(s=>s.id),['shifting','addition-removal']);
+});

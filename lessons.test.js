@@ -163,3 +163,16 @@ test('Chapter 9 displays regulatory sources and preserves saved learning records
  env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-9-special-permit'}})}});
  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-9');
 });
+
+test('Chapter 10 renders calculations and preserves existing notes and completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[9];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'第十章原有筆記'}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ assert.match(html,/Chapter 10 : Weight and Balance/);assert.match(html,/本章分層目錄 · 23 節/);
+ assert.match(html,/FAA 本節原文 · 10-11/);assert.match(html,/第十章原有筆記/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/88,620/);assert.match(html,/42.20/);assert.match(html,/−200/);assert.match(html,/MZFW/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));}
+ let reached=false;env.context.document.getElementById=id=>id==='detail-phak25c-10-addition-removal'?{setAttribute(){},focus(){},scrollIntoView(){reached=true;}}:null;
+ env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-10-addition-removal'}})}});
+ assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/phak25c-10');
+});
