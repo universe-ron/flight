@@ -115,3 +115,17 @@ test('Chapter 8 covers the 59 supplied entries and seven compass error headings'
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/10_phak_ch8.pdf#page='+s.printedPage.split('-')[1]);}
  assert.deepEqual(c.detailSections.filter(s=>s.english==='Instrument Check').map(s=>s.parent),['altimeter','vsi','asi','inclinometer','remote-compass']);
 });
+
+test('Chapter 9 covers all 38 TOC entries plus the original AFM heading',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[8];
+ const expected=[['Introduction',1],['Preliminary Pages',2],['General (Section 1)',2],['Limitations (Section 2)',2],['Airspeed',2],['Powerplant',3],['Weight and Loading Distribution',3],['Flight Limits',4],['Placards',4],['Emergency Procedures (Section 3)',4],['Normal Procedures (Section 4)',4],['Performance (Section 5)',4],['Weight and Balance/Equipment List (Section 6)',4],['Systems Description (Section 7)',4],['Handling, Service, and Maintenance (Section 8)',5],['Supplements (Section 9)',5],['Safety Tips (Section 10)',6],['Aircraft Documents',6],['Certificate of Aircraft Registration',6],['Airworthiness Certificate',7],['Aircraft Maintenance',8],['Aircraft Inspections',8],['Annual Inspection',8],['100-Hour Inspection',8],['Other Inspection Programs',9],['Altimeter System Inspection',9],['Transponder Inspection',9],['Emergency Locator Transmitter',9],['Preflight Inspections',9],['Minimum Equipment Lists (MEL) and Operations With Inoperative Equipment',9],['Preventive Maintenance',10],['Maintenance Entries',10],['Examples of Preventive Maintenance',10],['Repairs and Alterations',12],['Special Flight Permits',12],['Airworthiness Directives (ADs)',12],['Aircraft Owner/Operator Responsibilities',13],['Chapter Summary',13]];
+ assert.equal(c.detailSections.length,39);
+ assert.deepEqual(c.detailSections.filter(s=>!s.supplementalHeading).map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Airplane Flight Manuals (AFM)']);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page='+s.printedPage.split('-')[1]);}
+ for(const id of ['registration','annual','hundred-hour','altimeter-inspection','transponder-inspection','elt','mel','preventive','entries','special-permit','ads','responsibilities']){
+  const s=c.detailSections.find(s=>s.id===id);assert.ok(s.references.length);for(const r of s.references){assert.ok(['www.faa.gov','www.ecfr.gov'].includes(new URL(r.url).hostname));assert.equal(r.checked,'2026-09-11');}
+ }
+ assert.ok(c.detailSections.find(s=>s.id==='registration').currentNote);
+ assert.ok(c.detailSections.find(s=>s.id==='mel').currentNote);
+});

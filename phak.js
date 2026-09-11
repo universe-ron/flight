@@ -6435,7 +6435,7 @@ export const phakDocument = {
       "number": 9,
       "title": "飛行手冊與相關文件",
       "english": "Flight Manuals and Other Documents",
-      "section": "第 9 章；印刷頁碼 9-1 起",
+      "section": "第 9 章；9-1～9-13，全章目錄逐節講解",
       "goal": "學會定位機型限制、程序、性能與適航資料。",
       "primer": "AFM／POH 涉及特定航空器的程序、限制與資料。先確認機型、序號適用範圍、修訂及裝備狀態，再使用裡面的內容；相似型號的手冊不能自動替代。",
       "terms": [
@@ -6444,54 +6444,727 @@ export const phakDocument = {
         "AD · 適航指令"
       ],
       "prompts": [
-        "你能用自己的話解釋「文件的適用性比名稱更重要」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "用本機手冊或學習範例找出一項限制、相應程序及一份補充，說明如何核對版本與適用性。",
+        "設想年度仍有效但一項設備失效，列出需查的文件、規則及維修紀錄，說明為何不能只看年度日期。"
       ],
       "keyPoints": [
-        "文件的適用性比名稱更重要",
-        "用章節快速找對問題",
-        "補充文件與裝備變更",
-        "維修、檢查與 AD 的角色"
+        "先核對 AFM／POH 的適用性、核准部分、修訂與補充，再使用限制與程序。",
+        "登記、適航證書、檢查有效期與當下安全狀態是不同層次。",
+        "年度與百小時的適用條件、曆月與使用時間計算需分開。",
+        "失效設備不能只貼標籤；MEL 或 §91.213(d) 路徑各有條件。",
+        "預防性維修工作權限、恢復使用簽放、AD 與紀錄需逐項核對。"
       ],
       "detailSections": [
         {
-          "title": "文件的適用性比名稱更重要",
-          "locator": "Introduction；9-1～9-2",
+          "id": "introduction",
+          "english": "Introduction",
+          "title": "導論：文件如何支持飛行決策",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-1",
+          "printedPage": "9-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=1",
           "paragraphs": [
-            "AFM／POH 涉及特定航空器的程序、限制與資料。先確認機型、序號適用範圍、修訂及裝備狀態，再使用裡面的內容；相似型號的手冊不能自動替代。",
-            "POH 與 AFM 的關係依文件而異，部分 POH 同時具有核准飛行手冊身分。閱讀時看核准與適用說明，避免只因封面名稱就判斷所有頁面具有相同地位。"
+            "本章以美國 FAA 制度說明飛行手冊、登記、適航與維修文件。閱讀文件不是只確認它存在，而是核對它是否適用這架飛機、是否有效，以及是否支持今天計畫進行的操作。",
+            "PHAK 提供共同知識，實際機型的核准資料提供操作依據，現行法規則決定適用要求。自編例：網站上的同型機 POH 可以協助學習，但不能直接替代本機最新重量平衡、改裝補充與限制。"
           ]
         },
         {
-          "title": "用章節快速找對問題",
-          "locator": "Limitations；Emergency Procedures；Normal Procedures；9-2～9-4",
+          "id": "afm",
+          "english": "Airplane Flight Manuals (AFM)",
+          "title": "AFM、POH 與一般參考手冊",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-1",
+          "printedPage": "9-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=1",
           "paragraphs": [
-            "限制章回答必須遵守的操作邊界，程序章處理正常與緊急情境，性能章提供在指定條件下的計算資料。先辨識問題類型，可以降低翻錯資料的機會。",
-            "自編例：想知道襟翼限制速度，應查限制；想計算起飛距離，應查性能與相關條件。不要把一張性能圖的示例速度當成全機操作限制。"
+            "AFM 是經核准的飛行手冊，POH 則是製造商編製的操作手冊，可能包含被核准為 AFM 的部分。封面叫 POH 並不表示每頁都是核准內容，也不表示所有年代的飛機都採相同格式。",
+            "一般 owner／information manual 可作概念參考，但若未反映本機適用性、修訂與設備，就不能當成其所需飛行手冊。閱讀時先核對核准聲明、序號範圍與補充文件，再使用限制和程序。"
+          ],
+          "supplementalHeading": true,
+          "references": [
+            {
+              "title": "14 CFR §91.9",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-A/section-91.9",
+              "checked": "2026-09-11"
+            }
           ]
         },
         {
-          "title": "補充文件與裝備變更",
-          "locator": "Supplements；Weight and Balance/Equipment List",
+          "id": "preliminary",
+          "english": "Preliminary Pages",
+          "title": "前置頁：適用性與修訂狀態",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-2",
+          "printedPage": "9-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=2",
           "paragraphs": [
-            "裝備或改裝可能帶來補充手冊與新的限制。重量平衡資料也需要反映目前航空器狀態，不能只拿最早出廠的一份空重數字永久使用。",
-            "學習時建立主手冊、補充資料、設備清單與重量平衡之間的連結。若文件互相看似矛盾，先核對版本與適用範圍，而不是挑自己偏好的數值。"
+            "前置頁通常包含機型識別、適用序號、核准聲明、目錄及修訂資訊，幫助確認拿到的是哪一版資料。相同機型名稱仍可能有不同引擎、儀表、設備或改裝，不能只比對封面照片。",
+            "以有效頁清單、修訂紀錄及適用補充資料核對完整性，比單看一本書是否新印更可靠。自編例：主手冊已更新但仍夾著舊版自動駕駛補充，使用程序前必須先釐清適用版本。"
           ]
         },
         {
-          "title": "維修、檢查與 AD 的角色",
-          "locator": "Aircraft Documents；Maintenance；Airworthiness Directives；9-5 起",
+          "id": "general",
+          "english": "General (Section 1)",
+          "title": "一般資料與術語",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-2",
+          "printedPage": "9-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=2",
           "paragraphs": [
-            "文件與紀錄協助確認航空器是否符合適用要求。AD 涉及需要處理的適航問題，其適用機型、序號、條件與符合方式應逐項核對，不是只看標題。",
-            "PHAK 提供制度理解；檢查間隔、維修資格與具體義務應查現行規定和正式指令。教材不以概略說明替代實際適航判定。"
+            "一般資料介紹機體、引擎、尺寸、容量與術語，建立閱讀後續表格所需的共同語言。翼展與高度可協助地面空間判斷，符號、單位及速度定義則直接影響操作和性能計算。",
+            "同一縮寫或容量可能有特定定義，例如總燃油量與可用燃油量不能互換。自編練習：先查手冊如何定義基本空重及速度單位，再讀重量平衡和起飛表，避免拿對數字卻用錯意義。"
           ]
         },
         {
-          "title": "案例：同型飛機也可能資料不同",
-          "locator": "本站自編案例；對照 Supplements",
+          "id": "limitations",
+          "english": "Limitations (Section 2)",
+          "title": "限制與核准操作範圍",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-2",
+          "printedPage": "9-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=2",
           "paragraphs": [
-            "自編案例：兩架外觀相同的訓練機，其中一架裝了不同設備並附有補充手冊。直接把另一架的資料套上，可能漏掉重量、程序或限制差異。",
-            "先對照航空器身分、裝備與適用修訂，再找需要的限制和計算表。讀完本章應能說出資料為什麼適用，而不只是能找到一張圖。"
+            "限制章列出航空器、動力與設備允許操作的邊界，包括速度、重量、重心、負荷與操作種類。這些限制需連同核准補充、標示及適用 AD 一起讀，不能只記儀表紅線。",
+            "建議值、正常程序與限制各有不同作用，不能因某次操作看似順利就推翻核准限制。自編例：某設備可在系統說明中找到，不等於飛機已獲准在所有需要該設備的環境使用。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.9",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-A/section-91.9",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "airspeed",
+          "english": "Airspeed",
+          "title": "空速限制與條件",
+          "parent": "limitations",
+          "locator": "PHAK C 版 · 9-2",
+          "printedPage": "9-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=2",
+          "paragraphs": [
+            "本節將空速色弧、徑向線及圖表連到核准限制，常見 VNE、VNO、VFE 等各有不同目的。限制可能依高度、重量、襟翼位置或構型而改變，需讀附註而非只看表上的顏色。",
+            "自編例：襟翼第一段允許的速度可能高於全襟翼限制，白弧並不完整描述所有操作細節。VMC 也不能當成單發爬升保證，速度數值必須連同認證條件與當前性能一起理解。"
+          ]
+        },
+        {
+          "id": "powerplant",
+          "english": "Powerplant",
+          "title": "動力裝置限制",
+          "parent": "limitations",
+          "locator": "PHAK C 版 · 9-3",
+          "printedPage": "9-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=3",
+          "paragraphs": [
+            "動力限制可包括起飛與連續功率、轉速、壓力、溫度、時間限制，以及燃油、滑油和螺旋槳適用規格。相同指示值在起飛與連續運轉情境下，允許的持續時間可能不同。",
+            "有些轉速區間需要避免持續操作，並不只是不得超越最高 RPM。自編例：歧管壓力與轉速各自未超紅線，不一定代表其組合被允許，還需查手冊的組合限制與程序。"
+          ]
+        },
+        {
+          "id": "weight-limits",
+          "english": "Weight and Loading Distribution",
+          "title": "重量與裝載分布限制",
+          "parent": "limitations",
+          "locator": "PHAK C 版 · 9-3",
+          "printedPage": "9-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=3",
+          "paragraphs": [
+            "本節定義最大核准重量、重心範圍、基準面及適用裝載限制，回答「結果允許在哪裡」。實際計算方法和本機空重資料則通常在第六節，兩者必須配合使用。",
+            "總重量合格仍可能超出重心或行李艙局部承重限制，燃油消耗也可能改變重心。自編練習：分別核對起飛與落地狀態，不要只因總重量小於上限就判斷整趟航程裝載合格。"
+          ]
+        },
+        {
+          "id": "flight-limits",
+          "english": "Flight Limits",
+          "title": "機動與操作種類限制",
+          "parent": "limitations",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "飛行限制說明允許與禁止的機動、負荷因數、進入速度及操作種類，例如是否允許旋轉或特定結冰操作。核准類別與實際重量、重心、設備條件可能共同決定可做的機動。",
+            "自編例：同型機某架可以作某項機動，不表示這架在目前裝載下也可以。應沿手冊限制、適用補充與標牌核對，避免把一般飛行技術文章當成機型核准證據。"
+          ]
+        },
+        {
+          "id": "placards",
+          "english": "Placards",
+          "title": "標牌與操作限制",
+          "parent": "limitations",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "標牌將與操作直接相關的要求放在使用者能看到的位置，可能來自原始設計、改裝或 AD。手冊限制章常重列其文字，但座艙與機體實際標牌的可讀性及適用性仍需檢查。",
+            "標牌不全是同一種法律或操作功能，應先辨別警告、限制與失效設備標示。自編例：貼上 INOPERATIVE 只是在失效設備處理中的一環，不能讓本來必需的設備自動變成可缺少。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.9",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-A/section-91.9",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "emergency",
+          "english": "Emergency Procedures (Section 3)",
+          "title": "緊急程序與詳解",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "緊急章把發動機失效、火災及系統異常等情況整理成程序，部分另有簡要檢查單與擴充說明。擴充段落解釋辨識條件、原因與步驟依賴，平時應先理解而不只背動作順序。",
+            "只有機型明確指定的立即動作才按訓練要求記憶執行，再於適當時機核對檢查單。自編例：不同機型的重新起動條件與控制配置不同，不能把一架飛機的口訣搬到另一架。"
+          ]
+        },
+        {
+          "id": "normal",
+          "english": "Normal Procedures (Section 4)",
+          "title": "正常程序與階段檢查",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "正常章依飛行階段組織檢查與操作，通常包含飛行前、起動、滑行、起飛、爬升、巡航、下降、落地及停機。簡要清單方便執行，詳解則補充何時、為何與如何判斷結果。",
+            "動作完成與狀態確認是兩件事，設定開關後仍需看回饋是否符合預期。自編例：檢查單要求確認燃油來源，不能只摸一下選擇器而未讀定位和指示；實際流程依本機程序。"
+          ]
+        },
+        {
+          "id": "performance",
+          "english": "Performance (Section 5)",
+          "title": "性能資料與假設條件",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "性能章提供起飛、爬升、巡航及落地等資料，讀表前需確認重量、壓力高度、溫度、風、跑道與操縱技術假設。表格內插與修正要依說明，不能自行把超出資料範圍的外推當成核准結果。",
+            "自編例：越過障礙的起飛距離與地面滑跑長度是不同量，平整乾燥跑道數據也不能直接代表濕草地。本站的性能深入課程在 Chapter 11；原文此處寫 Chapter 10 Aircraft Performance 是交叉引用錯誤。"
+          ]
+        },
+        {
+          "id": "weight-balance",
+          "english": "Weight and Balance/Equipment List (Section 6)",
+          "title": "本機重量平衡與設備清單",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "第六節提供計算重量、力矩與重心所需方法，並配合本機最新空重、設備清單及修訂紀錄。設備增減或改裝可能改變空重與重心，手冊範例不能替代實際航空器資料。",
+            "計算完成後還要回到限制章核對包線與局部裝載上限。自編例：拆除一項設備後仍沿用原空重，算式即使沒有算錯，結果仍建立在錯誤輸入上；Chapter 10 會進一步解釋計算。"
+          ]
+        },
+        {
+          "id": "systems",
+          "english": "Systems Description (Section 7)",
+          "title": "系統說明與程序依賴",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-4",
+          "printedPage": "9-4",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=4",
+          "paragraphs": [
+            "系統章解釋本機燃油、電力、操縱、起落架、航電等配置，幫助飛行員理解正常指示與故障後果。通用原理要在這裡轉成「這架飛機的來源、控制、回饋和備援」。",
+            "自編例：通用教材說有備用燃油泵，不代表本機在每個飛行階段都使用相同設定。系統說明幫助理解程序，但不能自行推導一套不同於核准資料的緊急操作。"
+          ]
+        },
+        {
+          "id": "handling",
+          "english": "Handling, Service, and Maintenance (Section 8)",
+          "title": "地面處理、保養與維修",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-5",
+          "printedPage": "9-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=5",
+          "paragraphs": [
+            "本節通常涵蓋牽引、繫留、儲存、清潔、補充油液及建議檢查，避免在地面操作中傷害結構或系統。使用的工具、油液規格與接觸位置，仍需對照本機資料。",
+            "手冊說明某項保養方法，不等於每位飛行員都有執行與簽放權限。自編例：知道輪胎如何拆裝與是否可依法自行完成，是不同問題；後面要另查工作分類、人員資格及維修紀錄要求。"
+          ]
+        },
+        {
+          "id": "supplements",
+          "english": "Supplements (Section 9)",
+          "title": "補充手冊與改裝影響",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-5",
+          "printedPage": "9-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=5",
+          "paragraphs": [
+            "補充資料說明加裝或改裝設備帶來的限制、程序與性能變化，可能來自原製造商或改裝核准持有人。它不是可有可無的附讀文章，而可能是正確操作這架飛機不可缺少的一部分。",
+            "讀補充時確認適用設備、序號、版本及哪些主手冊段落被修改；未修改的部分仍按主手冊。自編例：更換螺旋槳可能不只改變系統說明，也影響速度、重量平衡或性能資料。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.9",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-A/section-91.9",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "safety-tips",
+          "english": "Safety Tips (Section 10)",
+          "title": "安全提示與文件地位",
+          "parent": "afm",
+          "locator": "PHAK C 版 · 9-6",
+          "printedPage": "9-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=6",
+          "paragraphs": [
+            "部分製造商增加安全與操作提示，整理常見錯誤、使用經驗或補充建議；不是每本手冊都有第十節。這些資料可幫助建立習慣，但需辨別建議、程序與核准限制的不同角色。",
+            "自編例：某段建議較保守的天氣條件，可納入個人標準，卻不能藉另一段概括建議放寬限制章要求。遇到看似矛盾的文字，先查適用版本與核准補充，不自行挑選較方便的一句。"
+          ]
+        },
+        {
+          "id": "documents",
+          "english": "Aircraft Documents",
+          "title": "航空器文件與攜帶要求",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-6",
+          "printedPage": "9-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=6",
+          "paragraphs": [
+            "航空器文件分別回答登記身分、適航證明、操作限制與持續維修狀態等問題。常見記憶口訣只是索引，實際攜帶、展示與可供查閱要求仍需按適用規則和操作種類核對。",
+            "FAA §91.203 對登記及適航文件有要求，其中適航證書還有對乘客或機組可讀的展示要求。維修紀錄的保存不等於所有日誌都必須放在座艙，跨境操作也可能有額外文件需求。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.203",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-C/section-91.203",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "registration",
+          "english": "Certificate of Aircraft Registration",
+          "title": "航空器登記證書",
+          "parent": "documents",
+          "locator": "PHAK C 版 · 9-6",
+          "printedPage": "9-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=6",
+          "paragraphs": [
+            "登記證書識別航空器的登記狀態，並非 FAA 對財產所有權的保證，也不能代替適航證書。查核時需比較航空器識別、登記資料和有效狀態，出售、出口等情況可能影響有效性。",
+            "FAA 已自 2023 年起把相關登記證書期限由三年延為七年；申請書臨時操作依據也不能再只背原書九十天。應核對現行條件與終止事件，而不是只看舊紙本上的日期或表格顏色。"
+          ],
+          "references": [
+            {
+              "title": "FAA Aircraft Registry：登記期限與臨時操作依據",
+              "url": "https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/index.cfm",
+              "checked": "2026-09-11"
+            }
+          ],
+          "currentNote": "查閱 2026-09-11：FAA 說明相關登記證書延為七年；符合條件的申請書臨時操作依據至收到證書、申請遭拒或待辦滿十二個月等終止事件為止。原書九十天敘述已過時，臨時國內操作條件仍需另核對，不能視為跨境許可。"
+        },
+        {
+          "id": "airworthiness",
+          "english": "Airworthiness Certificate",
+          "title": "適航證書與持續適航",
+          "parent": "documents",
+          "locator": "PHAK C 版 · 9-7",
+          "printedPage": "9-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=7",
+          "paragraphs": [
+            "適航證書說明航空器在相應核准基礎下獲得證明，標準與特殊適航證書的用途和限制不同。有證書不表示當下沒有故障，也不表示每種操作都已被允許。",
+            "標準適航證書的持續有效有登記、適用維修與其他條件，不能把「沒有一般固定到期日」理解成永遠可飛。自編例：檢查逾期或出現影響安全的缺陷時，證書仍在機上也不能替代問題處理。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §21.181",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21/subpart-H/section-21.181",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "maintenance",
+          "english": "Aircraft Maintenance",
+          "title": "維修與持續狀態管理",
+          "parent": "documents",
+          "locator": "PHAK C 版 · 9-8",
+          "printedPage": "9-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=8",
+          "paragraphs": [
+            "航空器維修包含檢查、保存、翻修、修理及零件更換等工作，規劃需考慮使用時間、曆日、循環、環境及核准資料。原書提及的二十五或一百小時經驗說法，不是所有航空器的通用法定保養表。",
+            "完成某次檢查只反映相應範圍和當時狀態，之後出現的故障仍需處理。自編例：昨天剛完成年度檢查，今天發現燃油滲漏，不能因下次年度尚未到期就忽略新的適航問題。"
+          ]
+        },
+        {
+          "id": "inspections",
+          "english": "Aircraft Inspections",
+          "title": "檢查種類、期限與適用性",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-8",
+          "printedPage": "9-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=8",
+          "paragraphs": [
+            "先確認航空器和操作所適用的檢查制度，再分別追蹤年度、使用時間、設備檢驗、壽限及 AD 要求。不同檢查可能同一天執行，但完成其中一項不會自動把其他項目的時鐘全部重設。",
+            "§91.409 有年度、百小時與其他檢查方案的適用條件及例外，不能簡化為所有飛機都用同一套。自編練習：做一張「要求、上次完成、下次到期、紀錄位置」清單，再核對今天飛行用途。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.409",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.409",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "annual",
+          "english": "Annual Inspection",
+          "title": "年度檢查與曆月",
+          "parent": "inspections",
+          "locator": "PHAK C 版 · 9-8",
+          "printedPage": "9-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=8",
+          "paragraphs": [
+            "適用 §91.409(a) 的航空器需在前十二個曆月內完成規定檢查並獲准恢復使用。自編例：2026 年 9 月 11 日完成年度檢查，該十二曆月期限至 2027 年 9 月底，而不是僅到同一天。",
+            "一般百小時檢查不能取代年度，除非由有權執行年度檢查者完成並按年度檢查登錄。年度逾期沒有一般十小時寬限；若需移機送檢，另確認特殊飛行許可及其條件，不能自行先飛。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.409",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.409",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "hundred-hour",
+          "english": "100-Hour Inspection",
+          "title": "百小時檢查與十小時例外",
+          "parent": "inspections",
+          "locator": "PHAK C 版 · 9-8",
+          "printedPage": "9-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=8",
+          "paragraphs": [
+            "§91.409(b) 涵蓋載運非機組人員取酬，或由提供航空器者收費教學等情況，並受該條例外影響。因此不能單憑「租來的飛機」或「有人付錢」就跳過對實際操作關係的判斷。",
+            "為飛往可執行檢查之處，百小時可超過最多十小時，超時須計入下一週期。自編例：原應在累計 1,200 小時檢查，於 1,207 小時到維修點完成，下次通常仍以 1,300 小時計，而非 1,307。"
+          ],
+          "points": [
+            "判斷依 time in service；不要未經確認便把任何計時表讀值當成同一定義。",
+            "年度可滿足相應百小時檢查要求，百小時不能自動取代年度。",
+            "最多十小時僅供前往檢查地點，不是一般教學或載客的寬限。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.409",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.409",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "other-programs",
+          "english": "Other Inspection Programs",
+          "title": "漸進式及其他檢查方案",
+          "parent": "inspections",
+          "locator": "PHAK C 版 · 9-9",
+          "printedPage": "9-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=9",
+          "paragraphs": [
+            "大型飛機、特定多引擎渦輪飛機與其他航空器可能適用 §91.409 的其他方案，漸進式檢查也有申請、監督、程序與完整檢查要求。不是把年度項目自行分幾次做，就可宣稱採用漸進式制度。",
+            "選擇或轉換方案時，原已累積的曆日、使用時間與循環仍需依規則納入追蹤。自編例：換一家維修廠或改用另一方案，不會讓壽限零件及既有到期要求自動歸零。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.409",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.409",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "altimeter-inspection",
+          "english": "Altimeter System Inspection",
+          "title": "高度與靜壓系統檢驗",
+          "parent": "other-programs",
+          "locator": "PHAK C 版 · 9-9",
+          "printedPage": "9-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=9",
+          "paragraphs": [
+            "§91.411 對飛機與直升機在管制空域依 IFR 操作，要求相關靜壓、高度表及自動氣壓高度回報系統在前二十四曆月內完成規定檢驗。這不是把整架航空器一律認證為可飛 IFR。",
+            "特定靜壓拆接或可能引入高度資料對應誤差的安裝維修後，也有追加測試要求與例外。自編例：日曆期限仍未到，但剛拆接管路，不能只看上次檢驗日期就忽略維修後檢查。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.411",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.411",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "transponder-inspection",
+          "english": "Transponder Inspection",
+          "title": "應答機檢驗",
+          "parent": "other-programs",
+          "locator": "PHAK C 版 · 9-9",
+          "printedPage": "9-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=9",
+          "paragraphs": [
+            "§91.413 對所指 ATC 應答機的使用要求前二十四曆月內完成規定測試與檢查，並非只在 IFR 飛行才需要。是否需要配備或使用應答機，與設備檢驗是否合格是不同問題。",
+            "可能造成高度資料對應誤差的安裝維修後，還需相關整合測試。自編例：管制員能收到代碼，不足以證明所有檢驗項目合格；也不能把此檢查當成 ADS-B 所有性能要求的替代證明。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.413",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.413",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "elt",
+          "english": "Emergency Locator Transmitter",
+          "title": "ELT 檢查與電池期限",
+          "parent": "other-programs",
+          "locator": "PHAK C 版 · 9-9",
+          "printedPage": "9-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=9",
+          "paragraphs": [
+            "對 §91.207 所要求的 ELT，須按規定在上次檢查後十二曆月內檢查安裝、腐蝕、控制與撞擊感測及天線訊號。ELT 配備本身有適用範圍和例外，不能把一句「全部都要」套到所有操作。",
+            "規定電池在發射器累計使用超過一小時，或達到核准壽命／充電壽命百分之五十時更換或充電，另有特定儲存型電池例外。新期限需標示並記錄，不能等到例行年度檢查才處理已到期電池。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.207",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-C/section-91.207",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "preflight",
+          "english": "Preflight Inspections",
+          "title": "飛行前檢查與放行判斷",
+          "parent": "other-programs",
+          "locator": "PHAK C 版 · 9-9",
+          "printedPage": "9-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=9",
+          "paragraphs": [
+            "飛行前檢查依本機清單系統性確認外觀、油液、設備和相關文件狀態，也要閱讀尚未處理的缺陷。它不能取代維修人員的定期檢查，但能發現兩次定檢之間新出現的問題。",
+            "自編例：外觀正常而年度檢查已逾期，或文件都有效但輪胎明顯受損，兩者都不能只憑另一半正常就判斷可飛。應把維修狀態、當下狀況和預定操作一起評估。"
+          ]
+        },
+        {
+          "id": "mel",
+          "english": "Minimum Equipment Lists (MEL) and Operations With Inoperative Equipment",
+          "title": "MEL 與失效設備操作",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-9",
+          "printedPage": "9-9",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=9",
+          "paragraphs": [
+            "MEL 是在核准條件下允許部分設備失效時操作的依據，MMEL 是建立相關清單的主清單，不能下載後就直接當成本機放行許可。需確認授權、適用項目、操作與維修程序、期限及多項故障的相互影響。",
+            "未使用核准 MEL 的特定 Part 91 操作，才可在符合 §91.213(d) 全部條件下評估失效設備。白天不需要某盞燈，不代表只貼標籤就可飛；還需查型別、設備清單、操作規則、AD、停用與安全判斷。"
+          ],
+          "points": [
+            "先確認是否適用 §91.213(d)(1) 的航空器與操作範圍；不能任意從 MEL 改用較方便的路徑。",
+            "逐項查日間 VFR 型別認證要求、設備清單／KOEL、當次操作規則及 AD。",
+            "移除時處理控制標示與維修紀錄；停用並標 INOPERATIVE，涉及維修者依 Part 43 執行與記錄。",
+            "由具適當資格者判斷不構成危險，並評估其他失效項目的組合影響。",
+            "MEL 是起飛前失效設備處理依據；飛行中故障先用本機異常／緊急程序。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.213",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-C/section-91.213",
+              "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA AC 91-67A：失效設備指引",
+              "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1042212",
+              "checked": "2026-09-11"
+            }
+          ],
+          "currentNote": "查閱 2026-09-11：原書引用的 AC 91-67 已有 91-67A 版本。AC 是符合方法指引，MEL 授權與 §91.213 條件仍需個別確認；MMEL 本身不是任意飛行員的放行許可。"
+        },
+        {
+          "id": "preventive",
+          "english": "Preventive Maintenance",
+          "title": "預防性維修與人員權限",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-10",
+          "printedPage": "9-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=10",
+          "paragraphs": [
+            "預防性維修是法規定義的工作類型，不能只憑自己覺得簡單就歸入其中。Part 43 Appendix A(c) 列出項目與條件，§43.3 說明誰可執行，§43.7 則另規定誰可批准恢復使用。",
+            "對一般飛行員自行完成並簽放的情況，至少私人飛行員資格、擁有或操作該機及使用範圍等條件需一起核對；sport pilot 在特殊輕型運動類別另有條款。這不授權任意修理，也不能略過技術資料與紀錄。"
+          ],
+          "points": [
+            "§43.3(g)：執行權限與航空器使用限制；另有明定例外，不用一句「非營業」概括全部。",
+            "§43.7(f)、(h)：預防性維修後的恢復使用簽放權限，與執行工作分別判讀。",
+            "§43.3(k)：符合條件的航電資料庫更新不視為維修，不能把所有軟體作業一律歸為預防性維修。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §43.3",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-43/section-43.3",
+              "checked": "2026-09-11"
+            },
+            {
+              "title": "14 CFR §43.7",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-43/section-43.7",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "entries",
+          "english": "Maintenance Entries",
+          "title": "維修紀錄與簽放範圍",
+          "parent": "preventive",
+          "locator": "PHAK C 版 · 9-10",
+          "printedPage": "9-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=10",
+          "paragraphs": [
+            "§43.9 的一般維修紀錄包含工作說明或可接受資料引用、完成日期，以及適當的執行者與批准者資訊。滿意完成後的簽名、證書號碼與類別，表示對所做工作的恢復使用批准。",
+            "簽放只涵蓋所完成工作，不代表其人同時證明整機所有檢查和設備都有效。自編例：只有「更換電池」四個字而沒有日期與批准資訊，不足以完整呈現該項工作；定期檢查另有 §43.11 紀錄要求。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §43.9",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-43/section-43.9",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "preventive-examples",
+          "english": "Examples of Preventive Maintenance",
+          "title": "預防性維修例子與邊界",
+          "parent": "preventive",
+          "locator": "PHAK C 版 · 9-10",
+          "printedPage": "9-10",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=10",
+          "paragraphs": [
+            "Appendix A(c) 的例子包含清潔或更換火星塞、燃油或滑油濾芯、電池維護，以及特定燈具部件更換等，但各自有限制。相似名稱不等於相同工作範圍，複雜組裝或系統改裝可能超出預防性維修。",
+            "自編例：清潔火星塞與修理點火系統不是同一授權，更換既有核准電池與改裝另一種電池系統也不同。先核對法規項目、機型資料、零件適用性、本人資格與簽放紀錄，再判斷是否可做。"
+          ],
+          "points": [
+            "照明：列舉位置燈／落地燈的燈泡、反射器與透鏡，不表示可任意重設整套電路。",
+            "濾芯與火星塞：需遵守適用技術資料，不因列入項目便免除工具、程序與檢查要求。",
+            "航電抽換：清單有指定安裝與設備例外，不能概括成所有面板設備都可自行換裝。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR Part 43 Appendix A(c)：預防性維修項目",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-43/appendix-Appendix%20A%20to%20Part%2043",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "repairs",
+          "english": "Repairs and Alterations",
+          "title": "修理、改裝與核准資料",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-12",
+          "printedPage": "9-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=12",
+          "paragraphs": [
+            "修理著重恢復狀態，改裝涉及變更設計或配置，重大與輕微分類需依定義及工作內容判斷。價格低、零件小或施工時間短，都不能單獨證明只是輕微工作。",
+            "重大修理與改裝有相應技術資料、授權與紀錄要求，常涉及 Form 337，並需依適用條款處理。自編例：新增設備後除了完成安裝，還可能要更新重量平衡、設備清單與飛行手冊補充。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §43.9",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-43/section-43.9",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "special-permit",
+          "english": "Special Flight Permits",
+          "title": "特殊飛行許可與移機",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-12",
+          "printedPage": "9-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=12",
+          "paragraphs": [
+            "特殊飛行許可可讓未完全符合適用適航要求、但仍能安全飛行的航空器，在核准目的與限制下飛行，例如移往維修地點。它不是一般商業載客授權，也不是飛行員自行宣布的臨時豁免。",
+            "年度逾期或失效設備可能需要這類許可，但是否核發和附帶條件由適用程序決定。涉及 AD 時另查其許可限制及 §39.23；不能概括為所有未完成 AD 都可移機，也不能說所有情況都絕對禁止。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §21.197",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21/subpart-H/section-21.197",
+              "checked": "2026-09-11"
+            },
+            {
+              "title": "14 CFR §39.23",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-39/section-39.23",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "ads",
+          "english": "Airworthiness Directives (ADs)",
+          "title": "適航指令：適用性與符合狀態",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-12",
+          "printedPage": "9-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=12",
+          "paragraphs": [
+            "AD 是 FAA 用來處理不安全狀況的強制規則，可能適用機體、引擎、螺旋槳或裝置。查核應比對型號、序號、零件及安裝狀態，再讀生效日、完成期限、重複週期與符合方法。",
+            "一項 AD 做過一次，不表示其中重複檢查就永遠結束；替代符合方法 AMOC 也不能自行發明。自編例：換裝另一具引擎後需重新核對適用 AD，不能只沿用機身型號的清單。"
+          ],
+          "points": [
+            "Applicability：先確認產品與序號範圍，不能只看 AD 標題。",
+            "Compliance：確認一次性、重複性、終止措施與下一次到期條件。",
+            "Service Bulletin 與 AD 不同；服務通告若被 AD 或其他適用要求納入，須按相應要求判讀。",
+            "查詢使用 FAA AD 官方入口與其現行連結，不依賴原書的舊 RGL 位址。"
+          ],
+          "references": [
+            {
+              "title": "FAA：Airworthiness Directives 官方入口",
+              "url": "https://www.faa.gov/aircraft/air_cert/continued_operation/ad",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "responsibilities",
+          "english": "Aircraft Owner/Operator Responsibilities",
+          "title": "所有人／操作人的持續責任",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-13",
+          "printedPage": "9-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=13",
+          "paragraphs": [
+            "§91.403 將維持適航、包括符合適用 AD 的主要責任放在所有人或操作人。委託維修廠不會讓此責任消失，飛行前還需確認登記、適航、限制、缺陷及當次操作需求。",
+            "§91.417 將一般工作紀錄與總使用時間、壽限、檢查及 AD 狀態等資料分別規定保存方式，部分需隨飛機出售移交。自編例：一疊發票不一定能證明重複 AD 的下次到期或零件剩餘壽命。"
+          ],
+          "references": [
+            {
+              "title": "14 CFR §91.403",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.403",
+              "checked": "2026-09-11"
+            },
+            {
+              "title": "14 CFR §91.417",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-E/section-91.417",
+              "checked": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "全章統整：證明與狀態相互核對",
+          "parent": null,
+          "locator": "PHAK C 版 · 9-13",
+          "printedPage": "9-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page=13",
+          "paragraphs": [
+            "本章將手冊適用性、核准限制、文件有效性、維修紀錄與實際狀況串在一起。判斷可否操作不能只靠單張證書、一個到期日期或一項正常檢查，而要核對各項適用要求。",
+            "自編複習：找到本機最新補充資料、核對年度與設備檢驗期限、選一項缺陷說明評估路徑，再找出一項 AD 的符合紀錄。每個結論都應能指回具體文件與條款，並分清 FAA 與其他體制。"
           ]
         }
       ],
@@ -6505,6 +7178,31 @@ export const phakDocument = {
           "title": "同型號與同配置",
           "clarification": "設備及修訂仍可能不同。",
           "example": "補充手冊可能改變適用程序。"
+        },
+        {
+          "title": "年度與百小時",
+          "clarification": "適用條件與期限不同，百小時不能自動取代年度。",
+          "example": "十小時移機例外不會讓年度逾期也自動獲得寬限。"
+        },
+        {
+          "title": "MEL 與 MMEL",
+          "clarification": "主清單不是本機已獲准延修的證明，還需適用授權與程序。",
+          "example": "網路下載 MMEL 後不能直接把故障項目標成可放行。"
+        },
+        {
+          "title": "執行維修與批准恢復使用",
+          "clarification": "§43.3 與 §43.7 分別處理權限，完成動作不代表已取得簽放資格。",
+          "example": "工作符合預防性維修項目仍需核對人員資格和紀錄。"
+        },
+        {
+          "title": "AD 做過與持續符合",
+          "clarification": "重複 AD 需追蹤下一次期限，除非已完成適用終止措施。",
+          "example": "去年檢查過不代表今年無須再做。"
+        },
+        {
+          "title": "有適航證書與當下可飛",
+          "clarification": "證書不是忽略後續故障、檢查與限制的許可。",
+          "example": "證書在機上，但檢查逾期或有未處理缺陷仍需評估。"
         }
       ],
       "scenario": "自編案例：兩架外觀相同的訓練機，其中一架裝了不同設備並附有補充手冊。直接把另一架的資料套上，可能漏掉重量、程序或限制差異。",
@@ -6518,7 +7216,10 @@ export const phakDocument = {
       "explanation": "資料必須對應實際航空器及條件，才能進行後續計算。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=231",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=231"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=231",
+      "detailMode": "outline",
+      "checked": "2026-09-11",
+      "coverageNote": "涵蓋提供的 38 個目錄小節，另補正文 Airplane Flight Manuals (AFM)，共 39 節。每節保留雙語標題、頁碼與 FAA 原文；中文講解與案例為本站編寫。現行法規另附查閱日期與 FAA／eCFR 來源，適用 FAA 制度，不直接代表其他國家的要求。"
     },
     {
       "id": "phak25c-10",
