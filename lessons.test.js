@@ -269,3 +269,21 @@ test('Chapter 3 deep reading renders tables, all 22 figure links and optional se
  const rendered=vm.runInContext('lessonBlocksHTML(probe)',env.context);
  assert.doesNotMatch(rendered,/<img>|<script>|<cell>|<question>/);assert.match(rendered,/&lt;cell&gt;/);
 });
+
+test('Chapter 4 deep lessons render all figure pages and preserve completed notes',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[3];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'PA 與 DA 要分開'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,22);
+ assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,29);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,3,3,6,7,7,8,9];
+ assert.equal(figures.length,8);
+ for(let i=1;i<=8;i++){
+  const f=figures.find(f=>f.label.startsWith('Figure 4-'+i+' ·'));assert.ok(f);
+  assert.equal(f.page,'4-'+pages[i-1]);assert.equal(new URL(f.url).hash,'#page='+pages[i-1]);assert.ok(html.includes(f.url));
+ }
+ for(const b of blocks){assert.ok(html.includes(b.title));if(b.table)assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));if(b.check)assert.ok(html.includes(b.check.answer));}
+ assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/PA 與 DA 要分開/);
+ assert.match(html,/5,768/);assert.match(html,/−720 Pa/);assert.match(html,/actual station pressure/);
+});
