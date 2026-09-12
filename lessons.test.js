@@ -247,15 +247,17 @@ test('Chapter 17 renders its 73 bilingual sections, medical updates and official
  assert.match(html,/Glossary/);assert.match(html,/Index/);
 });
 
-test('Chapter 3 deep reading renders tables, seven figure links and optional self checks safely',()=>{
+test('Chapter 3 deep reading renders tables, all 22 figure links and optional self checks safely',()=>{
  const c=studyDocuments.find(d=>d.id==='phak25c').chapters[2];
  const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'重心位置筆記'}});
  const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
  const blocks=c.detailSections.flatMap(s=>s.lessonBlocks||[]);
- assert.equal(blocks.length,17);
+ assert.equal(blocks.length,51);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure);
- assert.equal(figures.length,7);
- for(let i=1;i<=7;i++)assert.ok(figures.some(f=>f.label.startsWith('Figure 3-'+i+' ·')));
+ assert.equal(figures.length,22);
+ for(let i=1;i<=22;i++)assert.ok(figures.some(f=>f.label.startsWith('Figure 3-'+i+' ·')));
+ const pages=[3,3,4,4,4,5,5,6,6,6,7,7,8,9,10,11,12,13,14,15,16,16];
+ for(const f of figures){const n=Number(f.label.match(/Figure 3-(\d+)/)[1]);assert.equal(f.page,'3-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);}
  for(const b of blocks){
   assert.ok(html.includes(b.title));
   if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+b.table.caption+'</caption>'));}
