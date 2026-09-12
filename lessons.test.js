@@ -64,7 +64,7 @@ test('Chapter 1 hierarchical navigation reaches distinct sections and keeps chap
  env.events.click({target:{closest:()=>({dataset:{detailTarget:'detail-phak25c-1-medical'}})}});
  assert.ok(focused&&scrolled);assert.equal(env.context.location.hash,'#chapter/phak25c-1');
  const index=environment('#phak').element('#app').innerHTML;
- assert.match(index,/原書目錄逐節講解 · 54 節/);assert.match(index,/主題導讀 · 5 個主題/);
+ assert.match(index,/原書目錄逐節講解 · 54 節/);assert.match(index,/原書目錄逐節講解 · 73 節/);assert.equal(index.split("原書目錄逐節講解 · ").length-1,17);assert.doesNotMatch(index,/主題導讀 · 5 個主題/);
 });
 
 test('Chapter 2 renders model comparisons, subsection lists and preserves saved completion',()=>{
@@ -226,4 +226,23 @@ test('Chapter 16 renders 62 bilingual sections, source updates and saved progres
   assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/'+c.id);
  }
  assert.match(html,/099.5°/);assert.match(html,/88.33/);assert.match(html,/7233-4/);assert.match(html,/56 天/);
+});
+
+
+test('Chapter 17 renders its 73 bilingual sections, medical updates and official back-matter links',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[16],note='第十七章既有筆記';
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:note}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ assert.ok(html.includes('Chapter 17 : Aeromedical Factors'));assert.ok(html.includes('Chapter 17 : '+c.title));
+ assert.ok(html.includes('本章分層目錄 · 73 節'));assert.ok(html.includes(note));assert.match(html,/本章閱讀與情境檢核已完成/);
+ for(const s of c.detailSections){const target='detail-'+c.id+'-'+s.id;assert.equal(html.split('id="'+target+'"').length-1,1);assert.ok(html.includes('data-detail-target="'+target+'"'));assert.ok(html.includes(s.source));}
+ for(const id of ['hyperventilation','night-blind','efvs','summary']){
+  const target='detail-'+c.id+'-'+id;let reached=false;
+  env.context.document.getElementById=id=>id===target?{setAttribute(){},focus(){},scrollIntoView(){reached=true;}}:null;
+  env.events.click({target:{closest:()=>({dataset:{detailTarget:target}})}});
+  assert.ok(reached);assert.equal(env.context.location.hash,'#chapter/'+c.id);
+ }
+ assert.match(html,/ANZCOR/);assert.match(html,/12,500/);assert.match(html,/0.04/);assert.match(html,/AMSL/);
+ assert.match(html,/20_phak_appendices.pdf#page=9/);assert.match(html,/20_phak_appendices.pdf#page=21/);
+ assert.match(html,/Glossary/);assert.match(html,/Index/);
 });

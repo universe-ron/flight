@@ -233,3 +233,32 @@ test('Chapter 16 wind and distance teaching examples agree with independent vect
  assert.equal(Math.hypot(3,4),5);assert.match(prose('dme'),/水平距離 3 NM、高出台站 4 NM，斜距為 5 NM/);
  assert.equal(36/90*60,24);assert.equal(36/90*8,3.2);assert.match(prose('diversion'),/3.2 US gal/);
 });
+
+
+test('Chapter 17 preserves all 73 supplied headings, source pages and teaching hierarchy',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[16];
+ const expected=[["Introduction", 1], ["Obtaining a Medical Certificate", 2], ["Health and Physiological Factors Affecting Pilot Performance", 3], ["Hypoxia", 3], ["Hypoxic Hypoxia", 3], ["Hypemic Hypoxia", 3], ["Stagnant Hypoxia", 3], ["Histotoxic Hypoxia", 4], ["Symptoms of Hypoxia", 4], ["Treatment of Hypoxia", 4], ["Hyperventilation", 4], ["Middle Ear and Sinus Problems", 5], ["Spatial Disorientation and Illusions", 6], ["Vestibular Illusions", 7], ["Visual Illusions", 8], ["Postural Considerations", 8], ["Demonstration of Spatial Disorientation", 8], ["Climbing While Accelerating", 9], ["Climbing While Turning", 9], ["Diving While Turning", 9], ["Tilting to Right or Left", 9], ["Reversal of Motion", 9], ["Diving or Rolling Beyond the Vertical Plane", 9], ["Coping with Spatial Disorientation", 9], ["Optical Illusions", 10], ["Runway Width Illusion", 10], ["Runway and Terrain Slopes Illusion", 10], ["Featureless Terrain Illusion", 10], ["Water Refraction", 10], ["Haze", 10], ["Fog", 10], ["Ground Lighting Illusions", 10], ["How To Prevent Landing Errors Due to Optical Illusions", 10], ["Motion Sickness", 12], ["Carbon Monoxide (CO) Poisoning", 12], ["Stress", 12], ["Fatigue", 13], ["Exposure to Chemicals", 13], ["Hydraulic Fluid", 13], ["Engine Oil", 14], ["Fuel", 14], ["Dehydration and Heatstroke", 14], ["Alcohol", 15], ["Drugs", 16], ["Altitude-Induced Decompression Sickness (DCS)", 18], ["DCS After Scuba Diving", 18], ["Vision in Flight", 19], ["Vision Types", 20], ["Photopic Vision", 20], ["Mesopic Vision", 21], ["Scotopic Vision", 21], ["Central Blind Spot", 21], ["Empty-Field Myopia", 22], ["Night Vision", 22], ["Night Blind Spot", 22], ["Dark Adaptation", 23], ["Scanning Techniques", 23], ["Night Vision Protection", 23], ["Self-Imposed Stress", 25], ["Distance Estimation and Depth Perception", 25], ["Binocular Cues", 26], ["Night Vision Illusions", 26], ["Autokinesis", 26], ["False Horizon", 26], ["Reversible Perspective Illusion", 26], ["Size-Distance Illusion", 27], ["Fascination (Fixation)", 27], ["Flicker Vertigo", 27], ["Night Landing Illusions", 27], ["Enhanced Night Vision Systems", 27], ["Synthetic Vision System", 28], ["Enhanced Flight Vision System", 28], ["Chapter Summary", 29]];
+ assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,73);
+ assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/19_phak_ch17.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.deepEqual(c.detailSections.filter(s=>s.parent==='demonstrations').map(s=>s.id),['accelerating-climb','turning-climb','turning-dive','left-right-tilt','reversal','beyond-vertical']);
+ assert.deepEqual(c.detailSections.filter(s=>s.parent==='enhanced').map(s=>s.id),['svs','efvs']);
+ assert.equal(c.checked,'2026-09-12');
+ const section=id=>c.detailSections.find(s=>s.id===id);
+ for(const id of ['medical','hypoxia-response','hyperventilation','co','heat','drugs','scuba','efvs'])assert.ok(section(id).currentNote);
+ assert.ok(section('hyperventilation').references.some(r=>new URL(r.url).hostname==='www.anzcor.org'));
+ assert.match(section('co').currentNote,/正常讀值不能排除/);
+ assert.match(section('heat').currentNote,/大量流汗/);
+ assert.match(section('scuba').currentNote,/實際飛行高度 AMSL/);
+ assert.equal(section('vestibular').points.length,6);
+ assert.equal(section('summary').references.length,5);
+ for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.ecfr.gov','www.cdc.gov','www.anzcor.org','www.hse.gov.uk','medlineplus.gov'].includes(new URL(r.url).hostname));assert.equal(r.checked,'2026-09-12');}
+});
+
+test('All 17 PHAK chapters now have detailed outlines while preserving chapter-level learning state',()=>{
+ const d=studyDocuments.find(d=>d.id==='phak25c');
+ assert.equal(d.chapters.length,17);assert.ok(d.chapters.every(c=>c.detailMode==='outline'));
+ const c=d.chapters[16],saved={read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'原有航空醫學筆記'}};
+ const restored=cleanStudyState(JSON.parse(JSON.stringify(saved)));
+ assert.ok(chapterProgress(c,restored).complete);assert.equal(restored.notes[c.id],saved.notes[c.id]);
+});
