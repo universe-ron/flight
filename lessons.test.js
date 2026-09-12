@@ -246,3 +246,24 @@ test('Chapter 17 renders its 73 bilingual sections, medical updates and official
  assert.match(html,/20_phak_appendices.pdf#page=9/);assert.match(html,/20_phak_appendices.pdf#page=21/);
  assert.match(html,/Glossary/);assert.match(html,/Index/);
 });
+
+test('Chapter 3 deep reading renders tables, seven figure links and optional self checks safely',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[2];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'重心位置筆記'}});
+ const env=environment('#chapter/'+c.id,undefined,saved),html=env.element('#app').innerHTML;
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks||[]);
+ assert.equal(blocks.length,17);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure);
+ assert.equal(figures.length,7);
+ for(let i=1;i<=7;i++)assert.ok(figures.some(f=>f.label.startsWith('Figure 3-'+i+' ·')));
+ for(const b of blocks){
+  assert.ok(html.includes(b.title));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+b.table.caption+'</caption>'));}
+  if(b.figure)assert.ok(html.includes('href="'+b.figure.url+'"'));
+  if(b.check)assert.ok(html.includes('<summary>想一想：'+b.check.question+'</summary>'));
+ }
+ assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/重心位置筆記/);
+ env.context.probe=[{title:'<img>',paragraphs:['<script>'],table:{caption:'"test"',headers:['<header>'],rows:[['<cell>']]},check:{question:'<question>',answer:'<answer>'}}];
+ const rendered=vm.runInContext('lessonBlocksHTML(probe)',env.context);
+ assert.doesNotMatch(rendered,/<img>|<script>|<cell>|<question>/);assert.match(rendered,/&lt;cell&gt;/);
+});

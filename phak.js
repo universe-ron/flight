@@ -1933,8 +1933,171 @@ export const phakDocument = {
               "title": "FAA：標準適航證與持續有效條件",
               "url": "https://www.faa.gov/aircraft/air_cert/aw_cert/standard_aw_certificates",
               "checked": "2026-09-10"
+            },
+            {
+              "title": "eCFR · Part 23 現行設計標準",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-23",
+              "checked": "2026-09-12"
+            },
+            {
+              "title": "eCFR · Part 21 Subpart H 適航證",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21/subpart-H",
+              "checked": "2026-09-12"
+            },
+            {
+              "title": "eCFR · § 91.203 證書攜帶與展示",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-C/section-91.203",
+              "checked": "2026-09-12"
+            },
+            {
+              "title": "eCFR · § 21.225 暫定適航證",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21/subpart-I/section-21.225",
+              "checked": "2026-09-12"
             }
-          ]
+          ],
+          "lessonBlocks": [
+            {
+              "title": "1 · 認證先回答：認證的是什麼？",
+              "paragraphs": [
+                "本段的 product 指航空器、航空器發動機、螺旋槳三種認證產品。三者可以各有適用的設計標準；發動機本身通過認證，不代表把它裝到任意機身就成為核准組合。安裝方式、結構負載、冷卻、燃油供應與操作限制，都仍須符合航空器適用的核准設計。",
+                "Airworthiness standards 是設計必須達到的安全要求，例如結構承受能力、操縱特性及系統安全性。它不是飛行員執照考試規則，也不表示任何使用方式都安全。先區分「產品設計要求」與「飛行時的操作規則」，才能讀懂後面的證書。"
+              ],
+              "table": {
+                "caption": "原書的產品分類與法規閱讀定位",
+                "headers": [
+                  "法規",
+                  "對象",
+                  "閱讀時的辨別"
+                ],
+                "rows": [
+                  [
+                    "14 CFR Part 23",
+                    "Normal category airplanes",
+                    "原書列 normal、utility、acrobatic、commuter；現行 Part 23 標題與架構已改為 normal category airplanes。舊型號應查其核准認證基礎。"
+                  ],
+                  [
+                    "Part 25",
+                    "Transport category airplanes",
+                    "運輸類飛機的設計標準；不能單憑是否收費載客決定適用 Part。"
+                  ],
+                  [
+                    "Part 27",
+                    "Normal category rotorcraft",
+                    "這裡的 normal 指正常類旋翼航空器，並非把所有正常類航空器放在一起。"
+                  ],
+                  [
+                    "Part 29",
+                    "Transport category rotorcraft",
+                    "同為運輸類，也要區分 airplane 與 rotorcraft。"
+                  ],
+                  [
+                    "Part 31",
+                    "Manned free balloons",
+                    "有人自由氣球。"
+                  ],
+                  [
+                    "Part 33",
+                    "Aircraft engines",
+                    "發動機產品的標準。"
+                  ],
+                  [
+                    "Part 35",
+                    "Propellers",
+                    "螺旋槳產品的標準。"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "2 · Special class：沒有專屬 Part，不等於沒有標準",
+              "paragraphs": [
+                "原書以滑翔機與 powered-lift 說明 special classes：不能直接套用單一既有產品類別時，FAA 會依適用程序訂定相應認證基礎，採取適用的要求。學習重點是「仍須有被接受的安全要求與符合性證明」，並非由設計者自由挑選較容易的條文。",
+                "不要將 special class 和 special airworthiness certificate 畫上等號。前者描述設計認證分類；後者是個別航空器適航證的分類。符合相關條件的 special-class 航空器可以取得 standard airworthiness certificate。"
+              ]
+            },
+            {
+              "title": "3 · TC、TCDS、製造符合性與個別適航證",
+              "paragraphs": [
+                "把流程拆成設計、製造、個別航空器三層：先確認型別設計符合適用標準，再確認實物按照核准設計製造，最後確認這一架航空器符合適用核准構型且處於安全操作狀態。這是一般型別認證產品的理解路徑；LSA 的不同路徑見下一節。"
+              ],
+              "table": {
+                "caption": "四個常被混用的概念",
+                "headers": [
+                  "名詞",
+                  "回答的問題",
+                  "不能代替什麼"
+                ],
+                "rows": [
+                  [
+                    "Type Certificate（TC）",
+                    "這個產品型別的設計是否符合適用認證要求？",
+                    "不能證明某一架今天沒有損傷。"
+                  ],
+                  [
+                    "Type Certificate Data Sheet（TCDS）",
+                    "該型別有哪些重要特性、限制及認證資料？",
+                    "不是完整設計圖，也不能取代該機適用 AFM／POH 與補充文件。"
+                  ],
+                  [
+                    "Conformity inspection（符合性檢查）",
+                    "實際產品或零件是否符合規定的設計資料？",
+                    "不是飛行員起飛前繞機檢查的同義詞。"
+                  ],
+                  [
+                    "Airworthiness certificate（適航證）",
+                    "這一架航空器取得哪一類適航認證？",
+                    "不是對往後每一次飛行狀態的永久保證。"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "4 · 為什麼有了圖紙，仍要檢查製造？",
+              "paragraphs": [
+                "設計圖指定的材料、尺寸、製程與組裝要求必須落實到實物。例如圖面要求某種合金與特定接合方式，只做到外形相似仍可能沒有足夠強度。符合性檢查的目的，就是把「文件上合格」連接到「實際製成符合要求」。",
+                "Production Certificate（PC，生產許可）涉及核准的生產與品質系統，與 TC 的設計核准不同。Part 21 也有依 TC 生產的規定，不能簡化成每個製造商一律必須先持有 PC；同樣不能因工廠有 PC 就忽略個別航空器的適航認證。"
+              ]
+            },
+            {
+              "title": "5 · Standard 與 Special：看分類與限制，不只看顏色",
+              "paragraphs": [
+                "原書用白色與粉紅色辨識傳統紙本 standard 與 special 適航證。閱讀實際文件時，關鍵是證書類別、用途、有效條件與操作限制；顏色只是外觀辨識提示。"
+              ],
+              "table": {
+                "caption": "適航證的兩大分類",
+                "headers": [
+                  "分類",
+                  "常見核發對象",
+                  "容易誤解處"
+                ],
+                "rows": [
+                  [
+                    "Standard",
+                    "正常、實用、特技、通勤、運輸類；有人自由氣球；special classes",
+                    "Special class 的名稱含 special，仍可能取得 standard 證。"
+                  ],
+                  [
+                    "Special",
+                    "Primary、restricted、limited、provisional、light-sport；experimental；special flight permit",
+                    "各用途限制不同。特別飛行許可不是讓不適航飛機自由營運。"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "6 · 攜帶證書、證書有效與當次適航，是三件事",
+              "paragraphs": [
+                "在適用 § 91.203 的美國民用航空器操作中，須有相應有效證書；適航證還有展示於艙室入口或座艙、讓乘員可看見的要求。把證書留在家裡，與飛機本身機械狀況正常，是不同的問題。",
+                "標準適航證通常沒有固定到期日，但其持續有效涉及美國註冊、依適用 Part 43 與 Part 91 執行維護及改裝，以及未被繳回、暫停、撤銷或另訂終止日等條件。其他證書的有效條件可能不同，例如 special flight permit 依核准期間；不能將標準證書的規則推廣到所有 special 證書。",
+                "即使文件仍有效，也要判斷當次安全操作狀態。自編例：昨天檢查合格，今天發現機翼結構損傷，不能只看證書仍在就決定出發。此處先建立觀念，後續第 9 章再學維護紀錄、檢查及不工作設備的處理。"
+              ],
+              "check": {
+                "question": "同型號另一架正常，能否證明這一架適航？",
+                "answer": "不能。型別設計相同，不代表每架實物的構型、損傷、維護及安全狀態相同。"
+              }
+            }
+          ],
+          "currentNote": "版本核對（2026-09-12）：Part 23 現行標題為 Airworthiness Standards: Normal Category Airplanes；原書的四類並列應配合歷史認證基礎理解。原文「14 CFR parts 175–225」不是適航證的正確查找方式：應從 Part 21 Subpart H（如 §§ 21.175、21.181、21.183）閱讀；§ 21.225 屬 Subpart I 的暫定適航證，不能將 section 號碼當成 Part 號碼。"
         },
         {
           "id": "lsa",
@@ -1955,6 +2118,19 @@ export const phakDocument = {
               "url": "https://www.faa.gov/aircraft/MOSAIC/mosaic_faq_manufacture_cert_LSA",
               "checked": "2026-09-10"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "共識標準如何形成認證路徑？",
+              "paragraphs": [
+                "Consensus standards 是業界標準制定機構共同制定、並經 FAA 接受作為適用符合性依據的標準。不是任一社團自行發布規格就自動可用，也不是完全不受 FAA 管理。製造商必須證明符合適用要求，提供符合性聲明，航空器再依相應規定取得個別適航證。",
+                "原文「整機包含機身、發動機、螺旋槳取得 TC」容易把 LSA 路徑和一般型別認證混為一談。FAA 的 MOSAIC FAQ 明確說明，LSA 與 experimental LSA 不取得 FAA 設計或生產核准；認證透過核發給個別航空器的適航證進行。這也不表示零件可以任意更換；整體配置及改裝仍須符合適用要求。"
+              ],
+              "check": {
+                "question": "Sport pilot 能飛的航空器，是否一定持 light-sport category 適航證？",
+                "answer": "不能只由飛行員資格推定證書類別。飛行員操作資格與航空器認證路徑，是兩組須分別查核的條件。"
+              }
+            }
           ]
         },
         {
@@ -1973,6 +2149,114 @@ export const phakDocument = {
             "Roll／滾轉：繞機頭到機尾的縱軸轉動，並非繞翼尖連線。",
             "Pitch／俯仰：繞橫軸轉動；機頭姿態改變不等於飛行路徑立即等量改變。",
             "Yaw／偏航：繞垂直軸轉動；方向舵作用與協調轉彎需在操縱章節進一步理解。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 3-1 · 先辨識力，再判斷是否平衡",
+              "paragraphs": [
+                "圖中四支箭頭是概念示意。Thrust 來自動力裝置推進作用；drag 是相對氣流方向上的阻力；weight 是重力，指向地心；lift 是空氣動力相對來流的垂直分量。這些定義比「上、下、前、後」更可靠，因為飛機可以傾斜或沿斜向航跡飛行。",
+                "以機翼為例，表面壓力分布等氣動作用合成後，可分解成升力與阻力。機翼是主要升力來源，但尾翼與其他表面也會產生氣動力。圖上的升力箭頭不能理解成只有某個點會產生力。",
+                "在簡化的直線、水平、等速模型中，推力與阻力平衡、升力與重量平衡，所以沒有平移加速度。飛機仍然向前移動：合力為零代表速度不改變，而非速度等於零。若轉彎，速度方向改變就有加速度；若爬升，應沿航跡與垂直航跡分解各力，不能直接搬用水平模型。"
+              ],
+              "table": {
+                "caption": "四力的方向基準",
+                "headers": [
+                  "力",
+                  "方向或作用點",
+                  "常見混淆"
+                ],
+                "rows": [
+                  [
+                    "Thrust 推力",
+                    "通常接近機身縱軸，依推進裝置配置而定",
+                    "不能假設任何姿態都水平向前。"
+                  ],
+                  [
+                    "Drag 阻力",
+                    "平行相對風、阻礙相對空氣運動",
+                    "不一定水平朝向機尾。"
+                  ],
+                  [
+                    "Weight 重量",
+                    "等效作用於 CG，指向地心",
+                    "飛機傾斜不會讓重力跟著傾斜。"
+                  ],
+                  [
+                    "Lift 升力",
+                    "垂直相對來流；機翼傾斜時也隨之傾斜",
+                    "不一定鉛直向上，也不一定等於重量。"
+                  ]
+                ]
+              },
+              "figure": {
+                "label": "Figure 3-1 · The four forces",
+                "page": "3-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=3"
+              }
+            },
+            {
+              "title": "Figure 3-2 · 軸是轉動的支線，名稱不是機頭移動方向",
+              "paragraphs": [
+                "先把三條假想軸放在 CG，並讓它們隨機體一起運動。Longitudinal axis 沿機頭到機尾；lateral axis 橫向穿過機體；vertical axis 在機體座標中上下穿過機體。所謂機體垂直軸，在飛機傾斜時不一定對準地心。",
+                "讀圖時看黃色旋轉箭頭「繞哪一條軸」，不要看機頭朝哪裡移動來命名。Pitch 是繞橫軸，roll 是繞縱軸，yaw 是繞垂直軸。三者可以同時發生；實際轉彎還涉及傾斜升力產生的向心作用，所以 yaw 不能直接等同完整的轉彎。"
+              ],
+              "table": {
+                "caption": "三種旋轉的對照",
+                "headers": [
+                  "運動",
+                  "旋轉軸",
+                  "典型主要控制面"
+                ],
+                "rows": [
+                  [
+                    "Pitch 俯仰",
+                    "Lateral axis 橫軸",
+                    "Elevator／stabilator"
+                  ],
+                  [
+                    "Roll 滾轉",
+                    "Longitudinal axis 縱軸",
+                    "Ailerons（部分機型也使用 spoilers）"
+                  ],
+                  [
+                    "Yaw 偏航",
+                    "Vertical axis 垂直軸",
+                    "Rudder"
+                  ]
+                ]
+              },
+              "figure": {
+                "label": "Figure 3-2 · Pitching, rolling, yawing",
+                "page": "3-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=3"
+              }
+            },
+            {
+              "title": "Figure 3-3 · 重心位置為什麼影響俯仰？",
+              "paragraphs": [
+                "CG 是全機質量分布的等效集中位置。要理解俯仰，還要看各力與 CG 的距離：力矩大小等於力乘垂直力臂。即使總向上力與總向下力相等，若俯仰力矩不平衡，飛機仍可能開始旋轉。圖中的 CL 表示升力合力作用位置的簡化標示，不能把它當成 CG，也不能假定在所有迎角都固定不變。",
+                "上圖以傳統尾翼配置示意重量、機翼升力與尾翼力如何平衡。這是理解力矩的示意，不是所有航空器的固定受力圖；尾翼力的方向與大小取決於設計、構型和飛行狀態。尤其不能推論所有尾翼在所有時候都必須向下施力。",
+                "中圖的重心過後，提醒你低速時可能沒有足夠低頭操縱能力來恢復迎角；後移 CG 一般也會減少傳統配置的縱向靜穩定裕度。下圖的重心過前，則可能使抬頭能力不足，例如降落拉平受限。「過前／過後」指超出該機允許範圍，不是拿兩架不同設計飛機的外觀位置相比。",
+                "原文把 CG 後移直接說成越來越 dynamically unstable，讀時要細分：靜穩定描述受到擾動後的初始回復趨勢，動穩定描述之後隨時間的運動。後 CG 常削弱縱向靜穩定，但不能僅由一個 CG 位置就概括所有動態模態；操縱能力也不等於穩定性。"
+              ],
+              "figure": {
+                "label": "Figure 3-3 · Center of gravity",
+                "page": "3-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=4"
+              }
+            },
+            {
+              "title": "燃油用掉後，CG 往哪裡移？",
+              "paragraphs": [
+                "移除一項重量後，剩餘整體的 CG 會向遠離該重量位置的方向移動。因此油箱在原 CG 前方，消耗該油箱的燃油通常使 CG 後移；油箱在原 CG 後方則相反。多油箱供油順序、移油與其他載重變化還會改變結果，不能把「油箱空時設定 CG」當成適用所有飛機的操作方法。",
+                "自編計算：全機 1,000 kg，CG 距基準點 2.0 m，總質量矩為 2,000 kg·m。若消耗前方 1.0 m 處的 100 kg 燃油，剩餘 CG = (2,000 − 100 × 1.0) ÷ 900 ≈ 2.11 m，往後移。若同樣燃油位於 3.0 m，則結果約 1.89 m，往前移。這是教學數字，不是任一機型的核准資料。",
+                "實際規劃應使用該機重量平衡資料，確認起飛、預期燃油消耗過程及降落時的重量與 CG 都在適用包線內。包線可能隨重量或構型改變；只確認起飛 CG 合格，不能保證整段飛行都符合。"
+              ],
+              "check": {
+                "question": "同樣減少 100 kg 燃油，CG 移動方向必然相同嗎？",
+                "answer": "不必然。先比較燃油位置與當時全機 CG，再計算剩餘總力矩除以剩餘總重量。"
+              }
+            }
           ]
         },
         {
@@ -1986,6 +2270,20 @@ export const phakDocument = {
           "paragraphs": [
             "多數傳統飛機可分成機身、機翼、尾翼組、起落架和動力裝置。外形會隨載人、運貨、訓練或其他設計任務而變，但每個部件的功能都必須和全機的重量、阻力、穩定性與結構需求配合。",
             "自編例：落地衝擊由輪胎與起落架傳入機體，飛行時翼面受力則經翼內構件與接合處傳遞。檢視飛機時，除了認出部件，也應能指出它連到哪裡，以及連接處為什麼具有結構上的重要性。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 3-4 · 用功能把五大部件串起來",
+              "paragraphs": [
+                "沿圖從機頭讀到機尾：powerplant 提供推進所需動力；fuselage 容納人員與載荷並連接結構；wings 提供主要升力；empennage 支援穩定及操縱；landing gear 支承地面重量並承受滑行與落地載荷。這是常見飛機的分解方式，其他布局可能沒有完全相同的外形。",
+                "再倒過來讀載荷路徑：飛行中機翼氣動負載經翼內結構、翼根接頭傳到機身；落地時地面反力經輪胎、起落架與接點進入機體。部件名稱相同不代表接法相同，起落架可能裝於機身或機翼，因此要追蹤實際機型的連接方式。"
+              ],
+              "figure": {
+                "label": "Figure 3-4 · Airplane components",
+                "page": "3-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=4"
+              }
+            }
           ]
         },
         {
@@ -1999,6 +2297,21 @@ export const phakDocument = {
           "paragraphs": [
             "機身容納機組、旅客與貨物，也是機翼及尾翼組的主要結構連接中心。座艙空間與外表只是它的一部分，內部框架、外皮及接合位置還必須把不同方向的載荷傳遞到其他構件。",
             "早期常見桁架骨架加覆面，另有硬殼式與半硬殼式構造。不同方式的外皮承力程度不同，因此不能因為看到的是薄板或布面，就用同一套直覺評估損傷；先辨識承力方式，才能理解為何檢查與修理依據不同。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 3-5 · 桁架圖的線條不是裝飾",
+              "paragraphs": [
+                "上半圖先找沿機身前後延伸的 longerons（縱樑），再看連接它們的 struts（支桿）形成三角形框架。三角化使載荷可以透過桿件的拉力與壓力傳遞；外部覆蓋材料可以負責外形，未必承擔與主框架相同的結構工作。",
+                "下半圖增加 bulkheads（隔框／框架）與 stringers（縱向加強條）的辨識。Bulkhead 沿截面提供形狀、支承或局部載荷傳遞；stringer 沿縱向支承蒙皮並參與承載。Longeron 通常是較主要的縱向構件，但名稱與分工依設計而異，不能只按圖中顏色判斷強度。",
+                "比較後面的 monocoque 與 semimonocoque：單殼體依賴承力外殼，半單殼體讓蒙皮與內部加強構件共同承載。因此「蒙皮只是防風外罩」只對部分結構成立。看見蒙皮損傷時，應先辨認它在該結構的功能，不能以表面凹痕大小自行判定無影響。"
+              ],
+              "figure": {
+                "label": "Figure 3-5 · Truss-type fuselage structure",
+                "page": "3-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=4"
+              }
+            }
           ]
         },
         {
@@ -2012,6 +2325,83 @@ export const phakDocument = {
           "paragraphs": [
             "機翼是主要升力面，依安裝位置可分高翼、中翼及低翼，依翼面組數可分單翼與雙翼。半懸臂式利用外部支柱分擔載荷，全懸臂式由內部結構承載而不需這類外部支柱；看不到支柱不代表機翼缺少支撐。",
             "翼樑、翼肋、縱向加強構件與蒙皮共同工作：翼肋維持翼型，翼樑等構件傳遞主要載荷，機翼內也可能設置油箱。典型副翼位於較外側後緣，以左右差動動作控制滾轉；襟翼較靠內側，通常同向放下以改變升阻特性，兩者不可只按位置背誦而忽略功能。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "機翼配置：位置、數量、支撐方式分開看",
+              "paragraphs": [
+                "High-wing、mid-wing、low-wing 描述機翼相對機身的安裝高度。Monoplane 與 biplane 描述一組或上下兩組主翼；單翼機左右各有翼面，仍是 monoplane，不是看到左右兩片就叫 biplane。Figure 3-6 的兩張照片正是比較主翼組數。",
+                "另一個獨立分類是外部支撐：原書稱有翼支桿分擔載荷的布局為 semi-cantilever，完全靠內部結構與翼根接合傳遞負載的為 full cantilever。高翼也可以沒有外部支桿；沒有支桿不是沒有支撐，而是支撐功能由內部結構承擔。"
+              ],
+              "figure": {
+                "label": "Figure 3-6 · Monoplane and biplane",
+                "page": "3-5",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=5"
+              }
+            },
+            {
+              "title": "Figure 3-7 · 從氣流受力一路追到翼根",
+              "paragraphs": [
+                "先把外表 skin 想成承受分布氣動壓力的表面，再找 ribs、stringers 與 spars：它們組成一個能維持翼型、抵抗彎曲與扭轉的結構。真實載荷如何分配取決於設計，下面列的是辨識功能，並不是每件構件只承受單一種類的力。"
+              ],
+              "table": {
+                "caption": "機翼剖面讀圖",
+                "headers": [
+                  "構件",
+                  "主要功能",
+                  "觀察提示"
+                ],
+                "rows": [
+                  [
+                    "Spar 翼樑",
+                    "主要跨翼展承力構件，對抵抗彎曲很重要",
+                    "由翼根朝翼尖延伸；數量依設計而定。"
+                  ],
+                  [
+                    "Rib 翼肋",
+                    "維持翼型，支承蒙皮並傳遞局部載荷",
+                    "剖面形狀幫助你看出翼型。"
+                  ],
+                  [
+                    "Stringer 縱向加強條",
+                    "加強蒙皮、改善穩定性並參與承載",
+                    "通常是較細長的縱向構件。"
+                  ],
+                  [
+                    "Skin 蒙皮",
+                    "形成氣動表面；承力蒙皮也參與傳遞剪力等載荷",
+                    "不能普遍當成可有可無的外罩。"
+                  ],
+                  [
+                    "Fuel tank 油箱",
+                    "儲存燃油，影響重量與載荷分布",
+                    "圖中位置只是示意；不同機型可用整體式或囊式等設計。"
+                  ],
+                  [
+                    "Wing tip 翼尖",
+                    "主翼外端，影響局部流場",
+                    "翼尖形狀與渦流的關係到第 5 章再展開。"
+                  ]
+                ]
+              },
+              "figure": {
+                "label": "Figure 3-7 · Wing components",
+                "page": "3-5",
+                "url": "https://www.faa.gov/sites/faa.gov/files/05_phak_ch3_0.pdf#page=5"
+              }
+            },
+            {
+              "title": "副翼與襟翼都在後緣，工作卻不同",
+              "paragraphs": [
+                "原書描繪的典型布局中，ailerons 位於較外側後緣，左右通常反向偏轉，使兩翼氣動作用不對稱而產生滾轉力矩。不能只記「上去或下來」：偏轉還會改變阻力，並可能伴隨不利偏航，後面操縱章節會再說明。",
+                "Flaps 通常在較內側後緣，左右對稱放下，用來改變翼型與低速升力能力，也通常增加阻力；適合起降時依核准程序使用。放下襟翼不代表飛機必然立即爬升，因為速度、迎角、推力及俯仰力矩也會改變。",
+                "原文使用「正常與機翼表面齊平」描述巡航時收起的襟翼，不是指所有副翼永遠完全中立。也有 flaperon 等整合功能或其他布局，因此先學典型結構，再查該機 POH 的實際系統。"
+              ],
+              "check": {
+                "question": "左右後緣表面一起向下，是否就是在做滾轉？",
+                "answer": "典型左右襟翼對稱放下主要改變低速升阻特性；典型副翼以左右不對稱作用產生滾轉。仍應按機型辨認控制面功能。"
+              }
+            }
           ]
         },
         {
@@ -2026,7 +2416,16 @@ export const phakDocument = {
             "本節補入正文中的其他機翼形式。不同任務可採不同平面形狀、後掠與柔性設計，重心移動控制航空器更可能透過機體相對翼面的重量位置變化達到操縱，不能預設都有傳統副翼與升降舵。",
             "自編練習：對照原圖，找出固定翼飛機與重心移動控制航空器各自改變什麼來控制飛行。重點是結構與控制方法的配合，不是把某一種翼型直接判定為所有速度與用途下都比較好。"
           ],
-          "supplementalHeading": true
+          "supplementalHeading": true,
+          "lessonBlocks": [
+            {
+              "title": "柔性翼與重心移動操縱：改變的是控制方式",
+              "paragraphs": [
+                "傳統固定翼多透過可動控制面改變氣動力；柔性翼或 weight-shift control aircraft 可以利用翼面變形、機翼與懸吊重量的相對移動來產生操縱效果。這不表示飛機不受四力與力矩支配，而是飛行員改變力矩的方式不同。",
+                "原文提到後掠與重量移動，是特定布局的概述，不能推成「所有後掠翼都用重心操縱」，也不能推成「後掠在任何速度下都比較省阻力」。比較不同機種時，應先問設計目的、結構與操作方式，再到對應手冊學習。"
+              ]
+            }
+          ]
         },
         {
           "id": "empennage",
@@ -2371,7 +2770,7 @@ export const phakDocument = {
       "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=72",
       "detailMode": "outline",
       "checked": "2026-09-10",
-      "coverageNote": "依 FAA-H-8083-25C 第三章逐節整理，保留提供的目錄順序，另補正文中的 Alternate Types of Wings、Monocoque、Composite Materials in Aircraft、Performance Instruments 四個標題。原書正文至 3-13，儀表附圖延續至 3-16；中文講解與案例為本站編寫，法規版本差異另註。"
+      "coverageNote": "依 FAA-H-8083-25C 第三章逐節整理，保留提供的目錄順序，另補正文中的 Alternate Types of Wings、Monocoque、Composite Materials in Aircraft、Performance Instruments 四個標題。原書正文至 3-13，儀表附圖延續至 3-16；中文講解與案例為本站編寫，法規版本差異另註。 本次進一步展開 3-2～3-5：認證與適航、四力與三軸、重心、主要部件及機身／機翼，含 Figure 3-1～3-7 讀圖指引、對照表與自我檢核；其餘小節維持逐節導讀深度。"
     },
     {
       "id": "phak25c-4",
