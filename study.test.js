@@ -202,3 +202,34 @@ test('Chapters 13–15 distinguish retired weather services, runway clearances a
  assert.ok(section(15,'vfr-minima').references.some(r=>r.url.includes('chap3_section_1')));
  for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.equal(r.checked,'2026-09-11');}
 });
+
+
+test('Chapter 16 covers all 62 supplied headings with FAA source pages and wind-triangle hierarchy',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[15];
+ const expected=[['Introduction',1],['Aeronautical Charts',2],['Sectional Charts',2],['VFR Terminal Area Charts',2],['World Aeronautical Charts',2],['Latitude and Longitude (Meridians and Parallels)',3],['Time Zones',3],['Measurement of Direction',5],['Variation',6],['Magnetic Variation',7],['Magnetic Deviation',7],['Deviation',8],['Effect of Wind',8],['Basic Calculations',11],['Converting Minutes to Equivalent Hours',11],['Time T = D/GS',11],['Distance D = GS X T',11],['GS GS = D/T',11],['Converting Knots to Miles Per Hour',11],['Fuel Consumption',11],['Flight Computers',12],['Plotter',12],['Pilotage',12],['Dead Reckoning',13],['Wind Triangle or Vector Analysis',13],['Step 1',14],['Step 2',15],['Step 3',15],['Step 4',15],['Flight Planning',17],['Assembling Necessary Material',17],['Weather Check',17],['Use of Chart Supplement U.S. (formerly Airport/Facility Directory)',17],['Airplane Flight Manual or Pilot’s Operating Handbook (AFM/POH)',17],['Charting the Course',18],['Steps in Charting the Course',18],['Filing a VFR Flight Plan',21],['Ground-Based Navigation',22],['Very High Frequency (VHF) Omnidirectional Range (VOR)',22],['Using the VOR',23],['Course Deviation Indicator (CDI)',23],['Horizontal Situation Indicator',24],['Radio Magnetic Indicator (RMI)',24],['Tracking With VOR',25],['Tips on Using the VOR',26],['Time and Distance Check From a Station Using a RMI',26],['Time and Distance Check From a Station Using a CDI',27],['Course Intercept',27],['Rate of Intercept',27],['Angle of Intercept',27],['Distance Measuring Equipment (DME)',27],['VOR/DME RNAV',28],['Automatic Direction Finder (ADF)',29],['Global Positioning System',30],['Selective Availability',31],['VFR Use of GPS',32],['RAIM Capability',32],['Tips for Using GPS for VFR Operations',33],['VFR Waypoints',33],['Lost Procedures',34],['Flight Diversion',34],['Chapter Summary',35]];
+ assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,62);
+ assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
+ const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page='+s.printedPage.split('-')[1]);}
+ assert.deepEqual(c.detailSections.filter(s=>s.parent==='triangle').map(s=>s.id),['step-1','step-2','step-3','step-4']);
+ assert.equal(c.checked,'2026-09-12');
+ for(const id of ['sectional','wac','sa','raim','vfr-plan']){const s=c.detailSections.find(s=>s.id===id);assert.ok(s.currentNote);assert.ok(s.references.length);}
+});
+
+test('Chapter 16 wind and distance teaching examples agree with independent vector calculations',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[15];
+ const prose=id=>{const s=c.detailSections.find(s=>s.id===id);return [...s.paragraphs,...(s.points||[])].join(' ');};
+ // Coordinates: east positive x, north positive y. A north wind adds southward velocity.
+ const radians=Math.PI/180;
+ const uncorrectedEast=120,uncorrectedNorth=-20;
+ const track=Math.atan2(uncorrectedEast,uncorrectedNorth)/radians;
+ assert.equal(track.toFixed(1),'99.5');assert.match(prose('wind'),/向南漂，track 約 099.5°/);
+ const heading=90-Math.asin(20/120)/radians;
+ const correctedNorth=120*Math.cos(heading*radians)-20;
+ assert.ok(Math.abs(correctedNorth)<1e-10);assert.match(prose('wind'),/080.4°/);
+ assert.equal((120*Math.sin(heading*radians)).toFixed(1),'118.3');
+ const component=40/Math.sqrt(2),gs=Math.sqrt(120**2-component**2)-component;
+ assert.equal(gs.toFixed(2),'88.33');assert.match(prose('step-4'),/88.33/);
+ assert.equal((90-Math.asin(component/120)/radians).toFixed(2),'76.37');assert.match(prose('step-4'),/076.37/);
+ assert.equal(Math.hypot(3,4),5);assert.match(prose('dme'),/水平距離 3 NM、高出台站 4 NM，斜距為 5 NM/);
+ assert.equal(36/90*60,24);assert.equal(36/90*8,3.2);assert.match(prose('diversion'),/3.2 US gal/);
+});

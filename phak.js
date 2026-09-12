@@ -12581,7 +12581,7 @@ export const phakDocument = {
       "number": 16,
       "title": "導航",
       "english": "Navigation",
-      "section": "第 16 章；印刷頁碼 16-1 起",
+      "section": "第 16 章；16-1～16-35，全章目錄逐節講解",
       "goal": "把航向、航跡、風、時間與燃油計算連起來。",
       "primer": "航圖提供位置、地形、空域與導航資訊，使用前先確認種類、比例尺及有效性。真北、磁北與羅盤指示的基準不同，換算時應保留方向與修正的順序。",
       "terms": [
@@ -12590,54 +12590,1214 @@ export const phakDocument = {
         "Variation / Deviation · 磁差／羅差"
       ],
       "prompts": [
-        "你能用自己的話解釋「地圖、方向與北方基準」，並指出適用條件嗎？",
-        "本章案例中，哪些資料或條件改變後，需要重新判斷？"
+        "你能從 TC、TAS、風、磁差與羅差卡，算出 CH、GS、航段時間與用油，並檢查方向合理嗎？",
+        "在 090 radial 上向台飛時，OBS、TO／FROM 與機頭方向分別代表什麼？",
+        "若 GPS 位置不可信或目的地關閉，你能用哪些資料重新定位並計算轉降燃油？"
       ],
       "keyPoints": [
-        "地圖、方向與北方基準",
-        "風三角連接空速與地速",
-        "時間、距離與燃油",
-        "目視、推算與電子導航互相驗證"
+        "分辨真航線、真航向、磁航向、羅盤航向及實際航跡",
+        "依原書四步作風三角，連結 TAS、GS、時間與燃油",
+        "用目視領航和推測航法交叉驗證電子位置",
+        "辨別 VOR 徑向線／TO–FROM、CDI 模式、ADF 方位與 DME 斜距",
+        "理解 GPS／RAIM 限制及 VFR 計畫啟用、關閉與改航"
       ],
       "detailSections": [
         {
-          "title": "地圖、方向與北方基準",
-          "locator": "Aeronautical Charts；Latitude and Longitude；16-2 起",
+          "id": "intro",
+          "english": "Introduction",
+          "title": "導航導論",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-1",
+          "printedPage": "16-1",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=1",
           "paragraphs": [
-            "航圖提供位置、地形、空域與導航資訊，使用前先確認種類、比例尺及有效性。真北、磁北與羅盤指示的基準不同，換算時應保留方向與修正的順序。",
-            "磁差來自真北與磁北差異，羅差來自航空器磁場等對羅盤的影響。不能把兩者合成一個永遠固定的修正值；羅差還可能隨航向與裝備狀態改變。"
+            "導航要持續回答目前在哪裡、應往哪裡、何時抵達，以及燃油是否足夠。本章把航圖、目視領航、推測航法與電子導航串起來；電子設備提供位置，機師仍須判斷航路是否符合地形、天氣、空域與性能條件。",
+            "一條螢幕上的直線只連結兩個座標，並未替你確認中間山脈、限制區或低雲。練習應同時保留預定航向、檢查點、預計時間與替代機場，再以實際觀察修正計畫，而非只追著導航線飛行。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
           ]
         },
         {
-          "title": "風三角連接空速與地速",
-          "locator": "Effect of Wind；Wind Triangle；16-8、16-13 起",
+          "id": "charts",
+          "english": "Aeronautical Charts",
+          "title": "航空圖的選用",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-2",
+          "printedPage": "16-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=2",
           "paragraphs": [
-            "航向是機頭方向，航跡是對地移動路徑。空氣相對地面也在移動，因此真空速向量加上風向量得到地速向量；有側風時，想維持航跡通常需要修正航向。",
-            "風向資料通常表示風從哪裡來，畫向量時要避免把來源方向直接當成吹往方向。先定義基準與單位，再解風三角，比只背左右加減更可靠。"
+            "航空圖依用途呈現地形、機場、空域、導航台與障礙物，比例尺決定同一張紙能容納的範圍與細節。使用前先確認圖種、涵蓋區及生效日期，並了解圖例與高度基準，不可把不同圖種視為可互換的背景圖。",
+            "電子地圖放大不一定增加原始資料的解析度，也不代表所有標籤都會顯示。若要辨識終端空域細節，應切到適當圖層與比例尺；近期關閉、導航台失效及臨時限制仍要查 NOTAM。"
+          ],
+          "references": [
+            {
+              "title": "FAA：Sectional 比例尺與現行更新週期",
+              "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/productcatalog/vfrcharts/sectional/",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "FAA 現行 Sectional 產品每 56 天更新；原書較長更新週期的敘述不可直接沿用，使用前仍需確認生效日期與 NOTAM。",
+          "points": [
+            "比例尺分母愈小，在同一紙面上呈現的地面範圍愈小，通常可容納更多細節。",
+            "Sectional 1:500,000；TAC 1:250,000；原書 WAC 1:1,000,000。用錯量尺會直接影響距離、航時及燃油。",
+            "圖面有效日期、導航資料庫週期與 NOTAM 各有角色；下載成功不等於內容已生效或完整。"
           ]
         },
         {
-          "title": "時間、距離與燃油",
-          "locator": "Basic Calculations；16-11 起",
+          "id": "sectional",
+          "english": "Sectional Charts",
+          "title": "Sectional 區域航空圖",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 16-2",
+          "printedPage": "16-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=2",
           "paragraphs": [
-            "時間＝距離÷地速；若距離用 NM、地速用 kt，時間得到小時。燃油消耗可用耗油率乘時間估算，但完整規劃還需涵蓋各飛行階段與適用餘油要求。",
-            "逆風降低地速時，相同地面距離需要較久，燃油需求也可能增加。不能只按真空速計算對地到達時間，也不能把算例中得到的航段用油當成出發所需全部燃油。"
+            "美國 Sectional 比例尺為 1:500,000，是常用的 VFR 導航圖，兼顧地形辨識與航路資訊。圖上包含機場、障礙物、地形、空域及導航設施，但每類數字的單位和基準需按圖例辨認。",
+            "例如山區的地形標高、障礙物頂高與括號內離地高不能混用，最大標高數字也不等於一條經核准的安全航路高度。應按實際航線另評估地形淨空、天氣與逃脫路徑，並使用現行有效版本。"
+          ],
+          "references": [
+            {
+              "title": "FAA：Sectional 比例尺與現行更新週期",
+              "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/productcatalog/vfrcharts/sectional/",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "FAA 現行 Sectional 產品每 56 天更新；原書較長更新週期的敘述不可直接沿用，使用前仍需確認生效日期與 NOTAM。"
+        },
+        {
+          "id": "tac",
+          "english": "VFR Terminal Area Charts",
+          "title": "VFR 終端區域圖",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 16-2",
+          "printedPage": "16-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=2",
+          "paragraphs": [
+            "TAC 常以 1:250,000 比例尺呈現繁忙終端區，比 Sectional 更容易閱讀細小的空域分層與目視參考。同樣一公分紙面距離在 TAC 代表的實際距離較短，因此量距時必須使用正確比例尺。",
+            "TAC 上的 VFR 路線可能有方向、高度及通訊條件，不能把畫出的路徑當成自動獲准穿越 Class B。接近複雜空域前，應先用圖理解各層底限，再判斷整條路線需要哪些許可。"
+          ],
+          "references": [
+            {
+              "title": "FAA：VFR Terminal Area Chart",
+              "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/productcatalog/vfrcharts/terminalarea/",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "TAC 比例尺 1:250,000，現行產品以 FAA 公布的有效版本與更新資訊為準。"
+        },
+        {
+          "id": "wac",
+          "english": "World Aeronautical Charts",
+          "title": "World Aeronautical Chart：歷史圖種",
+          "parent": "charts",
+          "locator": "PHAK C 版 · 16-2",
+          "printedPage": "16-2",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=2",
+          "paragraphs": [
+            "原書介紹的 WAC 比例尺為 1:1,000,000，涵蓋較廣區域而細節較少，適合理解不同圖種的取捨。與 Sectional 相比，它在相同紙面長度上代表兩倍的實際距離，不適合用來取代較細的終端區判讀。",
+            "FAA 已停止 WAC 系列的製作，舊圖可用來學習符號與比例尺，但不能當成現行導航資料。這項停用是 FAA 產品的狀態，不代表所有國家的同名或相同比例尺航圖都同時停用。"
+          ],
+          "references": [
+            {
+              "title": "FAA：WAC 系列停止供應通知",
+              "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/safety_alerts/media/ChartingNotice_EVCG_15-02.pdf",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "歷史圖種：FAA 已停止 WAC 系列；保留原書小節作比例尺與圖種學習，不將舊 WAC 當成可取得的現行導航圖。"
+        },
+        {
+          "id": "coordinates",
+          "english": "Latitude and Longitude (Meridians and Parallels)",
+          "title": "緯度、經度、經線與緯線",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-3",
+          "printedPage": "16-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=3",
+          "paragraphs": [
+            "緯度由赤道向北或南量到九十度，經度由本初子午線向東或西量到一百八十度。緯線平行赤道，經線在兩極會合；因此一分緯度約一海里，一分經度的地面距離則隨緯度改變。",
+            "輸入座標時，要分清度分秒、度與小數分、十進位度。例如 25°30′N 是 25.5°N，不是 25.30°N；再核對 N／S、E／W，因為符號錯誤可能讓格式正確的座標落在完全不同的地區。"
+          ],
+          "points": [
+            "自編：25°30′00″N＝25.5000°N；25.30°N＝25°18′00″N，相差 12′ 緯度，約 12 NM。",
+            "一般換算：十進位度＝度＋分／60＋秒／3,600，再依南北／東西決定正負。",
+            "緯度每分約 1 NM；經度每分約為 cos(緯度) NM，例如緯度 60° 處約 0.5 NM，不可全球固定為 1 NM。"
           ]
         },
         {
-          "title": "目視、推算與電子導航互相驗證",
-          "locator": "Pilotage；Dead Reckoning；Ground-Based Navigation；GPS",
+          "id": "time-zones",
+          "english": "Time Zones",
+          "title": "時區與 UTC",
+          "parent": "coordinates",
+          "locator": "PHAK C 版 · 16-3",
+          "printedPage": "16-3",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=3",
           "paragraphs": [
-            "目視導航利用地標，推算導航依速度、時間與方向推估位置，VOR 等地面設備和 GPS 提供其他定位資訊。各自都有覆蓋、誤差、資料庫或使用限制。",
-            "VOR radial 是由台站向外的方位，與自己飛向台站的航向不是同一量；DME 測得斜距，靠近台站且高度較大時不能直接當水平距離。GPS 也需要確認航點、模式與資料有效性。"
+            "地球約二十四小時自轉一周，因此每十五度經度約對應一小時，但民用時區邊界受行政安排影響，不能只由經度計算當地鐘點。航空報告與飛行計畫常使用 UTC，換算時還要處理日期跨越及夏令時間。",
+            "自編例：臺北 12 日 01:30 為 UTC 11 日 17:30，因臺北比 UTC 快八小時。跨午夜的航班若只改小時、不改日期，可能選到錯誤的 TAF 時段或誤填起飛時間，應連日期一起記錄。"
           ]
         },
         {
-          "title": "案例：逆風下的時間與用油",
-          "locator": "本站自編算例；對照 Basic Calculations",
+          "id": "direction",
+          "english": "Measurement of Direction",
+          "title": "方向、航線與航向",
+          "parent": "coordinates",
+          "locator": "PHAK C 版 · 16-5",
+          "printedPage": "16-5",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=5",
           "paragraphs": [
-            "自編算例：航段 90 NM、地速 90 kt，時間為 1 小時；假設該航段耗油率 8 US gal/h，航段用油為 8 US gal。若地速降為 60 kt，時間變 1.5 小時，同耗油率下為 12 US gal。",
-            "例題尚未包含起動、滑行、爬升、備用或法定餘油，不能用來決定實際加油量。重點是風透過地速與時間影響需求，須重新計算。"
+            "方向通常由北開始順時針量測，東為九十度、南為一百八十度。Course 是計畫的對地航線方向，heading 是機頭指向，track 是實際對地移動方向；另須指出使用真北、磁北或羅盤哪一種基準。",
+            "計畫向東飛而受到南風時，若仍把機頭朝正東，航跡會向北偏。GPS 顯示的對地航跡不是機頭航向；兩個數字不同可能是正常風修正，不應立刻認定儀表出錯。"
+          ],
+          "points": [
+            "TC：真航線，預定對地路徑相對真北。",
+            "TH：真航向，機頭方向相對真北；TC 加上有正負方向的 WCA 得 TH。",
+            "MH：磁航向，由 TH 修正磁差後取得。",
+            "CH：羅盤航向，依該機羅差卡把 MH 換成要保持的羅盤讀值。",
+            "Track：實際對地航跡；風修正正確時，track 可與預定 course 一致，但 heading 仍可能不同。"
+          ]
+        },
+        {
+          "id": "variation",
+          "english": "Variation",
+          "title": "磁差的概念",
+          "parent": "coordinates",
+          "locator": "PHAK C 版 · 16-6",
+          "printedPage": "16-6",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=6",
+          "paragraphs": [
+            "真北依地理經線定義，磁北依地球磁場方向而定，兩者的夾角稱為 variation。磁差依位置與時間改變，航圖上的等磁差線能協助換算，但必須使用適當版本，不能把多年前的數值永遠沿用。",
+            "導航流程應先由真航線配合風求真航向，再換成磁航向與羅盤航向。磁差修正只是在改變方向的參考基準，不會修正風吹造成的偏航；把磁差當成風修正角會留下實際的航路偏差。"
+          ]
+        },
+        {
+          "id": "magnetic-variation",
+          "english": "Magnetic Variation",
+          "title": "真方向與磁方向換算",
+          "parent": "variation",
+          "locator": "PHAK C 版 · 16-7",
+          "printedPage": "16-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=7",
+          "paragraphs": [
+            "由真方向換成磁方向時，東磁差通常相減、西磁差相加；反向換算則反過來。記口訣前先寫清楚目前是 T 轉 M 還是 M 轉 T，並將結果整理在零至三百六十度的範圍。",
+            "自編例：真航向 090°、磁差 8°E，磁航向為 082°；若磁差改為 8°W，則為 098°。同一個東磁差，從磁航向換回真航向時要加回去，因此不能只記「東減」而不記換算方向。"
+          ],
+          "points": [
+            "T → M：東磁差減、西磁差加；M → T：方向相反。",
+            "自編跨零例：TH 005°、10°E → MH −005°，整理為 355°。",
+            "不要把磁差套兩次：若工具已輸出磁航向，就不能再把它當真航向重做修正。"
+          ]
+        },
+        {
+          "id": "magnetic-deviation",
+          "english": "Magnetic Deviation",
+          "title": "羅盤受到航空器磁場影響",
+          "parent": "variation",
+          "locator": "PHAK C 版 · 16-7",
+          "printedPage": "16-7",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=7",
+          "paragraphs": [
+            "Magnetic deviation 是航空器本身的磁性與電氣設備，使羅盤偏離應有磁北指示的誤差，與地理位置造成的磁差不同。機身磁場相對於羅盤的方向會隨航向改變，所以羅差通常不是全方向同一個固定值。",
+            "羅差修正卡是針對該航空器與相關設備狀態建立，不能借用另一架同型飛機的卡片。新增設備、維修或座艙磁性物品也可能影響羅盤，若讀數不合理，應按維護與操作程序處理。"
+          ]
+        },
+        {
+          "id": "deviation",
+          "english": "Deviation",
+          "title": "依羅差卡取得羅盤航向",
+          "parent": "coordinates",
+          "locator": "PHAK C 版 · 16-8",
+          "printedPage": "16-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=8",
+          "paragraphs": [
+            "羅差卡常以「欲飛磁航向」對應「應保持羅盤指示」的形式列出修正。使用時直接讀清楚兩欄的意義，必要時依適用方法內插，而不是看到某數值就自行假設那是應加或應減的羅差。",
+            "自編卡片若列「FOR 090, STEER 092」，表示要保持磁航向 090°，羅盤應指示 092°。這只是在穩定狀態的修正；轉彎、加減速造成的磁羅盤動態誤差，仍需另外理解與交叉確認。"
+          ]
+        },
+        {
+          "id": "wind",
+          "english": "Effect of Wind",
+          "title": "風對航向與地速的影響",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-8",
+          "printedPage": "16-8",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=8",
+          "paragraphs": [
+            "航空器相對空氣的速度向量，加上空氣相對地面的風向量，得到對地速度向量。順逆風主要改變地速，側風要求機頭偏向來風側以維持航線；真正計算時，兩種效應會同時存在。",
+            "要沿真航線 090°、TAS 120 kt 飛行，若真風由 360° 以 20 kt 吹來，需向左迎風約 9.6°，真航向約 080.4°，地速約 118.3 kt。純側風也會讓沿航線的空速分量略減，地速不會仍恰為 120 kt。"
+          ],
+          "points": [
+            "向量關係：對地速度＝相對空氣速度＋風速度；氣象風向是吹來方向，畫風箭頭要指向相反方向。",
+            "自編純側風：TC 090°、TAS 120 kt、風 360°／20 kt；WCA＝−arcsin(20／120)≈−9.6°，TH≈080.4°。",
+            "沿線地速＝√(120²−20²)≈118.3 kt；風分量超過可抵消的側向空速時，不能硬套 arcsin 產生可行航向。",
+            "若維持 TH 090° 不修正，同一例會向南漂，track 約 099.5°；不是保持所需東向航線。"
+          ]
+        },
+        {
+          "id": "calculations",
+          "english": "Basic Calculations",
+          "title": "導航基本計算",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "時間、距離、地速與燃油互相關聯，但公式必須使用相容單位。海里配節時，時間要以小時計；若使用分鐘，需加入六十的換算。對地航段時間用地速，不是直接拿指示空速或真空速代入。",
+            "計算後可做量級檢查：地速 120 kt 等於每分鐘兩海里，所以三十分鐘應約六十海里。如果答案成為三千六百海里，問題通常在小時與分鐘混用，而不是飛行電腦本身失準。"
+          ],
+          "points": [
+            "T（小時）＝D（NM）／GS（kt）；T（分鐘）＝60×D／GS。",
+            "D（NM）＝GS（kt）×T（小時）；GS（kt）＝60×D／T（分鐘）。",
+            "燃油＝適用耗油率×時間；耗油率若用 US gal/h，時間也要用小時。",
+            "所有算例是教學用；實際 TAS、階段耗油率與燃油需求依適用 AFM／POH、條件和規則。"
+          ]
+        },
+        {
+          "id": "minutes",
+          "english": "Converting Minutes to Equivalent Hours",
+          "title": "分鐘換成小時",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "把分鐘換成小時需除以六十，小時換回分鐘則乘六十。小數小時不是鐘面的分數表示，0.5 小時等於三十分鐘，0.1 小時等於六分鐘，不是十分鐘。",
+            "自編例：一小時四十五分鐘為 1＋45÷60＝1.75 小時；七十五分鐘為 1.25 小時。計算燃油時若把 1:45 寫成 1.45，會低估時間與用油，應在導航紀錄上明確標示格式。"
+          ]
+        },
+        {
+          "id": "time",
+          "english": "Time T = D/GS",
+          "title": "時間：T＝D／GS",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "時間等於對地距離除以地速，當 D 使用 NM、GS 使用 kt，結果為小時。航路不同段落風與速度可能不同，應分段計算後相加；用出發時的一個地速代表全程，可能造成到達時間誤差。",
+            "自編例：航段 75 NM、地速 100 kt，需要 0.75 小時，也就是 45 分鐘。若遇逆風使地速降至 75 kt，時間變為 60 分鐘；同一距離多出的十五分鐘，也必須反映在預計燃油中。"
+          ]
+        },
+        {
+          "id": "distance",
+          "english": "Distance D = GS X T",
+          "title": "距離：D＝GS×T",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "距離等於地速乘時間，使用節時需先把時間轉成小時。推估位置時，這個距離應沿實際或合理估計的對地航跡量出，而不是沿機頭方向畫線，否則側風會使推估位置偏離。",
+            "自編例：地速 110 kt 持續飛行 18 分鐘，距離為 110×18÷60＝33 NM。這是該段速度假設下的結果；若途中爬升、轉彎或風明顯改變，應分段處理並用地標再確認。"
+          ]
+        },
+        {
+          "id": "groundspeed",
+          "english": "GS GS = D/T",
+          "title": "地速：GS＝D／T",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "在兩個已確認位置之間，用已知距離除以實際經過時間，可估算該航段平均地速。計時起點與終點必須對應同一組地標，否則把遠方剛看到地標的時刻當成通過時刻，會造成系統性誤差。",
+            "自編例：兩檢查點相隔 24 NM，實際用 12 分鐘，平均地速為 24÷0.2＝120 kt。再用這個地速更新下一段 ETA，但若下一段轉向，風分量會改變，不能無條件沿用。"
+          ]
+        },
+        {
+          "id": "knots-mph",
+          "english": "Converting Knots to Miles Per Hour",
+          "title": "節與英里每小時換算",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "一節是一海里每小時，海里與法定英里不是相同長度。近似換算為 kt×1.15078＝mph，反向則以 mph 除以 1.15078；一海里也等於 1.852 公里。",
+            "自編例：100 kt 約為 115.1 mph。若距離表寫 statute miles，速度卻用 knots 而未換算，航時就會錯；使用舊機型 POH、航圖量尺或不同軟體時，應先確認每個欄位的單位。"
+          ]
+        },
+        {
+          "id": "fuel",
+          "english": "Fuel Consumption",
+          "title": "燃油消耗與剩餘量",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-11",
+          "printedPage": "16-11",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11",
+          "paragraphs": [
+            "航段用油可以耗油率乘時間估算，但滑行、起飛、爬升、巡航與下降的耗油率未必相同。還要分清可用與不可用燃油、體積與重量，並另外保留適用法定與操作備份，而非只算剛好到目的地。",
+            "自編例：巡航 1.5 小時、8 US gal/h，航段用油為 12 US gal；這不包含額外地面、爬升或備份用油。若實際地速低於計畫，應及早重算到達與改降後的剩餘量，不要等油量接近下限才處理。"
+          ],
+          "points": [
+            "先分地面、爬升、巡航及其他階段，再加上適用備份與操作餘裕。",
+            "自編分段例：爬升 15 min×10 US gal/h＝2.5 US gal；巡航 45 min×8 US gal/h＝6 US gal，兩段共 8.5 US gal，尚未含地面與備份。",
+            "對相同距離，逆風降低 GS、增加航時，即使每小時耗油未變也會增加航段用油。",
+            "不要把油量表總量等同全部可用燃油，US gallon 與 Imperial gallon 也不可混用。"
+          ]
+        },
+        {
+          "id": "computer",
+          "english": "Flight Computers",
+          "title": "飛行計算器",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-12",
+          "printedPage": "16-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=12",
+          "paragraphs": [
+            "傳統 E6B 與電子飛行計算器都能處理時間、距離、風修正及單位換算，但它們只依輸入與模式算出結果。選錯真風／磁風、把 IAS 當 TAS，或讓舊航段資料留在欄位中，都可能得到看似精確的錯誤答案。",
+            "使用前先寫下已知量與所求量，算完再檢查方向與量級。例如風從左側吹來，保持航線所需機頭應偏左；若結果偏右，先檢查風向是「來自」還是「吹往」，不要直接照數字飛。"
+          ]
+        },
+        {
+          "id": "plotter",
+          "english": "Plotter",
+          "title": "航線量角尺",
+          "parent": "calculations",
+          "locator": "PHAK C 版 · 16-12",
+          "printedPage": "16-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=12",
+          "paragraphs": [
+            "Plotter 結合量角與比例尺，先把航線方向相對於經線讀成真航線，再用符合圖種的尺度量距。應讀經線而非任意紙邊，且要選向目的地方向的數字，避免誤讀相差一百八十度的反向刻度。",
+            "把 Sectional 用的尺量在 TAC 上，可能得到錯一倍的距離。電子列印或縮放過的航圖也可能改變紙面尺度；應用圖上的比例尺或適用量測工具確認，不要假定所有印出的圖都維持原尺寸。"
+          ]
+        },
+        {
+          "id": "pilotage",
+          "english": "Pilotage",
+          "title": "目視領航",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-12",
+          "printedPage": "16-12",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=12",
+          "paragraphs": [
+            "Pilotage 以地面特徵與航圖互相比對，確認位置及路線。好的地標要容易辨認、在適當時間看得見且不易與其他特徵混淆，例如明顯河流轉彎、道路交會或湖泊形狀，而非僅依一棟不穩定存在的建物。",
+            "辨識時至少搭配方向、距離、周邊地形與預計通過時間。看到一座水塔就宣布定位，可能把相似城鎮混為一談；夜間、積雪或季節變化也會改變外觀，應準備替代地標與其他導航方法。"
+          ]
+        },
+        {
+          "id": "dead-reckoning",
+          "english": "Dead Reckoning",
+          "title": "推測航法",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-13",
+          "printedPage": "16-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=13",
+          "paragraphs": [
+            "Dead reckoning 從已知位置出發，依航向、真空速、風與經過時間推估下一位置。它能在地標稀少時提供搜尋範圍，但誤差會隨時間累積，因此要持續用可靠的目視或電子定位重新校正起點。",
+            "自編例：已知點後以估計地速 90 kt 飛行二十分鐘，應約前進 30 NM；若只找到距出發點 20 NM 的地標，需檢查認錯地標、風估計或計時。推算的用途是檢驗假設，不是迫使外界符合原先計畫。"
+          ]
+        },
+        {
+          "id": "triangle",
+          "english": "Wind Triangle or Vector Analysis",
+          "title": "風三角與向量分析",
+          "parent": "dead-reckoning",
+          "locator": "PHAK C 版 · 16-13",
+          "printedPage": "16-13",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=13",
+          "paragraphs": [
+            "風三角的三邊分別代表航空器相對空氣的運動、空氣相對地面的風，以及航空器相對地面的運動。所有速度使用相同比例與同一時間長度，所有方向使用一致基準，才能以首尾相接的方法閉合三角形。",
+            "原書範例設定真航線 090°、TAS 120 kt、真風由 045° 以 40 kt 吹來。風會把飛機推向西南，因此機頭必須向東偏北；以下四步沿用這組條件，分別畫出航線、風及空速向量。"
+          ]
+        },
+        {
+          "id": "step-1",
+          "english": "Step 1",
+          "title": "Step 1：建立真北與角度參考",
+          "parent": "triangle",
+          "locator": "PHAK C 版 · 16-14",
+          "printedPage": "16-14",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=14",
+          "paragraphs": [
+            "先在紙上畫南北線，標出起點 E，再由真北順時針找出航線 090° 與來風方向 045°。這一步只建立方向基準與標記，不要先把風的箭頭畫成朝向來風處，因向量代表的是空氣實際移動方向。",
+            "以原書例來說，090° 在 E 的正東，045° 在東北方。檢查紙上北、東與起點標示後再繼續，可以避免整個三角形旋轉或把目的地方向讀成西方；同時先決定速度比例，後續各邊一致使用。"
+          ]
+        },
+        {
+          "id": "step-2",
+          "english": "Step 2",
+          "title": "Step 2：畫出預定真航線",
+          "parent": "triangle",
+          "locator": "PHAK C 版 · 16-15",
+          "printedPage": "16-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=15",
+          "paragraphs": [
+            "由 E 朝 090° 畫出航線射線，延伸到足以容納結果的長度，標記 TC 090°。這條線代表希望實際對地移動的方向，最後的目的位置 P 必須落在其上，但現在還不知道一小時能前進多遠。",
+            "不要直接在這條線上量 120 單位當作地速，因為 120 kt 是相對空氣的速度。風修正後的地速需等三角形完成才能取得，先把 TAS 當成航段距離會跳過整個風效應。"
+          ]
+        },
+        {
+          "id": "step-3",
+          "english": "Step 3",
+          "title": "Step 3：畫出吹往方向的風向量",
+          "parent": "triangle",
+          "locator": "PHAK C 版 · 16-15",
+          "printedPage": "16-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=15",
+          "paragraphs": [
+            "風由 045° 吹來，實際吹往 225°，因此從 E 向西南畫長度為 40 速度單位的箭頭，終點記為 W。這是原書作圖最容易反向的一步：氣象風向說明來源，向量箭頭則表示去向。",
+            "若選每公分代表 20 kt，風向量長度就是 2 公分，稍後的 TAS 向量則需 6 公分。箭頭畫成東北會把逆風和側風效果一起反轉；完成後先口述「空氣把我推向哪裡」再接下一邊。"
+          ]
+        },
+        {
+          "id": "step-4",
+          "english": "Step 4",
+          "title": "Step 4：閉合三角形並求航向與地速",
+          "parent": "triangle",
+          "locator": "PHAK C 版 · 16-15",
+          "printedPage": "16-15",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=15",
+          "paragraphs": [
+            "以 W 為起點，取長度 120 單位的空速向量，使另一端交在東向航線上，交點為 P。W 到 P 的方向是真航向，E 到 P 的長度是一小時的對地距離，也就是地速；不能用 E 到 W 的方向當成機頭方向。",
+            "原書量圖約得真航向 076°、地速 88 kt；用三角函數重算約為 076.37°、88.33 kt，差異來自作圖取整。取得真航向後才套磁差與羅差，航段時間則用地速計算，再依時間估算燃油。"
+          ],
+          "points": [
+            "原書條件：TC 090°、TAS 120 kt、風由 045°／40 kt；北向與東向的風分量均為約 −28.28 kt。",
+            "需用空速的向北分量抵消向南風，WCA≈−13.63°，所以 TH≈076.37°。",
+            "東向地速＝√(120²−28.28²)−28.28≈88.33 kt；原書作圖取約 88 kt。",
+            "原書沿用 88 kt 算 220 NM，時間為 2.5 h、以 8 gal/h 算約 20 gal；若用未取整的 88.33 kt，約為 2.491 h、19.93 gal。這是同一模型不同取整，不是額外燃油裕度。",
+            "W → P 是空速／航向邊，E → W 是風邊，E → P 是地速／航線邊；三邊必須用同一比例尺。"
+          ]
+        },
+        {
+          "id": "planning",
+          "english": "Flight Planning",
+          "title": "完整飛行計畫",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-17",
+          "printedPage": "16-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=17",
+          "paragraphs": [
+            "飛行計畫先整合機師、航空器、天氣、路線、時間及備案，再產生可執行的導航紀錄。並非把起點終點輸入軟體就完成，因為可用跑道、爬升能力、地形與日落時間都可能改變路線是否成立。",
+            "可以從目的地反推：預計抵達時是否可用、若不能落地去哪裡、何時必須改航。再往前檢查每段的高度、風、通訊及燃油，讓計畫包含決策點，而不是只列一串樂觀的到達時間。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "materials",
+          "english": "Assembling Necessary Material",
+          "title": "準備所需資料與工具",
+          "parent": "planning",
+          "locator": "PHAK C 版 · 16-17",
+          "printedPage": "16-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=17",
+          "paragraphs": [
+            "出發前應備妥有效航圖、機場資料、天氣與 NOTAM、機型性能資料、導航紀錄及可用計算工具。電子資料需確認已下載離線內容、電力與備援，不要假定在空中仍能取得地面網路。",
+            "把最常用的資料放在能迅速找到的位置，例如下一段頻率、目的地機場圖與改降機場。若必須在低空反覆翻找多層選單，資料雖然存在，仍未成為可實際運用的資源。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "weather",
+          "english": "Weather Check",
+          "title": "天氣檢查與航路選擇",
+          "parent": "planning",
+          "locator": "PHAK C 版 · 16-17",
+          "printedPage": "16-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=17",
+          "paragraphs": [
+            "導航所用風應對應預計通過的高度與時間，並與沿途雲、能見度、結冰、對流及地形條件一起評估。單看目的地 METAR 不足以代表整條航路，風向轉變也會同時影響航向、地速與燃油。",
+            "若較高高度有更強順風，不能只因縮短航時就選它；還要檢查爬升性能、氧氣、雲層與下降條件。延誤起飛或改變高度後，應重新評估天氣與導航數值，不直接沿用原航行紀錄。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "supplement",
+          "english": "Use of Chart Supplement U.S. (formerly Airport/Facility Directory)",
+          "title": "使用 Chart Supplement",
+          "parent": "planning",
+          "locator": "PHAK C 版 · 16-17",
+          "printedPage": "16-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=17",
+          "paragraphs": [
+            "Chart Supplement 補充機場頻率、跑道、服務時間、進出及其他備註，也提供部分導航設施資料。它回答航圖空間不足以完整呈現的問題，但短期失效與變更仍需透過 NOTAM 等現行資訊確認。",
+            "例如計畫依賴某機場補油，應查油品、營業時間及是否需事先安排，而不是只看有燃油符號。若到達時服務已結束，原本可行的下一段燃油計畫可能失效，應在起飛前確認替代方案。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "poh",
+          "english": "Airplane Flight Manual or Pilot’s Operating Handbook (AFM/POH)",
+          "title": "AFM／POH 與導航數據",
+          "parent": "planning",
+          "locator": "PHAK C 版 · 16-17",
+          "printedPage": "16-17",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=17",
+          "paragraphs": [
+            "AFM／POH 提供適用機型的性能與操作限制，導航計算中的 TAS、耗油、爬升時間與距離應從符合重量、高度、溫度及功率的資料取得。範例飛機的數值不能直接套到同型但設備或條件不同的航空器。",
+            "若把全程都當成巡航，會漏掉爬升耗時和燃油，尤其高密度高度或重載時影響更大。規劃時依各階段分段，並確認表格假設、插值範圍及可用燃油，才有可靠的 ETA 與剩餘量。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "chart-course",
+          "english": "Charting the Course",
+          "title": "在航圖上規劃航線",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-18",
+          "printedPage": "16-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=18",
+          "paragraphs": [
+            "在圖上連接兩地只是起點，接著要檢查沿線地形、障礙、空域、可辨認地標與備降選項，必要時改成數個安全航段。航線長度最短不一定最適合，稍微繞行可能換得更多迫降或天氣退路。",
+            "每段應記錄真航線與距離，再使用該段預期風求航向與地速。選檢查點時兼顧辨識與合理間隔，不能為了每五分鐘剛好一點，挑選容易混淆或必須長時間低頭才能確認的小地標。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "chart-steps",
+          "english": "Steps in Charting the Course",
+          "title": "繪製航線的完整步驟",
+          "parent": "chart-course",
+          "locator": "PHAK C 版 · 16-18",
+          "printedPage": "16-18",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=18",
+          "paragraphs": [
+            "可依序選路、查地形與空域、標檢查點、量真航線和距離、選高度，再由性能與風算出航向、地速、時間及燃油。完成後補上頻率、備案與決策點，最後核對各段加總與整趟飛行限制。",
+            "飛行中應填入實際通過時間，與預計數值比較。若第一段落後五分鐘，不能只把後續 ETA 全部順延而不分析原因；先判斷是風較強、速度不足或繞行，再決定哪些航段與燃油估計需要更新。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "一、選擇能避開地形、天氣與不適用空域的航路，確認可用機場與備案。",
+            "二、挑可辨認的檢查點，分段量真航線與 NM 距離，標出高度及主要障礙。",
+            "三、依性能求 TAS、耗油與爬升資料，依時段／高度取真風，求 TH 和 GS。",
+            "四、由磁差換 MH，再依羅差卡取 CH；由 GS 求 ETE、ETA 與燃油。",
+            "五、填頻率、機場資料、備案及改航觸發點，核對各段加總和燃油餘裕。",
+            "六、航中記錄實際時間、位置與用油，查明差異並更新後續計畫。"
+          ]
+        },
+        {
+          "id": "vfr-plan",
+          "english": "Filing a VFR Flight Plan",
+          "title": "提交、啟用與關閉 VFR 飛行計畫",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-21",
+          "printedPage": "16-21",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=21",
+          "paragraphs": [
+            "VFR 飛行計畫的重要作用是提供航路、時間與聯絡資訊，協助在逾時失聯時展開搜尋。提交、啟用與關閉是不同動作，僅送出資料不表示已記錄實際出發，也不能假定到有塔臺的機場落地就自動關閉。",
+            "接受 VFR flight following 不等於啟用 VFR 搜救飛行計畫。應依所用服務確認啟用方式、起飛後的實際時間與到達後關閉責任；改航或大幅延誤時也要更新，避免錯誤警報或搜尋依據失準。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "原書展示舊 FAA Form 7233-1；現行一般民用提交依 FAA Form 7233-4／ICAO 格式資訊處理，7233-1 有限定例外。提交格式與 VFR 飛行計畫的啟用、更新、關閉是不同問題，依 FAA AIM 5-1 與所用服務確認。",
+          "points": [
+            "提交：航班識別、機型、設備、出發地、預計時間、航路、目的地與相關補充資訊，依適用格式填寫。",
+            "啟用：依服務方式回報實際起飛時間或確認已安排的啟用方式；不能假設按下送出即已啟用。",
+            "更新：目的地、航路或時間大幅改變時，讓飛行計畫的搜尋資訊反映現況。",
+            "關閉：到達後確認 VFR 計畫已關閉；塔臺不會像部分 IFR 情況一樣自動關閉 VFR 計畫。",
+            "Flight following 是 ATC 交通諮詢，與 Flight Service 的 VFR 飛行計畫／搜救資訊不同。"
+          ]
+        },
+        {
+          "id": "ground-nav",
+          "english": "Ground-Based Navigation",
+          "title": "地面導航設施",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-22",
+          "printedPage": "16-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=22",
+          "paragraphs": [
+            "地面導航透過已知位置的無線電台提供方位、航線或距離資訊，機師必須確認所調設施、可用狀態與訊號涵蓋。航圖上仍有台站不代表此刻正常，維修、退役及服務範圍限制都可能影響使用。",
+            "電子設備顯示一根穩定指針，也不能取代識別台站與檢查旗標。應依現行資料確認頻率及識別，並將測得的位置與航圖、其他導航來源交叉比對，尤其在低空或距離台站較遠時。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "vor",
+          "english": "Very High Frequency (VHF) Omnidirectional Range (VOR)",
+          "title": "VOR 全向導航台",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-22",
+          "printedPage": "16-22",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=22",
+          "paragraphs": [
+            "VOR 提供航空器相對於台站的徑向方位，radial 一律指由台站向外的方向。航空器在台站東側位於約 090 radial，不論機頭朝東、西、南或北，所在徑向線都不會因轉動機頭而立即改變。",
+            "若在 090 radial 上飛向台站，進台航線約為 270°，不是 090°。VOR 方位依台站採用的磁方位基準，與 GPS 計算使用的磁模型可能略有差異；應按公布資料與設備模式判讀。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "using-vor",
+          "english": "Using the VOR",
+          "title": "使用 VOR 的基本流程",
+          "parent": "vor",
+          "locator": "PHAK C 版 · 16-23",
+          "printedPage": "16-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=23",
+          "paragraphs": [
+            "先調頻並辨識台站，確認訊號有效，再用 OBS 選擇需要的航線，配合 CDI 與 TO／FROM 判斷相對位置。TO／FROM 與選定航線和所在位置有關，不是感測機頭正在向台或離台飛。",
+            "自編例：在台站東側，選 270° 並位於中心線，通常顯示 TO；即使機頭暫時朝東，指示也不會只因機頭朝向而變 FROM。理解位置、選擇與飛行方向三者，才能避免反向感應。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "調頻 → 識別 → 確認有效 → 設 OBS → 判讀 CDI／TO–FROM → 選截獲與風修正。",
+            "自編位置：台站東側 090 radial，選 090° 居中通常 FROM；選 270° 居中通常 TO。",
+            "轉動機頭不改變所在 radial；轉 OBS 不改變航空器的實際位置。",
+            "在傳統 CDI 上若用與飛行方向相反的課程設定，可能產生反向感應，不能盲目「向針轉」。"
+          ]
+        },
+        {
+          "id": "cdi",
+          "english": "Course Deviation Indicator (CDI)",
+          "title": "CDI 航線偏差指示器",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-23",
+          "printedPage": "16-23",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=23",
+          "paragraphs": [
+            "CDI 顯示相對於所選航線的偏差，傳統 VOR 模式是角度偏差，距台愈遠，同樣一格所代表的側向距離愈大。它不是通用的「往哪裡轉」指令；要先確認航線選擇、TO／FROM 與飛行方向符合預期。",
+            "傳統 VOR 五點刻度常以每點約 2°、滿刻度約 10° 表示，但 GPS 或 localizer 模式的尺度不同。看到同一根指針，必須先檢查導航來源和模式，不能把每一格都固定換成兩度或一海里。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "VOR 偏差是角度：在台站 60 NM 處，偏 2° 約為 2.1 NM；在 15 NM 處，同角度約 0.52 NM。",
+            "VOR 每點約 2° 的慣例不能套用 GPS、localizer 或所有顯示器；模式與尺度須由設備確認。",
+            "旗標無效、錯誤台站或導航來源錯選時，居中的指針也不代表正在正確航路上。"
+          ]
+        },
+        {
+          "id": "hsi",
+          "english": "Horizontal Situation Indicator",
+          "title": "HSI 水平情況指示器",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-24",
+          "printedPage": "16-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=24",
+          "paragraphs": [
+            "HSI 把航向卡、選定航線、偏差與 TO／FROM 等資訊放在同一平面，幫助理解機頭與航線的相對幾何。它能減少單獨 CDI 的心算負擔，但不會自動替你選對導航來源、航線或截獲方向。",
+            "進入下一航段時，要確認 course pointer、heading bug 與實際導航來源各自用途。航向游標指向某數字，不代表 CDI 已在追蹤那條線；自動駕駛的 HDG 與 NAV 模式也可能產生不同動作。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "rmi",
+          "english": "Radio Magnetic Indicator (RMI)",
+          "title": "RMI 無線電磁指示器",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-24",
+          "printedPage": "16-24",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=24",
+          "paragraphs": [
+            "RMI 把指向台站的方位指針疊在旋轉航向卡上，若航向與訊號有效，指針頭可讀出磁方位 TO，尾端可讀出相反方向。使用 VOR 資料時，尾端對應航空器所在的向外徑向線。",
+            "在台站東側時，指針頭大致指向 270°、尾端約 090°。若航向卡故障、選到 ADF 來源或台站未識別，外觀相同的讀數就可能有不同限制；先確認來源與航向有效，才解讀方位。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "tracking",
+          "english": "Tracking With VOR",
+          "title": "沿 VOR 航線追蹤",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-25",
+          "printedPage": "16-25",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=25",
+          "paragraphs": [
+            "截獲航線後，應保持能抵消側風的航向，觀察 CDI 趨勢並作小幅修正。單純把機頭指向選定 course 不保證留在線上，因為風仍會造成漂移；偏離後也需要先截回，再改成保持航線的修正角。",
+            "若 CDI 緩慢向左移，先在正確感應條件下判斷本機位於航線哪側，再選合理的截獲航向。接近中心時提前減小角度，避免指針一過中線就大轉彎，形成反覆左右擺動的 S 形航跡。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "vor-tips",
+          "english": "Tips on Using the VOR",
+          "title": "VOR 使用要點",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-26",
+          "printedPage": "16-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=26",
+          "paragraphs": [
+            "VOR 訊號具有視線傳播特性，山脈、距離與低高度可能造成接收限制；過台附近也可能出現快速偏轉與 TO／FROM 轉換。這些情況要與真正故障分辨，不能看到每一次小抖動都立刻大幅修正。",
+            "先識別台站、確認有效旗標與適用涵蓋，再設定正確航線。過台時保持合理航向與整體導航判斷，不要追逐不穩定指針；如訊號持續不可信，就改用適用備援並查明，而不是以舊讀數繼續推論。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "rmi-time",
+          "english": "Time and Distance Check From a Station Using a RMI",
+          "title": "利用 RMI 估算距台時間與距離",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-26",
+          "printedPage": "16-26",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=26",
+          "paragraphs": [
+            "這項傳統技巧讓台站接近翼尖方向，保持航向與速度，計時方位改變一小段角度，再以小角度幾何估算距離。它依賴穩定飛行、適當的相對角度與合理風假設，不能任意在轉彎或迎台飛行時套公式。",
+            "原書以方位改變 10° 作例：若需 75 秒，估計等效距台時間約 75÷10＝7.5 分鐘；若相關對地速度約 120 kt，也就是 2 NM/min，距離約 15 NM。這是近似量測，不是現在沿原機頭方向就會在七分半後到台。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "近似式：等效距台時間（分鐘）≈方位變化耗時（秒）／變化角度（度）。",
+            "距離（NM）≈等效時間（分鐘）×相關速度（kt）／60；有風時需理解所用 GS 與橫向飛行幾何。",
+            "這是小角度近似，不是精密測距；原書示例使用 TAS 的場合也受風影響，不能把 TAS 永遠當成 GS。"
+          ]
+        },
+        {
+          "id": "cdi-time",
+          "english": "Time and Distance Check From a Station Using a CDI",
+          "title": "利用 CDI 估算距台時間與距離",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-27",
+          "printedPage": "16-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=27",
+          "paragraphs": [
+            "CDI 方法先定位徑向線並轉到接近垂直於台站方向的航向，依原書程序轉動 OBS，對相鄰角度的兩次中線通過計時。原理仍是以已飛的短距離與方位改變量推算距台距離，不是 CDI 直接量出海里。",
+            "自編例：跨過 10° 方位變化用了 2 分鐘，近似等效距台時間為 60×2÷10＝12 分鐘；若估計地速 90 kt，距離約 18 NM。強風、計時誤差或角度過大會降低精度，不能用它取代程序要求的合格距離來源。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "依原書先調頻識別、定位徑向線並朝台置中；轉至進台航線左或右 90°，OBS 朝相反方向調到近的 10° 刻度。",
+            "保持航向，在 CDI 居中時開始計時；再把 OBS 沿相同調整方向轉 10°，下一次居中時記錄耗時。",
+            "近似式：等效時間（分鐘）≈60×實飛分鐘／角度變化；距離≈相關地速×實飛分鐘／角度變化。",
+            "自編：2 min、10°、90 kt → 12 min 等效時間、18 NM 估計距離；儀表數值應配合航向、風與計時精度檢驗。"
+          ]
+        },
+        {
+          "id": "intercept",
+          "english": "Course Intercept",
+          "title": "航線截獲",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-27",
+          "printedPage": "16-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=27",
+          "paragraphs": [
+            "截獲是先選擇一條會與目標航線相交的航向，再在接近交點時轉成沿線追蹤。先判斷本機位於航線哪側、要向台或離台，以及風如何影響航跡，才能決定往哪側及以多大角度切入。",
+            "若只把 OBS 轉到指針居中，那只是重新選出目前所在的線，並沒有把航空器移回原指定航線。正確截獲需要改變實際航跡，並保留轉彎提前量，避免等到中線已到才開始轉。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "intercept-rate",
+          "english": "Rate of Intercept",
+          "title": "截獲速率",
+          "parent": "intercept",
+          "locator": "PHAK C 版 · 16-27",
+          "printedPage": "16-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=27",
+          "paragraphs": [
+            "指針接近中心的速率受截獲角、地速與距台遠近共同影響。對 VOR 而言，徑向線接近台站時收斂，所以同樣側向移動在近台會造成較快角度變化，遠台則可能看起來移動很慢。",
+            "地速較高或截獲角較大時，要較早準備轉入航線；接近台站不宜因指針快速移動而慌忙追針。應用趨勢、距離與轉彎能力預判，而非把固定一格當成所有情境相同的轉彎時機。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "intercept-angle",
+          "english": "Angle of Intercept",
+          "title": "截獲角的選擇",
+          "parent": "intercept",
+          "locator": "PHAK C 版 · 16-27",
+          "printedPage": "16-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=27",
+          "paragraphs": [
+            "截獲角是用來切入航線的方向與目標航線之間的夾角，角度較大通常提高側向接近速度，但也增加轉入所需提前量。選角時要考慮偏離程度、距台距離、地速、風及空域邊界，不能只記住固定三十度。",
+            "例如距台 60 NM 時一度約對應 1 NM，距台 30 NM 則約半海里；同樣偏三度，側向距離並不相同。接近航線後應減小角度，再以風修正保持，避免把截獲航向當成永久追蹤航向。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "dme",
+          "english": "Distance Measuring Equipment (DME)",
+          "title": "DME 距離測量設備",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-27",
+          "printedPage": "16-27",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=27",
+          "paragraphs": [
+            "DME 藉航空器詢問與地面回覆的時間差估計距離，顯示的是航空器至台站的斜距，不是水平地面距離。VOR／DME 或 VORTAC 的配對選頻方便使用，但仍要確認正確台站與 DME 是否保持在其他頻道。",
+            "航空器在台站正上方且高出台站約 6,076 ft，DME 仍約為 1 NM，不會歸零。DME 推估地速或到台時間以距離變化為基礎，若橫向飛過、繞台或近台爬降，就不能直接當成真實對地速度與抵達時間。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "斜距近似：DME＝√(水平距離²＋相對台站高度²)，兩種長度必須先換成相同單位。",
+            "自編：水平距離 3 NM、高出台站 4 NM，斜距為 5 NM；直接把 5 NM 當地面距離會高估。",
+            "在台站正上方，高出台站 6,076 ft 約為 1 NM；應使用相對台站的高度，不是任意地點的 AGL。",
+            "距台遠且相對高度小時，斜距與水平距離差較小；近台高空時差異較大。",
+            "若設備有 DME HOLD，切換 VOR 頻率後距離可能仍來自前一台；要確認配對與識別。"
+          ]
+        },
+        {
+          "id": "vor-dme-rnav",
+          "english": "VOR/DME RNAV",
+          "title": "VOR／DME 區域導航",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-28",
+          "printedPage": "16-28",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=28",
+          "paragraphs": [
+            "傳統 VOR／DME RNAV 利用測得的徑向方位與距離建立本機位置，再相對於設定的偏移航點提供導航。它讓路線不必直接經過台站，但仍受地面訊號、台站幾何、設備設定及涵蓋範圍影響。",
+            "這與以衛星定位的 GPS RNAV 是不同位置來源，也不代表具備所有現代 RNAV／RNP 程序能力。輸入偏移航點時應核對基準台、方位與距離，並確認設備及操作是否適用所需路線。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "adf",
+          "english": "Automatic Direction Finder (ADF)",
+          "title": "ADF 自動測向儀",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-29",
+          "printedPage": "16-29",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=29",
+          "paragraphs": [
+            "ADF 透過 NDB 等適用訊號指示台站相對於機頭的方向，固定刻度卡上的 relative bearing 需與航向相加才成為相應基準的台站方位。指針只指向台站，不會自動計算維持一條對地航線所需的迎風修正。",
+            "自編例：磁航向 100°、相對方位 040°，台站磁方位約為 140°。一直把指針維持正前方是 homing，側風下可能形成彎曲路徑；tracking 則需建立風修正，並留意雷暴、夜間、海岸與地形等訊號誤差。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "固定卡 ADF：磁方位 TO≈磁航向＋相對方位，超過 360° 時減 360°；旋轉卡與 RMI 的讀法不同。",
+            "Homing：持續機頭朝台，側風會讓地面路徑彎曲。Tracking：用迎風角維持所需對地路徑。",
+            "ADF 易受雷暴靜電、夜間傳播、地形及海岸效應影響；某些設備缺乏明確失效旗標，必須識別並交叉確認。"
+          ]
+        },
+        {
+          "id": "gps",
+          "english": "Global Positioning System",
+          "title": "全球定位系統",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-30",
+          "printedPage": "16-30",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=30",
+          "paragraphs": [
+            "GPS 接收器以衛星訊號的傳播時間推估偽距，配合已知衛星位置解算本機位置與時間。一般三維定位至少需要四顆衛星以同時求位置與接收器時鐘誤差，但能顯示座標不等於已具備所需完整性保證。",
+            "GPS 提供的是位置與對地運動資訊，單一天線系統通常不能在靜止時僅靠位置變化得知機頭方向。設備核准、安裝、資料庫、接收品質與操作模式都影響用途；有 GPS 的平板不因此成為核准的 IFR 導航設備。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "sa",
+          "english": "Selective Availability",
+          "title": "Selective Availability：歷史性精度限制",
+          "parent": "gps",
+          "locator": "PHAK C 版 · 16-31",
+          "printedPage": "16-31",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=31",
+          "paragraphs": [
+            "Selective Availability 曾是刻意降低民用 GPS 精度的機制，與天線遮蔽、干擾及設備故障不同。美國在 2000 年 5 月停止使用 SA，因此原書相關介紹應理解為系統歷史，而不是今天持續存在的固定誤差來源。",
+            "SA 停止不代表 GPS 從此沒有錯誤。大氣延遲、多路徑、衛星幾何、干擾與欺騙等仍可能影響導航，機師應依現行設備警示與其他參考交叉檢查，不能用一項歷史改善否定所有異常。"
+          ],
+          "references": [
+            {
+              "title": "GPS.gov：Selective Availability 的停止與歷史",
+              "url": "https://www.gps.gov/selective-availability",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "歷史機制：SA 在 2000 年 5 月停止；這不代表排除今日的 GNSS 干擾、欺騙、遮蔽或其他誤差。"
+        },
+        {
+          "id": "vfr-gps",
+          "english": "VFR Use of GPS",
+          "title": "VFR 使用 GPS",
+          "parent": "gps",
+          "locator": "PHAK C 版 · 16-32",
+          "printedPage": "16-32",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=32",
+          "paragraphs": [
+            "VFR 使用 GPS 可提高位置意識、協助辨識空域與檢查 ETA，但仍要保持目視、地形淨空與適用天氣條件。導航線不會把 VFR 航班變成可穿雲的 IFR 航班，也不保證直飛路徑符合任何特殊空域要求。",
+            "進入陌生地區前可先核對航點與機場識別，航中再用地標或其他導航來源驗證。若螢幕位置與可靠外界觀察衝突，不應只因電子數字較精細就選擇相信它，而要找出資料或系統問題。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "raim",
+          "english": "RAIM Capability",
+          "title": "RAIM 自主完整性監視",
+          "parent": "vfr-gps",
+          "locator": "PHAK C 版 · 16-32",
+          "printedPage": "16-32",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=32",
+          "paragraphs": [
+            "RAIM 用額外且幾何條件適當的衛星量測互相比對，偵測位置解算是否可能不可靠。典型故障偵測需至少五顆衛星，或四顆加合格氣壓輔助；故障排除通常需六顆，或五顆加氣壓輔助，不能只數能定位的四顆。",
+            "「無法提供完整性監視」與「已偵測到不一致」是不同警示，但都不能忽略。不是所有 VFR 接收器都有相同 RAIM 能力，WAAS 設備也有其核准方式與警示；實際處置應依設備手冊、操作階段與適用程序。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "currentNote": "RAIM 是完整性監視，不是單純提高位置精度。衛星數是典型最低條件，還需適當幾何與設備能力；WAAS／其他核准系統依各自手冊與適用操作要求判斷。",
+          "points": [
+            "一般三維位置解算：典型至少四顆衛星；這不等同完整性監視已可用。",
+            "RAIM 故障偵測：典型五顆，或四顆加適用 baro-aiding；FDE 排除：典型六顆，或五顆加適用 baro-aiding。",
+            "數量足夠仍可能因幾何不佳無法滿足要求，預測可用也不是航中永不失效的保證。",
+            "無法監視＝沒有足夠條件確認完整性；偵測不一致＝發現可能有錯。按設備警示與適用程序處置。",
+            "不能用 GPS 高度冒充合格氣壓輔助輸入；氣壓設定與輸入方式依設備手冊。"
+          ]
+        },
+        {
+          "id": "gps-tips",
+          "english": "Tips for Using GPS for VFR Operations",
+          "title": "VFR GPS 操作習慣",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-33",
+          "printedPage": "16-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=33",
+          "paragraphs": [
+            "在地面先設定航路與航點，確認資料庫、導航來源、縮放、電源和備援，能減少空中低頭操作。每次改航或按 Direct-To 後，應核對新目的地、航段方向與空域地形，避免同名或近似識別造成錯選。",
+            "GPS 或 GNSS 異常可能同時影響導航、地速及其他依賴定位的系統。飛前查相關 NOTAM，航中若出現跳位、矛盾或失效，先控制航空器、改用可靠參考並協調 ATC；不要連續重輸航路而忽略外界。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
+              "checked": "2026-09-12"
+            },
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "id": "vfr-waypoints",
+          "english": "VFR Waypoints",
+          "title": "VFR 航點",
+          "parent": "ground-nav",
+          "locator": "PHAK C 版 · 16-33",
+          "printedPage": "16-33",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=33",
+          "paragraphs": [
+            "FAA VFR 航點的五字母識別通常以 VP 開頭，方便資料庫輸入與位置參考；識別本身不是預定用於 ATC 通話的可發音名稱。若與目視報告點重合，通話可按公布的地標名稱使用，而非自行逐字念 VP 代碼。",
+            "VFR 航點不構成 IFR 航路，也不授予空域進入權。山口入口航點只是定位輔助，不能直接把兩個點連成必然安全的穿山路徑；接近常用航點時還要留意交通集中與視野限制。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "VP 開頭的五字母代碼供資料庫與 VFR 計畫使用，不能當成 IFR 航路點提交。",
+            "ATC 通訊使用適用的目視地標名稱；不要假設管制員認得所有 VP 代碼。",
+            "航點不代表空域許可、地形安全或雲中通道，山口兩點直接連線尤其不可當作保證安全的路線。"
+          ]
+        },
+        {
+          "id": "lost",
+          "english": "Lost Procedures",
+          "title": "迷航處置",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-34",
+          "printedPage": "16-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=34",
+          "paragraphs": [
+            "發現位置不確定時，先保持航空器控制、合適速度與安全地形淨空，避免慌張轉彎或只盯螢幕。由最後已知位置、航向、時間與估計地速建立合理區域，再比對大尺度地標、可用導航訊號及燃油餘裕。",
+            "應及早向 ATC 或 Flight Service 說明位置不確定並請求協助；無法取得聯絡時可使用適用緊急頻率。為改善視野或通訊而爬升前，仍需確認雲、地形、空域與性能，不能把「迷航就爬高」當成無條件指令。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 6-2：緊急通訊與尋求協助",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_2.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "先維持控制與地形淨空，記錄最後已知點、經過時間、航向、燃油與可用資訊。",
+            "及早承認不確定並求助，提供呼號、機型、估計位置／高度、最後已知點、燃油與需求。",
+            "若原頻率無法聯絡，可用 121.5 MHz 尋求緊急協助；緊急代碼與宣告依實際情況及 ATC 指示處理，不把短暫定位疑問一律當成無線電失效。",
+            "爬升可能改善視野與無線電涵蓋，但仍須符合天氣、空域、地形與性能條件；不要為了定位而進入雲中。",
+            "不要耗盡燃油才選擇降落；在仍有可用機場與餘裕時採取行動。"
+          ]
+        },
+        {
+          "id": "diversion",
+          "english": "Flight Diversion",
+          "title": "改航與轉降",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-34",
+          "printedPage": "16-34",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=34",
+          "paragraphs": [
+            "改航先選擇在天氣、跑道、燃油、地形與服務上適合的替代機場，再估算新航向、距離、時間與到達燃油。最近的機場不一定最合適，而原先的備降點也可能因天氣變化不再可用。",
+            "自編例：替代機場距 36 NM、預估地速 90 kt，約需 24 分鐘；若耗油率 8 US gal/h，該段約用 3.2 US gal，另須計入轉向、爬降與所需備份。決定後更新 ATC／飛行計畫，避免一邊繼續遠離選項一邊慢慢計算。"
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 6-2：緊急通訊與尋求協助",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_2.html",
+              "checked": "2026-09-12"
+            }
+          ],
+          "points": [
+            "先選安全可行的替代地點並建立大致航向，急迫時不要等所有精算完成才開始脫離危險。",
+            "記錄改航起點與時間，再更新風修正、GS、ETA 及剩餘燃油，保持外部掃視與航空器控制。",
+            "36 NM／90 kt＝0.4 h＝24 min；8 US gal/h×0.4 h＝3.2 US gal，這只是該段用油。",
+            "改航後確認新機場跑道、天氣、NOTAM 與進入條件，並更新適用的 ATC／飛行計畫資訊。"
+          ]
+        },
+        {
+          "id": "summary",
+          "english": "Chapter Summary",
+          "title": "本章整合與練習",
+          "parent": null,
+          "locator": "PHAK C 版 · 16-35",
+          "printedPage": "16-35",
+          "source": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=35",
+          "paragraphs": [
+            "本章把位置與方向、風與速度、時間與燃油，以及不同導航來源的限制連成一個循環。計畫提供預期，飛行觀察用來驗證，差異則觸發重新計算或改航；精確數字不能取代對資料品質的理解。",
+            "練習規劃一條三航段路線，列出真航線、磁差、風修正、地速、時間與燃油，再加入 VOR 失效、GPS 異常或目的地關閉。逐一說明如何用其他來源重新定位，何時改航，以及剩餘燃油是否仍足夠。"
           ]
         }
       ],
@@ -12651,6 +13811,31 @@ export const phakDocument = {
           "title": "磁差與羅差",
           "clarification": "前者是地理磁場方向差，後者是航空器對羅盤的影響。",
           "example": "羅差應依適用修正卡查閱。"
+        },
+        {
+          "title": "TAS 與 GS",
+          "clarification": "TAS 相對空氣，GS 相對地面；對地航段時間用 GS。",
+          "example": "75 NM 在 GS 100 kt 時需 45 分鐘，不可直接拿 IAS 代入。"
+        },
+        {
+          "title": "VOR 徑向線與進台航線",
+          "clarification": "Radial 永遠由台向外命名，TO／FROM 不由機頭朝向直接決定。",
+          "example": "位於 090 radial，向台航線約為 270°。"
+        },
+        {
+          "title": "DME 斜距與水平距離",
+          "clarification": "DME 包含相對台站高度，過台不一定歸零。",
+          "example": "在台站上方約 6,076 ft 仍可能顯示 1 NM。"
+        },
+        {
+          "title": "GPS 定位、精度與完整性",
+          "clarification": "顯示座標不等於系統能確認該座標符合所需完整性。",
+          "example": "四顆衛星能定位，並不直接表示具備可用 RAIM。"
+        },
+        {
+          "title": "VFR 計畫與 flight following",
+          "clarification": "提交、啟用、更新、關閉 VFR 搜救計畫與 ATC 交通諮詢不同。",
+          "example": "有詢答機代碼或收到 radar contact，不代表 VFR 計畫已啟用。"
         }
       ],
       "scenario": "自編算例：航段 90 NM、地速 90 kt，時間為 1 小時；假設該航段耗油率 8 US gal/h，航段用油為 8 US gal。若地速降為 60 kt，時間變 1.5 小時，同耗油率下為 12 US gal。",
@@ -12664,7 +13849,10 @@ export const phakDocument = {
       "explanation": "90÷60＝1.5 小時；計算對地航段時間需使用地速。",
       "verified": true,
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388",
-      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388"
+      "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388",
+      "detailMode": "outline",
+      "checked": "2026-09-12",
+      "coverageNote": "依提供目錄完整展開 62 節；保留英文原名、中文詳解與 FAA 頁碼。風三角 Step 1–4 分節說明，計算例區分原書取整與本站重算；航圖、GPS 及飛行計畫制度更新另列官方來源。"
     },
     {
       "id": "phak25c-17",
