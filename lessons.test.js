@@ -299,7 +299,7 @@ test('Chapter 5 opening deep lessons link all 18 figures without changing chapte
  assert.equal(figures.length,18);
  for(let i=1;i<=18;i++){const f=figures.find(f=>f.label.startsWith('Figure 5-'+i+' ·'));assert.ok(f);assert.equal(f.page,'5-'+pages[i-1]);assert.equal(new URL(f.url).hash,'#page='+pages[i-1]);assert.ok(html.includes(f.url));}
  for(const b of blocks){assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));if(b.table)assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));if(b.check)assert.ok(html.includes(b.check.answer));}
- assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/升力與重量先分解方向/);assert.match(html,/9,848/);assert.match(html,/後續轉彎率圖例、轉彎半徑/);
+ assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/升力與重量先分解方向/);assert.match(html,/9,848/);assert.match(html,/全章 62 節均已加入深入講解/);
 });
 
 test('Chapter 5 stability and maneuver expansion covers 39 figures and restores notes',()=>{
@@ -316,11 +316,22 @@ test('Chapter 5 stability and maneuver expansion covers 39 figures and restores 
 
 test('Chapter 5 propulsion and load lessons cover figures 40 to 55',()=>{
  const c=studyDocuments.find(d=>d.id==='phak25c').chapters[4];const html=environment('#chapter/'+c.id).element('#app').innerHTML;
- const blocks=c.detailSections.flatMap(s=>s.lessonBlocks||[]);assert.equal(blocks.length,94);
+ const blocks=c.detailSections.slice(0,43).flatMap(s=>s.id==='turn-rate'?s.lessonBlocks.slice(0,1):s.lessonBlocks||[]);assert.equal(blocks.length,94);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure);assert.equal(figures.length,55);
  const pages=[26,27,28,29,29,30,30,31,31,32,32,33,34,34,35,38];
  for(let n=40;n<=55;n++){const f=figures.find(f=>f.label.startsWith('Figure 5-'+n+' ·'));assert.ok(f);assert.equal(f.page,'5-'+pages[n-40]);assert.equal(new URL(f.url).hash,'#page='+pages[n-40]);assert.ok(html.includes(f.url));}
  for(const b of blocks){assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));if(b.table)assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));}
- assert.ok(c.detailSections.slice(0,43).every(s=>s.lessonBlocks?.length));assert.ok(c.detailSections.slice(43).every(s=>!s.lessonBlocks));
+ assert.ok(c.detailSections.slice(0,43).every(s=>s.lessonBlocks?.length));
  assert.match(html,/199.5 m\/s/);assert.match(html,/86.6 kt/);
+});
+
+test('Chapter 5 complete deep content covers all sections and 71 figure references',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[4];const html=environment('#chapter/'+c.id,undefined,JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'高速公式的適用條件'}})).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,62);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,126);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure);assert.equal(figures.length,71);
+ const pages=[39,39,39,39,40,40,41,43,45,45,47,47,48,49,49,50];
+ for(let n=56;n<=71;n++){const f=figures.find(f=>f.label.startsWith('Figure 5-'+n+' ·'));assert.ok(f);assert.equal(f.page,'5-'+pages[n-56]);assert.equal(new URL(f.url).hash,'#page='+pages[n-56]);assert.ok(html.includes(f.url));}
+ for(const b of blocks)assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));
+ assert.match(html,/高速公式的適用條件/);assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/manual reversion/);
 });
