@@ -287,3 +287,18 @@ test('Chapter 4 deep lessons render all figure pages and preserve completed note
  assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/PA 與 DA 要分開/);
  assert.match(html,/5,768/);assert.match(html,/−720 Pa/);assert.match(html,/actual station pressure/);
 });
+
+test('Chapter 5 opening deep lessons link all 18 figures without changing chapter progress',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[4];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'升力與重量先分解方向'}});
+ const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,62);
+ assert.ok(c.detailSections.slice(0,13).every(s=>s.lessonBlocks?.length));
+ assert.ok(c.detailSections.slice(13).every(s=>!s.lessonBlocks));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks||[]);assert.equal(blocks.length,31);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,2,3,4,4,5,6,6,7,7,8,9,9,10,10,11,11,12];
+ assert.equal(figures.length,18);
+ for(let i=1;i<=18;i++){const f=figures.find(f=>f.label.startsWith('Figure 5-'+i+' ·'));assert.ok(f);assert.equal(f.page,'5-'+pages[i-1]);assert.equal(new URL(f.url).hash,'#page='+pages[i-1]);assert.ok(html.includes(f.url));}
+ for(const b of blocks){assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));if(b.table)assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));if(b.check)assert.ok(html.includes(b.check.answer));}
+ assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/升力與重量先分解方向/);assert.match(html,/9,848/);assert.match(html,/5-13 以後維持既有逐節導讀/);
+});
