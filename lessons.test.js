@@ -294,11 +294,22 @@ test('Chapter 5 opening deep lessons link all 18 figures without changing chapte
  const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
  assert.equal(c.detailSections.length,62);
  assert.ok(c.detailSections.slice(0,13).every(s=>s.lessonBlocks?.length));
- assert.ok(c.detailSections.slice(13).every(s=>!s.lessonBlocks));
- const blocks=c.detailSections.flatMap(s=>s.lessonBlocks||[]);assert.equal(blocks.length,31);
+ const blocks=c.detailSections.slice(0,13).flatMap(s=>s.id==='axes'?s.lessonBlocks.slice(0,1):s.lessonBlocks||[]);assert.equal(blocks.length,31);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,2,3,4,4,5,6,6,7,7,8,9,9,10,10,11,11,12];
  assert.equal(figures.length,18);
  for(let i=1;i<=18;i++){const f=figures.find(f=>f.label.startsWith('Figure 5-'+i+' ·'));assert.ok(f);assert.equal(f.page,'5-'+pages[i-1]);assert.equal(new URL(f.url).hash,'#page='+pages[i-1]);assert.ok(html.includes(f.url));}
  for(const b of blocks){assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));if(b.table)assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));if(b.check)assert.ok(html.includes(b.check.answer));}
- assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/升力與重量先分解方向/);assert.match(html,/9,848/);assert.match(html,/5-13 以後維持既有逐節導讀/);
+ assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/升力與重量先分解方向/);assert.match(html,/9,848/);assert.match(html,/AOA 指示器與其後主題維持原有逐節導讀/);
+});
+
+test('Chapter 5 stability and maneuver expansion covers 39 figures and restores notes',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[4];
+ const html=environment('#chapter/'+c.id,undefined,JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'靜穩定不等於動穩定'}})).element('#app').innerHTML;
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks||[]);assert.equal(blocks.length,67);
+ assert.ok(c.detailSections.slice(0,29).every(s=>s.lessonBlocks?.length));assert.ok(c.detailSections.slice(29).every(s=>!s.lessonBlocks));
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure);assert.equal(figures.length,39);
+ const pages=[13,13,14,15,16,16,16,17,17,18,18,18,19,19,21,22,24,24,24,26,26];
+ for(let n=19;n<=39;n++){const f=figures.find(f=>f.label.startsWith('Figure 5-'+n+' ·'));assert.ok(f);assert.equal(f.page,'5-'+pages[n-19]);assert.equal(new URL(f.url).hash,'#page='+pages[n-19]);assert.ok(html.includes(f.url));}
+ for(const b of blocks){assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));if(b.table)assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));}
+ assert.match(html,/71.9%/);assert.match(html,/靜穩定不等於動穩定/);assert.match(html,/本章閱讀與情境檢核已完成/);
 });
