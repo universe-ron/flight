@@ -335,3 +335,26 @@ test('Chapter 5 complete deep content covers all sections and 71 figure referenc
  for(const b of blocks)assert.ok(html.includes(b.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));
  assert.match(html,/高速公式的適用條件/);assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/manual reversion/);
 });
+
+test('Chapter 6 deep lessons render all 24 figures and preserve saved progress',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[5];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'配平片與反伺服片分開辨認'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,29);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,38);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure);assert.equal(figures.length,24);
+ const pages=[2,2,2,3,3,4,4,5,5,5,6,7,7,7,8,8,9,9,10,11,11,12,12,12];
+ for(let n=1;n<=24;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 6-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'6-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/本章閱讀與情境檢核已完成/);assert.match(html,/配平片與反伺服片分開辨認/);
+ assert.match(html,/Tab down—elevator up/);assert.match(html,/預位不是立即執行/);
+ assert.equal(blocks.filter(b=>b.table).length,8);assert.equal(blocks.filter(b=>b.check).length,12);
+});
