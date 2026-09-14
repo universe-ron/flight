@@ -358,3 +358,21 @@ test('Chapter 6 deep lessons render all 24 figures and preserve saved progress',
  assert.match(html,/Tab down—elevator up/);assert.match(html,/預位不是立即執行/);
  assert.equal(blocks.filter(b=>b.table).length,8);assert.equal(blocks.filter(b=>b.check).length,12);
 });
+
+test('Chapter 7 opening deep lessons cover piston propulsion and induction with 15 figure links',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[6];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'MAP 與 RPM 配合判讀'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,89);assert.ok(c.detailSections.slice(0,18).every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.slice(0,18).flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,33);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,2,3,3,4,5,5,5,6,8,9,10,11,13,14];
+ assert.equal(figures.length,15);
+ for(let n=1;n<=15;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 7-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'7-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){assert.ok(html.includes(escape(b.title)));if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}if(b.check){assert.ok(html.includes(escape(b.check.answer)));}}
+ assert.match(html,/MAP 與 RPM 配合判讀/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/2,400÷2÷60/);assert.match(html,/261.8 m\/s/);assert.match(html,/後續系統尚未進行同一輪深化/);
+});
