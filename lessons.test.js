@@ -383,7 +383,7 @@ test('Chapter 7 engine systems expansion renders figures 16 to 30 and preserves 
  const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
  assert.equal(c.detailSections.length,89);assert.ok(c.detailSections.slice(0,53).every(s=>s.lessonBlocks?.length));
  const blocks=c.detailSections.slice(18,53).flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,44);
- assert.equal(c.detailSections.flatMap(s=>s.lessonBlocks||[]).length,77);
+ assert.equal(c.detailSections.slice(0,53).flatMap(s=>s.lessonBlocks||[]).length,77);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[15,16,17,17,19,19,20,21,21,22,22,23,24,25,26];
  assert.equal(figures.length,15);
  for(let n=16;n<=30;n++){
@@ -398,5 +398,25 @@ test('Chapter 7 engine systems expansion renders figures 16 to 30 and preserves 
  }
  assert.match(html,/旁通比與扭矩要分清/);assert.match(html,/本章閱讀與情境檢核已完成/);
  assert.match(html,/400÷100/);assert.match(html,/209.4 kW/);assert.match(html,/局部 stall 與整體系統 surge/);
- assert.match(html,/油箱本輪僅展開已提供的開頭/);
+ assert.match(html,/本輪補完油箱/);
+});
+
+test('Chapter 7 fuel heating electrical and hydraulic lessons render with progress intact',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[6];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'跨接與接地不同'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,89);assert.ok(c.detailSections.slice(0,68).every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.slice(53,68).flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,26);
+ assert.equal(c.detailSections.flatMap(s=>s.lessonBlocks||[]).length,103);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[26,27,31,32,33,33];
+ assert.equal(figures.length,6);
+ for(let n=31;n<=36;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 7-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'7-'+pages[n-31]);assert.equal(new URL(f.url).hash,'#page='+pages[n-31]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){assert.ok(html.includes(escape(b.title)));if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}}
+ assert.match(html,/跨接與接地不同/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/NE-11-55/);assert.match(html,/entrained water 括註成 water in solution 並不正確/);
+ assert.match(html,/2,000 N/);assert.match(html,/0.083 m\/s/);assert.match(html,/起落架等後續系統尚未進行同一輪深化/);
 });
