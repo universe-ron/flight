@@ -374,7 +374,7 @@ test('Chapter 7 opening deep lessons cover piston propulsion and induction with 
  const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
  for(const b of blocks){assert.ok(html.includes(escape(b.title)));if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}if(b.check){assert.ok(html.includes(escape(b.check.answer)));}}
  assert.match(html,/MAP 與 RPM 配合判讀/);assert.match(html,/本章閱讀與情境檢核已完成/);
- assert.match(html,/2,400÷2÷60/);assert.match(html,/261.8 m\/s/);assert.match(html,/後續系統尚未進行同一輪深化/);
+ assert.match(html,/2,400÷2÷60/);assert.match(html,/261.8 m\/s/);assert.match(html,/全章 89 節均已加入深入講解/);
 });
 
 test('Chapter 7 engine systems expansion renders figures 16 to 30 and preserves progress',()=>{
@@ -398,7 +398,7 @@ test('Chapter 7 engine systems expansion renders figures 16 to 30 and preserves 
  }
  assert.match(html,/旁通比與扭矩要分清/);assert.match(html,/本章閱讀與情境檢核已完成/);
  assert.match(html,/400÷100/);assert.match(html,/209.4 kW/);assert.match(html,/局部 stall 與整體系統 surge/);
- assert.match(html,/本輪補完油箱/);
+ assert.match(html,/全章 89 節均已加入深入講解/);
 });
 
 test('Chapter 7 fuel heating electrical and hydraulic lessons render with progress intact',()=>{
@@ -407,7 +407,7 @@ test('Chapter 7 fuel heating electrical and hydraulic lessons render with progre
  const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
  assert.equal(c.detailSections.length,89);assert.ok(c.detailSections.slice(0,68).every(s=>s.lessonBlocks?.length));
  const blocks=c.detailSections.slice(53,68).flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,26);
- assert.equal(c.detailSections.flatMap(s=>s.lessonBlocks||[]).length,103);
+ assert.equal(c.detailSections.slice(0,68).flatMap(s=>s.lessonBlocks||[]).length,103);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[26,27,31,32,33,33];
  assert.equal(figures.length,6);
  for(let n=31;n<=36;n++){
@@ -418,5 +418,28 @@ test('Chapter 7 fuel heating electrical and hydraulic lessons render with progre
  for(const b of blocks){assert.ok(html.includes(escape(b.title)));if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}}
  assert.match(html,/跨接與接地不同/);assert.match(html,/本章閱讀與情境檢核已完成/);
  assert.match(html,/NE-11-55/);assert.match(html,/entrained water 括註成 water in solution 並不正確/);
- assert.match(html,/2,000 N/);assert.match(html,/0.083 m\/s/);assert.match(html,/起落架等後續系統尚未進行同一輪深化/);
+ assert.match(html,/2,000 N/);assert.match(html,/0.083 m\/s/);assert.match(html,/全章 89 節均已加入深入講解/);
+});
+
+test('Chapter 7 complete deep lessons render 50 figures and retain notes and completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[6];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'座艙高度與飛行高度分開'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,89);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const all=c.detailSections.flatMap(s=>s.lessonBlocks);assert.equal(all.length,133);
+ assert.equal(all.filter(b=>b.figure).length,50);
+ const blocks=c.detailSections.slice(68).flatMap(s=>s.lessonBlocks);assert.equal(blocks.length,30);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[33,34,34,35,35,36,37,38,39,39,39,40,41,41];
+ assert.equal(figures.length,14);
+ for(let n=37;n<=50;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 7-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'7-'+pages[n-37]);assert.equal(new URL(f.url).hash,'#page='+pages[n-37]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){assert.ok(html.includes(escape(b.title)));if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}}
+ assert.match(html,/座艙高度與飛行高度分開/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/10.9−4.8＝6.1/);assert.match(html,/263／293＝0.898/);
+ assert.match(html,/&gt;12,500 至 ≤14,000 ft/);assert.match(html,/每名乘員須獲提供補充氧氣/);
+ assert.match(html,/誤印為 Figure 6-48/);assert.match(html,/普通血氧機不能排除一氧化碳暴露/);
+ assert.match(html,/全章 89 節均已加入深入講解/);
 });
