@@ -124,7 +124,7 @@ test('Chapter 9 covers all 38 TOC entries plus the original AFM heading',()=>{
  assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Airplane Flight Manuals (AFM)']);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page='+s.printedPage.split('-')[1]);}
  for(const id of ['registration','annual','hundred-hour','altimeter-inspection','transponder-inspection','elt','mel','preventive','entries','special-permit','ads','responsibilities']){
-  const s=c.detailSections.find(s=>s.id===id);assert.ok(s.references.length);for(const r of s.references){assert.ok(['www.faa.gov','www.ecfr.gov'].includes(new URL(r.url).hostname));assert.equal(r.checked,'2026-09-11');}
+  const s=c.detailSections.find(s=>s.id===id);assert.ok(s.references.length);for(const r of s.references){assert.ok(['www.faa.gov','www.ecfr.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18'].includes(r.checked));}
  }
  assert.ok(c.detailSections.find(s=>s.id==='registration').currentNote);
  assert.ok(c.detailSections.find(s=>s.id==='mel').currentNote);
@@ -200,7 +200,7 @@ test('Chapters 13–15 distinguish retired weather services, runway clearances a
  assert.ok(section(15,'class-c').points.some(p=>p.includes('remain outside')));
  assert.ok(section(15,'vfr-minima').points.some(p=>p.includes('1,200 ft AGL')));
  assert.ok(section(15,'vfr-minima').references.some(r=>r.url.includes('chap3_section_1')));
- for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.equal(r.checked,'2026-09-11');}
+ for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18'].includes(r.checked));}
 });
 
 

@@ -501,3 +501,28 @@ test('Chapter 8 complete lessons render all compass figures and preserve saved c
  assert.match(html,/全章 66 節均已加入深入講解/);
  assert.doesNotMatch(html,/後續遠端羅盤至章末仍為原有概述/);
 });
+
+test('Chapter 9 full lessons render sources and preserve saved notes and completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[8];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'檢查期限與設備延修分開核對'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,39);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,58);assert.equal(blocks.filter(b=>b.table).length,10);assert.equal(blocks.filter(b=>b.check).length,15);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[3,3,3,3,4,5,5,6,7,13];
+ assert.equal(figures.length,10);
+ for(let n=1;n<=10;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 9-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'9-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/檢查期限與設備延修分開核對/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/44 kt IAS/);assert.match(html,/93 小時/);assert.match(html,/2027-09-30/);
+ assert.match(html,/AC 91-67A/);assert.match(html,/七年/);assert.match(html,/十二個月/);
+ assert.match(html,/全章 39 節均已加入深入講解/);
+});
