@@ -451,7 +451,7 @@ test('Chapter 8 instruments expansion renders figure sources, tables and saved l
  assert.equal(c.detailSections.length,66);
  assert.ok(c.detailSections.slice(0,48).every(s=>s.lessonBlocks?.length));
  assert.equal(c.detailSections[47].id,'fluxgate');
- const blocks=c.detailSections.slice(0,48).flatMap(s=>s.lessonBlocks);
+ const blocks=c.detailSections.slice(0,48).flatMap(s=>s.id==='fluxgate'?s.lessonBlocks.slice(0,1):s.lessonBlocks);
  assert.equal(blocks.length,60);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure);
  assert.equal(figures.length,27);assert.equal(new Set(figures.map(f=>f.label)).size,27);
@@ -469,7 +469,35 @@ test('Chapter 8 instruments expansion renders figure sources, tables and saved l
  }
  assert.equal(blocks.filter(b=>b.table).length,14);assert.equal(blocks.filter(b=>b.check).length,18);
  assert.match(html,/總壓與靜壓要追到來源/);assert.match(html,/本章閱讀與情境檢核已完成/);
- assert.match(html,/後續遠端羅盤至章末仍為原有概述/);
+ assert.match(html,/全章 66 節均已加入深入講解/);
  assert.match(html,/101−100＝1 kPa/);assert.match(html,/120＋2×6＝132 kt/);
  assert.match(html,/不是膜盒內固定的殘留氣壓/);assert.match(html,/轉速表屬引擎資訊/);
+});
+
+test('Chapter 8 complete lessons render all compass figures and preserve saved completion',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[7];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'磁差、自差與風修正分開'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,66);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const all=c.detailSections.flatMap(s=>s.lessonBlocks);assert.equal(all.length,86);
+ assert.equal(all.filter(b=>b.figure).length,39);
+ const blocks=c.detailSections.slice(47).flatMap(s=>s.id==='fluxgate'?s.lessonBlocks.slice(1):s.lessonBlocks);
+ assert.equal(blocks.length,26);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[21,21,22,23,23,24,25,25,26,27,27,28];
+ assert.equal(figures.length,12);
+ for(let n=28;n<=39;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 8-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'8-'+pages[n-28]);assert.equal(new URL(f.url).hash,'#page='+pages[n-28]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.equal(all.filter(b=>b.table).length,21);assert.equal(all.filter(b=>b.check).length,27);
+ assert.match(html,/磁差、自差與風修正分開/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/FOR 195° STEER 193°/);assert.match(html,/20×9／5＋32＝68°F/);
+ assert.match(html,/全章 66 節均已加入深入講解/);
+ assert.doesNotMatch(html,/後續遠端羅盤至章末仍為原有概述/);
 });
