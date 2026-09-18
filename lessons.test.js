@@ -550,3 +550,29 @@ test('Chapter 10 full lessons render all figure links and preserve learning stat
  assert.match(html,/全章 23 節均已加入深入講解/);assert.match(html,/最大允許 CG 範圍的 0.2%/);
  assert.match(html,/2,278 已是 M／100/);assert.match(html,/§23.2100/);
 });
+
+test('Chapter 11 initial performance expansion renders twelve figures and retains progress',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[10];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'爬升率與地面梯度分開'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,34);assert.equal(c.detailSections[15].id,'range');
+ assert.ok(c.detailSections.slice(0,16).every(s=>s.lessonBlocks?.length));
+ assert.ok(c.detailSections.slice(16).every(s=>!s.lessonBlocks));
+ const blocks=c.detailSections.slice(0,16).flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,29);assert.equal(blocks.filter(b=>b.table).length,6);assert.equal(blocks.filter(b=>b.check).length,9);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,3,3,4,6,6,7,7,8,9,9,10];
+ assert.equal(figures.length,12);
+ for(let n=1;n<=12;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 11-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'11-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/爬升率與地面梯度分開/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/本輪深化前 16 節/);assert.match(html,/反操縱區至章末仍為既有概述/);
+ assert.match(html,/7,400 ft/);assert.match(html,/660 fpm/);assert.match(html,/站壓及露點/);
+});

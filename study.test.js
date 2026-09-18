@@ -293,3 +293,19 @@ test('Chapter 10 published calculation tables agree with independent arithmetic'
  const text=sections.flatMap(s=>s.lessonBlocks.flatMap(b=>b.paragraphs)).join('\n');
  for(const value of ['78.5 in','65 lb','81.4 in','78.833 in'])assert.ok(text.includes(value));
 });
+
+test('Chapter 11 worked physics examples retain units and distinct performance targets',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[10];
+ const text=c.detailSections.slice(0,16).flatMap(s=>s.lessonBlocks.flatMap(b=>b.paragraphs)).join('\n');
+ const close=(a,b,t)=>assert.ok(Math.abs(a-b)<t);
+ close(293.15/313.15,0.936,0.0005);
+ close(((120*1852/3600)**2-(90*1852/3600)**2)/(2*9.80665)/0.3048,279,1);
+ close(Math.atan(1000/3000)*180/Math.PI,18.4,0.05);
+ close(Math.atan(1500/6000)*180/Math.PI,14,0.05);
+ assert.equal(33000/3000*60,660);
+ assert.equal(600*60/90,400);assert.equal(600*60/120,300);
+ close(400/(1852/0.3048)*100,6.58,0.01);
+ assert.equal(5000+120*(25-5),7400);
+ assert.equal(20/10*120,240);assert.equal(20/10*90,180);
+ for(const value of ['0.936','279 ft','18.4°','14.0°','660 fpm','6.58%','7,400 ft','240 NM','180 NM'])assert.ok(text.includes(value),value);
+});
