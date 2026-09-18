@@ -262,3 +262,34 @@ test('All 17 PHAK chapters now have detailed outlines while preserving chapter-l
  const restored=cleanStudyState(JSON.parse(JSON.stringify(saved)));
  assert.ok(chapterProgress(c,restored).complete);assert.equal(restored.notes[c.id],saved.notes[c.id]);
 });
+
+test('Chapter 10 published calculation tables agree with independent arithmetic',()=>{
+ const sections=studyDocuments.find(d=>d.id==='phak25c').chapters[9].detailSections;
+ const num=v=>Number(v.replaceAll(',','').replaceAll('−','-'));
+ const table=id=>sections.find(s=>s.id===id).lessonBlocks.find(b=>b.table).table;
+ const close=(actual,expected,tolerance=1e-8)=>assert.ok(Math.abs(actual-expected)<tolerance,`${actual} != ${expected}`);
+ const computed=table('computational').rows;
+ for(const r of computed.slice(0,-1))close(num(r[1])*num(r[2]),num(r[3]));
+ close(computed.slice(0,-1).reduce((sum,r)=>sum+num(r[1]),0),num(computed.at(-1)[1]));
+ close(computed.slice(0,-1).reduce((sum,r)=>sum+num(r[3]),0),num(computed.at(-1)[3]));
+ close(num(computed.at(-1)[3])/num(computed.at(-1)[1]),84.8,0.05);
+ for(const id of ['graph','table','negative-arm']){
+  const rows=table(id).rows;
+  for(const col of [1,2])close(rows.slice(0,-1).reduce((sum,r)=>sum+num(r[col]),0),num(rows.at(-1)[col]));
+ }
+ const stages=table('zero-fuel').rows;
+ const loads=[[3230,90.5],[335,89],[350,126],[200,157],[100,10],[25,183]];
+ let weight=loads.reduce((s,[w])=>s+w,0),moment=loads.reduce((s,[w,a])=>s+w*a,0);
+ const deltas=[0,822,-24,-450];
+ stages.forEach((r,i)=>{
+  weight+=deltas[i];moment+=deltas[i]*113;
+  close(num(r[1]),weight);close(num(r[2]),moment);close(num(r[3]),moment/weight,0.05);
+ });
+ // Independent moment balances also verify movement and addition/removal examples.
+ close((8000*77+100*(150-30))/8000,78.5);
+ close((7800*81.5+65*(30-150))/7800,80.5);
+ close((6860*80+140*150)/(6860+140),81.4);
+ close((6100*80-100*150)/(6100-100),78.8,0.05);
+ const text=sections.flatMap(s=>s.lessonBlocks.flatMap(b=>b.paragraphs)).join('\n');
+ for(const value of ['78.5 in','65 lb','81.4 in','78.833 in'])assert.ok(text.includes(value));
+});

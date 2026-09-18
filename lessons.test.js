@@ -526,3 +526,27 @@ test('Chapter 9 full lessons render sources and preserve saved notes and complet
  assert.match(html,/AC 91-67A/);assert.match(html,/七年/);assert.match(html,/十二個月/);
  assert.match(html,/全章 39 節均已加入深入講解/);
 });
+
+test('Chapter 10 full lessons render all figure links and preserve learning state',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[9];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'先看力矩倍率，再查重心包線'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,23);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,39);assert.equal(blocks.filter(b=>b.table).length,11);assert.equal(blocks.filter(b=>b.check).length,13);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,6,6,6,7,7,8,8,9,10,10];
+ assert.equal(figures.length,11);
+ for(let n=1;n<=11;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 10-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'10-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/先看力矩倍率，再查重心包線/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/全章 23 節均已加入深入講解/);assert.match(html,/最大允許 CG 範圍的 0.2%/);
+ assert.match(html,/2,278 已是 M／100/);assert.match(html,/§23.2100/);
+});
