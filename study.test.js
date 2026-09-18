@@ -309,3 +309,20 @@ test('Chapter 11 worked physics examples retain units and distinct performance t
  assert.equal(20/10*120,240);assert.equal(20/10*90,180);
  for(const value of ['0.936','279 ft','18.4°','14.0°','660 fpm','6.58%','7,400 ft','240 NM','180 NM'])assert.ok(text.includes(value),value);
 });
+
+test('Chapter 11 completed chart examples verify interpolation, wind corrections and cumulative differences',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[10];
+ const find=id=>c.detailSections.find(s=>s.id===id);
+ const table=id=>find(id).lessonBlocks.find(b=>b.table).table;
+ const num=s=>Number(s.replaceAll(',','').replace(' ft',''));
+ for(const r of table('takeoff-chart').rows)assert.equal(num(r[1])*0.8,num(r[3]));
+ for(const r of table('climb-cruise-charts').rows)assert.equal(num(r[1])-num(r[2]),num(r[3]));
+ for(const r of table('landing-chart').rows)assert.equal((num(r[1])+num(r[2]))/2,num(r[3]));
+ assert.equal((1115+1230)/2,1172.5);assert.equal(1115+0.2*(1230-1115),1138);
+ assert.equal(5883-165,5718);assert.equal(140-8,132);
+ const close=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t);
+ close(21*1.1,23.1);close(23.1/6,3.85);close(1600*1.2*1.2,2304);
+ close(3500-1000-2304,196);close(25*Math.cos(Math.PI/6),21.65,0.01);close(25*Math.sin(Math.PI/6),12.5);
+ const text=c.detailSections.slice(16).flatMap(s=>s.lessonBlocks.flatMap(b=>b.paragraphs)).join('\n');
+ for(const value of ['1,172.5 ft','5,718 ft','4.5 min','3.85 gal','2,304 ft','196 ft','132 kt','21.65 kt'])assert.ok(text.includes(value),value);
+});
