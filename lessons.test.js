@@ -601,3 +601,28 @@ test('Chapter 11 complete lessons render all performance charts and preserve sav
  assert.match(html,/全章 34 節均已加入深入講解/);assert.doesNotMatch(html,/反操縱區至章末仍為既有概述/);
  assert.match(html,/best power 為實線、best economy 為虛線/);assert.match(html,/522 NM 與 581 NM/);
 });
+
+test('Chapter 12 weather foundations render figures, checks and saved learning state',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[11];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'氣塊與環境的遞減率要分開'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,51);assert.equal(c.detailSections[30].id,'warm-front');
+ assert.ok(c.detailSections.slice(0,31).every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.slice(0,31).flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,42);assert.equal(blocks.filter(b=>b.table).length,8);assert.equal(blocks.filter(b=>b.check).length,13);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,2,3,4,4,5,5,6,6,7,8,8,9,9,10,10,11,12,12,14,15,16,18,19];
+ assert.equal(figures.length,24);
+ for(let n=1;n<=24;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 12-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'12-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/氣塊與環境的遞減率要分開/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/前 31 節/);assert.match(html,/3,180 ft AGL/);assert.match(html,/VV003/);
+ assert.match(html,/飛向暖鋒至章末仍為既有概述/);
+});
