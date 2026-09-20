@@ -702,3 +702,28 @@ test('Chapter 14 complete airport lessons render all sixty figures and retain sa
  assert.match(html,/不得跨越仍亮著的紅色stop bar/);assert.match(html,/GPS衛星提供定位/);
  assert.match(html,/不以差點碰撞為必要條件/);assert.match(html,/不能低於本機建議速度提早抬輪/);
 });
+
+test('Chapter 15 airspace lessons render all figures, tables and saved learning state',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[14];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'B許可與C通訊要分開'}});
+ const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,33);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,43);assert.equal(blocks.filter(b=>b.table).length,7);assert.equal(blocks.filter(b=>b.check).length,16);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,3,4,4,5,5,6,8,9];
+ assert.equal(figures.length,9);
+ for(let n=1;n<=9;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 15-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'15-'+pages[n-1]);assert.equal(f.url,'https://www.faa.gov/sites/faa.gov/files/17_phak_ch15.pdf#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/B許可與C通訊要分開/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/全章 33 節均已加入深入講解/);assert.match(html,/§91.155\(e\)/);
+ assert.match(html,/Part 107已施行/);assert.match(html,/不能以目視空白作授權/);
+ assert.ok(html.includes('https://sanctuaries.noaa.gov/flight/noaa-regulated-overflight-zones.html'));
+});

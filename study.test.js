@@ -182,7 +182,7 @@ test('Chapter 15 preserves every supplied heading, hierarchy and source page',()
  assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,33);
  assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/17_phak_ch15.pdf#page='+s.printedPage.split('-')[1]);}
- assert.equal(c.checked,'2026-09-11');
+ assert.equal(c.checked,'2026-09-20');
 });
 
 
@@ -200,7 +200,7 @@ test('Chapters 13–15 distinguish retired weather services, runway clearances a
  assert.ok(section(15,'class-c').points.some(p=>p.includes('remain outside')));
  assert.ok(section(15,'vfr-minima').points.some(p=>p.includes('1,200 ft AGL')));
  assert.ok(section(15,'vfr-minima').references.some(r=>r.url.includes('chap3_section_1')));
- for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18','2026-09-19','2026-09-20'].includes(r.checked));}
+ for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov','sanctuaries.noaa.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18','2026-09-19','2026-09-20'].includes(r.checked));}
 });
 
 
@@ -362,4 +362,23 @@ test('Chapter 14 operational distinctions and worked numbers remain explicit',()
  assert.ok(text('edge-lights').includes('最後'+yellowLength.toLocaleString('en-US')+' ft'));
  const altitude=500+1000;
  assert.ok(text('single-pattern').includes(altitude.toLocaleString('en-US')+' ft MSL'));
+});
+
+test('Chapter 15 weather table retains altitude boundaries, units and worked geometry',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[14];
+ const section=id=>c.detailSections.find(s=>s.id===id);
+ const blocks=section('vfr-minima').lessonBlocks;
+ const rows=blocks.flatMap(b=>b.table?.rows||[]),text=JSON.stringify(blocks);
+ assert.deepEqual(rows.find(r=>r[0]==='E，低於10,000 ft MSL'),['E，低於10,000 ft MSL','3 SM','500 ft／1,000 ft／2,000 ft']);
+ assert.deepEqual(rows.find(r=>r[0]==='E，達到或高於10,000 ft MSL'),['E，達到或高於10,000 ft MSL','5 SM','1,000 ft／1,000 ft／1 SM']);
+ assert.deepEqual(rows.find(r=>r[0]==='G，≤1,200 ft AGL，日間'),['G，≤1,200 ft AGL，日間','1 SM','保持雲外']);
+ assert.ok(rows.some(r=>r[0]==='G，>1,200 ft AGL且≥10,000 ft MSL'&&r[1]==='5 SM'));
+ const cloudMSL=1000+Number('020')*100,aircraftMSL=2700,gap=cloudMSL-aircraftMSL;
+ assert.ok(text.includes(cloudMSL.toLocaleString('en-US')+' ft MSL'));assert.ok(text.includes('雲下'+gap+' ft'));
+ assert.ok(text.includes((cloudMSL-500).toLocaleString('en-US')+' ft MSL'));
+ const tfr=JSON.stringify(section('tfr').lessonBlocks),statuteMiles=3*1852/1609.344;
+ assert.ok(tfr.includes('3 NM約'+statuteMiles.toFixed(2)+' SM'));
+ const mtr=JSON.stringify(section('mtr').lessonBlocks);assert.match(mtr,/剛好1,500 ft仍符合四位規則/);
+ const equipment=JSON.stringify(section('pilot-equipment').lessonBlocks);assert.match(equipment,/排除地面上方2,500 ft或以下/);
+ assert.match(text,/就此天氣條文而言/);assert.match(text,/低於1,200 ft AGL/);
 });
