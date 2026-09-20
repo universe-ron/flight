@@ -652,3 +652,53 @@ test('Chapter 12 complete frontal and thunderstorm lessons preserve state and ch
  assert.match(html,/−RA（小雨）/);assert.match(html,/29028G45KT/);assert.match(html,/75SM/);
  assert.match(html,/凝結漏斗只是其中可見部分/);assert.match(html,/AC 00-24C/);
 });
+
+test('Chapter 13 complete weather services render corrected examples and preserve state',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[12];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'先對齊時間與高度基準'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,45);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,58);assert.equal(blocks.filter(b=>b.table).length,7);assert.equal(blocks.filter(b=>b.check).length,16);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[3,3,3,4,7,7,8,11,13,14,14,15,16,17,19,19,20,20,22,22,23];
+ assert.equal(figures.length,21);
+ for(let n=1;n<=21;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 13-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'13-'+pages[n-1]);assert.equal(new URL(f.url).hash,'#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/先對齊時間與高度基準/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/全章 45 節均已加入深入講解/);assert.match(html,/SCN24-85/);
+ assert.match(html,/FM111500/);assert.match(html,/14008KT/);assert.match(html,/Pendleton/);assert.match(html,/1013.2 hPa/);
+});
+
+test('Chapter 14 complete airport lessons render all sixty figures and retain saved progress',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[13];
+ const state=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'等待線看整架航空器'}});
+ const html=environment('#chapter/'+c.id,undefined,state).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,90);assert.ok(c.detailSections.every(s=>s.lessonBlocks?.length));
+ const blocks=c.detailSections.flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,112);assert.equal(blocks.filter(b=>b.table).length,12);assert.equal(blocks.filter(b=>b.check).length,24);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure);
+ const pages=[3,4,4,4,6,7,7,7,7,8,9,10,10,10,10,11,11,12,12,13,13,14,14,14,14,15,15,16,17,17,17,18,18,19,20,20,21,21,22,23,24,25,25,26,27,27,29,32,33,33,34,34,34,34,36,37,38,38,39,40];
+ assert.equal(figures.length,60);
+ for(let n=1;n<=60;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 14-'+n+' ·'));assert.ok(f,'Missing Figure 14-'+n);
+  assert.equal(f.page,'14-'+pages[n-1]);assert.equal(f.url,'https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/等待線看整架航空器/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/全章 90 節均已加入深入講解/);assert.match(html,/JO 7110.118C/);
+ assert.match(html,/不得跨越仍亮著的紅色stop bar/);assert.match(html,/GPS衛星提供定位/);
+ assert.match(html,/不以差點碰撞為必要條件/);assert.match(html,/不能低於本機建議速度提早抬輪/);
+});

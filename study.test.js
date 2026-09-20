@@ -124,7 +124,7 @@ test('Chapter 9 covers all 38 TOC entries plus the original AFM heading',()=>{
  assert.deepEqual(c.detailSections.filter(s=>s.supplementalHeading).map(s=>s.english),['Airplane Flight Manuals (AFM)']);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/11_phak_ch9.pdf#page='+s.printedPage.split('-')[1]);}
  for(const id of ['registration','annual','hundred-hour','altimeter-inspection','transponder-inspection','elt','mel','preventive','entries','special-permit','ads','responsibilities']){
-  const s=c.detailSections.find(s=>s.id===id);assert.ok(s.references.length);for(const r of s.references){assert.ok(['www.faa.gov','www.ecfr.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18'].includes(r.checked));}
+  const s=c.detailSections.find(s=>s.id===id);assert.ok(s.references.length);for(const r of s.references){assert.ok(['www.faa.gov','www.ecfr.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18','2026-09-19','2026-09-20'].includes(r.checked));}
  }
  assert.ok(c.detailSections.find(s=>s.id==='registration').currentNote);
  assert.ok(c.detailSections.find(s=>s.id==='mel').currentNote);
@@ -162,7 +162,7 @@ test('Chapter 13 preserves every supplied heading, hierarchy and source page',()
  assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,45);
  assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page='+s.printedPage.split('-')[1]);}
- assert.equal(c.checked,'2026-09-11');
+ assert.equal(c.checked,'2026-09-20');
 });
 
 
@@ -172,7 +172,7 @@ test('Chapter 14 preserves every supplied heading, hierarchy and source page',()
  assert.equal(c.detailMode,'outline');assert.equal(c.detailSections.length,90);
  assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page='+s.printedPage.split('-')[1]);}
- assert.equal(c.checked,'2026-09-11');
+ assert.equal(c.checked,'2026-09-20');
 });
 
 
@@ -200,7 +200,7 @@ test('Chapters 13–15 distinguish retired weather services, runway clearances a
  assert.ok(section(15,'class-c').points.some(p=>p.includes('remain outside')));
  assert.ok(section(15,'vfr-minima').points.some(p=>p.includes('1,200 ft AGL')));
  assert.ok(section(15,'vfr-minima').references.some(r=>r.url.includes('chap3_section_1')));
- for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18'].includes(r.checked));}
+ for(const c of chapters.slice(12,15))for(const s of c.detailSections)for(const r of s.references||[]){assert.ok(['www.faa.gov','www.faasafety.gov','www.weather.gov','aviationweather.gov','www.ecfr.gov','wireless.fcc.gov'].includes(new URL(r.url).hostname));assert.ok(['2026-09-11','2026-09-18','2026-09-19','2026-09-20'].includes(r.checked));}
 });
 
 
@@ -325,4 +325,41 @@ test('Chapter 11 completed chart examples verify interpolation, wind corrections
  close(3500-1000-2304,196);close(25*Math.cos(Math.PI/6),21.65,0.01);close(25*Math.sin(Math.PI/6),12.5);
  const text=c.detailSections.slice(16).flatMap(s=>s.lessonBlocks.flatMap(b=>b.paragraphs)).join('\n');
  for(const value of ['1,172.5 ft','5,718 ft','4.5 min','3.85 gal','2,304 ft','196 ft','132 kt','21.65 kt'])assert.ok(text.includes(value),value);
+});
+
+test('Chapter 13 encoded weather examples agree with independently decoded values',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[12];
+ const section=id=>c.detailSections.find(s=>s.id===id);
+ const row=section('winds-aloft').lessonBlocks.flatMap(b=>b.table?.rows||[]).find(r=>r[0].startsWith('731960'));
+ const code=row[0].slice(0,6),direction=(Number(code.slice(0,2))-50)*10,speed=Number(code.slice(2,4))+100,temp=-Number(code.slice(4));
+ assert.equal(row[2],`${direction}°／${speed} kt、${temp<0?'−':''}${Math.abs(temp)} °C`);
+ const pressureText=JSON.stringify(section('surface-analysis').lessonBlocks);
+ for(const code of ['132','987','045']){
+  const decoded=(Number(code)+(Number(code)<500?10000:9000))/10;
+  assert.ok(pressureText.includes(decoded.toFixed(1)+' hPa'));
+ }
+ const sky=JSON.stringify(section('metar').lessonBlocks);
+ const layers=[['BKN','008'],['OVC','012']];
+ const ceiling=Math.min(...layers.filter(([type])=>['BKN','OVC'].includes(type)).map(([,height])=>Number(height)*100));
+ assert.ok(sky.includes(ceiling+' ft AGL'));
+ const taf=section('taf').lessonBlocks.flatMap(b=>b.table?.rows||[]).map(r=>r.join(' ')).join(' ');
+ assert.match(taf,/FM111500/);assert.match(taf,/FM120400 14008KT/);assert.match(taf,/TEMPO 1204\/1208/);
+});
+
+test('Chapter 14 operational distinctions and worked numbers remain explicit',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[13];
+ const section=id=>c.detailSections.find(s=>s.id===id);
+ const text=id=>JSON.stringify(section(id).lessonBlocks);
+ const lightRows=section('lost-comm').lessonBlocks.flatMap(b=>b.table?.rows||[]);
+ assert.deepEqual(lightRows.find(r=>r[0]==='穩定綠'),['穩定綠','准許起飛','准許落地']);
+ assert.deepEqual(lightRows.find(r=>r[0]==='閃紅'),['閃紅','滑離使用中跑道','機場不安全，不要落地']);
+ assert.match(text('lahso'),/乾燥且無污染物/);assert.match(text('lahso'),/夜間並非全面禁止/);
+ assert.match(text('stop-bar'),/不得跨越仍亮著的紅色stop bar/);assert.match(text('luaw'),/仍需cleared for takeoff/);
+ assert.match(text('displaced'),/該方向不得在移位門檻前接地/);assert.match(text('emas'),/不是延長的正常跑道/);
+ const codes=new Set();for(let a=0;a<8;a++)for(let b=0;b<8;b++)for(let x=0;x<8;x++)for(let y=0;y<8;y++)codes.add(''+a+b+x+y);
+ assert.ok(text('transponder').includes(codes.size.toLocaleString('en-US')));assert.ok(!codes.has('1289'));
+ const yellowLength=Math.min(2000,3000/2);
+ assert.ok(text('edge-lights').includes('最後'+yellowLength.toLocaleString('en-US')+' ft'));
+ const altitude=500+1000;
+ assert.ok(text('single-pattern').includes(altitude.toLocaleString('en-US')+' ft MSL'));
 });

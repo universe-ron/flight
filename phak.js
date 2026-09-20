@@ -20752,6 +20752,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先問產品回答什麼問題",
+              "paragraphs": [
+                "NWS、FAA、軍方、其他國家機構與民間共同提供觀測、分析、預報和傳遞服務。觀測不是未來保證，預報也不是每個地點必然出現的精確劇本。",
+                "本章採美國產品與編碼情境；使用其他國家的報文時，需重新確認單位與規則。歷史服務名稱保留供讀原書，旁列現行差異。"
+              ]
+            }
           ]
         },
         {
@@ -20771,6 +20780,45 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "四類觀測互相補足",
+              "paragraphs": [
+                "地面站描述局地近地面，高空探測提供垂直剖面，雷達探測反射體與徑向運動，衛星提供大範圍輻射觀測。每種感測器有時間、空間和物理限制。",
+                "沒有收到報告、沒有回波、沒有雲圖特徵，分別可能是未觀測、未覆蓋或感測限制，不能全部解讀成好天氣。"
+              ],
+              "table": {
+                "caption": "四類觀測互相補足",
+                "headers": [
+                  "來源",
+                  "適合回答",
+                  "不能單獨保證"
+                ],
+                "rows": [
+                  [
+                    "METAR",
+                    "測站風、雲、能見度",
+                    "整條航路天氣"
+                  ],
+                  [
+                    "探空／航空器觀測",
+                    "不同高度風溫濕與實遇狀態",
+                    "未測空域完全相同"
+                  ],
+                  [
+                    "雷達",
+                    "反射率及相關結構",
+                    "所有亂流與雲都可見"
+                  ],
+                  [
+                    "衛星",
+                    "雲系範圍與發展",
+                    "被上層雲遮住的低雲底"
+                  ]
+                ]
+              }
             }
           ]
         },
@@ -20792,6 +20840,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "自動、人工與增補觀測",
+              "paragraphs": [
+                "ASOS、AWOS 及人工觀測共同提供地面資訊。AUTO 表示全自動報告；人工增補能加入某些自動設備無法完整辨識的現象，但每站感測能力不同。",
+                "測站數據有代表範圍，山谷另一側或跑道另一端可能不同。應同時讀時間、RMK 和附近站，不能把同一機場代碼當成所有進場路徑的保證。"
+              ]
+            }
           ]
         },
         {
@@ -20811,6 +20868,15 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "管制員看到的是特定顯示產品",
+              "paragraphs": [
+                "ARTCC 主要負責航路交通隔離，天氣圖層協助提供降水資訊。舊雷達的斜線、H 或藍色色階是設備演進的例子，並非所有席位現在相同。",
+                "顯示選項、涵蓋和工作量影響可用協助；管制員未主動指出天氣，不表示前方沒有危害。飛行員需要時應明確請求資訊或偏航。"
+              ]
             }
           ]
         },
@@ -20832,6 +20898,22 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "探空剖面會隨氣球漂移",
+              "paragraphs": [
+                "氣球上升時量測壓力、溫度與濕度，配合位置追蹤推得風。資料沿著隨風漂移的路徑收集，不是同一根鉛直柱的瞬間照片。",
+                "原文的升速、高度、發射數與回收率屬當時設備及統計；不拿舊數字當現行網路能力。探空、PIREP 與自動航空器觀測各補足不同時空缺口。"
+              ]
+            },
+            {
+              "title": "AMDAR／MDCRS：量測與傳輸分開",
+              "paragraphs": [
+                "商用航空器可自動提供風溫等觀測，部分另有亂流或水氣資料。AMDAR 是航空器觀測計畫，ACARS 是傳遞路徑之一，BUFR 則是資料格式，三者不是同義詞。",
+                "原書 1,500 架與每日二十多萬筆、ASDAR 和組織名稱是版本背景；資料可能延後傳送。PIREP 很有價值，但不是今日唯一取得亂流或高空條件的來源。"
+              ]
+            }
           ]
         },
         {
@@ -20851,6 +20933,48 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "雷達圖的顏色先配產品圖例",
+              "paragraphs": [
+                "Figure 13-1 顯示降水帶的形狀與反射率，能提示對流組織。dBZ 是對數反射率量，不是每小時雨量，也不是亂流強度的直接讀值。",
+                "WSR-88D 的晴空與降水掃描策略在靈敏度、角度及更新間隔間取捨；原文約 10 分鐘與 4～6 分鐘是典型模式描述，不能保證座艙資料每次都同樣新。"
+              ],
+              "figure": {
+                "label": "Figure 13-1 · Weather radar scope",
+                "page": "13-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=3"
+              }
+            },
+            {
+              "title": "相同顏色不必表示相同回波",
+              "paragraphs": [
+                "Figure 13-2 左右兩個色尺使用不同 dBZ 範圍。先看數值與產品種類，再讀色彩，不能把晴空模式的某個顏色直接當成降水模式同級強度。",
+                "TDWR 著重終端風切及外流等資訊；機場監視雷達以交通監視為主；機載天氣雷達有波束傾角、衰減與遮蔽限制，強回波後的暗區不必然乾淨。"
+              ],
+              "figure": {
+                "label": "Figure 13-2 · Radar echo intensity legends",
+                "page": "13-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=3"
+              }
+            },
+            {
+              "title": "原圖分級與現行 ATC 用語",
+              "paragraphs": [
+                "Figure 13-3 的 Light／Moderate 分界列為 30 dBZ。現行 AIM 對能分辨強度的雷達處理器列 Light <26、Moderate 26～40、Heavy >40～50、Extreme >50 dBZ；保留原圖但以來源及設備核對分級。",
+                "這些是降水回波強度，不能把 Moderate precipitation 直接翻成中度亂流，也不能拿無回波當成無亂流。"
+              ],
+              "figure": {
+                "label": "Figure 13-3 · Precipitation intensity terminology",
+                "page": "13-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=3"
+              },
+              "check": {
+                "question": "28 dBZ 在現行 AIM 四級用語屬哪一級？",
+                "answer": "Moderate。原圖舊分界不同，所以必須核對產品與現行說明，不能只背顏色。"
+              }
             }
           ]
         },
@@ -20872,6 +20996,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "衛星觀測不等於衛星傳送雷達",
+              "paragraphs": [
+                "氣象衛星可觀測可見光與紅外輻射等，協助辨識雲系。訂閱衛星資料鏈則是將各種產品傳到航空器的通訊服務，其中可能包含地面雷達拼圖。",
+                "「由衛星收到」不表示產品由衛星直接量測，更不表示沒有延遲。可見光受日照影響，紅外雲頂資訊也不能直接給出雲底或保證穿雲安全。"
+              ]
+            }
           ]
         },
         {
@@ -20891,6 +21024,15 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "服務平台與產品來源分清楚",
+              "paragraphs": [
+                "FSS、AWC、各地 NWS 與民間平台提供不同入口。同一產品經不同平台重新著色、裁切或解碼，應保留原始時間、來源、涵蓋及限制。",
+                "原書的 DUATS、ADDS 等名稱反映舊服務環境；實際使用現行 Flight Service 與 AviationWeather.gov 入口，不依過時電話簿或書中網址判定服務仍可用。"
+              ]
             }
           ]
         },
@@ -20912,6 +21054,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "向 Flight Service 提供完整航程背景",
+              "paragraphs": [
+                "在美國可透過 1-800-WX-BRIEF 及現行 Flight Service 管道取得協助；航中通訊查當地圖資頻率與涵蓋。先說飛行規則、機型呼號、出發與目的地、時間、航路、高度及航程時間。",
+                "這些資訊使簡報能對應你的航段，而不是只說某城市明天好不好。簡報紀錄不等於 VFR 飛行計畫已啟用，兩項程序須分開確認。"
+              ]
+            }
           ]
         },
         {
@@ -20931,9 +21082,23 @@ export const phakDocument = {
               "title": "FAA：阿拉斯加 TWEB／TIBS 停用通知",
               "url": "https://www.faasafety.gov/SPANS/noticeView.aspx?nid=9903",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA Safety Briefing · January/February 2020",
+              "url": "https://www.faa.gov/sites/faa.gov/files/2022-01/JanFeb2020.pdf",
+              "checked": "2026-09-19"
             }
           ],
-          "currentNote": "歷史服務：FAA 通知阿拉斯加 TWEB 與 TIBS 自 2020-01-01 停止；不要把原書的錄音／廣播服務當成現今必然可用的管道。"
+          "currentNote": "歷史服務：FAA 通知阿拉斯加 TWEB 與 TIBS 自 2020-01-01 停止；不要把原書的錄音／廣播服務當成現今必然可用的管道。",
+          "lessonBlocks": [
+            {
+              "title": "TIBS 錄音簡報屬歷史服務",
+              "paragraphs": [
+                "TIBS 曾提供電話錄音的區域與航路摘要。CONUS 服務於 2018 年停止，阿拉斯加 TIBS 隨 TWEB 於 2020-01-01 停止；不再教讀者照舊表尋找可用錄音。",
+                "原理仍值得記住：一般區域摘要不一定涵蓋特定航程需求，收到資訊後還要核對路線、時間與高度。"
+              ]
+            }
+          ]
         },
         {
           "id": "hiwas",
@@ -20954,7 +21119,21 @@ export const phakDocument = {
               "checked": "2026-09-11"
             }
           ],
-          "currentNote": "原書保留舊服務介紹；HIWAS 已停止，現行飛航資訊取得方式另見 FAA AIM 7-1。"
+          "currentNote": "原書保留舊服務介紹；HIWAS 已停止，現行飛航資訊取得方式另見 FAA AIM 7-1。",
+          "lessonBlocks": [
+            {
+              "title": "VOR 旁的 H 是舊 HIWAS 圖例",
+              "paragraphs": [
+                "Figure 13-4 示範舊圖上 H 表示 HIWAS 廣播能力。HIWAS 已停用；看到舊圖符號不能推定今天有危害天氣廣播。",
+                "現行替代資訊可透過 Flight Service、ATC 或適當資料鏈取得，但各自涵蓋和延遲不同。舊 EFAS／Flight Watch 專用服務名稱也不能取代現行頻率查核。"
+              ],
+              "figure": {
+                "label": "Figure 13-4 · Historical HIWAS symbol",
+                "page": "13-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=4"
+              }
+            }
+          ]
         },
         {
           "id": "tweb",
@@ -20975,7 +21154,16 @@ export const phakDocument = {
               "checked": "2026-09-11"
             }
           ],
-          "currentNote": "歷史服務：FAA 通知阿拉斯加 TWEB 與 TIBS 自 2020-01-01 停止；不要把原書的錄音／廣播服務當成現今必然可用的管道。"
+          "currentNote": "歷史服務：FAA 通知阿拉斯加 TWEB 與 TIBS 自 2020-01-01 停止；不要把原書的錄音／廣播服務當成現今必然可用的管道。",
+          "lessonBlocks": [
+            {
+              "title": "阿拉斯加 TWEB 已停止",
+              "paragraphs": [
+                "TWEB 曾在選定導航設施播送氣象摘要，部分有 TEL-TWEB 電話入口。它與阿拉斯加 TIBS 自 2020-01-01 停止，原文 Alaska only 描述的是歷史時期。",
+                "偏遠地區尤其要事先確認實際通訊覆蓋與備用取得方式；不能因地圖沒有天氣資料就假設沿途無危害。"
+              ]
+            }
+          ]
         },
         {
           "id": "briefings",
@@ -20994,6 +21182,25 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA AC 91-92 · Preflight self-briefing",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_91-92.pdf",
+              "checked": "2026-09-19"
+            },
+            {
+              "title": "FAA AC91-92 · Preflight briefing",
+              "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1036892",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "簡報是取得並理解資訊的過程",
+              "paragraphs": [
+                "FAA AC 91-92 說明自助飛前簡報的方法。原文每次都須由 FSS 專員提供的語氣過強；是否履行飛前準備不能只以有沒有撥電話衡量，也不能只開一張雷達圖就稱完成簡報。",
+                "先界定航程、機型能力、備降與決策門檻，再看天氣、NOTAM、跑道及燃油等相關資訊；不理解或有矛盾時向 Flight Service 等適當管道求證。"
+              ]
             }
           ]
         },
@@ -21015,6 +21222,45 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "標準簡報按決策順序整理",
+              "paragraphs": [
+                "先看會使飛行取消或改變的危害及 VFR 不建議資訊，再看綜觀形勢、實況、沿途與目的地預報、高空風溫、NOTAM 和延誤。完整不代表每個無關項目都要堆入座艙。",
+                "VFR flight not recommended 是重要諮詢，不是另發一張許可，也不解除 PIC 遵守最低標準及風險決策責任。原文兩小時、只應要求才提供等細節須依現行簡報服務核對，不把未口述的 NOTAM 當不存在。"
+              ],
+              "table": {
+                "caption": "標準簡報按決策順序整理",
+                "headers": [
+                  "問題",
+                  "主要資訊",
+                  "決策用途"
+                ],
+                "rows": [
+                  [
+                    "能否按原計畫飛",
+                    "危害、跑道關閉、飛行條件",
+                    "取消／改航／延後"
+                  ],
+                  [
+                    "何時何處惡化",
+                    "實況與預報、有效時間",
+                    "設定途中評估點"
+                  ],
+                  [
+                    "航程需要多少資源",
+                    "高空風溫、延誤",
+                    "燃油與備降裕度"
+                  ],
+                  [
+                    "資料是否完整",
+                    "NOTAM、設備限制、更新",
+                    "起飛前補齊缺口"
+                  ]
+                ]
+              }
+            }
           ]
         },
         {
@@ -21034,6 +21280,19 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "補充簡報先交代舊資料",
+              "paragraphs": [
+                "延誤或需要更新時，提供上次簡報的時間與來源，以及航路是否改變。專員才能辨識哪些內容已知、哪些需要補充。",
+                "Abbreviated 不是只挑有利天氣重聽一次；如果原簡報範圍已不適用，應重建整體天氣圖像。"
+              ],
+              "check": {
+                "question": "出發延誤三小時，原先好天氣能直接沿用嗎？",
+                "answer": "不能。應更新會影響航路與 ETA 的觀測、預報、危害與 NOTAM，並告知先前簡報時間。"
+              }
             }
           ]
         },
@@ -21055,6 +21314,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "展望簡報用於較早期規劃",
+              "paragraphs": [
+                "預計六小時或更久以後出發，可用 outlook 了解趨勢並選擇時間與路線。愈遠的預測愈需注意不確定性，接近出發仍要取得完整更新。",
+                "Outlook 不等於只看目的地一個圖示；要把沿途天氣及備降趨勢一起納入。"
+              ]
+            }
           ]
         },
         {
@@ -21075,6 +21343,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "觀測時間先於解碼細節",
+              "paragraphs": [
+                "METAR 是地面觀測，PIREP 是航空器特定時地的實遇報告。先讀站點／位置和時間，再讀數值，最後比較其他來源；不要把剛下載的舊報當成剛觀測。",
+                "美國 SM 是法定英里，航路位置常用 NM；METAR 雲底通常 AGL，PIREP 高度通常 MSL 或飛航空層。單位與基準先對齊才有意義。"
+              ]
+            }
           ]
         },
         {
@@ -21094,6 +21371,11 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "AWC · METAR decoding",
+              "url": "https://aviationweather.gov/help/data/",
+              "checked": "2026-09-19"
             }
           ],
           "points": [
@@ -21104,6 +21386,88 @@ export const phakDocument = {
             "溫度露點：18/16 為攝氏 18／16 度，差距小表示接近飽和，但不能僅以差兩度就斷言一定起霧。",
             "氣壓例：A2992＝29.92 inHg；Q1013 使用 hPa。美式 SM、inHg 與其他地區公尺、hPa 不可混用。",
             "RMK 為備註，可能包含感測器限制或重要天氣細節；SPECI 是條件變動觸發的特別觀測，不能只等下一份例行 METAR。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "KGGG 範例：先拆識別、時間與風",
+              "paragraphs": [
+                "原例：METAR KGGG 161753Z AUTO 14021G26KT 3/4SM +TSRA BR BKN008 OVC012CB 18/17 A2970 RMK PRESFR。",
+                "16 日 1753Z 是觀測日與 UTC 時間，不含月份年份。AUTO 表示自動；COR 是更正，不是另一種天氣。14021G26KT 表示由真方位 140° 吹來、21 kt、陣風 26 kt，不能把 140 再乘十。",
+                "ICAO 代碼需查資料庫；美國本土常見 K 前綴，但阿拉斯加不是所有站都以 PA 開頭。AO1／AO2 是設備分類，不能當成品質保證。"
+              ],
+              "table": {
+                "caption": "KGGG 範例：先拆識別、時間與風",
+                "headers": [
+                  "群組",
+                  "解讀",
+                  "注意"
+                ],
+                "rows": [
+                  [
+                    "161753Z",
+                    "16 日 17:53 UTC",
+                    "結合當前月份與日期背景"
+                  ],
+                  [
+                    "14021G26KT",
+                    "真向 140°，21 kt，陣風 26 kt",
+                    "不是磁向或航向"
+                  ],
+                  [
+                    "3/4SM",
+                    "0.75 法定英里",
+                    "不是 0.75 NM"
+                  ],
+                  [
+                    "18/17",
+                    "18 °C／露點 17 °C",
+                    "M 前綴表示負值"
+                  ],
+                  [
+                    "A2970",
+                    "29.70 inHg 高度表設定",
+                    "不等於站壓"
+                  ],
+                  [
+                    "PRESFR",
+                    "氣壓快速下降",
+                    "RMK 必須讀"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "天氣碼由限定詞與現象組成",
+              "paragraphs": [
+                "Figure 13-5 的 +TSRA BR 是雷暴伴大雨及薄霧；+ 修飾降水強度，不能直接翻成正式 severe thunderstorm。FZRA 是凍雨，SHRA 是陣雨，RA 與 DZ 不同。",
+                "VC 表示附近現象，使用產品指定距離與適用現象；不把書中五至十 miles 當所有報文的通用範圍。R17L/1400FT 是跑道 17L 的 RVR 1,400 ft，不是飛機必然能看到的固定距離，也不等於 prevailing visibility。"
+              ],
+              "figure": {
+                "label": "Figure 13-5 · METAR descriptors and weather phenomena",
+                "page": "13-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=7"
+              },
+              "check": {
+                "question": "+TSRA 是否單獨證明雷暴符合「嚴重雷暴」門檻？",
+                "answer": "不是。它編碼雷暴與大雨；其他嚴重條件需由相關觀測、通報及預報判讀。"
+              }
+            },
+            {
+              "title": "雲量表需分辨少雲與晴空",
+              "paragraphs": [
+                "Figure 13-6 的晴空列把 FEW 混入，不能據此把 FEW 當無雲。FEW 為 1～2/8，SCT 為 3～4/8，BKN 為 5～7/8，OVC 為 8/8；雲幕取最低 BKN／OVC 或垂直能見度。",
+                "原例 BKN008 OVC012CB 的雲幕是 800 ft AGL，不是 1,200 ft。CLR 受自動感測範圍限制，不保證整個天空無雲；12,000 ft 是傳統系統限制描述，不能概括所有現行設備。"
+              ],
+              "figure": {
+                "label": "Figure 13-6 · Sky cover contractions",
+                "page": "13-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=7"
+              },
+              "check": {
+                "question": "FEW005 BKN020 的雲幕與最低報告雲層各是多少？",
+                "answer": "雲幕 2,000 ft AGL；最低報告雲層 500 ft AGL。兩個量不同。"
+              }
+            }
           ]
         },
         {
@@ -21123,12 +21487,43 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA Flight Services · PIREP coding",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/fs_html/chap8_section_1.html",
+              "checked": "2026-09-19"
             }
           ],
           "points": [
             "UA／UUA 區分例行與緊急報告；急迫危害應及時通報，不必為了組成完美格式而延誤。",
             "常見欄位：/OV 位置、/TM UTC 時間、/FL 高度、/TP 機型、/SK 雲況、/WX 天氣、/TA 溫度、/WV 風、/TB 亂流、/IC 結冰、/RM 備註。",
             "自編例：/OV ABC090020 /TM 1500 /FL080 /TP C172 /TB MOD，描述 ABC 東側 20 NM、1500 UTC、約 8,000 ft 高度的 C172 遭遇中度亂流；不是預報整區所有高度都是中度。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "依 Figure 13-7 組織 PIREP",
+              "paragraphs": [
+                "先提供位置、時間、高度、機型，再描述現象。UA 是例行，UUA 是緊急；不必等專員詢問才報告重要實遇，也不必為了蒐集報告而進入危險區。",
+                "原文「項目 1～5 加現象」漏掉機型的重要性。現行要求包括機型；亂流與結冰尤須機型背景。未填 /IC 表示未報，不等於 /IC NEG；圖中文字說負溫加連字號但例子用 M06，也須以現行編碼規則核對。"
+              ],
+              "figure": {
+                "label": "Figure 13-7 · PIREP encoding and decoding",
+                "page": "13-8",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=8"
+              }
+            },
+            {
+              "title": "C182 原例逐項核對",
+              "paragraphs": [
+                "/OV GGG 090025 表示 GGG 090° 徑向外 25 NM；/TM1450 為 14:50 UTC；/FL060 是 6,000 ft 高度資訊，不能不分低空與飛航空層就當成標準設定下的 FL060。",
+                "/SK080 OVC 是 8,000 ft MSL 的雲層描述，與 METAR 的 AGL 不同；/WX FV04SM RA 為空中能見度 4SM、雨；/TA05 為 +5 °C；/TB LGT 為輕度亂流；/RM HVY RAIN 補充大雨。",
+                "/WV270030KT 是原圖格式。美國 AIM PIREP 表列磁向風，METAR／TAF／FB 則是真向；不能一概共用。現行 Flight Services 編碼速度用兩或三位，30 kt 可寫 27030KT，不照舊圖把所有速度都補成三位。"
+              ],
+              "check": {
+                "question": "本例沒有 /IC，是否可告訴後機「已確認無結冰」？",
+                "answer": "不能。沒有報告與明確報告 NEG 是不同證據；還須考慮高度、時間及機型。"
+              }
+            }
           ]
         },
         {
@@ -21149,6 +21544,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "預報用途不能互相取代",
+              "paragraphs": [
+                "TAF 著重機場附近、GFA 提供區域圖像、危害通報描述重要現象、FB 給指定地點高度風溫。每個產品各回答一部分問題。",
+                "有效時間與發布時間分開：剛發布的預報可能針對幾小時後，較早發布的預報也可能仍有效；一旦有 AMD、更正或取消就需更新。"
+              ]
+            }
           ]
         },
         {
@@ -21168,6 +21572,11 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "NWS SCN24-85 · PROB30 restriction removed",
+              "url": "https://www.weather.gov/media/notification/pdf_2023_24/scn24-85_prob30_use.pdf",
+              "checked": "2026-09-19"
             }
           ],
           "points": [
@@ -21175,6 +21584,102 @@ export const phakDocument = {
             "FM 為一組主要條件的新開始；TEMPO 指指定期間內的暫時波動，不能解讀成整段時間都維持同一惡劣條件。",
             "風與能見度格式近似 METAR，但 TAF 是未來預期；機場附近的預報不能代表沿途山區。",
             "美國 TAF 通常適用機場中心約 5 SM 內；24 或 30 小時等期間按該站產品確認，不可一概套用。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "TAF 的時段與範圍",
+              "paragraphs": [
+                "美國 TAF 主要描述跑道群中心 5SM 範圍的預期天氣，不是整條進場或航路預報。例行有效期通常 24 或 30 小時，按 00／06／12／18Z 週期，實際發布時間在報首，另有 AMD。",
+                "111130Z 1112/1212 表示 11 日 11:30Z 發布、11 日 12Z 至 12 日 12Z 有效。FM 後依序日、時、分；TEMPO 是短暫偏離當時 prevailing 條件，不是新條件連續存在整段時間。",
+                "PROB30 是該現象的 30% 發生機率，不是持續 30% 時間。NWS 自 2024-09-30 更新規則，允許在前九小時使用；原文「前六小時不用」及舊九小時口訣都不能當現行限制。"
+              ],
+              "table": {
+                "caption": "TAF 的時段與範圍",
+                "headers": [
+                  "群組",
+                  "作用",
+                  "讀法"
+                ],
+                "rows": [
+                  [
+                    "FM111500",
+                    "11 日 15:00 起的新 prevailing 條件",
+                    "後續直到下一次變更"
+                  ],
+                  [
+                    "TEMPO1112/1114",
+                    "11 日 12～14Z 的短暫變化",
+                    "每次少於一小時，總計少於該期一半"
+                  ],
+                  [
+                    "PROB30 1200/1204",
+                    "12 日 00～04Z 的低機率事件",
+                    "不代表可忽略危害"
+                  ],
+                  [
+                    "P6SM",
+                    "能見度大於 6SM",
+                    "不是等於 6SM"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "KPIR 原例有缺漏，修訂版要標明",
+              "paragraphs": [
+                "原書文字解說有 15012KT P6SM BKN090，但報文開頭缺這組 prevailing 條件；FM1500 缺日碼，1408KT 缺速度補零。不能假裝原始報文完整無誤。",
+                "下表是依原文解說重建的教學修訂版，不是實際發布的 TAF。TSRA 表示雷暴伴雨，沒有 SH 就不自行加成編碼中的陣雨。"
+              ],
+              "table": {
+                "caption": "KPIR 原例有缺漏，修訂版要標明",
+                "headers": [
+                  "時段",
+                  "教學修訂報文",
+                  "重點"
+                ],
+                "rows": [
+                  [
+                    "報首",
+                    "TAF KPIR 111130Z 1112/1212 15012KT P6SM BKN090",
+                    "補回原文解說中的起始條件"
+                  ],
+                  [
+                    "11 日 12～14Z",
+                    "TEMPO 1112/1114 5SM BR",
+                    "短暫薄霧"
+                  ],
+                  [
+                    "11 日 15Z 起",
+                    "FM111500 16015G25KT P6SM SCT040 BKN250",
+                    "補日碼 11"
+                  ],
+                  [
+                    "12 日 00Z 起",
+                    "FM120000 14012KT P6SM BKN080 OVC150",
+                    "新 prevailing 條件"
+                  ],
+                  [
+                    "12 日 00～04Z",
+                    "PROB30 1200/1204 3SM TSRA BKN030CB",
+                    "30% 雷暴風險"
+                  ],
+                  [
+                    "12 日 04Z 起",
+                    "FM120400 14008KT P6SM SCT040 OVC080",
+                    "1408KT 修為 14008KT"
+                  ],
+                  [
+                    "12 日 04～08Z",
+                    "TEMPO 1204/1208 3SM TSRA OVC030CB",
+                    "暫時條件疊加"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "12 日 05Z 是否只看 FM120400 的 P6SM？",
+                "answer": "不行。同時落在 TEMPO1204/1208，需考慮短暫 3SM、雷暴及 3,000 ft 雲幕。"
+              }
+            }
           ]
         },
         {
@@ -21201,7 +21706,21 @@ export const phakDocument = {
               "checked": "2026-09-11"
             }
           ],
-          "currentNote": "版本差異：原書產品名稱與圖例保留作概念學習；實際產品入口、覆蓋及發布方式依 AWC 現行說明確認。"
+          "currentNote": "版本差異：原書產品名稱與圖例保留作概念學習；實際產品入口、覆蓋及發布方式依 AWC 現行說明確認。",
+          "lessonBlocks": [
+            {
+              "title": "FA 地圖保留歷史閱讀用途",
+              "paragraphs": [
+                "Figure 13-8 是舊 CONUS 六區文字 FA 分區。如今不能把這張圖當成現行服務清單；CONUS 已轉向圖形化產品，夏威夷 FA 也在 2025 年退役，各區產品須查現行入口。",
+                "舊 FA 仍可練習 SYNOPSIS、CLDS/WX、OTLK 與高度基準。例中 NWD 是向北，不是正文誤譯的西北；FL450 是壓力航空層，不應精確等同 45,000 ft 真高度 MSL。GFA 亦須選對時間、高度與圖層。"
+              ],
+              "figure": {
+                "label": "Figure 13-8 · Historical area forecast regions",
+                "page": "13-11",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=11"
+              }
+            }
+          ]
         },
         {
           "id": "advisories",
@@ -21220,6 +21739,15 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "危害通報不是只有起飛後才看",
+              "paragraphs": [
+                "AIRMET、SIGMET 與對流 SIGMET 同樣重要於飛前規劃。先讀現象、範圍、上下界、移動及有效時間，再套到預計經過的時間高度。",
+                "未發布不代表局地沒有危害，通報到期也不代表天氣立刻消失；應看後續更新與實況。不同國家或 FIR 的產品制度不可直接套美國本土格式。"
+              ]
             }
           ]
         },
@@ -21252,6 +21780,26 @@ export const phakDocument = {
             "Sierra：IFR 條件與山區遮蔽等。",
             "Tango：中度亂流、強地面風與非對流低空風切等。",
             "Zulu：中度結冰及凍結高度資訊等；凍結高度本身不代表必然結冰，仍需水分與其他條件。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Sierra、Tango、Zulu 與現行 G-AIRMET",
+              "paragraphs": [
+                "Sierra 對應 IFR／山岳遮蔽，Tango 對應亂流、強地面風與低空風切，Zulu 對應結冰及冰點層。AIRMET 並非只關係小飛機，所有機型仍需依能力評估。",
+                "CONUS 文字 TAC AIRMET 自 2025-01-27 停止，G-AIRMET 保留。圖形預報需選定時間快照，不能把一次發布的全部多邊形都當成同時有效。原文六小時文字區域敘述留作歷史例。"
+              ]
+            },
+            {
+              "title": "Boston 原例的兩個多邊形分開讀",
+              "paragraphs": [
+                "BOSS WA211945、VALID UNTIL220200 是 21 日 19:45Z 發布、22 日 02Z 到期；UPDT3 是更新次數。IFR 的 CAR—YSJ—150E ACK—EWR—YOW—CAR 與山岳遮蔽的 CAR—MLT—CON—SLT—SYR—CAR 是不同邊界。",
+                "原文解說把兩區混在一起，並把 IFT 誤植當標題；此處按 IFR 與 MTN OBSCN 分開。CIG BLW010／VIS BLW3SM、PCPN／BR 表示低雲、差能見度、降水／薄霧；CONT BYD02Z THRU08Z 說現象可能持續，不是把這份通報效期自動延長。"
+              ],
+              "check": {
+                "question": "通報 02Z 到期但寫天氣持續至 08Z，02Z 之後應怎麼做？",
+                "answer": "查新一期通報與實況，不能當成危害已消失，也不能把舊件當成自動延長有效。"
+              }
+            }
           ]
         },
         {
@@ -21272,6 +21820,19 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Romeo 2 的位置、層次與時間",
+              "paragraphs": [
+                "原例 SIGMET Romeo 2 有效至 10 日 0530Z，SEA—PDT—EUG—SEA 包圍區域預期 FL280～FL350 偶發嚴重晴空亂流，與噴射氣流相關；02Z 後開始並可能持續超過效期。",
+                "PDT 是 Pendleton，不是原文解說的 Portland。國內非對流 SIGMET 常見嚴重結冰、嚴重／極端亂流、火山灰及影響能見度的沙塵；四小時與颶風六小時規則有地區前提，國際 SIGMET 也可涵蓋雷暴。"
+              ],
+              "check": {
+                "question": "航線不在地面降雨區，能否忽略這份 CAT 通報？",
+                "answer": "不能。晴空亂流不需要地面降雨，應比較通報的水平範圍、FL280～350 與通過時間。"
+              }
+            }
           ]
         },
         {
@@ -21291,6 +21852,25 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "AWC · Convective SIGMET criteria",
+              "url": "https://aviationweather.gov/help/data/",
+              "checked": "2026-09-19"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "20C 表示中部第 20 份，不是強度",
+              "paragraphs": [
+                "MKCC WST221855、20C、VALID UNTIL2055Z：22 日 18:55Z 發布，中部區第 20 份，有效至 20:55Z。MOVG FROM24045KT 是由 240° 以 45 kt 移動，朝約 060°；TOPS ABV FL450 是雲頂高於 FL450。",
+                "WIND GUSTS TO60KTS RPRTD 是已報；TORNADOES、HAIL TO2IN、WIND GUSTS TO65KTS POSS ND PTN 是北達科他部分可能出現，不是全部都已觀測。",
+                "現行 AWC 特別發布條件含陣風至少 50 kt、冰雹至少 3/4 inch 或龍捲；不能把一般公眾嚴重雷暴的一英寸門檻套過來。對流通報不是只有逐一達到某數字才有危險，其他有危害的對流亦可發布。"
+              ],
+              "check": {
+                "question": "FROM24045KT 是否往西南移動？",
+                "answer": "不是。FROM 指來源，移動方向約向東北 060°；45 kt 是系統移速。"
+              }
             }
           ]
         },
@@ -21311,12 +21891,77 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "AWC · Wind/temperature products",
+              "url": "https://aviationweather.gov/help/data/",
+              "checked": "2026-09-19"
             }
           ],
           "points": [
             "原書超過 99 kt 例：731960 → 73−50＝23，即 230°；19＋100＝119 kt；高空溫度為 −60°C。先確認此高度欄採用的格式，再解碼。",
             "高於 24,000 ft 的傳統風溫編碼省略負號；低層欄位不應沿用此假設。",
             "把預報風換成航向修正與地速後，航中仍應比較實際航時與燃油，發現差異及早更新計畫。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 13-9：先核對三個時間",
+              "paragraphs": [
+                "151640 是傳送日／時，DATA BASED ON151200Z 是資料基準，VALID151800Z 是有效時刻，FOR USE1400-2100Z 是使用時段。這些不能全部簡化為「下午四點四十分觀測的風」。",
+                "AMA 海拔 3,605 ft，3,000 ft 欄空白，6,000 ft 的2714表示真向270°／14 kt；DEN海拔5,431 ft，6,000 ft距站太近，9,000 ft 的2321−04表示230°／21 kt、−4 °C。風距站高至少1,500 ft、溫度距站高至少2,500 ft等編碼條件要分清；3,000 ft層不列溫度。"
+              ],
+              "figure": {
+                "label": "Figure 13-9 · Winds and temperatures aloft",
+                "page": "13-13",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=13"
+              },
+              "table": {
+                "caption": "Figure 13-9：先核對三個時間",
+                "headers": [
+                  "碼／條件",
+                  "步驟",
+                  "結果"
+                ],
+                "rows": [
+                  [
+                    "2714",
+                    "27×10；14",
+                    "270°／14 kt"
+                  ],
+                  [
+                    "2321−04",
+                    "23×10；21；−04",
+                    "230°／21 kt、−4 °C"
+                  ],
+                  [
+                    "731960（高於24,000 ft）",
+                    "(73−50)×10；19+100；負60",
+                    "230°／119 kt、−60 °C"
+                  ],
+                  [
+                    "7799",
+                    "(77−50)×10；99+100",
+                    "270°／199 kt 或更大"
+                  ],
+                  [
+                    "9900",
+                    "特殊碼，不當作990°",
+                    "小於5 kt，輕且不定向"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "高度基準與高風速編碼",
+              "paragraphs": [
+                "低層高度與高層 flight level 的基準不同；FL不是當天的精確真高度。ABV24000溫度負號省略，24,000 ft 本身仍看報表中的符號。",
+                "100 kt 以上的編碼把方向加50、速度減100；199 kt 或更大以編碼上限表示，不能知道實際是200還是更高。原文「200才封頂」與例子7799的199以上解讀需以編碼限制釐清。"
+              ],
+              "check": {
+                "question": "高層風碼754550代表什麼？",
+                "answer": "(75−50)×10=250°；45+100=145 kt；溫度−50 °C。"
+              }
+            }
           ]
         },
         {
@@ -21337,6 +21982,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "圖名、有效時刻、基準與圖例",
+              "paragraphs": [
+                "分析圖描述某一時刻的估計狀態，預報圖描述未來有效時間。原文把重要天氣預報圖混稱 current information，閱讀時應以 analysis／forecast 及圖上時間判斷。",
+                "先看範圍、高度和圖例，再看自己的航路。多張圖的日期時刻不同，不能拼成同一瞬間的天氣。"
+              ]
+            }
           ]
         },
         {
@@ -21356,6 +22010,36 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "地面分析圖呈現大尺度配置",
+              "paragraphs": [
+                "Figure 13-10 可用於辨識高低壓、鋒面與地面觀測分布。等壓線呈現海平面氣壓，能看壓力梯度，但不是航路各高度風的直接預報。",
+                "典型三小時分析週期不表示天氣只每三小時變一次。圖上鋒線位置有分析尺度與時效，需配沿途觀測和預報。"
+              ],
+              "figure": {
+                "label": "Figure 13-10 · Surface analysis chart",
+                "page": "13-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=14"
+              }
+            },
+            {
+              "title": "站點模型的三位氣壓碼",
+              "paragraphs": [
+                "Figure 13-11 的三位海平面氣壓碼省略前導9或10及小數點。常用解法：碼小於500加10，500以上加9，再在末位前加小數點，取合理氣壓範圍。",
+                "例如132→1013.2 hPa，987→998.7 hPa。這不是METAR A組高度表設定；圖示溫露為°F，其他產品不一定。風羽指來向，圓圈填色描述雲量。"
+              ],
+              "figure": {
+                "label": "Figure 13-11 · Station model and chart symbols",
+                "page": "13-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=14"
+              },
+              "check": {
+                "question": "氣壓碼045是否代表945 hPa？",
+                "answer": "不是。按常用解法為1004.5 hPa，需確認圖例與合理範圍。"
+              }
             }
           ]
         },
@@ -21378,7 +22062,55 @@ export const phakDocument = {
               "checked": "2026-09-11"
             }
           ],
-          "currentNote": "版本差異：原書產品名稱與圖例保留作概念學習；實際產品入口、覆蓋及發布方式依 AWC 現行說明確認。"
+          "currentNote": "版本差異：原書產品名稱與圖例保留作概念學習；實際產品入口、覆蓋及發布方式依 AWC 現行說明確認。",
+          "lessonBlocks": [
+            {
+              "title": "飛行類別採較差的那一項",
+              "paragraphs": [
+                "Figure 13-12 是原書天氣描繪圖的觀測型範例，不是未來天氣預報。IFR 的雲幕與能見度條件用「或」，原文寫成 and 會漏掉只有一項差的情況。",
+                "現在從現行AWC觀測／GFA等入口查看圖層；顏色分類只是天氣摘要，不等於任何空域都能依法VFR或適合本機起降。"
+              ],
+              "figure": {
+                "label": "Figure 13-12 · Historical weather depiction chart",
+                "page": "13-15",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=15"
+              },
+              "table": {
+                "caption": "飛行類別採較差的那一項",
+                "headers": [
+                  "類別",
+                  "雲幕 AGL",
+                  "能見度 SM"
+                ],
+                "rows": [
+                  [
+                    "LIFR",
+                    "低於500 ft",
+                    "或低於1"
+                  ],
+                  [
+                    "IFR",
+                    "500至低於1,000 ft",
+                    "或1至低於3"
+                  ],
+                  [
+                    "MVFR",
+                    "1,000～3,000 ft",
+                    "或3～5"
+                  ],
+                  [
+                    "VFR",
+                    "高於3,000 ft或無雲幕",
+                    "且大於5"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "BKN008、10SM 是什麼類別？",
+                "answer": "IFR，因雲幕800 ft；良好的水平能見度不會將整體升成VFR。"
+              }
+            }
+          ]
         },
         {
           "id": "sigwx",
@@ -21397,6 +22129,37 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "AWC · GFA products and charts",
+              "url": "https://aviationweather.gov/gfa/help/",
+              "checked": "2026-09-19"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "低空重要天氣圖不是地面實況",
+              "paragraphs": [
+                "Figure 13-13 的兩幅為12與24小時預報，涵蓋低雲／能見度、亂流和冰點層等。先讀有效日期與垂直標示，不把FL240等同固定真高度。",
+                "2015年版面變更是原書版本背景；今日產品以現行圖例為準。冰點層不等於必然有結冰，還需水氣及粒子狀態；危害邊界也不是精密到可貼線飛行。"
+              ],
+              "figure": {
+                "label": "Figure 13-13 · Low-level significant weather prognostic chart",
+                "page": "13-16",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=16"
+              }
+            },
+            {
+              "title": "36／48小時地面圖看趨勢",
+              "paragraphs": [
+                "Figure 13-14 提供較遠期的壓力、鋒面和降水配置。它可以幫助安排大方向，但不能從區域降水色塊推導某跑道到達時的精確雲幕。",
+                "預報時效愈遠越需安排更新；使用最新版本和當前觀測交叉核對，不能將前一天的圖直接當起飛前簡報。"
+              ],
+              "figure": {
+                "label": "Figure 13-14 · 36- and 48-hour surface forecasts",
+                "page": "13-17",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=17"
+              }
             }
           ]
         },
@@ -21418,6 +22181,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "ATC 降水顯示與亂流不同",
+              "paragraphs": [
+                "ATC 可能能顯示降水強度，卻不能由回波可靠分出雨、雪、冰雹或雨幡。WARP拼圖有延遲；原文六分鐘是特定系統描述，不是所有顯示的最大資料年齡。",
+                "Intensity unknown 只表示設備或資訊不足，並非低強度。無天氣提示也不等於無危害；雷暴周圍晴空仍可能有強亂流。"
+              ]
+            }
           ]
         },
         {
@@ -21438,6 +22210,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "把避讓需求說具體",
+              "paragraphs": [
+                "請求偏航方向與距離、新航路、高度改變或向量引導時，清楚說明需求與限制，確認新的許可邊界。批准向一側偏航並不自動批准改高度或任意穿越其他空域。",
+                "管制員仍有交通隔離與工作量限制。若不能安全執行，要及時說明並請求修訂，不能把缺少提醒視作航路已驗證安全。"
+              ]
+            }
           ]
         },
         {
@@ -21457,6 +22238,20 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 13-15 是特定設備選單",
+              "paragraphs": [
+                "NEXRAD、METAR、TAF、風、閃電、回波頂與雲頂等各有不同來源與用途。回波頂不是雲頂；按鈕名稱與可用產品依設備、軟體和訂閱不同。",
+                "讀圖例、時間與涵蓋比記住某一軟鍵位置重要。沒有某圖層可能是未選、未接收、超出涵蓋或故障，不直接等同沒有天氣。"
+              ],
+              "figure": {
+                "label": "Figure 13-15 · Weather information page",
+                "page": "13-19",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=19"
+              }
             }
           ]
         },
@@ -21483,6 +22278,24 @@ export const phakDocument = {
             "觀測時間 → 合成／發布時間 → 傳輸／接收時間 → 螢幕呈現時間，四者不是同一時刻。",
             "不同廠牌的 age 欄位起算方式可能不同；應查顯示器說明，不自行假設包含全部延遲。",
             "陳舊或缺資料的區域不等於晴空；不要使用資料鏈雷達作雷暴近距離穿越導航。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 13-16：四種時間分開",
+              "paragraphs": [
+                "觀測時間、拼圖生成時間、接收時間、預報有效時間各有意義。螢幕age或expiration要依設備手冊理解，不能假設所有廠牌從同一事件起算。",
+                "自編例：12:00觀測、12:05生成、12:07收到，12:10顯示若以生成時計算age5min，實際觀測已10分鐘。過期資料仍可顯示舊圖，不能因顏色鮮明就當現況。"
+              ],
+              "figure": {
+                "label": "Figure 13-16 · Weather product age and expiration",
+                "page": "13-19",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=19"
+              },
+              "check": {
+                "question": "剛收到一張圖是否代表其中所有像素剛觀測？",
+                "answer": "不是。掃描、拼接和傳輸均需時間，不同位置可能有不同資料年齡。"
+              }
+            }
           ]
         },
         {
@@ -21502,6 +22315,36 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "NEXRAD 用來規劃整區避讓",
+              "paragraphs": [
+                "Figure 13-17 的廣域拼圖提供態勢背景，並不是機鼻上的即時探測器。原書「最多五分鐘」與「最少七至八分鐘」不能當統一上下限；最舊資料可能比顯示年齡再舊15～20分鐘。",
+                "起飛前完整簡報、途中使用多個資訊來源、設定改航與落地門檻；不能拿拼圖導引穿越雷暴線空隙。"
+              ],
+              "figure": {
+                "label": "Figure 13-17 · NEXRAD display",
+                "page": "13-20",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=20"
+              }
+            },
+            {
+              "title": "縮放只改顯示，不創造新資訊",
+              "paragraphs": [
+                "Figure 13-18 放大可更容易讀色塊，卻不會使原始網格或掃描變得更細更新。原書NEXRAD與TOPO／TERRAIN／STORMSCOPE互斥，屬該設備設計，不是所有顯示器規則。",
+                "自編例：系統以45 kt移動，20分鐘位移約15 NM；還可能同時長大。因此老圖上的空隙不保證到達時仍開放。"
+              ],
+              "figure": {
+                "label": "Figure 13-18 · NEXRAD display range",
+                "page": "13-20",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=20"
+              },
+              "check": {
+                "question": "45 kt 的系統20分鐘移動多遠？",
+                "answer": "45×20/60=15 NM；這只算平移，未包含新生或增強。"
+              }
             }
           ]
         },
@@ -21523,6 +22366,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "非氣象回波與遮蔽",
+              "paragraphs": [
+                "地物、異常傳播、日射干擾、干擾訊號及軍用干擾絲等可能產生不代表降水的回波。山脈或建築物也可造成遮蔽。",
+                "可疑圖形應與時間連續性、鄰站與其他產品比較，不自行把不方便的回波當成假訊號；沒有回波也需考慮遮蔽。"
+              ]
+            }
           ]
         },
         {
@@ -21542,6 +22394,15 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "波束高度與產品解析度限制",
+              "paragraphs": [
+                "基礎反射率通常取低仰角掃描，但遠處波束已高於地面，可能越過淺層天氣；站頂附近也可能有取樣空缺。單一反射率不能完整判別降水種類或雲層。",
+                "現代雷達有更多產品，但座艙是否接收並呈現取決於設備。原文1.24 miles網格與2,000 miles顯示範圍是特定產品範例，不是NEXRAD永久統一解析度或探測半徑。"
+              ]
             }
           ]
         },
@@ -21563,6 +22424,32 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "多邊形先讀文字詳情",
+              "paragraphs": [
+                "Figure 13-19 顯示危害邊界可直接疊在航圖上，省去手工連點。但要開啟文字看現象、高度、有效期及更新，不是進入虛線內每個位置都同樣危險。",
+                "本土文字AIRMET退役後，設備顯示是否轉用G-AIRMET及如何表示時間快照，需按實際產品確認。"
+              ],
+              "figure": {
+                "label": "Figure 13-19 · AIRMET information display",
+                "page": "13-22",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=22"
+              }
+            },
+            {
+              "title": "圖例顏色不能跨設備硬套",
+              "paragraphs": [
+                "Figure 13-20 以色彩區分結冰、亂流、IFR、山岳遮蔽等。飛行前查本機圖例；同樣虛線或顏色，在另一設備可能表示不同產品或高度。",
+                "邊界外也不保證完全沒有局部危害。幾何位置只是第一步，還需把預計通過時間與垂直範圍配對。"
+              ],
+              "figure": {
+                "label": "Figure 13-20 · SIGMET and AIRMET legend",
+                "page": "13-22",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=22"
+              }
+            }
           ]
         },
         {
@@ -21582,6 +22469,24 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "機場旗標是摘要，不是落地許可",
+              "paragraphs": [
+                "Figure 13-21 的圖形METAR方便比較各站類別。旗標通常受雲幕和能見度支配，不能呈現所有側風、雷暴、跑道污染或NOTAM風險。",
+                "備降前打開完整METAR／TAF與機場資料，核對更新時間。某站綠色而周邊紅色，可能是局地差異或資料時間不同，不先假定有一條安全通道。"
+              ],
+              "figure": {
+                "label": "Figure 13-21 · Graphical METAR legend",
+                "page": "13-23",
+                "url": "https://www.faa.gov/sites/faa.gov/files/15_phak_ch13.pdf#page=23"
+              },
+              "check": {
+                "question": "綠色旗標能否證明跑道開放且適合降落？",
+                "answer": "不能。需另查NOTAM、風、跑道條件、預報及本機性能。"
+              }
             }
           ]
         },
@@ -21603,6 +22508,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "資料鏈仍有實體涵蓋限制",
+              "paragraphs": [
+                "地面廣播受視距與地形遮擋，衛星通訊也受天線、機體遮蔽、服務範圍和訂閱等條件影響。原文「任何高度、全國、不受地形限制」不能作普遍承諾。",
+                "接收器有電與地圖能顯示，並不代表正在取得新資料。要能辨認失聯、局部缺資料與過期狀態。"
+              ]
+            }
           ]
         },
         {
@@ -21622,6 +22536,15 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "每一項產品各有週期與期限",
+              "paragraphs": [
+                "同一頁上的雷達、METAR與TAF可能有不同發布頻率、接收狀態及有效時段。混合圖層前先檢查時間一致性與涵蓋。",
+                "TFR、NOTAM和特殊用途空域狀態亦不能只看輪廓；需讀時間、高度及適用文字。資料鏈收到摘要不等於已取得完整飛行許可。"
+              ]
             }
           ]
         },
@@ -21643,6 +22566,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "FIS-B 是978 MHz UAT 地面廣播",
+              "paragraphs": [
+                "FIS-B透過ADS-B地面網路的978 MHz UAT提供適當設備可接收的氣象與航空資訊。僅有1090ES ADS-B Out不代表可接收FIS-B，也不代表飛機已有天氣顯示。",
+                "資訊用於增進態勢與策略規劃，不能取代個別完整飛前簡報或用於雷暴間隙即時導航。原文把產品一律稱為不符合官方要求，應改成核對實際作業規則、來源及用途，避免一概而論。"
+              ]
+            }
           ]
         },
         {
@@ -21663,6 +22595,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先設計失去更新後的行動",
+              "paragraphs": [
+                "知道產品週期、涵蓋、符號、失效提示與設備操作，再設定停止依賴舊資料的條件。資料少、互相衝突或中斷時，保留返航、改航或落地選項。",
+                "只留下當前飛行階段需要的圖層，避免低頭與資訊過載。原文PTS時代的考核用語屬版本背景；操作能力仍需依現行訓練與機型要求建立。"
+              ]
+            }
           ]
         },
         {
@@ -21682,6 +22623,19 @@ export const phakDocument = {
               "title": "FAA AIM 7-1：氣象資訊、產品與資料鏈限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "整合練習：同時核對時地高",
+              "paragraphs": [
+                "自編情境：出發METAR為VFR，目的地TAF在ETA時段有TEMPO雷暴，雷達拼圖剛收到但觀測較舊，附近PIREP報結冰。四份資料不矛盾，它們描述不同位置、高度與時間。",
+                "逐一確認航路是否進入危害區、備降是否仍可用、接收中斷如何處置，再做決策。不能挑最樂觀的一張，也不能用設備顯示取代原始產品限制。"
+              ],
+              "check": {
+                "question": "哪份資料最優先？",
+                "answer": "沒有固定一份永遠優先。比較與本航程最相關且最及時可靠的觀測、預報與通報，必要時求證並保留退路。"
+              }
             }
           ]
         }
@@ -21726,8 +22680,8 @@ export const phakDocument = {
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=311",
       "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=311",
       "detailMode": "outline",
-      "checked": "2026-09-11",
-      "coverageNote": "依提供目錄逐節講解，共 45 節；附英文原名、中文說明、原文頁碼與現行資料補充。"
+      "checked": "2026-09-20",
+      "coverageNote": "全章 45 節均已加入深入講解，共 58 個單元、7 張比較表、16 題理解練習與 Figure 13-1～13-21 官方原圖指引。逐項解讀 METAR、PIREP、TAF、危害通報與高空風溫，區分歷史服務、現行產品及資料鏈限制；TAF 修訂例明確標示重建依據。"
     },
     {
       "id": "phak25c-14",
@@ -21765,6 +22719,15 @@ export const phakDocument = {
           "paragraphs": [
             "機場操作把航圖、標誌、燈光、無線電與交通判斷結合起來。飛行速度較慢不代表工作簡單，滑行時同樣需要知道自己在哪裡、獲准到哪裡，以及下一個必須停止或重新確認的位置。",
             "本章依美國 FAA 體系說明，跨國飛行仍要查當地 AIP 與機場程序。練習時可從停機坪沿預計滑行路線畫到跑道，逐一標出交叉點、等待線及可能誤入的區域，再口述每一步需要的確認。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "每一步都確認位置、許可與衝突",
+              "paragraphs": [
+                "機場操作從飛前查資料開始，經加入航線、落地、滑行，再到停機。讀懂圖上位置只是第一步，還要知道下一個等待點與其他交通可能從哪裡來。",
+                "本章將圖例轉成判斷練習；歷史照片與機場圖供辨識用途，實際航班須使用當期資料及適用程序。原有筆記、情境題與完成紀錄仍保留。"
+              ]
+            }
           ]
         },
         {
@@ -21778,6 +22741,51 @@ export const phakDocument = {
           "paragraphs": [
             "機場可按公共運輸、一般航空及其他功能分類，這些分類協助理解機場在航空系統中的角色。行政或資助分類和跑道長度、開放條件、空域級別是不同問題，不能看到類別就直接決定是否能使用。",
             "例如一般航空機場也可能有塔臺，而大型公共機場未必適合某次訓練需求。評估目的地時，仍需查跑道、燃油、服務時間、使用限制、性能及進出程序，將「它是什麼機場」轉成「本次能否安全使用」。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "活動分類與所有權不是同一件事",
+              "paragraphs": [
+                "Commercial service 指公有、提供定期客運且每年登機旅客至少2,500人的機場；其中 primary 是每年超過10,000人的子類。原文列五類卻漏列 primary 的定義，這裡補齊。",
+                "Cargo service 的一億磅門檻是全貨機年度落地重量總和，不是卸下貨物重量。Reliever 可公有或私有；一座機場可以兼具客運與貨運身分。不能由類別直接推斷是否有塔臺、是否允許自己的航班使用。"
+              ],
+              "table": {
+                "caption": "活動分類與所有權不是同一件事",
+                "headers": [
+                  "分類",
+                  "辨識重點"
+                ],
+                "rows": [
+                  [
+                    "Commercial service",
+                    "公有、定期客運、年度至少2,500登機人次"
+                  ],
+                  [
+                    "Primary",
+                    "Commercial service 中年度超過10,000人次"
+                  ],
+                  [
+                    "Cargo service",
+                    "全貨機年度落地總重超過100 million lb"
+                  ],
+                  [
+                    "Reliever",
+                    "指定用來分擔商用機場壅塞並改善GA使用"
+                  ],
+                  [
+                    "General aviation",
+                    "其餘GA機場；不等於一律無塔臺"
+                  ]
+                ]
+              }
+            }
+          ],
+          "references": [
+            {
+              "title": "FAA：機場活動分類與Primary定義",
+              "url": "https://www.faa.gov/airports/planning_capacity/categories",
+              "checked": "2026-09-20"
+            }
           ]
         },
         {
@@ -21791,6 +22799,15 @@ export const phakDocument = {
           "paragraphs": [
             "從機師操作角度，是否有正在服務的管制塔臺會改變通訊、許可與交通協調方式。機場可能白天有塔臺、夜間無塔臺，因此不能把航圖上的塔臺符號當成全天候均由塔臺控制。",
             "飛前要確認塔臺服務時間、停開後的頻率及空域狀態。落地前若已接近交接時間，應及早釐清後續程序；無塔臺並不表示沒有其他航空器，也不表示可以省略模式、讓路及目視避讓。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "有塔臺與開放使用分兩軸看",
+              "paragraphs": [
+                "Civil、military／federal、private 描述用途或開放條件；towered／nontowered 描述當時是否有運作中的塔臺。私有機場可能開放公眾使用，軍民合用機場也有自己的限制。",
+                "有塔臺建築卻已超過服務時間，操作程序可能轉為無塔臺；但周圍空域、IFR許可或特別程序仍須查明，不能只看建築決定。"
+              ]
+            }
           ]
         },
         {
@@ -21811,6 +22828,19 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "收到、聽懂、能做，才是完整通訊",
+              "paragraphs": [
+                "在適用塔臺程序下，建立雙向通訊、遵守許可及限制。不懂就請求重述；性能、位置或交通使指令不安全時，立即說明 unable 並請求修改。",
+                "回覆自己的呼號能減少相似呼號誤認。滑行指令不自動包含起飛、穿越任意跑道或超越等待點的權限；緊急偏離後，應盡快告知ATC。"
+              ],
+              "check": {
+                "question": "ATC 指示立即轉出跑道，但速度仍太高，怎麼辦？",
+                "answer": "不要勉強急轉。告知無法安全照做，保持控制並請求合適出口。"
+              }
+            }
           ]
         },
         {
@@ -21830,6 +22860,53 @@ export const phakDocument = {
               "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA AC 90-66C：無塔臺機場操作",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-66C.pdf",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "CTAF 是協調頻率，不是無人塔臺",
+              "paragraphs": [
+                "先從現行機場資料確認CTAF。UNICOM可提供資訊，卻不給ATC起降許可；MULTICOM、FSS或塔臺關閉後的頻率可能承擔CTAF功能，不能一律選122.8。",
+                "Figure 14-1 的入場10 miles、downwind、base、final及離開跑道等廣播幫助建立交通圖像。報告要有機場名、呼號、位置與意圖，並持續目視；沒聽見回覆不代表沒飛機。無塔臺本身不要求塔臺雙向通訊，但相關空域或飛行規則仍可能要求通訊。"
+              ],
+              "figure": {
+                "label": "Figure 14-1 · Recommended communication procedures",
+                "page": "14-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=3"
+              }
+            },
+            {
+              "title": "從反側到達：先在航線外完成下降",
+              "paragraphs": [
+                "Figure 14-2 示意先在適當高度跨越中場，離開航線約2 miles後再下降，平飛加入45° downwind。原書1,500 ft AGL是建立在1,000 ft航線高度之上；有大型／渦輪機較高航線時，不能照抄這個高度。",
+                "以公布航線高度、雲距及現場交通規劃，避免在航線內螺旋下降。2 miles也是示意距離，不能保證已避開所有延長downwind的飛機。"
+              ],
+              "figure": {
+                "label": "Figure 14-2 · Preferred entry crossing midfield",
+                "page": "14-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=4"
+              },
+              "check": {
+                "question": "機場活塞機航線1,000 ft、渦輪機1,500 ft AGL，能否在1,500 ft穿場並認為高於所有交通？",
+                "answer": "不能，正好可能與渦輪機同高。查公布程序並選擇能避開各航線的進場安排。"
+              }
+            },
+            {
+              "title": "中場 crosswind 替代進入的條件",
+              "paragraphs": [
+                "Figure 14-3 在航線高度穿過中場再轉downwind，是需格外注意交通的替代方式；繁忙時不宜使用，應讓已在downwind及偏好45°進入的交通。",
+                "直線進場也不產生優先權。先調整間隔和速度，不用突然轉彎迫使別人閃避；原文70～90 kt是機型例子，實際依本機建議速度與安全裕度。"
+              ],
+              "figure": {
+                "label": "Figure 14-3 · Alternate midfield entry",
+                "page": "14-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=4"
+              }
             }
           ]
         },
@@ -21844,6 +22921,15 @@ export const phakDocument = {
           "paragraphs": [
             "機場資料分散於航圖、Chart Supplement、NOTAM、ATIS 及機場圖，各自負責不同時間尺度與細節。穩定出版品適合建立基本認識，即時或短期資訊則用來修正跑道、設備與程序的可用性。",
             "飛前可按四個問題整理：機場在哪裡、如何進出、今天哪些設施不能用、到達時的天氣與跑道狀態如何。只查跑道長度卻忽略入口移位或施工，會讓看似足夠的性能餘裕失去依據。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "把四種資料放進同一份計畫",
+              "paragraphs": [
+                "航圖看位置及空域，Chart Supplement看設施程序，NOTAM看臨時改變，ATIS看當時運作與部分重要資訊。原文說三種卻列四種，應理解為互補的四個入口。",
+                "飛前查一次仍不夠：到達前再核對最新天氣、跑道和關閉資訊。圖上有鋪面不代表今天可用，ATIS沒念某NOTAM也不表示它無效。"
+              ]
+            }
           ]
         },
         {
@@ -21857,6 +22943,15 @@ export const phakDocument = {
           "paragraphs": [
             "航空圖用符號與數字表達機場、地形、障礙物、導航及空域，讀圖能力包括查圖例及確認版本。機場圖則提供更細的跑道與滑行道布局；航路圖上的簡化符號不能代替地面滑行所需細節。",
             "機場圖上的熱點提醒曾有或可能有混淆風險的區域，不代表其他地方可放鬆注意。預先在圖上找出跑道交叉與相似編號，落地後就較不容易因工作負荷而跟錯前方航空器。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "航圖的符號是進一步查詢的索引",
+              "paragraphs": [
+                "先辨識機場標高、跑道資料、燈光、CTAF／塔臺頻率及RP右航線標記，再查圖例。圖面空間有限，無法容納所有場面限制。",
+                "把機場與附近空域一起看，尤其塔臺非全時、機場靠近Class B/C或特殊空域時。航圖能幫助導航，不能取代滑行用機場圖。"
+              ]
+            }
           ]
         },
         {
@@ -21870,6 +22965,20 @@ export const phakDocument = {
           "paragraphs": [
             "Chart Supplement 提供機場的跑道、頻率、服務、航線與備註等資訊，是理解當地操作的重要補充。它的出版週期意味著近期變動仍須另查 NOTAM；舊稱 A/FD 可在早期教材中看到。",
             "如果航圖只顯示機場有燈光，實際是否需預先安排、可否由機師控制及服務時段，都可能要讀補充資料。不要只擷取表格第一行，備註常包含夜間、地形、噪音或特定跑道的限制。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Chart Supplement 的查閱順序",
+              "paragraphs": [
+                "Figure 14-4 先找到正確機場識別碼，再讀標高、跑道、頻率、服務時段、備註及圖。美國區域冊一般56天更新，但週期中仍會有NOTAM變更。",
+                "同時確認時區、夏令時間表示、跑道坡度、障礙、噪音程序和LAHSO資料。原書頁面與電話只是當時範例，不能直接作現行導航使用。"
+              ],
+              "figure": {
+                "label": "Figure 14-4 · Chart Supplement example",
+                "page": "14-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=4"
+              }
+            }
           ]
         },
         {
@@ -21883,6 +22992,19 @@ export const phakDocument = {
           "paragraphs": [
             "NOTAM 通知可能影響飛航的設施、程序與狀態變更，例如跑道關閉、燈光失效或施工。判讀要看適用地點、開始與結束時間、可能的每日時段及內容，而不是只看發布日期或標題。",
             "一條跑道仍出現在有效航圖中，也可能今天暫時不能使用。若 NOTAM 改變可用長度，應重新計算性能與備案；資訊看不懂時需查明，不能把縮寫當成「大概與我無關」而跳過。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "NOTAM 要讀作用範圍及起訖時間",
+              "paragraphs": [
+                "找出受影響機場／設施、關閉或限制內容、有效日期時刻，以及是否分時生效。RWY與TWY不同，某跑道ILS停用也不一定代表整條跑道關閉。",
+                "將資訊反映到滑行路線、性能與備降計畫。原書NOTAM分類與發布工具可能有版本差異，使用現行FAA入口；不因熟悉機場而跳過查詢。"
+              ],
+              "check": {
+                "question": "圖上A滑行道存在，NOTAM卻說A的一段關閉，應相信哪個？",
+                "answer": "按有效NOTAM修正計畫，確認關閉區間與可用路線；不按舊圖直接滑入。"
+              }
+            }
           ]
         },
         {
@@ -21896,6 +23018,15 @@ export const phakDocument = {
           "paragraphs": [
             "ATIS 把機場例行天氣與操作資訊持續播送，並以識別碼表示版本，減少頻率上重複通話。首次聯絡時告知已收到的版本，可讓管制員知道你掌握到哪一輪資訊，但不代表其他必要資訊均已齊全。",
             "如果聽到新版本發布，應確認變更是否影響跑道、風或進場。ATIS 不是滑行、穿越或起飛許可，也不能保證涵蓋所有與航班相關的 NOTAM；它是機場資訊鏈中的一部分。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "ATIS 代號表示你聽過哪個版本",
+              "paragraphs": [
+                "記下識別字母、時間、風、能見度、雲、設定值、使用跑道及重要限制；首次聯絡報出已收到的版本。代號改變時需確認更新內容。",
+                "ATIS不是滑行或落地許可，也不保證涵蓋所有相關NOTAM。聽到預期跑道後仍要等實際許可並核對，避免預期心理造成跑道混淆。"
+              ]
+            }
           ]
         },
         {
@@ -21915,6 +23046,15 @@ export const phakDocument = {
               "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先用顏色分類，再讀形狀與位置",
+              "paragraphs": [
+                "跑道一般以白色標記，滑行及等待相關標記多為黃色；但不能只靠顏色，例如黃色箭紋區與黃色滑行中心線用途完全不同。",
+                "沿自己的路徑逐一辨認中心線、等待線、標誌與邊界。夜間或低能見度時更要配合機場圖，不能追著一條亮線就假定一路有權前進。"
+              ]
             }
           ]
         },
@@ -21936,6 +23076,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "跑道白線各自回答不同問題",
+              "paragraphs": [
+                "編號辨識方向，中心線協助對正，門檻表示該方向可開始落地的界線，瞄準點及接地區標記協助掌握接地位置。它們不全都裝在每種跑道。",
+                "不要把瞄準點當成唯一必須觸地的位置，或把鋪面長度直接當作LDA；移位門檻、關閉區段與公布距離可能改變可用長度。"
+              ]
+            }
           ]
         },
         {
@@ -21952,9 +23101,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Relocated threshold：先查被關閉的區段",
+              "paragraphs": [
+                "Figure 14-5 的臨時門檻移動常因施工，原區段用途依NOTAM和現場配置決定。不能把relocated與displaced混為一談，直接推論門檻前仍可滑行、起飛或落地滑跑。",
+                "讀圖時找新門檻、臨時箭頭及改道的黃色滑行線，確認路線通往哪個可用區域；原書機場配置只用來練習辨識。"
+              ],
+              "figure": {
+                "label": "Figure 14-5 · Relocated runway threshold",
+                "page": "14-6",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=6"
+              }
             }
           ]
         },
@@ -21972,15 +23135,58 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
           "points": [
             "白色箭頭：引向位移入口，該方向不可在入口前接地；其他使用依公布條件確認。",
             "黃色 chevrons：不供正常滑行、起飛或著陸，不能當作一般可用跑道。",
             "入口暫移／施工關閉：受影響區段可能全面不可用，須重算可用距離。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Displaced threshold：落地起點後移",
+              "paragraphs": [
+                "Figure 14-6 的白箭頭引導到白色門檻線。一般而言，門檻前鋪面可供起飛及相反方向的落地滑跑，但該方向不得在移位門檻前接地；仍須核對公布距離與任何限制。",
+                "黃色chevrons標示的blast pad／stopway等區域不供正常起飛、落地或滑行使用。不要因看見鋪面或箭形，就當成同一種可用區。"
+              ],
+              "figure": {
+                "label": "Figure 14-6 · Displaced threshold",
+                "page": "14-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=7"
+              },
+              "table": {
+                "caption": "Displaced threshold：落地起點後移",
+                "headers": [
+                  "辨識",
+                  "一般含義",
+                  "必須再查"
+                ],
+                "rows": [
+                  [
+                    "白色箭頭＋移位門檻",
+                    "該方向落地起點後移",
+                    "TORA／LDA及NOTAM"
+                  ],
+                  [
+                    "施工遷移門檻",
+                    "可用跑道配置改變",
+                    "關閉區段及各項用途"
+                  ],
+                  [
+                    "黃色chevrons",
+                    "不可作正常跑道／滑行使用",
+                    "區域性質與限制"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "門檻前有白箭頭，進場方向能否提早接地來增加停止距離？",
+                "answer": "不能。該方向須在可用落地門檻之後接地，另核對LDA。"
+              }
+            }
           ]
         },
         {
@@ -21997,9 +23203,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "RSA 是降低偏出後果的區域",
+              "paragraphs": [
+                "Figure 14-7 顯示跑道周圍安全區，不是額外可用跑道或一般等待位置。整平地面有助救援與降低偏出損害，但不能保證能承載正常滑行。",
+                "尺寸依跑道設計而異，原文後段500×1,000 ft只是特定標準情境。進入相關保護區前仍需遵守許可、標線及交通避讓。"
+              ],
+              "figure": {
+                "label": "Figure 14-7 · Runway safety area",
+                "page": "14-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=7"
+              }
             }
           ]
         },
@@ -22017,9 +23237,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Clear of runway 看整架航空器",
+              "paragraphs": [
+                "Figure 14-8 的黃底黑圖樣從離開跑道方向可見，提供安全區邊界提示。當ATC要求回報clear時，機鼻或主輪通過還不夠，機尾及翼面亦需越過適用等待標線。",
+                "離開後仍不可自行越過另一條鄰近跑道或超出後續許可。不確定是否完全離開，就告知實際位置並請求協助。"
+              ],
+              "figure": {
+                "label": "Figure 14-8 · Runway safety area boundary sign",
+                "page": "14-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=7"
+              }
             }
           ]
         },
@@ -22037,9 +23271,59 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "紅底白字提示跑道入口",
+              "paragraphs": [
+                "Figure 14-9 的等待位置標誌與鋪面等待線共同提醒必須確認前方權限。接近時保留停止距離，不能等機鼻已跨線才開始查圖或呼叫。",
+                "有塔臺時，進入或穿越需相應明確許可；無塔臺時需確認交通與跑道可用，廣播意圖不能取代目視確認。"
+              ],
+              "figure": {
+                "label": "Figure 14-9 · Runway holding position sign",
+                "page": "14-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=7"
+              }
+            },
+            {
+              "title": "18–36 的左右對應門檻位置",
+              "paragraphs": [
+                "Figure 14-10 中18在左、36在右，表示對應門檻相對方向，不是任選一條跑道。旁邊黑底黃字A說明目前位於Taxiway A。",
+                "先區分現在在哪裡與前方是哪條跑道，再和ATC給的路線對照；位置牌本身不授權轉入跑道。"
+              ],
+              "figure": {
+                "label": "Figure 14-10 · Runway designations at an intersection",
+                "page": "14-8",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=8"
+              }
+            },
+            {
+              "title": "交叉跑道的箭頭要配機場圖",
+              "paragraphs": [
+                "Figure 14-11 同時列出13–31與17–35，箭頭協助辨識各門檻方向。這種幾何使一次錯轉可能進入另一條跑道，因此屬需要預先簡報的hot spot。",
+                "在停止位置完成方位核對，必要時請求progressive taxi；不要一面越線一面猜哪個箭頭屬於自己。"
+              ],
+              "figure": {
+                "label": "Figure 14-11 · Complex runway intersection",
+                "page": "14-9",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=9"
+              }
+            },
+            {
+              "title": "地面紅底文字也要讀",
+              "paragraphs": [
+                "Figure 14-12 把跑道等待資訊漆在鋪面，增加辨識機會。它與立式標誌及真正的等待標線互相補充；停止界線以等待位置標記辨認。",
+                "看到32R–14L先想接下來會遇到哪條跑道，再查是否有穿越許可，而不是只追滑行中心線。"
+              ],
+              "figure": {
+                "label": "Figure 14-12 · Surface-painted runway holding sign",
+                "page": "14-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=10"
+              }
             }
           ]
         },
@@ -22057,9 +23341,39 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "雙實線一側接近：先停在線前",
+              "paragraphs": [
+                "Figure 14-13 有兩條實線與兩條虛線。由滑行道接近跑道時先遇實線，任何部位都不應越過第一條實線，直到符合進入條件。",
+                "ATC說taxi to某目的地，不會自動取消途中runway hold short；讀回完整限制並核對呼號。"
+              ],
+              "figure": {
+                "label": "Figure 14-13 · Holding position approached from solid lines",
+                "page": "14-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=10"
+              },
+              "check": {
+                "question": "機鼻過線但前輪尚未過線，算有遵守hold short嗎？",
+                "answer": "沒有。限制針對整架航空器，不能只看輪子。"
+              }
+            },
+            {
+              "title": "由虛線一側退出：整架通過才清空",
+              "paragraphs": [
+                "Figure 14-14 從跑道退出時先遇雙虛線，需繼續到整機越過全部等待標線。退出這條跑道的該標線本身不需要另一次穿越跑道許可。",
+                "若前方是另一條跑道，仍要另外獲准才能進入；避免把「可退出」延伸成「可繼續所有滑行」。"
+              ],
+              "figure": {
+                "label": "Figure 14-14 · Holding position viewed on runway exit",
+                "page": "14-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=10"
+              }
             }
           ]
         },
@@ -22081,6 +23395,20 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "黑底白數字以千英尺讀",
+              "paragraphs": [
+                "Figure 14-15 的3代表約3,000 ft跑道剩餘，1代表約1,000 ft，不是跑道編號、海里或精確制動距離。最後標誌位置及設置有標準，讀數只是位置線索。",
+                "實際是否能停下取決於速度、重量、制動與表面條件；不能靠看到1才開始決定如何煞車，也不能取代飛前性能計算。"
+              ],
+              "figure": {
+                "label": "Figure 14-15 · Runway distance remaining signs",
+                "page": "14-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=10"
+              }
+            }
           ]
         },
         {
@@ -22101,6 +23429,24 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "跑道號是磁方位的近似索引",
+              "paragraphs": [
+                "Figure 14-16 把跑道中心線磁方位取最接近十度，再省略末尾零；北向用36。反向通常相差18，平行跑道的L/R從各自進場方向看會互換。",
+                "例如09L反向為27R。磁場變化可能造成重新編號；最後仍要用現行圖、地面號碼和航向相互核對。"
+              ],
+              "figure": {
+                "label": "Figure 14-16 · Runway designation markings",
+                "page": "14-11",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=11"
+              },
+              "check": {
+                "question": "朝向約274°的跑道通常編幾號？",
+                "answer": "通常是27；反向約094°為09。實際以公布編號為準。"
+              }
+            }
           ]
         },
         {
@@ -22117,9 +23463,39 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA JO 7110.118C：現行LAHSO條件、夜間燈光及參加限制",
+              "url": "https://www.faa.gov/documentLibrary/media/Order/Order_JO_7110.118C_Land_and_Hold_Short_Operations_LAHSO_FINAL.pdf",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "LAHSO 接受的是縮短後的可用距離",
+              "paragraphs": [
+                "Figure 14-17 的等待點可能在另一條跑道、滑行道或指定點之前。先確認ALD、性能、安全裕度及停止位置，不能拿整條跑道長度評估；PIC可拒絕不合適的LAHSO。",
+                "接受後需確保任何部位不越過指定點；若需重飛，仍以安全操作為先，立刻告知ATC並遵守適用重飛安排。一般cleared to land若沒有LAHSO限制，不會因看見標線就自動變成LAHSO。"
+              ],
+              "figure": {
+                "label": "Figure 14-17 · Land and hold short position",
+                "page": "14-11",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=11"
+              },
+              "check": {
+                "question": "跑道8,000 ft，LAHSO可用距離4,500 ft，本次需求5,000 ft，能否接受？",
+                "answer": "不能以8,000 ft總長作理由接受；應告知unable並請求完整跑道或其他安排。"
+              }
+            },
+            {
+              "title": "以現行 JO 7110.118C 核對限制",
+              "paragraphs": [
+                "2025年生效的JO 7110.118C仍要求LAHSO可用落地區乾燥且無污染物，煞車效能不得低於good。夜間並非全面禁止，但有相應燈光與核准條件；不能以更早的許可文件推論今日可在濕跑道做LAHSO。",
+                "非航空公司操作的雲幕／能見度門檻為1,000 ft AGL／3 miles；航空公司及特定配置另有條件。自報student pilot或experimental航空器時ATC不得發LAHSO許可；不應把學生限制縮成只有單飛。熟悉程序、機型資格與當地核准同樣重要。"
+              ]
             }
           ]
         },
@@ -22141,6 +23517,44 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "黃色方向牌與黑色位置牌配對",
+              "paragraphs": [
+                "Figure 14-18 中黑底黃字D是目前位置，黃色B與箭頭表示前方可向左右轉入B。讀箭頭的幾何方向，再確認自己的指定路線是否真的要轉。",
+                "方向牌通常在交叉口前，晚看到再急轉容易偏出或進錯道；不確定就先在安全位置停下查明。"
+              ],
+              "figure": {
+                "label": "Figure 14-18 · Taxiway direction and location signs",
+                "page": "14-12",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=12"
+              }
+            },
+            {
+              "title": "鋪面箭頭同樣只是導航資訊",
+              "paragraphs": [
+                "Figure 14-19 的B直行、A右前方，描述道路去向，不是ATC給你的路線。把收到的taxi via逐段對應到箭頭。",
+                "路線若含交叉跑道，仍需逐一確認穿越或等待指令；滑行道名稱連續不代表中間沒有跑道。"
+              ],
+              "figure": {
+                "label": "Figure 14-19 · Surface-painted taxiway direction signs",
+                "page": "14-12",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=12"
+              }
+            },
+            {
+              "title": "複雜路口先用幾何重建方向",
+              "paragraphs": [
+                "Figure 14-20 的S約垂直相交、F斜向相交，方向牌可能帶或不帶位置牌。把機場圖轉成自己前進方向來理解，但別只憑記憶猜角度。",
+                "視角、距離與路面寬度可能誤導，應在轉彎前核對牌面、中心線和許可。"
+              ],
+              "figure": {
+                "label": "Figure 14-20 · Complex taxiway direction signs",
+                "page": "14-13",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=13"
+              }
+            }
           ]
         },
         {
@@ -22160,6 +23574,20 @@ export const phakDocument = {
               "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "中心線旁的虛線提醒快到跑道",
+              "paragraphs": [
+                "Figure 14-21 在單實線中心線兩旁加黃色虛線，原書示意延伸到等待線前最多150 ft，目的是提高跑道入口的醒目度。",
+                "它不是新的停止線，也不是有無許可的指示。看到強化線就重新檢查跑道、呼號與許可，提早減速準備停止。"
+              ],
+              "figure": {
+                "label": "Figure 14-21 · Enhanced taxiway centerline",
+                "page": "14-13",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=13"
+              }
             }
           ]
         },
@@ -22181,6 +23609,32 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "FBO 是目的地，不是滑行道名字",
+              "paragraphs": [
+                "Figure 14-22 的FBO箭頭指向固定基地服務商區域。目的地牌可列terminal、cargo、military等，回答的是往哪裡去。",
+                "即使目標就在箭頭方向，仍依獲准路線移動；不能以目的地牌取代地面管制指令。"
+              ],
+              "figure": {
+                "label": "Figure 14-22 · Destination sign to FBO",
+                "page": "14-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=14"
+              }
+            },
+            {
+              "title": "共用箭頭與分隔線分開解讀",
+              "paragraphs": [
+                "Figure 14-23 的32·2·14共用右箭頭，表示這些目的地先走共同路徑；20另配左箭頭。圓點分隔目的地，黑色直線分隔不同方向訊息。",
+                "這不表示32、2、14是同一條跑道，也不表示右轉後已到起飛端。繼續用後續標誌和機場圖追蹤。"
+              ],
+              "figure": {
+                "label": "Figure 14-23 · Runway destination sign",
+                "page": "14-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=14"
+              }
+            }
           ]
         },
         {
@@ -22197,9 +23651,39 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "ILS 紅牌與黃色梯形線",
+              "paragraphs": [
+                "Figure 14-24 的黑底G是位置，紅底ILS是保護區等待提示。ILS訊號可能受地面航空器干擾，因此低能見度操作尤其需要維持保護區淨空。",
+                "指令hold short of Runway XX ILS critical area時，整機必須停在梯形標記前；它與跑道的雙實雙虛等待線不是同一位置。"
+              ],
+              "figure": {
+                "label": "Figure 14-24 · ILS holding position sign",
+                "page": "14-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=14"
+              }
+            },
+            {
+              "title": "未要求 ILS hold 也不等於可進跑道",
+              "paragraphs": [
+                "Figure 14-25 展示ILS臨界區邊界。若ATC沒有要求在該點等待，可在既有滑行許可範圍內通過ILS標線，但下一個跑道等待限制仍然有效。",
+                "不要把「此處不必停」推論為「後面都能走」。核對ATC所說的是ILS hold還是runway hold。"
+              ],
+              "figure": {
+                "label": "Figure 14-25 · ILS critical area boundary",
+                "page": "14-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=14"
+              },
+              "check": {
+                "question": "已獲准滑到跑道等待點，未被要求ILS hold，能一路上跑道嗎？",
+                "answer": "不能。可按許可繼續到跑道等待點，但進跑道仍需相應許可。"
+              }
             }
           ]
         },
@@ -22217,9 +23701,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "單條黃色虛線是滑行道交叉等待點",
+              "paragraphs": [
+                "Figure 14-26 標示taxiway／taxiway等待位置；被要求hold short of Taxiway X時，確保整機停在線前。沒有畫線時，仍須留足與交叉滑行交通的間隔。",
+                "不可把它當成跑道雙實雙虛線，或因只有一條虛線就忽略已收到的等待指令。"
+              ],
+              "figure": {
+                "label": "Figure 14-26 · Taxiway intersection holding marking",
+                "page": "14-15",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=15"
+              }
             }
           ]
         },
@@ -22241,6 +23739,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "永久關閉不只是換一個頻率",
+              "paragraphs": [
+                "永久關閉的跑道／滑行道會依規定處理標記和燈光，例如移除舊跑道識別、設黃色X及關閉燈路。殘留鋪面可能看起來仍像可用跑道。",
+                "是否可用以現行資料和標示確認；無X、燈亮或過去曾用，都不是重新開放的證據。"
+              ]
+            }
           ]
         },
         {
@@ -22261,6 +23768,20 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "黃色 X 表示關閉，沒有 X 也要查",
+              "paragraphs": [
+                "Figure 14-27 比較平放黃色X與更醒目的燈光X。臨時關閉可能因時段、施工方式或配置而沒有相同視覺裝置。",
+                "飛前及到達前查NOTAM／ATIS；看到關閉指示與預期許可矛盾時先釐清，不自行認定標記已失效。"
+              ],
+              "figure": {
+                "label": "Figure 14-27 · Temporarily closed runway markings",
+                "page": "14-15",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=15"
+              }
+            }
           ]
         },
         {
@@ -22277,9 +23798,43 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "其他地面標記的界線不同",
+              "paragraphs": [
+                "車輛道路標記供地面車輛使用；VOR檢查點配合公布方位作接收器檢查。它們不授予航空器進入或穿越跑道的權限。",
+                "Non-movement area邊界為一實一虛黃線，實線在非活動區一側；由非活動區進入受管制活動區需相應許可。不要與跑道等待的兩實兩虛混淆。"
+              ],
+              "table": {
+                "caption": "其他地面標記的界線不同",
+                "headers": [
+                  "標記",
+                  "辨認與用途"
+                ],
+                "rows": [
+                  [
+                    "跑道等待",
+                    "兩實兩虛，保護跑道入口"
+                  ],
+                  [
+                    "非活動區邊界",
+                    "一實一虛，區分場面管制界面"
+                  ],
+                  [
+                    "滑行道交叉等待",
+                    "單條黃色虛線，配合等待指令"
+                  ],
+                  [
+                    "VOR檢查點",
+                    "依公布頻率、徑向與容差作檢查"
+                  ]
+                ]
+              }
             }
           ]
         },
@@ -22297,9 +23852,9 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
+              "title": "FAA AIM 2-3：機場標線、標誌及區域",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
           "points": [
@@ -22307,6 +23862,55 @@ export const phakDocument = {
             "黑底黃字：位置，告訴你目前所在滑行道或跑道。",
             "黃底黑字加箭頭：方向／目的地，要搭配實際滑行許可。",
             "黑底白色數字：跑道剩餘距離，以千英尺表示。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "六種牌型用問題分類",
+              "paragraphs": [
+                "Mandatory回答是否有需要服從的入口限制，location回答現在在哪，direction回答下一條道往哪，destination回答目的地往哪，information補充資訊，remaining distance表示跑道剩餘長度。",
+                "安全區邊界牌有專用黃黑圖樣；不能將所有邊界牌都套成黑底黃字位置牌。每塊牌都須配合位置及許可來讀。"
+              ],
+              "table": {
+                "caption": "六種牌型用問題分類",
+                "headers": [
+                  "種類",
+                  "常見配色",
+                  "用途"
+                ],
+                "rows": [
+                  [
+                    "Mandatory instruction",
+                    "紅底白字",
+                    "跑道／ILS等待等限制"
+                  ],
+                  [
+                    "Location",
+                    "黑底黃字黃邊、無箭頭",
+                    "目前跑道／滑行道"
+                  ],
+                  [
+                    "Direction",
+                    "黃底黑字及箭頭",
+                    "相交滑行道方向"
+                  ],
+                  [
+                    "Destination",
+                    "黃底黑字及箭頭",
+                    "機場目的地方向"
+                  ],
+                  [
+                    "Information",
+                    "黃底黑字",
+                    "必要補充資訊"
+                  ],
+                  [
+                    "Runway distance remaining",
+                    "黑底白數字",
+                    "以千英尺表示剩餘距離"
+                  ]
+                ]
+              }
+            }
           ]
         },
         {
@@ -22327,6 +23931,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "燈光的功能與方向一起讀",
+              "paragraphs": [
+                "機場燈光可供辨識機場、建立進場視覺參考、辨認跑道／滑行道，或警告不得前進。相同顏色因位置、閃爍和觀察方向不同，可能意思不同。",
+                "燈光是協助判斷的資訊；除明確適用的塔臺燈號指令外，不應把看到某色或燈熄滅直接當成ATC許可。"
+              ]
+            }
           ]
         },
         {
@@ -22343,9 +23956,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "機場燈塔辨識類型，不判定飛行合法性",
+              "paragraphs": [
+                "Figure 14-28 白綠交替通常是陸地機場，白黃是水上機場；直升機場可白、黃、綠，軍用機場以快速雙白閃與綠光區別。",
+                "白天亮燈有時提示低雲或低能見度，但也可能由定時器或光感控制；不能只憑燈亮判IFR，或燈滅判VFR。仍查實際氣象及空域規則。"
+              ],
+              "figure": {
+                "label": "Figure 14-28 · Airport rotating beacons",
+                "page": "14-16",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=16"
+              }
             }
           ]
         },
@@ -22367,6 +23994,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "ALS 協助從儀表轉到視覺",
+              "paragraphs": [
+                "進場燈的排列、長度與閃光形式取決於系統。沿燈列可幫助辨識跑道方向與距離感，但燈本身不是下滑道，也不代表前方無障礙。",
+                "儀表進場能否下降到特定高度，須依適用最低標準及所見視覺參考規定；不能籠統認為「看見一盞進場燈就可繼續落地」。"
+              ]
+            }
           ]
         },
         {
@@ -22387,6 +24023,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "視覺下滑道提供有限的保護範圍",
+              "paragraphs": [
+                "VASI、PAPI等以角度提供進場高度線索，通常約3°但各機場可能不同。先對正適當進場路徑，再依公布角度、有效範圍及限制使用。",
+                "眼睛沿指示下滑不等於所有機型的輪子都有相同越障高度。大型機駕駛艙與輪子高度差、地形及系統位置都要納入。"
+              ]
+            }
           ]
         },
         {
@@ -22403,15 +24048,58 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
           "points": [
             "遠排紅、近排白：在坡度附近。",
             "兩排白：偏高；兩排紅：偏低。",
             "這是常見兩排 VASI 的判讀，三排或其他配置應查系統說明。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "兩排 VASI 先分遠排與近排",
+              "paragraphs": [
+                "Figure 14-29 遠排紅、近排白為on glidepath；兩排紅表示低，兩排白表示高。所謂red over white是從進場視角看到的遠近排列，不是任意兩盞燈。",
+                "典型兩排系統約3°，三排可提供兩條下滑道。原書±10°、4 NM保護範圍有系統前提，不應拿來在未對正或超出公布範圍時下降。"
+              ],
+              "figure": {
+                "label": "Figure 14-29 · Two-bar VASI",
+                "page": "14-17",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=17"
+              },
+              "table": {
+                "caption": "兩排 VASI 先分遠排與近排",
+                "headers": [
+                  "遠排",
+                  "近排",
+                  "判讀"
+                ],
+                "rows": [
+                  [
+                    "紅",
+                    "紅",
+                    "低於下滑道"
+                  ],
+                  [
+                    "紅",
+                    "白",
+                    "位於下滑道"
+                  ],
+                  [
+                    "白",
+                    "白",
+                    "高於下滑道"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "VASI遠排紅、近排白，是否可不看跑道方向直接下降？",
+                "answer": "不行。指示須在正確進場方位及適用範圍內使用，還要保持合適航跡與其他進場條件。"
+              }
+            }
           ]
         },
         {
@@ -22428,14 +24116,81 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
           "points": [
             "四燈 PAPI：四白偏高，三白一紅稍高，兩白兩紅在坡度附近，一白三紅稍低，四紅偏低。",
             "系統只在其設計與公布範圍提供參考；斜向看燈或看錯跑道，不應依色碼硬套下降。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "PAPI 的紅燈愈多，位置愈低",
+              "paragraphs": [
+                "Figure 14-30 的典型四燈PAPI，四白高、三白一紅略高、兩白兩紅在道上、一白三紅略低、四紅低。圖中2.5°～3.5°是該3°配置的示意，不是所有機場相同。",
+                "若指示與儀表下滑道不一致，查公布差異及設備限制；不要低空突然追燈或為了改成兩紅兩白而做不穩定修正。"
+              ],
+              "figure": {
+                "label": "Figure 14-30 · Precision approach path indicator",
+                "page": "14-17",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=17"
+              },
+              "table": {
+                "caption": "PAPI 的紅燈愈多，位置愈低",
+                "headers": [
+                  "四燈組合",
+                  "相對位置"
+                ],
+                "rows": [
+                  [
+                    "4白",
+                    "高"
+                  ],
+                  [
+                    "3白1紅",
+                    "略高"
+                  ],
+                  [
+                    "2白2紅",
+                    "在下滑道"
+                  ],
+                  [
+                    "1白3紅",
+                    "略低"
+                  ],
+                  [
+                    "4紅",
+                    "低"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "三色系統的綠色表示在道上",
+              "paragraphs": [
+                "Figure 14-31 單燈三色系統以紅、綠、琥珀分別表示低、在道上、高。低於綠色區時可能經過短暫暗琥珀過渡區，不能因此誤以為自己已到高側。",
+                "先識別裝的是哪種系統，再使用對應圖例；不可將PAPI白紅口訣套到三色燈。"
+              ],
+              "figure": {
+                "label": "Figure 14-31 · Tri-color visual approach slope indicator",
+                "page": "14-17",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=17"
+              }
+            },
+            {
+              "title": "脈動燈要一起讀顏色與閃爍",
+              "paragraphs": [
+                "Figure 14-32 steady white表示在道上，steady red略低，pulsating red更低，pulsating white表示高；偏離程度增加時脈動會加快。",
+                "可見距離受日夜、能見度與設備影響。原書日間約4 miles、夜間約10 miles是典型說明，不是保證在該距離一定看得到。"
+              ],
+              "figure": {
+                "label": "Figure 14-32 · Pulsating visual approach slope indicator",
+                "page": "14-18",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=18"
+              }
+            }
           ]
         },
         {
@@ -22455,6 +24210,15 @@ export const phakDocument = {
               "title": "FAA AIM 2-1：機場燈光與目視進場系統",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "從哪個方向看同一盞跑道燈",
+              "paragraphs": [
+                "進場方向看到門檻綠燈，從跑道向離場端看可見紅色末端燈；雙向燈具可能同一位置有不同顏色。跑道邊燈、中心線、門檻與REIL不能混為一類。",
+                "辨識燈列是否與自己的跑道一致，尤其平行跑道、斜向進場及機場周圍道路很多時。"
+              ]
             }
           ]
         },
@@ -22476,6 +24240,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "REIL 是成對同步閃光",
+              "paragraphs": [
+                "REIL設於門檻兩側，幫助快速找到進場端，特別在周圍燈光混雜時。它不顯示剩餘距離或下滑角。",
+                "不要把閃白的REIL與跑道末端固定紅燈混淆；也不能只看到兩個閃光就跳過跑道編號與位置核對。"
+              ]
+            }
           ]
         },
         {
@@ -22492,9 +24265,27 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "邊燈末段黃光是剩餘長度警示",
+              "paragraphs": [
+                "Figure 14-33 跑道邊燈一般白色；儀表跑道最後2,000 ft或跑道長度一半，以較短者為準，可呈黃色警示，末端以紅燈界定。",
+                "HIRL、MIRL、LIRL描述可用光強等級，不是三種不同跑道顏色。能調光也不保證自動設定適合當時能見度。"
+              ],
+              "figure": {
+                "label": "Figure 14-33 · Runway edge lighting",
+                "page": "14-18",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=18"
+              },
+              "check": {
+                "question": "長3,000 ft的儀表跑道，末段黃邊燈區按此規則多長？",
+                "answer": "取2,000與1,500的較小值，為最後1,500 ft；實際仍確認設備配置。"
+              }
             }
           ]
         },
@@ -22512,9 +24303,48 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "中心線顏色按剩餘距離變化",
+              "paragraphs": [
+                "具RCLS的跑道，最後3,000 ft之前為白色，剩3,000～1,000 ft交替白紅，最後1,000 ft為紅。TDZL成對白燈列則協助辨識接地區，原書延伸3,000 ft或到中點，以較短者為準。",
+                "滑行道lead-on／lead-off在相關保護區內可交替綠黃，LAHSO等待點可有脈動白燈。這些位置指示不改變已收到的許可與等待限制。"
+              ],
+              "table": {
+                "caption": "中心線顏色按剩餘距離變化",
+                "headers": [
+                  "燈列",
+                  "典型顏色／界限",
+                  "用途"
+                ],
+                "rows": [
+                  [
+                    "跑道中心線",
+                    "白→白紅交替→紅",
+                    "提示接近末端"
+                  ],
+                  [
+                    "接地區燈",
+                    "成對白色短排",
+                    "建立接地區視覺"
+                  ],
+                  [
+                    "滑行引入／引出",
+                    "保護區段可綠黃交替",
+                    "提示路徑與區域"
+                  ],
+                  [
+                    "LAHSO等待點",
+                    "一排脈動白光",
+                    "標示指定停止點"
+                  ]
+                ]
+              }
             }
           ]
         },
@@ -22532,9 +24362,44 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "無線電控燈要用公布頻率",
+              "paragraphs": [
+                "Figure 14-34 示範5秒內按送話鍵7次選最高、5次選中等或較低、3次選最低可用強度。不同設備可控制的燈具及強度不同，有些設定會關閉或降低REIL。",
+                "先查機場公布頻率、時段與操作說明，不假設一定是CTAF。確認燈確實亮起並注意定時熄滅；若未成功，不能在沒有足夠視覺參考下繼續下降。"
+              ],
+              "figure": {
+                "label": "Figure 14-34 · Pilot-controlled lighting",
+                "page": "14-19",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=19"
+              },
+              "table": {
+                "caption": "無線電控燈要用公布頻率",
+                "headers": [
+                  "5秒內按鍵",
+                  "典型功能"
+                ],
+                "rows": [
+                  [
+                    "7次",
+                    "最高可用強度"
+                  ],
+                  [
+                    "5次",
+                    "中等或較低強度"
+                  ],
+                  [
+                    "3次",
+                    "最低可用強度"
+                  ]
+                ]
+              }
             }
           ]
         },
@@ -22556,6 +24421,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "滑行燈具要配合路面標線",
+              "paragraphs": [
+                "滑行道邊緣與中心線協助維持路徑，等待位置燈則提示交叉與停止位置。寬廣鋪面上可能有多條相交燈列，不能只選最亮或最直的一條。",
+                "速度要能在可見距離內辨認並停止。讀圖、調頻或輸入航電需要低頭時，先在適當位置停穩並維持場面監控。"
+              ]
+            }
           ]
         },
         {
@@ -22576,6 +24450,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "藍色邊燈、綠色中心線",
+              "paragraphs": [
+                "Omnidirectional taxiway edge lights通常藍色，沿滑行道邊緣；中心線燈通常綠色。夜間應辨識兩者的相對位置，避免把邊燈當成要沿著壓過的線。",
+                "綠色路線不代表已獲准穿越前方跑道；也可能延伸到需要另行許可的區域。"
+              ]
+            }
           ]
         },
         {
@@ -22592,9 +24475,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "三盞穩定黃燈是 clearance bar",
+              "paragraphs": [
+                "Clearance bar通常由三盞嵌入式穩定黃色燈組成，增加等待位置或滑行道交叉處的醒目度。名稱含clearance，不表示它正在發給許可。",
+                "看到時對照標線和ATC限制；別把它與成對閃黃runway guard lights混淆。"
+              ]
             }
           ]
         },
@@ -22612,9 +24504,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "閃黃 guard lights 警告接近跑道",
+              "paragraphs": [
+                "Runway guard lights可為滑行道兩側抬高的成對閃黃燈，也可為跨滑行道的嵌入式黃燈列。它們使跑道入口醒目，而非表示跑道淨空。",
+                "從燈光再找等待線與紅色跑道牌，確認是否有明確進入／穿越許可。無論白天或低能見度都不宜忽視。"
+              ]
             }
           ]
         },
@@ -22632,15 +24533,28 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
           "points": [
             "黃色交替閃爍的 runway guard lights：警告接近跑道，不表示准許進入。",
             "橫向紅色 stop bar：停止；許可與亮紅燈矛盾時，停住並向 ATC 釐清。",
             "三盞黃色 clearance bar：提高等待點可見性，功能不同於紅色 stop bar。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "亮著紅色 stop bar 就不要跨越",
+              "paragraphs": [
+                "Stop bar是一排紅色停止燈，正常受控程序是獲得許可後停止燈熄滅，配合引入中心線燈引導。ATC口頭許可與紅燈矛盾時，保持停止並要求釐清。",
+                "現行AIM明確提醒：即使收到進入或穿越許可，也不得跨越仍亮著的紅色stop bar。燈熄滅本身同樣不是獨立許可。"
+              ],
+              "check": {
+                "question": "已收到cross runway，但紅色stop bar仍亮，能否照口頭指令跨過？",
+                "answer": "不能。停住並告知ATC燈仍亮，取得釐清；不要自行判定燈故障而穿越。"
+              }
+            }
           ]
         },
         {
@@ -22661,6 +24575,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "障礙燈是提示，不是完整障礙清單",
+              "paragraphs": [
+                "紅色障礙燈可固定或閃爍，白色高強度系統常依日夜調光，雙系統可日間白、夜間紅。機場內外均可能設置。",
+                "燈失效、遮蔽或未設燈的物體仍可能存在；不能只靠尋找紅燈就判斷路徑無障礙，還要查圖與NOTAM。"
+              ]
+            }
           ]
         },
         {
@@ -22677,9 +24600,35 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 2-1：機場燈光與目視進場系統",
+              "title": "FAA AIM 2-1：航空燈光、Stop Bar與RWSL",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "RWSL 自動警告與 ATC 許可分開",
+              "paragraphs": [
+                "Figure 14-35 的Runway Entrance Lights對進入／穿越跑道的航空器提供紅燈警告。系統使用場面監視等資料判斷衝突，與管制員發給你的許可是不同資訊來源。",
+                "紅燈亮應停止並聯絡ATC；熄滅只表示此警告未亮，不等於可自行進跑道。原書2016年的機場數量是歷史統計。"
+              ],
+              "figure": {
+                "label": "Figure 14-35 · Runway entrance lights",
+                "page": "14-20",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=20"
+              }
+            },
+            {
+              "title": "THL 警告已對正航空器不要起飛",
+              "paragraphs": [
+                "Figure 14-36 的Takeoff Hold Lights向在起飛位置的航空器顯示紅色警告，提示前方跑道狀況不適合開始起飛。它與滑行入口REL的位置和面向不同。",
+                "若燈光與許可矛盾，先保持安全並立即聯絡ATC；不能因「塔臺剛剛說可以」就忽視警告。"
+              ],
+              "figure": {
+                "label": "Figure 14-36 · Takeoff hold lights",
+                "page": "14-20",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=20"
+              }
             }
           ]
         },
@@ -22694,6 +24643,31 @@ export const phakDocument = {
           "paragraphs": [
             "風向袋顯示局部近地面風向與大致強度，風從較大的開口端吹入，袋尾指向下風。風向 T 及其他裝置的意義須按圖例確認；它們能提供即時參考，但無法完整描述整條跑道的陣風與風切。",
             "在無塔臺機場應把風向袋、天氣廣播及既有交通一起評估。若不同資料矛盾，可能是風正轉變或測量位置不同，不能只挑最有利的一項；應重新確認跑道選擇及側風餘裕。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "風袋看來風，四面體看落地方向",
+              "paragraphs": [
+                "Figure 14-37 中風袋大口朝來風，小尾指向下風，伸直及擺動程度提供風速／陣風線索。不要把尾巴指向誤當成風的來向。",
+                "Wind tee或tetrahedron可能人工設定；四面體小端指落地方向，不能單憑它推算真實風。另查風袋、天氣資訊及塔臺指令。"
+              ],
+              "figure": {
+                "label": "Figure 14-37 · Wind direction indicators",
+                "page": "14-21",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=21"
+              },
+              "check": {
+                "question": "風袋小尾指向東，風大致從哪裡來？",
+                "answer": "由西吹來；風向通常以來向命名。"
+              }
+            }
+          ],
+          "references": [
+            {
+              "title": "FAA AIM 4-3：機場操作及地面程序",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
+              "checked": "2026-09-20"
+            }
           ]
         },
         {
@@ -22710,9 +24684,28 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA AC 90-66C：無塔臺機場操作",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-66C.pdf",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "分段圓的轉彎臂畫出航線方向",
+              "paragraphs": [
+                "Figure 14-38 的landing strip indicators標出跑道排列，traffic pattern indicators協助辨識非標準轉彎方向。先選你要使用的進場端，再把短臂想像放大成base與final。",
+                "一般固定翼左航線，但公布RP、地面指示或適用管制程序可能不同。航線高度也以公布資料為準，並辨清MSL與AGL、雲距以及不同機型航線。"
+              ],
+              "figure": {
+                "label": "Figure 14-38 · Segmented circle and traffic pattern indicators",
+                "page": "14-21",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=21"
+              }
             }
           ]
         },
@@ -22730,9 +24723,32 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA AC 90-66C：無塔臺機場操作",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-66C.pdf",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "單跑道航線是有方向與高度的交通流",
+              "paragraphs": [
+                "Figure 14-39 依序辨認departure、crosswind、downwind、base、final。原圖建議在中場附近平飛加入downwind、保持航線高度至與進場端平齊，再依本機程序安排下降。",
+                "留在航線時，越過離場端且到距航線高度300 ft以內再轉crosswind，是圖中的標準建議情境。離場可直出或在適當位置向航線側45°離開；不要拿示意圖替代地方程序或ATC。"
+              ],
+              "figure": {
+                "label": "Figure 14-39 · Single-runway traffic pattern",
+                "page": "14-22",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=22"
+              },
+              "check": {
+                "question": "機場標高500 ft MSL、航線1,000 ft AGL，預期指示高度約多少？",
+                "answer": "以正確高度表設定時約1,500 ft MSL；仍核對公布TPA及當日條件。"
+              }
             }
           ]
         },
@@ -22750,9 +24766,28 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA AC 90-66C：無塔臺機場操作",
+              "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-66C.pdf",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "平行跑道要守住自己的航跡空間",
+              "paragraphs": [
+                "Figure 14-40 的兩個航線向外轉，圖中no transgression zone提醒勿穿入另一跑道的final或departure路徑。風漂會使地面航跡與機頭方向不同。",
+                "若base轉final已過頭，不要低空大坡度或不協調急轉追回；依狀況及指令安全重飛、告知ATC。平行跑道也可能有尾流漂入，距離不是唯一判斷。"
+              ],
+              "figure": {
+                "label": "Figure 14-40 · Parallel-runway traffic patterns",
+                "page": "14-23",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=23"
+              }
             }
           ]
         },
@@ -22774,6 +24809,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_2.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先聽頻率，再簡短清楚發話",
+              "paragraphs": [
+                "無線電負責建立共同情境，但不能取代目視或航空器控制。先確認選台與音量、聽有無既有通話，再發出受呼單位、完整呼號、位置和請求。",
+                "塔臺、地面、進場及CTAF功能不同；頻率移交不自動附帶新的起飛或落地許可。"
+              ]
+            }
           ]
         },
         {
@@ -22793,9 +24837,23 @@ export const phakDocument = {
               "title": "FCC 96-421：航空器電臺的個別執照與適用例外",
               "url": "https://wireless.fcc.gov/releases/fcc96421.pdf",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FCC §87.18：航空器電臺執照要求與豁免",
+              "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-87/subpart-B/section-87.18",
+              "checked": "2026-09-20"
             }
           ],
-          "currentNote": "此 FCC 文件說明制度背景；跨境或特殊電臺的個案資格應另查現行 47 CFR Part 87 與主管機關，不將一般國內例外直接套用。"
+          "currentNote": "此 FCC 文件說明制度背景；跨境或特殊電臺的個案資格應另查現行 47 CFR Part 87 與主管機關，不將一般國內例外直接套用。",
+          "lessonBlocks": [
+            {
+              "title": "操作員許可與電臺執照分開",
+              "paragraphs": [
+                "原文所述美國境內一般VHF操作可有FCC執照豁免；國際飛行、不同無線電設備或其他適用情況可能使航空器電臺及操作員分別需要文件。",
+                "不要把FAA飛行員證書等同FCC無線電資格。規劃跨國航班時查FCC現行條件及目的地要求，不把1990年代的地區例子當成全球規則。"
+              ]
+            }
+          ]
         },
         {
           "id": "radio-equipment",
@@ -22814,6 +24872,15 @@ export const phakDocument = {
               "title": "FAA AIM 4-2：無線電通訊程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_2.html",
               "checked": "2026-09-11"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "VHF 視距限制與頻道間隔",
+              "paragraphs": [
+                "常見民航VHF通話頻段約118.000～136.975 MHz。高度增加往往改善視距，但山體遮蔽仍可能使接收中斷，不能只看距離。",
+                "25 kHz與8.33 kHz代表頻道安排與設備相容性；8.33的使用範圍須查當地要求。頻率顯示相近不代表可任選，應精確使用公布頻道。"
+              ]
             }
           ]
         },
@@ -22835,6 +24902,20 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_2.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "標準拼字避免相似字母誤聽",
+              "paragraphs": [
+                "Figure 14-41 是ICAO拼字與數字發音表；例如A用Alfa、B用Bravo、J用Juliett。英文普通單字或自己的綽號容易使關鍵字母失真。",
+                "呼號相近時保留完整識別；跑道、等待點及高度等關鍵限制要讀回，不用roger代替必要讀回。沒聽懂就say again，不以猜測補上漏字。"
+              ],
+              "figure": {
+                "label": "Figure 14-41 · Phonetic alphabet and numeral pronunciation",
+                "page": "14-24",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=24"
+              }
+            }
           ]
         },
         {
@@ -22851,9 +24932,9 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 6-4：雙向無線電失效",
+              "title": "FAA AIM 6-4：雙向無線電通訊失效",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap6_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
           "points": [
@@ -22863,6 +24944,71 @@ export const phakDocument = {
             "穩定紅燈：空中讓路並繼續盤旋，地面停止；閃紅：空中機場不安全、不要落地，地面滑離使用中跑道。",
             "交替紅綠：極度小心；閃白對地面表示返回機場起點。燈號需按空中／地面分辨並以適用程序確認。",
             "IFR 且持續在 IMC 時，航路、最低高度與許可界限／進場時序須依 14 CFR 91.185，不是只設定 7600 後任選機場下降。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先控制航空器，再辨識失聯範圍",
+              "paragraphs": [
+                "確認音量、頻率、音源面板、耳機／麥克風及備用電臺，依機型程序處理。只失去發話與收發全失效不同；能接收就繼續監聽，依情況使用7600及燈號程序。",
+                "無線電失效不自動授權進入所有受管制空域。IFR在VMC的處理與IMC下的失聯路線／高度規則不同，應依§91.185及適用程序；不要把本章VFR燈號例子當成完整IFR失聯程序。"
+              ]
+            },
+            {
+              "title": "塔臺燈號須區分地面與空中",
+              "paragraphs": [
+                "Figure 14-42 同一顏色在地面與空中可有不同意思。白天可依程序搖翼或移動副翼／方向舵，夜間可用適當燈光動作確認接收；先判斷訊號確實指向自己。",
+                "選擇無塔臺備降可能降低通訊需求，但仍要評估天氣、交通、空域及航空器狀況，不能因失聯就忽略其他限制。"
+              ],
+              "figure": {
+                "label": "Figure 14-42 · Light gun signals",
+                "page": "14-25",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=25"
+              },
+              "table": {
+                "caption": "塔臺燈號須區分地面與空中",
+                "headers": [
+                  "訊號",
+                  "航空器在地面",
+                  "航空器在空中"
+                ],
+                "rows": [
+                  [
+                    "穩定綠",
+                    "准許起飛",
+                    "准許落地"
+                  ],
+                  [
+                    "閃綠",
+                    "准許滑行",
+                    "返回落地，後續等穩定綠落地許可"
+                  ],
+                  [
+                    "穩定紅",
+                    "停止",
+                    "讓其他航空器，繼續盤旋"
+                  ],
+                  [
+                    "閃紅",
+                    "滑離使用中跑道",
+                    "機場不安全，不要落地"
+                  ],
+                  [
+                    "閃白",
+                    "返回機場原起點",
+                    "不適用"
+                  ],
+                  [
+                    "紅綠交替",
+                    "格外小心",
+                    "格外小心"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "空中看到閃綠是否已獲落地許可？",
+                "answer": "不是，表示返回落地；正式落地許可為適當時機給的穩定綠。"
+              }
+            }
           ]
         },
         {
@@ -22876,6 +25022,15 @@ export const phakDocument = {
           "paragraphs": [
             "ATC 使用監視、通訊與程序管理交通，不同空域與服務下提供的隔離和資訊範圍不同。接受某種服務不代表所有風險都已轉交管制員，機師仍需遵守許可、維持適用目視避讓及航空器安全。",
             "例如 VFR flight following 可提高交通意識，但可能受工作量與覆蓋限制，且不等於已獲准進入所有受限制空域。需要穿越 Class B 時仍要取得相應明確許可，不能只因已分配代碼就進入。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "ATC 服務有範圍與條件",
+              "paragraphs": [
+                "Flight following、交通提示、向量與機場排序有助建立情境，但受雷達／通訊覆蓋、工作量及空域制度影響。主動清楚請求比假設管制員會自動提供更可靠。",
+                "管制服務不取消適用的see-and-avoid責任。原書指向第12章氣象服務是交叉引用舊編號，此版本氣象服務為第13章。"
+              ]
+            }
           ]
         },
         {
@@ -22892,9 +25047,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-5：監視系統、ADS-B 限制及目視避讓",
+              "title": "FAA AIM 4-5：監視設備、ADS-B與限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "一次雷達測的是往返時間",
+              "paragraphs": [
+                "一次雷達用發射波及物體反射回波測距：R=c×Δt÷2，除以2是因電波走了來回。方位由天線指向取得；不是由航空器主動回報身份。",
+                "地形、遮蔽、衰減與更新間隔影響顯示。原文最快4.7秒是特定設備描述，不能泛稱所有雷達；ADS-B也不是因用了GPS就完全不受遮蔽。"
+              ]
             }
           ]
         },
@@ -22912,9 +25076,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-5：監視系統、ADS-B 限制及目視避讓",
+              "title": "FAA AIM 4-5：監視設備、ADS-B與限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "二次雷達需要航空器回答",
+              "paragraphs": [
+                "ATCRBS由地面詢問器、機載transponder與管制顯示組成。回覆代碼及適當的高度資料可讓目標更容易識別，但高度編碼及設備仍有誤差／故障可能。",
+                "一次回波和二次回覆是不同來源；沒有transponder回覆不表示附近不存在航空器。ADS-B擴充監視能力，也不讓所有目標自動可見。"
+              ]
             }
           ]
         },
@@ -22932,9 +25105,56 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-5：監視系統、ADS-B 限制及目視避讓",
+              "title": "FAA AIM 4-5：監視設備、ADS-B與限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "四位八進位碼共有4,096組",
+              "paragraphs": [
+                "每位只能0～7，共8⁴=4,096種。一般美國VFR用1200或其他適用指定碼；7500、7600、7700分別關聯劫機、通訊失效與緊急狀況，不能當作一般測試碼。",
+                "Figure 14-43 的IDENT只在要求時使用；stop altitude squawk與stop squawk不同。設備模式名稱與地面操作依現行程序及手冊，不能因舊表有standby就假定所有地面操作都應待機。"
+              ],
+              "figure": {
+                "label": "Figure 14-43 · Transponder phraseology",
+                "page": "14-25",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=25"
+              },
+              "table": {
+                "caption": "四位八進位碼共有4,096組",
+                "headers": [
+                  "指令／代碼",
+                  "辨識重點"
+                ],
+                "rows": [
+                  [
+                    "SQUAWK指定碼",
+                    "設定指定識別碼"
+                  ],
+                  [
+                    "IDENT",
+                    "啟動識別功能"
+                  ],
+                  [
+                    "STOP ALTITUDE SQUAWK",
+                    "停止高度回報，與全關不同"
+                  ],
+                  [
+                    "1200",
+                    "一般美國VFR碼，仍服從指定"
+                  ],
+                  [
+                    "7500／7600／7700",
+                    "劫機／通訊失效／緊急"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "為什麼不能設定1289？",
+                "answer": "每位只能0～7，8與9不是有效transponder碼數字。"
+              }
             }
           ]
         },
@@ -22952,9 +25172,52 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-5：監視系統、ADS-B 限制及目視避讓",
+              "title": "FAA AIM 4-5：監視設備、ADS-B與限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "GPS 定位與 ADS-B 傳送是兩段鏈路",
+              "paragraphs": [
+                "機載設備先以GNSS等取得位置，再經1090ES或978 UAT廣播。GPS衛星提供定位，不是把所有ADS-B交通轉送到地面管制的衛星中繼。",
+                "地面接收與機間通訊仍有視距、地形及設備覆蓋限制。ADS-B Out是發送自身資訊，In是接收顯示；有Out不保證能看天氣，1090ES也不是978 MHz FIS-B接收器。"
+              ],
+              "table": {
+                "caption": "GPS 定位與 ADS-B 傳送是兩段鏈路",
+                "headers": [
+                  "功能",
+                  "主要作用",
+                  "不可推論"
+                ],
+                "rows": [
+                  [
+                    "ADS-B Out",
+                    "廣播本機監視資訊",
+                    "本機一定有交通／天氣畫面"
+                  ],
+                  [
+                    "ADS-B In",
+                    "接收適用交通與資訊",
+                    "所有附近航空器都可見"
+                  ],
+                  [
+                    "GNSS位置來源",
+                    "提供定位與時間",
+                    "地形不會遮蔽資料鏈"
+                  ],
+                  [
+                    "978 UAT FIS-B",
+                    "接收地面廣播資訊",
+                    "1090ES Out可直接接收同服務"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "ADS-B用GPS，是否代表山谷裡必定能收到地面站？",
+                "answer": "不是。定位和資料鏈是不同環節，地面資料鏈仍可能被地形遮蔽。"
+              }
             }
           ]
         },
@@ -22972,9 +25235,30 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-5：監視系統、ADS-B 限制及目視避讓",
+              "title": "FAA AIM 4-5：監視設備、ADS-B與限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "鐘點交通以航跡方向作參考",
+              "paragraphs": [
+                "Figure 14-44 比較有無風修正時，沿地面航跡的10點方向不一定正好是機鼻左前方同一角度。把距離、方向、高度和機型一起用來搜尋。",
+                "ATC提示不是解除目視責任。看不到就說negative contact，不假裝目標已找到；顯示的未知高度目標也不能忽略。"
+              ],
+              "figure": {
+                "label": "Figure 14-44 · Traffic advisories and wind correction",
+                "page": "14-26",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=26"
+              }
+            },
+            {
+              "title": "TRSA、Class C、Class B 不同",
+              "paragraphs": [
+                "TRSA提供參加者的相關雷達服務，VFR參加本身通常自願，但所在地其他空域通訊義務仍適用。Class C及Class B的進入與隔離制度不同，不能互相替代。",
+                "航路flight following也不自動成為Class B進入許可。比較服務時同時確認自己現在在哪一種空域、收到什麼明確許可。"
+              ]
             }
           ]
         },
@@ -22992,9 +25276,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 7-4：尾流與避讓",
+              "title": "FAA AIM 7-4：尾流特性與避讓",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "尾流可能超過後機滾轉控制能力",
+              "paragraphs": [
+                "尾流渦旋是升力相關流場的一部分，與噴射尾氣或螺旋槳滑流不同。後機即使翼展、速度看似足夠，也可能遇到強烈滾轉或結構載荷。",
+                "先想前機走過的三維路徑、風向與時間，再決定避讓；不能只憑自己現在看見前機很遠就認為尾流已消失。"
+              ]
             }
           ]
         },
@@ -23012,9 +25305,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 7-4：尾流與避讓",
+              "title": "FAA AIM 7-4：尾流特性與避讓",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "壓差使流場捲成一對反向渦旋",
+              "paragraphs": [
+                "Figure 14-45 顯示翼面壓差及尾流捲起後的兩個反向旋轉渦旋。主要危險能量集中在渦核附近，但實際結構、位置與衰減不是固定畫出的兩根管子。",
+                "渦旋間距、下沉及向外移動都是判斷線索；不能把翼尖延長線當成精密邊界，貼著它飛。"
+              ],
+              "figure": {
+                "label": "Figure 14-45 · Vortex generation",
+                "page": "14-27",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=27"
+              }
             }
           ]
         },
@@ -23032,9 +25339,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 7-4：尾流與避讓",
+              "title": "FAA AIM 7-4：尾流特性與避讓",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Heavy、slow、clean 是強尾流線索",
+              "paragraphs": [
+                "在其他條件相近時，較重、較慢、收起增升裝置的航空器常產生更強尾流；不同機型、翼展與構型仍會改變結果。",
+                "放襟翼可能改變渦系與衰減，但不會使大型機尾流突然無害。不要用「已放輪、已進場」作為縮短間隔的理由。"
+              ]
             }
           ]
         },
@@ -23052,9 +25368,18 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 7-4：尾流與避讓",
+              "title": "FAA AIM 7-4：尾流特性與避讓",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "巡航高度仍有尾流問題",
+              "paragraphs": [
+                "高空低密度會影響渦強，且巡航速度較高，同樣地理間距所對應的時間較短。原文超過30 NM、低於前機2,000 ft的遭遇案例說明風險可能出現在想不到的位置。",
+                "這些案例數字不是安全界限；仍要考慮風、航跡與垂直關係，需要時向ATC請求更合適的間隔或高度。"
+              ]
             }
           ]
         },
@@ -23072,9 +25397,27 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 7-4：尾流與避讓",
+              "title": "FAA AIM 7-4：尾流特性與避讓",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "追蹤生成路徑，而不是前機現在位置",
+              "paragraphs": [
+                "Figure 14-46 以離地至接地標示主要飛行尾流來源。前機離開後，渦旋仍會下沉、被風平移並逐漸衰減；接地也不代表剛生成的全部尾流立刻消失。",
+                "靠近地面時向外移動的渦旋可能受輕側風影響，一側滯留跑道、另一側移向鄰近跑道。輕微四分之一順風尤其值得注意，不能把等待固定兩分鐘當萬用保證。"
+              ],
+              "figure": {
+                "label": "Figure 14-46 · Vortex behavior",
+                "page": "14-27",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=27"
+              },
+              "check": {
+                "question": "前機已滑離跑道，是否可推論其final上的尾流也已消失？",
+                "answer": "不能。尾流會留在先前路徑附近並隨風移動，需要另外評估時間、風與進場軌跡。"
+              }
             }
           ]
         },
@@ -23092,9 +25435,34 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 7-4：尾流與避讓",
+              "title": "FAA AIM 7-4：尾流特性與避讓",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_4.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "落地時避免飛進前機較低的尾流路徑",
+              "paragraphs": [
+                "Figure 14-47A示意在前機進場路徑之上並於其接地點之後落地；B提醒平行跑道也可能有漂移尾流；C示意跨越航跡時應考慮尾流位置。",
+                "這些策略都有本機性能和穩定進場前提。若在前機接地點後落地會使剩餘距離不足，就增加間隔、重飛或改安排，不能為了尾流而勉強長落地。"
+              ],
+              "figure": {
+                "label": "Figure 14-47 · Vortex avoidance procedures",
+                "page": "14-29",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=29"
+              }
+            },
+            {
+              "title": "起飛避讓不能犧牲本機起飛性能",
+              "paragraphs": [
+                "跟隨大型機起飛常以在其旋轉點前離地並保持在其爬升路徑之上作規劃，但小飛機未必能做到。不能低於本機建議速度提早抬輪，也不能過度拉升企圖追上較高爬升路徑。",
+                "交叉跑道、低空通過、touch-and-go與直升機也可能留下尾流。若無法建立安全路徑就等待或請求其他安排；ATC wake caution提醒不等於判定後機一定安全。"
+              ],
+              "check": {
+                "question": "為在大型機旋轉點前離地，能否低於POH建議速度強行起飛？",
+                "answer": "不能。應維持本機程序與性能限制，改用更大間隔或其他安全安排。"
+              }
             }
           ]
         },
@@ -23109,6 +25477,15 @@ export const phakDocument = {
           "paragraphs": [
             "目視避讓需要有系統地掃描，而非偶爾望向窗外。固定相對方位且逐漸變大的交通可能具有碰撞風險，即使它在視野中幾乎不動，也不能因缺少明顯橫向移動就忽略。",
             "有優先權仍應採取必要行動避免碰撞，不能把讓路規則當成堅持航向的理由。電子交通、ATC 諮詢與乘員協助可補充掃視，但都無法保證列出附近所有目標。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "有優先權仍要避免碰撞",
+              "paragraphs": [
+                "目視避讓是持續工作，不只在加入航線前做一次。空域、雷達服務和交通顯示能提供資訊，卻無法保證沒有未被看見的目標。",
+                "發現目標方位近乎不變而逐漸變大，需警覺接近衝突；依適用讓路規則及安全操控及早處理，避免等對方先動。"
+              ]
+            }
           ]
         },
         {
@@ -23122,6 +25499,15 @@ export const phakDocument = {
           "paragraphs": [
             "起飛、爬升、下降、轉彎與訓練機動前，都應檢查將要進入的空域。高翼、低翼、座艙柱及機身會形成盲區，必要時以適當小幅姿態改變取得視野，同時保持航空器控制。",
             "清空域不是完成一次轉彎就永久有效，交通會持續接近。訓練時可以口述正在檢查的方向與高度，讓教官知道掃描是否確實；每次機動後仍要重新評估新的盲區與相對位置。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "動作前先清查將要進入的空間",
+              "paragraphs": [
+                "進入轉彎、爬升、下降及各種訓練科目前，先掃描目標空域。高翼機可在安全條件下短暫抬起預計轉彎側機翼查看，低翼機則短暫降低該側機翼查看。",
+                "這是克服遮蔽的掃描技巧，不是鼓勵突然或大幅搖翼；維持協調操控並注意相反方向及上下方的盲區。"
+              ]
+            }
           ]
         },
         {
@@ -23136,7 +25522,16 @@ export const phakDocument = {
             "練習失速、慢飛或轉彎時，注意力容易集中在姿態和儀表，忽略練習區內其他航空器。訓練前應安排觀察責任、完成適當清空域程序，並在每次機動之間持續重新搜尋。",
             "雙人座艙也不能假設另一人一定在看外面。可明確分工誰操縱、誰監看交通，並以口述方式確認；進入熟悉的練習區仍須保持警覺，因其他學員可能同時選擇相同高度與參考點。"
           ],
-          "currentNote": "提供的目錄未列此節頁碼；已依 FAA C 版第十四章正文補為 14-30。分章來源使用 16_phak_ch14_0.pdf，避免連到頁碼不同的舊檔。"
+          "currentNote": "提供的目錄未列此節頁碼；已依 FAA C 版第十四章正文補為 14-30。分章來源使用 16_phak_ch14_0.pdf，避免連到頁碼不同的舊檔。",
+          "lessonBlocks": [
+            {
+              "title": "把 clearing 說出來但不能只喊口號",
+              "paragraphs": [
+                "訓練中口述clear left／right／above／below能協助教官確認學生有意識地搜尋。慢飛、失速、轉彎等科目前都要實際查看。",
+                "說出clear只反映當次能看到的區域，不保證天空完全無人；過程中仍要重複掃描，分配教官與學生的監控工作。"
+              ]
+            }
+          ]
         },
         {
           "id": "scanning",
@@ -23157,7 +25552,16 @@ export const phakDocument = {
               "checked": "2026-09-11"
             }
           ],
-          "currentNote": "提供的目錄未列此節頁碼；已依 FAA C 版第十四章正文補為 14-30。分章來源使用 16_phak_ch14_0.pdf，避免連到頁碼不同的舊檔。"
+          "currentNote": "提供的目錄未列此節頁碼；已依 FAA C 版第十四章正文補為 14-30。分章來源使用 16_phak_ch14_0.pdf，避免連到頁碼不同的舊檔。",
+          "lessonBlocks": [
+            {
+              "title": "分區停留掃描比快速掃過更有效",
+              "paragraphs": [
+                "眼睛需要時間對焦，擋風柱、機翼、陽光與低對比都會藏住交通。將視野分成小區逐段停留觀察，再查看不同高度，避免只盯正前方。",
+                "長時間看近處平板後應重新對焦遠處；空白天空也可能讓眼睛停在較近焦距。使用系統性掃描並減少不必要低頭時間。"
+              ]
+            }
+          ]
         },
         {
           "id": "see-avoid",
@@ -23173,12 +25577,25 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-5：監視系統、ADS-B 限制及目視避讓",
+              "title": "FAA AIM 4-5：監視設備、ADS-B與限制",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_5.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
             }
           ],
-          "currentNote": "提供的目錄未列此節頁碼；已依 FAA C 版第十四章正文補為 14-30。分章來源使用 16_phak_ch14_0.pdf，避免連到頁碼不同的舊檔。"
+          "currentNote": "提供的目錄未列此節頁碼；已依 FAA C 版第十四章正文補為 14-30。分章來源使用 16_phak_ch14_0.pdf，避免連到頁碼不同的舊檔。",
+          "lessonBlocks": [
+            {
+              "title": "交通顯示用來引導目視搜尋",
+              "paragraphs": [
+                "ADS-B In告警能提醒朝哪個方位搜尋，卻可能看不到未裝Out／transponder或未被轉送的目標。不要把畫面空白當成機場上空完全淨空。",
+                "將掃描、聆聽和畫面交叉核對；非必要輸入在工作量高時延後。交通提示與TCAS resolution advisory是不同等級訊息，不應混用其處置規則。"
+              ],
+              "check": {
+                "question": "平板交通圖上沒有目標，能否不掃描直接進跑道？",
+                "answer": "不能。仍檢查跑道及進場交通、遵守許可，顯示可能漏掉航空器。"
+              }
+            }
+          ]
         },
         {
           "id": "deviations",
@@ -23191,6 +25608,15 @@ export const phakDocument = {
           "paragraphs": [
             "Pilot deviation 指機師行為違反適用規定，可能發生於空中或地面，例如未經許可進入空域、偏離高度或跨越等待線。理解典型成因的目的，是建立早期發現與修正機制，而非只背違規名稱。",
             "若察覺位置或許可不一致，應先保持安全並及時聯絡 ATC，不要試圖悄悄修正到看不出來。緊急情況或避撞指示可能涉及不同規則，仍須依適用程序執行與通報。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "偏離可能發生在空中或地面",
+              "paragraphs": [
+                "Airborne deviation包括未遵守高度、航向、程序或進入需許可的空域；surface deviation可包含越線、錯走路線及未獲准起降。預先規劃、讀回及保留地理裕度可減少錯誤。",
+                "緊急狀況及適用TCAS RA處置有其規定，偏離後應盡快告知ATC；不能把一般交通提示當成同等授權。GPS較精確也不是貼空域邊界或越界的理由。"
+              ]
+            }
           ]
         },
         {
@@ -23210,6 +25636,24 @@ export const phakDocument = {
               "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：跑道入侵現行定義",
+              "url": "https://www.faa.gov/airports/runway_safety/resources/runway_incursions",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "跑道入侵不必等到幾乎相撞才成立",
+              "paragraphs": [
+                "現行定義著重航空器、車輛或人員不正確地出現在供起降使用的受保護區域；不必已造成碰撞危險或實際失去隔離才算。原書舊定義與每日三起、65%等數字應視為當時背景。",
+                "跑道入侵可來自飛行員、管制操作或車輛／行人。每次接近跑道都查位置、許可及交通，不因前方無人就越過hold line。"
+              ],
+              "check": {
+                "question": "未獲准跨過等待線，當時跑道完全無其他飛機，是否一定不算入侵？",
+                "answer": "不是。錯誤進入受保護區本身就可能構成跑道入侵，不以差點碰撞為必要條件。"
+              }
             }
           ]
         },
@@ -23230,6 +25674,25 @@ export const phakDocument = {
               "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：場面操作最佳實務與LUAW提醒",
+              "url": "https://www.faa.gov/airports/runway_safety/pilots/best_practices",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "不熟悉、誤聽與分心會相互放大",
+              "paragraphs": [
+                "Figure 14-48 用場面情境提醒：飛前畫路線、標hot spots及等待點；滑行中維持抬頭，複雜指令寫下。準備做需要持續低頭的工作前，在合適位置停妥。",
+                "不確定位置或路線時立即告知ATC並請求協助。不要為了跟上前機而猜路，也不要在已進入跑道後任意停在衝突位置做長時間查圖。"
+              ],
+              "figure": {
+                "label": "Figure 14-48 · Runway incursion prevention",
+                "page": "14-32",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=32"
+              }
             }
           ]
         },
@@ -23250,6 +25713,20 @@ export const phakDocument = {
               "title": "FAA AIM 2-3：機場標線、標誌與 EMAS",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：跑道入侵現行定義",
+              "url": "https://www.faa.gov/airports/runway_safety/resources/runway_incursions",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "辨識錯跑道與錯滑行道",
+              "paragraphs": [
+                "Runway confusion可能導致從錯跑道／滑行道起飛或降落；是否同時歸類為runway incursion取決於事件，不能把所有混淆都當同一統計類別。",
+                "在加推力前核對許可、跑道號、航向及實際位置。2006年的錯跑道事故說明「已收到起飛許可」仍不保證自己已對正正確跑道。"
+              ]
             }
           ]
         },
@@ -23271,6 +25748,20 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_3.html",
               "checked": "2026-09-11"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "同一入口可能通往多條跑道",
+              "paragraphs": [
+                "Figure 14-49 的36與斜向跑道靠得很近，追著彎曲中心線可能走錯。先在機場圖上確定轉彎後應朝哪裡，再用地面編號及航向核對。",
+                "360° heading bug只是提醒，不能取代核對；若跑道當滑行路線使用，更要持續區分正在滑行與已到指定起飛位置。"
+              ],
+              "figure": {
+                "label": "Figure 14-49 · Confusing runway intersection",
+                "page": "14-33",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=33"
+              }
+            }
           ]
         },
         {
@@ -23287,9 +25778,28 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA：場面操作最佳實務與LUAW提醒",
+              "url": "https://www.faa.gov/airports/runway_safety/pilots/best_practices",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "把滑行許可寫成可逐段追蹤的路線",
+              "paragraphs": [
+                "Figure 14-50 示範即時記下指令。先確認呼號與目的地，再逐個記via路線、cross及hold short，不把預計路線當成已收到的許可。",
+                "不清楚時請求say again或progressive taxi；若無法安全照做，就及時說unable。監聽其他航班能增加情境理解，但不能把別人的許可套到自己。"
+              ],
+              "figure": {
+                "label": "Figure 14-50 · Writing down taxi instructions",
+                "page": "14-33",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=33"
+              }
             }
           ]
         },
@@ -23307,9 +25817,56 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA：場面操作最佳實務與LUAW提醒",
+              "url": "https://www.faa.gov/airports/runway_safety/pilots/best_practices",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "等待限制針對整架航空器",
+              "paragraphs": [
+                "Figure 14-51 示範在跑道等待線前停止，機鼻及翼面都不得伸入。無塔臺時，也必須先檢查兩個方向和進場交通再決定進入。",
+                "讀回跑道hold short時包含跑道識別與呼號，不用單一roger。若不知道是哪條線，先停在安全位置詢問。"
+              ],
+              "figure": {
+                "label": "Figure 14-51 · Hold short of the runway",
+                "page": "14-34",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=34"
+              }
+            },
+            {
+              "title": "先讀自己的位置，再讀前方跑道",
+              "paragraphs": [
+                "Figure 14-52 黑底C表示位於Charlie，紅底13–31表示相交跑道。這兩個訊息回答不同問題，可與機場圖及許可互相核對。",
+                "即使已被分派使用13，也不能看到13就直接轉入；此處可能是需要等待或穿越的中段入口。"
+              ],
+              "figure": {
+                "label": "Figure 14-52 · Runway 13–31 holding sign at Charlie",
+                "page": "14-34",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=34"
+              }
+            },
+            {
+              "title": "讀回保留路線與停止點",
+              "paragraphs": [
+                "Figure 14-53 的例子是Runway 4、via Echo、hold short of Runway 25 at Delta。可把它拆成目的地、路線、限制三部分，再用呼號完整讀回。",
+                "讀回只是在確認聽見的內容；若管制員沒有察覺錯誤，錯讀仍可能導致事件，因此也要與機場圖和自身位置驗證。"
+              ],
+              "figure": {
+                "label": "Figure 14-53 · Taxi and hold-short readback",
+                "page": "14-34",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=34"
+              },
+              "check": {
+                "question": "聽到Runway 4 via Echo hold short Runway 25，是否已可穿越25？",
+                "answer": "不可以，25正是必須等待的跑道；要等另外的明確穿越許可。"
+              }
             }
           ]
         },
@@ -23327,9 +25884,28 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA：場面操作最佳實務與LUAW提醒",
+              "url": "https://www.faa.gov/airports/runway_safety/pilots/best_practices",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "每條跑道都要有明確處置",
+              "paragraphs": [
+                "Figure 14-54 先發via Alpha、hold short31，之後才另發cross31。不要從最終目的地推論已獲准跨越沿途跑道，也不要把前一次穿越許可套到下一條。",
+                "原則適用於活動、非活動及關閉跑道；管制端的特殊程序不等於飛行員可自行推定多條穿越。進入前仍目視檢查，即使許可已收到。"
+              ],
+              "figure": {
+                "label": "Figure 14-54 · Explicit runway crossing clearance",
+                "page": "14-34",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=34"
+              }
             }
           ]
         },
@@ -23350,6 +25926,29 @@ export const phakDocument = {
               "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：場面操作最佳實務與LUAW提醒",
+              "url": "https://www.faa.gov/airports/runway_safety/pilots/best_practices",
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA JO 7110.65 3-9：LUAW及縮短跑道程序",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/atc_html/chap3_section_9.html",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Line up and wait 不是起飛許可",
+              "paragraphs": [
+                "LUAW授權在指定跑道及入口對正等待，真正起飛仍需cleared for takeoff。交叉口起飛時要核對taxiway識別與可用長度，不能自動假設位在全長端。",
+                "留意進場交通及預期延遲原因。若等待超過90秒仍無後續指示，或任何時候看出可能衝突，立即聯絡塔臺；90秒不是必須忍住不問的最低時間。"
+              ],
+              "check": {
+                "question": "收到LUAW後見前機已離地，能否自行開始起飛？",
+                "answer": "不能，仍需本機明確起飛許可；前機離開不等於限制已自動解除。"
+              }
             }
           ]
         },
@@ -23370,6 +25969,20 @@ export const phakDocument = {
               "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA JO 7110.65 3-9：LUAW及縮短跑道程序",
+              "url": "https://www.faa.gov/air_traffic/publications/atpubs/atc_html/chap3_section_9.html",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Shortened 要重新計算可用距離",
+              "paragraphs": [
+                "施工使跑道縮短時，ATIS及ATC會使用相應提醒；不能沿用熟悉的全長性能計算。交叉口起飛還要考慮入口到剩餘可用端的距離。",
+                "核對TORA、TODA、ASDA、LDA與當期NOTAM，四者用途不同。EMAS、blast pad或關閉鋪面不能自行加入正常起飛／落地距離。"
+              ]
             }
           ]
         },
@@ -23387,9 +26000,23 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 4-3：機場操作、跑道許可與 LAHSO",
+              "title": "FAA AIM 4-3：機場操作及地面程序",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_3.html",
-              "checked": "2026-09-11"
+              "checked": "2026-09-20"
+            },
+            {
+              "title": "FAA：場面操作最佳實務與LUAW提醒",
+              "url": "https://www.faa.gov/airports/runway_safety/pilots/best_practices",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "落地前先想出口，落地後先確定已清空",
+              "paragraphs": [
+                "進場前看機場圖、預期安全出口及相鄰等待線；高速時不接受自己無法安全完成的突然轉彎。離開應使用合適滑行道，不擅自轉入另一條跑道。",
+                "整架航空器越過等待線後，按已收到的滑行指令移動；沒有後續許可就停止並聯絡。落地後檢查單及非必要調整等離開活動跑道、位置安全後再做。"
+              ]
             }
           ]
         },
@@ -23415,6 +26042,41 @@ export const phakDocument = {
               "title": "FAA：EMAS 官方介紹與現行設置資訊",
               "url": "https://www.faa.gov/newsroom/engineered-material-arresting-system-emas-0",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：EMAS原理與現行資訊",
+              "url": "https://www.faa.gov/airports/engineering/incursions_excursions/emas",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "EMAS 補足跑道末端可用緩衝空間",
+              "paragraphs": [
+                "Figure 14-55 展示跑道末端因道路、水域或地形無法提供理想安全區時的安排。EMAS透過輪子壓入特製材料消耗動能，降低overrun後果。",
+                "它不是延長的正常跑道，也不能補償原本不足的起降性能。RSA尺寸與可用替代設計須看機場實際標準，不能把500×1,000 ft套所有場地。"
+              ],
+              "figure": {
+                "label": "Figure 14-55 · Runway end safety area and EMAS",
+                "page": "14-36",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=36"
+              }
+            },
+            {
+              "title": "材料、床長與機型共同決定效果",
+              "paragraphs": [
+                "Figure 14-56 的平面、剖面與斷面顯示setback、導入坡及側階。原書EMASMAX的可壓碎混凝土是特定設計例，不能推論所有現代系統材料相同。",
+                "圖註40～70 kt描述設計情境，不保證所有床長、機重與進入速度都能完全停住。較輕GA機可能不足以壓入材料，效果有限。"
+              ],
+              "figure": {
+                "label": "Figure 14-56 · EMAS plan, profile and section",
+                "page": "14-37",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=37"
+              },
+              "check": {
+                "question": "跑道後有EMAS，能否把它加到LDA用來接受原本停不下的落地？",
+                "answer": "不能。EMAS是越出後果緩解設施，不是正常可用落地距離。"
+              }
             }
           ]
         },
@@ -23435,6 +26097,37 @@ export const phakDocument = {
               "title": "FAA：EMAS 官方介紹與現行設置資訊",
               "url": "https://www.faa.gov/newsroom/engineered-material-arresting-system-emas-0",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：EMAS原理與現行資訊",
+              "url": "https://www.faa.gov/airports/engineering/incursions_excursions/emas",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "成功攔阻案例是歷史證據",
+              "paragraphs": [
+                "Figure 14-57 顯示航空器進入材料床後的情況；原書列1999～2011年若干成功案例，說明系統可以降低後果。",
+                "這份舊清單不是截至今日全部事件，也不能概括所有事件都只有極小損害或沒有傷害。判斷本場效果要看設計機型與現況。"
+              ],
+              "figure": {
+                "label": "Figure 14-57 · Aircraft arrested by EMAS",
+                "page": "14-38",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=38"
+              }
+            },
+            {
+              "title": "Yeager 案例觀察輪子與材料",
+              "paragraphs": [
+                "Figure 14-58 的CRJ-200事件照片可看出輪子壓碎材料形成的痕跡，幫助理解減速不是靠纜索勾住航空器。",
+                "成功停下不表示可以加推力自行滑出；材料、結構及起落架可能受損，後續移動應交由相應救援與維修處置。"
+              ],
+              "figure": {
+                "label": "Figure 14-58 · CRJ-200 EMAS arrestment",
+                "page": "14-38",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=38"
+              }
             }
           ]
         },
@@ -23455,6 +26148,37 @@ export const phakDocument = {
               "title": "FAA：EMAS 官方介紹與現行設置資訊",
               "url": "https://www.faa.gov/newsroom/engineered-material-arresting-system-emas-0",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：EMAS原理與現行資訊",
+              "url": "https://www.faa.gov/airports/engineering/incursions_excursions/emas",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "查現行機場資料，不背舊安裝總數",
+              "paragraphs": [
+                "Figure 14-59 的Boston Chart Supplement範例在ARRESTING GEAR／SYSTEM列出EMAS跑道。圖上的日期、距離及配置是教學歷史資料，不作本次飛行依據。",
+                "原文63個跑道端、42個機場是舊統計。飛前真正需要確認的是本次使用跑道末端是否有EMAS、其位置及相關限制。"
+              ],
+              "figure": {
+                "label": "Figure 14-59 · EMAS in the Chart Supplement",
+                "page": "14-39",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=39"
+              }
+            },
+            {
+              "title": "機場圖定位 EMAS 與跑道末端",
+              "paragraphs": [
+                "Figure 14-60 把EMAS位置與照片連起來。先找跑道方向與末端，再看標示區，避免把旁邊鋪面、停止道或其他設施誤認為EMAS。",
+                "把是否有EMAS納入離場與進場簡報，但仍按AFM／POH、公布距離和實際跑道條件計算性能。"
+              ],
+              "figure": {
+                "label": "Figure 14-60 · EMAS on an airport diagram",
+                "page": "14-40",
+                "url": "https://www.faa.gov/sites/faa.gov/files/16_phak_ch14_0.pdf#page=40"
+              }
             }
           ]
         },
@@ -23480,6 +26204,41 @@ export const phakDocument = {
               "title": "FAA：EMAS 官方介紹與現行設置資訊",
               "url": "https://www.faa.gov/newsroom/engineered-material-arresting-system-emas-0",
               "checked": "2026-09-11"
+            },
+            {
+              "title": "FAA：EMAS原理與現行資訊",
+              "url": "https://www.faa.gov/airports/engineering/incursions_excursions/emas",
+              "checked": "2026-09-20"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "不可避免進入時持續控制與減速",
+              "paragraphs": [
+                "若判斷將越出並進入EMAS，依飛機手冊持續執行中止起飛或最大適用落地減速程序，沿跑道中心線直進材料床，不為躲避而任意向兩側偏轉。",
+                "系統被動工作，不需飛行員另行啟動；保持減速與方向控制。停住後不要嘗試自行滑出，依情況處理火災、撤離、救援與通報。"
+              ],
+              "table": {
+                "caption": "不可避免進入時持續控制與減速",
+                "headers": [
+                  "階段",
+                  "重點"
+                ],
+                "rows": [
+                  [
+                    "進入前",
+                    "持續適用減速程序，維持方向"
+                  ],
+                  [
+                    "進入材料床",
+                    "沿中心線，持續減速努力"
+                  ],
+                  [
+                    "停止後",
+                    "不要自行移動，處理後續緊急需求"
+                  ]
+                ]
+              }
             }
           ]
         },
@@ -23494,6 +26253,19 @@ export const phakDocument = {
           "paragraphs": [
             "本章能力可以用一次完整機場操作串起來：飛前查資料、辨識跑道與標誌、理解許可、控制地面工作量，再管理航線、交通與尾流。每個環節都需要把資訊轉成航空器的實際位置與動作。",
             "找一張陌生機場圖，設計停機坪到跑道的路線，再模擬跑道更換、停止線亮紅、LUAW 及落地後錯過出口。逐項說明在哪裡停止、應確認什麼與如何通報，檢查自己是否真的能運用本章概念。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "把一趟機場操作串成可口述的計畫",
+              "paragraphs": [
+                "飛前查機場圖、NOTAM與性能；到達前確認天氣、跑道、航線及尾流；地面逐段核對標誌、位置與許可。遇到不一致就及早說明並釐清。",
+                "讀完後能回答：現在在哪裡、下一個必須停的點是哪裡、哪些交通可能衝突，以及若不能安全照做要怎麼改。這比只背圖號更能把知識轉成操作判斷。"
+              ],
+              "check": {
+                "question": "已完成飛前資料查詢，滑行時又遇到與圖不符的關閉標誌，接下來如何處理？",
+                "answer": "停止在安全位置，核對現況並向ATC或適當單位查明可用路線，不能以先前計畫為由繼續。"
+              }
+            }
           ]
         }
       ],
@@ -23542,8 +26314,8 @@ export const phakDocument = {
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=335",
       "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=335",
       "detailMode": "outline",
-      "checked": "2026-09-11",
-      "coverageNote": "依提供目錄逐節講解，共 90 節；附英文原名、中文說明、原文頁碼與現行資料補充。三個未列頁碼的小節依 C 版正文定位於 14-30。"
+      "checked": "2026-09-20",
+      "coverageNote": "全章 90 節均已加入深入講解，共 112 個單元、12 張比較表、24 題理解練習與 Figure 14-1～14-60 官方原圖指引。補齊場面標誌、燈光、通訊、航線、尾流及 EMAS，並依現行 FAA 文件釐清 LAHSO、跑道入侵定義與 ADS-B 限制。"
     },
     {
       "id": "phak25c-15",
