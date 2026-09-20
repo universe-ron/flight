@@ -727,3 +727,29 @@ test('Chapter 15 airspace lessons render all figures, tables and saved learning 
  assert.match(html,/Part 107已施行/);assert.match(html,/不能以目視空白作授權/);
  assert.ok(html.includes('https://sanctuaries.noaa.gov/flight/noaa-regulated-overflight-zones.html'));
 });
+
+test('Chapter 16 navigation foundations render twenty-three figures with honest partial coverage',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[15];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'風箭頭與來向相反'}});
+ const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
+ assert.equal(c.detailSections.length,62);assert.ok(c.detailSections.slice(0,29).every(s=>s.lessonBlocks?.length));
+ assert.ok(c.detailSections.slice(29).every(s=>!s.lessonBlocks?.length));
+ const blocks=c.detailSections.slice(0,29).flatMap(s=>s.lessonBlocks);
+ assert.equal(blocks.length,43);assert.equal(blocks.filter(b=>b.table).length,8);assert.equal(blocks.filter(b=>b.check).length,15);
+ const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,3,4,4,5,6,6,6,7,7,8,8,9,10,10,10,11,13,14,14,15,16,16];
+ assert.equal(figures.length,23);
+ for(let n=1;n<=23;n++){
+  const f=figures.find(f=>f.label.startsWith('Figure 16-'+n+' ·'));assert.ok(f);
+  assert.equal(f.page,'16-'+pages[n-1]);assert.equal(f.url,'https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page='+pages[n-1]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/風箭頭與來向相反/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/本輪深化前 29 節/);assert.match(html,/飛行計畫至章末仍為既有概述/);
+ assert.match(html,/19.92421 US gal/);assert.match(html,/Figure 16-19的數字不能同時成立/);
+ assert.match(html,/Figure 16-22實際是在量真航向/);assert.match(html,/Figure 16-23實際是在量風修正角/);
+});

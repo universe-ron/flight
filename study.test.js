@@ -211,7 +211,7 @@ test('Chapter 16 covers all 62 supplied headings with FAA source pages and wind-
  assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page='+s.printedPage.split('-')[1]);}
  assert.deepEqual(c.detailSections.filter(s=>s.parent==='triangle').map(s=>s.id),['step-1','step-2','step-3','step-4']);
- assert.equal(c.checked,'2026-09-12');
+ assert.equal(c.checked,'2026-09-20');
  for(const id of ['sectional','wac','sa','raim','vfr-plan']){const s=c.detailSections.find(s=>s.id===id);assert.ok(s.currentNote);assert.ok(s.references.length);}
 });
 
@@ -381,4 +381,32 @@ test('Chapter 15 weather table retains altitude boundaries, units and worked geo
  const mtr=JSON.stringify(section('mtr').lessonBlocks);assert.match(mtr,/剛好1,500 ft仍符合四位規則/);
  const equipment=JSON.stringify(section('pilot-equipment').lessonBlocks);assert.match(equipment,/排除地面上方2,500 ft或以下/);
  assert.match(text,/就此天氣條文而言/);assert.match(text,/低於1,200 ft AGL/);
+});
+
+test('Chapter 16 worked navigation tables match independent geometry and unit conversions',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[15];
+ const section=id=>c.detailSections.find(s=>s.id===id);
+ const text=id=>JSON.stringify(section(id).lessonBlocks);
+ const tables=id=>section(id).lessonBlocks.flatMap(b=>b.table?.rows||[]);
+ for(const [name,denominator] of [['Sectional',500000],['TAC',250000],['歷史FAA WAC',1000000]]){
+  const row=tables('charts').find(r=>r[0]===name),metres=.0254*denominator;
+  assert.equal(row[2],(metres/1852).toFixed(2)+' NM／'+(metres/1609.344).toFixed(2)+' SM');
+ }
+ const card=tables('deviation'),a=card.find(r=>r[0]==='180°'),b=card.find(r=>r[0]==='210°');
+ const interpolated=Number.parseInt(a[1])+(195-180)/(210-180)*(Number.parseInt(b[1])-Number.parseInt(a[1]));
+ assert.equal(card.find(r=>r[0]==='195°（內插）')[1],interpolated+'°');
+ const radians=Math.PI/180,windEast=-40*Math.sin(45*radians),windNorth=-40*Math.cos(45*radians);
+ const airNorth=-windNorth,airEast=Math.sqrt(120**2-airNorth**2),groundEast=airEast+windEast;
+ assert.ok(Math.abs(airNorth+windNorth)<1e-10);
+ const heading=Math.atan2(airEast,airNorth)/radians,time=220/groundEast,fuel=time*8;
+ const result=tables('step-4').find(r=>r[0]==='向量重算');
+ assert.deepEqual(result,['向量重算',heading.toFixed(2).padStart(6,'0')+'°',groundEast.toFixed(5)+' kt',time.toFixed(5)+' h',fuel.toFixed(5)+' US gal']);
+ assert.ok(text('step-4').includes('取兩位小數'+fuel.toFixed(2)));
+ assert.ok(section('step-4').points.some(p=>p.includes(fuel.toFixed(2)+' gal')));
+ assert.ok(text('wind').includes(Math.hypot(120,20).toFixed(2)+' NM'));
+ assert.ok(text('wind').includes(Math.sqrt(120**2-20**2).toFixed(2)+' kt'));
+ const utc=new Date(Date.UTC(2026,8,11,21,30)+5*3600000);
+ assert.equal(utc.getUTCDate(),12);assert.equal(utc.getUTCHours(),2);
+ assert.ok(tables('time-zones').some(r=>r[0]==='11日21:30 EST'&&r[2]==='12日02:30Z'));
+ assert.ok(text('fuel').includes('5 h'));assert.ok(text('fuel').includes((400/80*5)+' US gal'));
 });

@@ -27932,6 +27932,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "導航是持續核對位置，不只是起飛前畫線",
+              "paragraphs": [
+                "Pilotage以地標定位，dead reckoning以時間、方向、速度推算，radio navigation使用導航設施；三者可互相驗證。先規劃航線、檢查點、天氣、航向、時間與燃油，再在飛行中比較預期與實際。",
+                "本輪深化到風三角Step 4，含其引用的Figure 16-22、16-23。後續飛行計畫與無線電導航保留既有概述，尚未標成全章深化完成。"
+              ]
+            }
           ]
         },
         {
@@ -27958,6 +27967,40 @@ export const phakDocument = {
             "比例尺分母愈小，在同一紙面上呈現的地面範圍愈小，通常可容納更多細節。",
             "Sectional 1:500,000；TAC 1:250,000；原書 WAC 1:1,000,000。用錯量尺會直接影響距離、航時及燃油。",
             "圖面有效日期、導航資料庫週期與 NOTAM 各有角色；下載成功不等於內容已生效或完整。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "比例尺決定紙面距離所代表的地面距離",
+              "paragraphs": [
+                "比例尺1:n表示圖上一個長度單位對應地面n個相同單位。分母較小的TAC是較大比例尺，可呈現更多局部細節；分母較大的WAC涵蓋較廣但細節較少。",
+                "電子地圖放大不一定增加原始資料精度；縮放過的PDF也不能直接用原印刷比例尺量紙面英寸，除非確認印製倍率。"
+              ],
+              "table": {
+                "caption": "比例尺決定紙面距離所代表的地面距離",
+                "headers": [
+                  "圖種",
+                  "比例尺",
+                  "原尺寸1 inch約代表"
+                ],
+                "rows": [
+                  [
+                    "Sectional",
+                    "1:500,000",
+                    "6.86 NM／7.89 SM"
+                  ],
+                  [
+                    "TAC",
+                    "1:250,000",
+                    "3.43 NM／3.95 SM"
+                  ],
+                  [
+                    "歷史FAA WAC",
+                    "1:1,000,000",
+                    "13.71 NM／15.78 SM"
+                  ]
+                ]
+              }
+            }
           ]
         },
         {
@@ -27974,12 +28017,26 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA：Sectional 比例尺與現行更新週期",
+              "title": "FAA：Sectional比例尺與56天更新",
               "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/productcatalog/vfrcharts/sectional/",
-              "checked": "2026-09-12"
+              "checked": "2026-09-20"
             }
           ],
-          "currentNote": "FAA 現行 Sectional 產品每 56 天更新；原書較長更新週期的敘述不可直接沿用，使用前仍需確認生效日期與 NOTAM。"
+          "currentNote": "FAA 現行 Sectional 產品每 56 天更新；原書較長更新週期的敘述不可直接沿用，使用前仍需確認生效日期與 NOTAM。",
+          "lessonBlocks": [
+            {
+              "title": "Sectional圖例先分高度、符號與邊界",
+              "paragraphs": [
+                "Figure 16-1 練習將機場資訊、導航設施、地形與空域分開讀。障礙物MSL頂高、AGL高度和空域底限可能用不同表示法，不能把每個數字都當作海拔。",
+                "FAA現行Sectional每56天更新，原文半年／一年說法不再適用。還要核對生效日期與NOTAM；新障礙或臨時限制不一定已印在圖上。"
+              ],
+              "figure": {
+                "label": "Figure 16-1 · Sectional chart and legend",
+                "page": "16-2",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=2"
+              }
+            }
+          ]
         },
         {
           "id": "tac",
@@ -27995,12 +28052,30 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA：VFR Terminal Area Chart",
+              "title": "FAA：TAC比例尺與56天更新",
               "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/productcatalog/vfrcharts/terminalarea/",
-              "checked": "2026-09-12"
+              "checked": "2026-09-20"
             }
           ],
-          "currentNote": "TAC 比例尺 1:250,000，現行產品以 FAA 公布的有效版本與更新資訊為準。"
+          "currentNote": "TAC 比例尺 1:250,000，現行產品以 FAA 公布的有效版本與更新資訊為準。",
+          "lessonBlocks": [
+            {
+              "title": "TAC讓繁忙終端區的細節更清楚",
+              "paragraphs": [
+                "Figure 16-2 比較TAC的1:250,000尺度。相同地面距離在TAC上是Sectional的兩倍長，較容易閱讀B類層架與視覺檢查點。",
+                "FAA現行TAC亦每56天更新。圖上路徑與頻率供規劃使用，畫著VFR路徑不代表已取得B類許可；需要的通訊與授權仍須另行完成。"
+              ],
+              "figure": {
+                "label": "Figure 16-2 · Terminal area chart and legend",
+                "page": "16-3",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=3"
+              },
+              "check": {
+                "question": "Sectional上2 inches的航段，在原尺寸TAC上約多長？",
+                "answer": "4 inches，因TAC比例尺分母減半，同一地面距離畫成兩倍長。"
+              }
+            }
+          ]
         },
         {
           "id": "wac",
@@ -28016,12 +28091,26 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA：WAC 系列停止供應通知",
+              "title": "FAA：WAC停止製作通知",
               "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/safety_alerts/media/ChartingNotice_EVCG_15-02.pdf",
-              "checked": "2026-09-12"
+              "checked": "2026-09-20"
             }
           ],
-          "currentNote": "歷史圖種：FAA 已停止 WAC 系列；保留原書小節作比例尺與圖種學習，不將舊 WAC 當成可取得的現行導航圖。"
+          "currentNote": "歷史圖種：FAA 已停止 WAC 系列；保留原書小節作比例尺與圖種學習，不將舊 WAC 當成可取得的現行導航圖。",
+          "lessonBlocks": [
+            {
+              "title": "WAC是本章的歷史圖種",
+              "paragraphs": [
+                "Figure 16-3 說明1:1,000,000圖如何以較少細節涵蓋較大區域。不要拿它取代細部終端導航或最新機場資料。",
+                "FAA已停止WAC系列，依官方停止通知及現行產品清單選圖；這是FAA產品狀態，不表示全球所有相同比例尺航圖都停止。原文年度更新週期保留作版本背景。"
+              ],
+              "figure": {
+                "label": "Figure 16-3 · Historical world aeronautical chart",
+                "page": "16-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=4"
+              }
+            }
+          ]
         },
         {
           "id": "coordinates",
@@ -28039,6 +28128,24 @@ export const phakDocument = {
             "自編：25°30′00″N＝25.5000°N；25.30°N＝25°18′00″N，相差 12′ 緯度，約 12 NM。",
             "一般換算：十進位度＝度＋分／60＋秒／3,600，再依南北／東西決定正負。",
             "緯度每分約 1 NM；經度每分約為 cos(緯度) NM，例如緯度 60° 處約 0.5 NM，不可全球固定為 1 NM。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "緯度由赤道量，經度由本初子午線量",
+              "paragraphs": [
+                "Figure 16-4 的緯線沿東西延伸，標示南北角距；經線連接兩極，標示東西角距。輸入座標要同時核對N／S、E／W與度分秒或十進位格式。",
+                "1°有60角分，1角分有60角秒；39°30′N等於39.5°N，不是39.30°。一角分緯度約一海里，而一角分經度的距離會隨緯度改變。"
+              ],
+              "figure": {
+                "label": "Figure 16-4 · Meridians and parallels",
+                "page": "16-4",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=4"
+              },
+              "check": {
+                "question": "39°30′N與39.30°N相同嗎？",
+                "answer": "不同。前者為39.5°N；後者的0.30°為18′。"
+              }
+            }
           ]
         },
         {
@@ -28052,6 +28159,56 @@ export const phakDocument = {
           "paragraphs": [
             "地球約二十四小時自轉一周，因此每十五度經度約對應一小時，但民用時區邊界受行政安排影響，不能只由經度計算當地鐘點。航空報告與飛行計畫常使用 UTC，換算時還要處理日期跨越及夏令時間。",
             "自編例：臺北 12 日 01:30 為 UTC 11 日 17:30，因臺北比 UTC 快八小時。跨午夜的航班若只改小時、不改日期，可能選到錯誤的 TAF 時段或誤填起飛時間，應連日期一起記錄。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "時區圖呈現同一瞬間的不同鐘點",
+              "paragraphs": [
+                "Figure 16-5 是美國本土標準時間示意：PST10:00、MST11:00、CST12:00、EST13:00為同一瞬間。時區邊界與夏令時間有地方例外，不只由每15°經度決定。",
+                "24小時制中9 a.m.為0900、1 p.m.為1300、10 p.m.為2200；別把上午下午標記漏掉。太陽過當地子午線是地方視太陽正午，不保證剛好等於民用鐘錶12:00。"
+              ],
+              "figure": {
+                "label": "Figure 16-5 · US standard time zones",
+                "page": "16-5",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=5"
+              }
+            },
+            {
+              "title": "轉UTC連日期一起轉",
+              "paragraphs": [
+                "由美國標準時間換UTC，EST加5、CST加6、MST加7、PST加8；若該地該日採夏令時間，所加時差通常少1小時。不可不查適用日期就一律減1。",
+                "例：11日21:30 EST換成12日02:30Z；若是EDT則為12日01:30Z。跨時區不會改變實際飛行耗時，但會改變當地鐘點及可用日照，日落應依目的地和日期查證。"
+              ],
+              "table": {
+                "caption": "轉UTC連日期一起轉",
+                "headers": [
+                  "原時間",
+                  "換算",
+                  "UTC"
+                ],
+                "rows": [
+                  [
+                    "11日21:30 EST",
+                    "加5小時",
+                    "12日02:30Z"
+                  ],
+                  [
+                    "11日21:30 EDT",
+                    "加4小時",
+                    "12日01:30Z"
+                  ],
+                  [
+                    "臺北12日01:30（UTC+8）",
+                    "減8小時",
+                    "11日17:30Z"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "11日23:20 PST加8小時，只寫07:20Z夠不夠？",
+                "answer": "不夠，日期已變成12日；完整為12日07:20Z。"
+              }
+            }
           ]
         },
         {
@@ -28072,6 +28229,36 @@ export const phakDocument = {
             "MH：磁航向，由 TH 修正磁差後取得。",
             "CH：羅盤航向，依該機羅差卡把 MH 換成要保持的羅盤讀值。",
             "Track：實際對地航跡；風修正正確時，track 可與預定 course 一致，但 heading 仍可能不同。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "真航線以真北順時針量角",
+              "paragraphs": [
+                "Figure 16-6 羅盤玫瑰的北、東、南、西對應000／360、090、180、270°。在航圖畫出所需航線後，以合適位置的子午線為參考量真航線TC。",
+                "子午線會向兩極收斂，原書建議在航段中點附近量測；長航段可能要分段，不能假設整條大圓航線在各處真方向都一樣。"
+              ],
+              "figure": {
+                "label": "Figure 16-6 · Compass rose",
+                "page": "16-6",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=6"
+              }
+            },
+            {
+              "title": "航線與機頭方向先分清楚",
+              "paragraphs": [
+                "Figure 16-7 的短航段A到B為065°、反向約245°，互差180°。原書此例先假定無風，才讓heading與course重合。",
+                "Course是計畫對地路徑，heading是機頭朝向，track是實際對地路徑。有風時回程的所需heading不能簡單把去程heading加180°，必須重新算風。"
+              ],
+              "figure": {
+                "label": "Figure 16-7 · Course and reciprocal course",
+                "page": "16-6",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=6"
+              },
+              "check": {
+                "question": "去程真航線065°，反向航線為何？若有風，機頭也一定245°嗎？",
+                "answer": "反向航線約245°；有風時仍要另算WCA，機頭未必朝245°。"
+              }
+            }
           ]
         },
         {
@@ -28085,6 +28272,39 @@ export const phakDocument = {
           "paragraphs": [
             "真北依地理經線定義，磁北依地球磁場方向而定，兩者的夾角稱為 variation。磁差依位置與時間改變，航圖上的等磁差線能協助換算，但必須使用適當版本，不能把多年前的數值永遠沿用。",
             "導航流程應先由真航線配合風求真航向，再換成磁航向與羅盤航向。磁差修正只是在改變方向的參考基準，不會修正風吹造成的偏航；把磁差當成風修正角會留下實際的航路偏差。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "磁差是當地真北與磁北之間的角",
+              "paragraphs": [
+                "Figure 16-8 用不同線系表示地理與磁場方向。磁羅盤依當地磁場水平分量指向，不是把指針當作一直指向某固定地理座標的直線。",
+                "原文北磁極71°N、96°W是過時位置；磁極與磁差會隨時間移動。實務以當期航圖及適用磁場模型為準，不拿舊座標重新推導航磁差。"
+              ],
+              "figure": {
+                "label": "Figure 16-8 · True and magnetic meridians",
+                "page": "16-6",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=6"
+              }
+            },
+            {
+              "title": "等磁差線不是固定不動的地理線",
+              "paragraphs": [
+                "Figure 16-9 的isogonic line連同磁差點，agonic line表示零磁差。圖示西部偏東、東部偏西是原書背景，不是全境永久規則。",
+                "NOAA的WMM會更新，磁差也依地點與日期改變。沿途跨不同磁差區時要用合適值；不要把一張舊示意圖的零磁差線當成現行導航資料。"
+              ],
+              "figure": {
+                "label": "Figure 16-9 · Isogonic and agonic lines",
+                "page": "16-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=7"
+              }
+            }
+          ],
+          "references": [
+            {
+              "title": "NOAA NCEI：現行World Magnetic Model與磁場變化",
+              "url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
+              "checked": "2026-09-20"
+            }
           ]
         },
         {
@@ -28103,6 +28323,54 @@ export const phakDocument = {
             "T → M：東磁差減、西磁差加；M → T：方向相反。",
             "自編跨零例：TH 005°、10°E → MH −005°，整理為 355°。",
             "不要把磁差套兩次：若工具已輸出磁航向，就不能再把它當真航向重做修正。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "真轉磁：東減、西加有指定方向",
+              "paragraphs": [
+                "Figure 16-10 示意磁北在真北東或西側。定義東磁差為正值V時，MH=TH−V；西磁差為負值，自然變成相加。反向由磁轉真時運算相反。",
+                "原書9°E例：TH360°→MH351°，TH090°→081°，TH060°→051°。這只是磁差換算；有風時先由TC求TH，不能把未修風TC直接當機頭方向。"
+              ],
+              "figure": {
+                "label": "Figure 16-10 · Effect of variation",
+                "page": "16-7",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=7"
+              },
+              "table": {
+                "caption": "真轉磁：東減、西加有指定方向",
+                "headers": [
+                  "已知真航向",
+                  "磁差",
+                  "所得磁航向"
+                ],
+                "rows": [
+                  [
+                    "360°",
+                    "9°E",
+                    "351°"
+                  ],
+                  [
+                    "090°",
+                    "9°E",
+                    "081°"
+                  ],
+                  [
+                    "060°",
+                    "9°E",
+                    "051°"
+                  ],
+                  [
+                    "005°",
+                    "9°E",
+                    "356°"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "由MH081°換回TH，磁差9°E，是再減9°嗎？",
+                "answer": "不是。反向換算要加9°，TH090°。"
+              }
+            }
           ]
         },
         {
@@ -28116,6 +28384,20 @@ export const phakDocument = {
           "paragraphs": [
             "Magnetic deviation 是航空器本身的磁性與電氣設備，使羅盤偏離應有磁北指示的誤差，與地理位置造成的磁差不同。機身磁場相對於羅盤的方向會隨航向改變，所以羅差通常不是全方向同一個固定值。",
             "羅差修正卡是針對該航空器與相關設備狀態建立，不能借用另一架同型飛機的卡片。新增設備、維修或座艙磁性物品也可能影響羅盤，若讀數不合理，應按維護與操作程序處理。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "羅差來自本機，磁差來自當地磁場",
+              "paragraphs": [
+                "Figure 16-11 用磁化引擎說明不同機頭方向可有不同偏差。實際來源還有電路、設備及其他金屬，不能只用一個固定補正值涵蓋所有航向。",
+                "補償或swing compass是依適用維護程序進行的校準工作；換設備、改電氣配置或發現異常時需適當檢查，飛行員則使用有效的本機羅差卡。"
+              ],
+              "figure": {
+                "label": "Figure 16-11 · Aircraft-induced compass deviation",
+                "page": "16-8",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=8"
+              }
+            }
           ]
         },
         {
@@ -28129,6 +28411,59 @@ export const phakDocument = {
           "paragraphs": [
             "羅差卡常以「欲飛磁航向」對應「應保持羅盤指示」的形式列出修正。使用時直接讀清楚兩欄的意義，必要時依適用方法內插，而不是看到某數值就自行假設那是應加或應減的羅差。",
             "自編卡片若列「FOR 090, STEER 092」，表示要保持磁航向 090°，羅盤應指示 092°。這只是在穩定狀態的修正；轉彎、加減速造成的磁羅盤動態誤差，仍需另外理解與交叉確認。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "FOR是所需磁航向，STEER是羅盤讀數",
+              "paragraphs": [
+                "Figure 16-12 中FOR090、STEER086，表示要飛磁航向090°時保持羅盤086°，不是要在090上再加86。卡片已給目的讀數，不需再套一次東減西加。",
+                "本卡FOR180→STEER180，FOR210→STEER212；在適用線性內插下，FOR195的修正為+1°，故STEER196°。原書只寫+1是修正量，不是最終羅盤讀數。"
+              ],
+              "figure": {
+                "label": "Figure 16-12 · Compass deviation card",
+                "page": "16-8",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=8"
+              },
+              "table": {
+                "caption": "FOR是所需磁航向，STEER是羅盤讀數",
+                "headers": [
+                  "所需磁航向FOR",
+                  "應保持羅盤STEER",
+                  "修正量"
+                ],
+                "rows": [
+                  [
+                    "060°",
+                    "057°",
+                    "−3°"
+                  ],
+                  [
+                    "090°",
+                    "086°",
+                    "−4°"
+                  ],
+                  [
+                    "180°",
+                    "180°",
+                    "0°"
+                  ],
+                  [
+                    "195°（內插）",
+                    "196°",
+                    "+1°"
+                  ],
+                  [
+                    "210°",
+                    "212°",
+                    "+2°"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "FOR090 STEER086是否表示真航向090°時就指086°？",
+                "answer": "不一定。FOR指磁航向，真航向還須先處理磁差；這裡也尚未替你計算風修正。"
+              }
+            }
           ]
         },
         {
@@ -28148,6 +28483,97 @@ export const phakDocument = {
             "自編純側風：TC 090°、TAS 120 kt、風 360°／20 kt；WCA＝−arcsin(20／120)≈−9.6°，TH≈080.4°。",
             "沿線地速＝√(120²−20²)≈118.3 kt；風分量超過可抵消的側向空速時，不能硬套 arcsin 產生可行航向。",
             "若維持 TH 090° 不修正，同一例會向南漂，track 約 099.5°；不是保持所需東向航線。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "順逆風改變地速，不直接改變TAS",
+              "paragraphs": [
+                "Figure 16-13 假定TAS120 kt、沿東向飛：無風GS120，270°／20 kt風為順風GS140，090°／20 kt風為逆風GS100。風向數字是吹來方向。",
+                "這是在均勻穩定風場下的向量模型；陣風、風切與風梯度可能影響空速和受力，不能把「風不影響TAS」擴大成任何風變化都無影響。"
+              ],
+              "figure": {
+                "label": "Figure 16-13 · Headwind and tailwind effect",
+                "page": "16-9",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=9"
+              }
+            },
+            {
+              "title": "不修正側風時，地速是斜邊",
+              "paragraphs": [
+                "Figure 16-14 假定機頭090°、TAS120 kt，風向南20 kt；一小時後向東120 NM、向南20 NM，實際距離√(120²+20²)=121.66 NM，GS121.66 kt。",
+                "但實際track約099.46°，不是想要的090°。不能因地速大於120就把側風誤認為有利的沿線順風；你已偏到航線南邊。"
+              ],
+              "figure": {
+                "label": "Figure 16-14 · Uncorrected crosswind vector",
+                "page": "16-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=10"
+              },
+              "check": {
+                "question": "風把飛機吹向南20 NM，能否只用東向120 NM當實際一小時位移長度？",
+                "answer": "不能，位移有東、南兩個分量；合成長度約121.66 NM，但這不是保持東向航線的結果。"
+              }
+            },
+            {
+              "title": "Drift angle與WCA是不同角度",
+              "paragraphs": [
+                "Figure 16-15 的drift angle在heading與實際track之間；WCA則是為了保持預定course而選的heading差。不能把未修正時的漂移角永遠照抄成精確WCA。",
+                "本例不修正時漂移約9.46°；若要抵銷側風，WCA=−arcsin(20/120)≈−9.59°。兩者接近但不是同一個算式。"
+              ],
+              "figure": {
+                "label": "Figure 16-15 · Drift angle",
+                "page": "16-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=10"
+              }
+            },
+            {
+              "title": "TC→TH→MH→CH逐步走",
+              "paragraphs": [
+                "Figure 16-16 的TH088°、MH078°、CH074°示意真、磁、羅盤基準轉換：先TH減10°E磁差成MH，再按該例羅差修正為CH。此圖不是Figure 16-12全部航向的同一組卡值。",
+                "風先決定要讓機頭偏多少，磁差改變北的基準，羅差補償本機指示。反過來由羅盤讀數求航跡時，不能只把CH當成TC。"
+              ],
+              "figure": {
+                "label": "Figure 16-16 · True, magnetic and compass headings",
+                "page": "16-10",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=10"
+              },
+              "table": {
+                "caption": "TC→TH→MH→CH逐步走",
+                "headers": [
+                  "步驟",
+                  "含義"
+                ],
+                "rows": [
+                  [
+                    "TC＋有正負號的WCA＝TH",
+                    "先決定相對真北的機頭方向"
+                  ],
+                  [
+                    "TH−東正西負的磁差＝MH",
+                    "換成磁北基準"
+                  ],
+                  [
+                    "MH依本機羅差卡＝CH",
+                    "取得羅盤應保持讀數"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "迎風偏航後，沿線分量仍要重算",
+              "paragraphs": [
+                "Figure 16-17 示意機頭向來風側偏，讓track回到course。對TC090、TAS120、風360／20的本章教學例，TH約080.41°，沿線GS=√(120²−20²)=118.32 kt。",
+                "圖中075°是示意航向，沒有給足同一組風速條件，不應拿它替換本例080.41°。側風需要占用部分空速分量；若所需抵銷的側風超過TAS，就沒有這種穩定保持航線的解。"
+              ],
+              "figure": {
+                "label": "Figure 16-17 · Wind correction angle",
+                "page": "16-11",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=11"
+              },
+              "check": {
+                "question": "修正純側風之後，GS仍必定等於TAS嗎？",
+                "answer": "不是，本例約118.32 kt，低於120 kt；需要保留向北的空速分量抵消向南風。"
+              }
+            }
           ]
         },
         {
@@ -28167,6 +28593,15 @@ export const phakDocument = {
             "D（NM）＝GS（kt）×T（小時）；GS（kt）＝60×D／T（分鐘）。",
             "燃油＝適用耗油率×時間；耗油率若用 US gal/h，時間也要用小時。",
             "所有算例是教學用；實際 TAS、階段耗油率與燃油需求依適用 AFM／POH、條件和規則。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "算式先寫單位，再看答案量級",
+              "paragraphs": [
+                "時間用小時時，kt×h得到NM，US gal/h×h得到US gal。若輸入分鐘就先除60，不要讓計算器自行猜單位。",
+                "航行時間使用GS，風三角的航空器速度使用TAS。IAS、TAS及GS回答不同問題，混用即使算術正確也會得到錯誤計畫。"
+              ]
+            }
           ]
         },
         {
@@ -28180,6 +28615,44 @@ export const phakDocument = {
           "paragraphs": [
             "把分鐘換成小時需除以六十，小時換回分鐘則乘六十。小數小時不是鐘面的分數表示，0.5 小時等於三十分鐘，0.1 小時等於六分鐘，不是十分鐘。",
             "自編例：一小時四十五分鐘為 1＋45÷60＝1.75 小時；七十五分鐘為 1.25 小時。計算燃油時若把 1:45 寫成 1.45，會低估時間與用油，應在導航紀錄上明確標示格式。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "小數小時不是鐘面分鐘",
+              "paragraphs": [
+                "30 min÷60=0.5 h；0.75 h×60=45 min。1:45是1+45/60=1.75 h，不是1.45 h。",
+                "把每段時間記成一致格式並標單位；跨午夜另處理日期，不把UTC鐘點相減後的負數直接當航行時間。"
+              ],
+              "table": {
+                "caption": "小數小時不是鐘面分鐘",
+                "headers": [
+                  "時間",
+                  "小數小時"
+                ],
+                "rows": [
+                  [
+                    "30 min",
+                    "0.50 h"
+                  ],
+                  [
+                    "45 min",
+                    "0.75 h"
+                  ],
+                  [
+                    "1 h 30 min",
+                    "1.50 h"
+                  ],
+                  [
+                    "1 h 45 min",
+                    "1.75 h"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "以1.45 h代替1小時45分，少算幾分鐘？",
+                "answer": "1.45 h為87分鐘，少算18分鐘。"
+              }
+            }
           ]
         },
         {
@@ -28193,6 +28666,19 @@ export const phakDocument = {
           "paragraphs": [
             "時間等於對地距離除以地速，當 D 使用 NM、GS 使用 kt，結果為小時。航路不同段落風與速度可能不同，應分段計算後相加；用出發時的一個地速代表全程，可能造成到達時間誤差。",
             "自編例：航段 75 NM、地速 100 kt，需要 0.75 小時，也就是 45 分鐘。若遇逆風使地速降至 75 kt，時間變為 60 分鐘；同一距離多出的十五分鐘，也必須反映在預計燃油中。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "時間T=D／GS",
+              "paragraphs": [
+                "原書210 NM÷140 kt=1.5 h，即1小時30分。1.5不是1小時50分，也不是90秒。",
+                "這是假設整段GS固定的估算；若沿途風改變或含不同爬升階段，分段計算後再加總。"
+              ],
+              "check": {
+                "question": "同為210 NM，GS由140降至105 kt，時間變多少？",
+                "answer": "210÷105=2小時，比原計畫多30分鐘。"
+              }
+            }
           ]
         },
         {
@@ -28206,6 +28692,15 @@ export const phakDocument = {
           "paragraphs": [
             "距離等於地速乘時間，使用節時需先把時間轉成小時。推估位置時，這個距離應沿實際或合理估計的對地航跡量出，而不是沿機頭方向畫線，否則側風會使推估位置偏離。",
             "自編例：地速 110 kt 持續飛行 18 分鐘，距離為 110×18÷60＝33 NM。這是該段速度假設下的結果；若途中爬升、轉彎或風明顯改變，應分段處理並用地標再確認。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "距離D=GS×T",
+              "paragraphs": [
+                "原書120 kt×1.75 h=210 NM。使用的是對地速度，所以結果是沿該速度方向的對地距離，不是航空器相對空氣走過的距離。",
+                "若地速隨時間變化，要把各段GS×時間加總，不能把某一瞬間的GPS地速套整趟。"
+              ]
+            }
           ]
         },
         {
@@ -28219,6 +28714,19 @@ export const phakDocument = {
           "paragraphs": [
             "在兩個已確認位置之間，用已知距離除以實際經過時間，可估算該航段平均地速。計時起點與終點必須對應同一組地標，否則把遠方剛看到地標的時刻當成通過時刻，會造成系統性誤差。",
             "自編例：兩檢查點相隔 24 NM，實際用 12 分鐘，平均地速為 24÷0.2＝120 kt。再用這個地速更新下一段 ETA，但若下一段轉向，風分量會改變，不能無條件沿用。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "由檢查點反算實際GS",
+              "paragraphs": [
+                "原書270 NM÷3 h=90 kt。短航段可用已確認的兩個檢查點與經過時間估GS，再更新剩餘時間。",
+                "教學例：18 NM用12 min，GS=18÷(12/60)=90 kt；剩60 NM若此地速持續，約40 min。前提是定位與計時可信，不把認錯地標的結果當成新風資料。"
+              ],
+              "check": {
+                "question": "18 NM用12 min，直接算18÷12=1.5代表1.5 kt嗎？",
+                "answer": "不是，1.5是NM/min，乘60才是90 kt。"
+              }
+            }
           ]
         },
         {
@@ -28232,6 +28740,15 @@ export const phakDocument = {
           "paragraphs": [
             "一節是一海里每小時，海里與法定英里不是相同長度。近似換算為 kt×1.15078＝mph，反向則以 mph 除以 1.15078；一海里也等於 1.852 公里。",
             "自編例：100 kt 約為 115.1 mph。若距離表寫 statute miles，速度卻用 knots 而未換算，航時就會錯；使用舊機型 POH、航圖量尺或不同軟體時，應先確認每個欄位的單位。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "NM、SM與速度單位保持一致",
+              "paragraphs": [
+                "1 NM=1,852 m，1 SM=1,609.344 m，故1 kt約1.15078 mph。原書用1.15作心算，20 kt約23 mph。",
+                "要從mph轉回kt需除1.15078，不能再乘。舊空速表可能以mph為主，風資料常用kt，混算前先統一單位。"
+              ]
+            }
           ]
         },
         {
@@ -28251,6 +28768,60 @@ export const phakDocument = {
             "自編分段例：爬升 15 min×10 US gal/h＝2.5 US gal；巡航 45 min×8 US gal/h＝6 US gal，兩段共 8.5 US gal，尚未含地面與備份。",
             "對相同距離，逆風降低 GS、增加航時，即使每小時耗油未變也會增加航段用油。",
             "不要把油量表總量等同全部可用燃油，US gallon 與 Imperial gallon 也不可混用。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "航段燃油用時間乘耗油率",
+              "paragraphs": [
+                "附件例：400 NM、GS100 kt、耗油5 US gal/h，航時4 h、航段用油20 US gal。這還沒包含地面、爬升及所需備份。若逆風使GS80而耗油率仍5，時間5 h、用油25 US gal。",
+                "同一TAS不保證任何條件下耗油都一樣，還取決於高度、功率、混合比和機型。用AFM／POH適用條件的數據並監控實際消耗，不等低油量警示才開始重新規劃。"
+              ],
+              "table": {
+                "caption": "航段燃油用時間乘耗油率",
+                "headers": [
+                  "情境",
+                  "時間",
+                  "航段用油"
+                ],
+                "rows": [
+                  [
+                    "400 NM／100 kt／5 US gal/h",
+                    "4 h",
+                    "20 US gal"
+                  ],
+                  [
+                    "400 NM／80 kt／5 US gal/h",
+                    "5 h",
+                    "25 US gal"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "Specific range的量綱要是距離／燃油",
+              "paragraphs": [
+                "對地specific range=GS÷耗油率，例如100 NM/h÷5 US gal/h=20 NM/US gal；逆算耗油率÷GS則是US gal/NM，不能也叫NM/gal。空氣相對航程則以TAS除耗油率。",
+                "燃油體積會隨溫度變化，密度也會變；固定一批燃油的質量不會僅因熱脹冷縮而改變。原文把density與weight混寫並說密度較不受溫度影響，應改以質量、體積及密度三者關係理解。"
+              ],
+              "check": {
+                "question": "GS100 kt、耗油20 lb/h，specific range是多少？",
+                "answer": "100÷20=5 NM/lb；20÷100=0.2 lb/NM是它的倒數。"
+              }
+            },
+            {
+              "title": "巡航之外還要預算其他階段及備份",
+              "paragraphs": [
+                "先分地面、起飛／爬升、巡航與其餘階段。爬升時水平空速分量較小，但實際GS也受TAS與風影響，不能泛稱所有爬升GS必定低於所有巡航GS。",
+                "美國§91.151一般飛機VFR起飛前須考量風和預報，有足夠燃油到第一預定落地點後，按正常巡航速度再飛日間至少30分、夜間45分；旋翼機為20分。這是特定法定最低要求，仍需操作餘裕，不能把備份當成日常必須消耗到盡的航段燃油。"
+              ]
+            }
+          ],
+          "references": [
+            {
+              "title": "14 CFR 91.151：VFR起飛前燃油要求",
+              "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-91/subpart-B/subject-group-ECFR4d5279ba676bedc/section-91.151",
+              "checked": "2026-09-20"
+            }
           ]
         },
         {
@@ -28264,6 +28835,20 @@ export const phakDocument = {
           "paragraphs": [
             "傳統 E6B 與電子飛行計算器都能處理時間、距離、風修正及單位換算，但它們只依輸入與模式算出結果。選錯真風／磁風、把 IAS 當 TAS，或讓舊航段資料留在欄位中，都可能得到看似精確的錯誤答案。",
             "使用前先寫下已知量與所求量，算完再檢查方向與量級。例如風從左側吹來，保持航線所需機頭應偏左；若結果偏右，先檢查風向是「來自」還是「吹往」，不要直接照數字飛。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "E6B與電子計算器都需要正確輸入",
+              "paragraphs": [
+                "Figure 16-18 展示plotter、機械E6B及電子計算器。機械計算面可處理時間速度距離等，風面處理向量；電子設備同樣要確認TAS、風來向、真磁基準及單位。",
+                "用簡單量級檢查抓小數點錯誤：120 kt飛半小時應約60 NM，不會是6或600。工具顯示多位小數不代表預報風也有同等精度。"
+              ],
+              "figure": {
+                "label": "Figure 16-18 · Plotter and flight computers",
+                "page": "16-13",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=13"
+              }
+            }
           ]
         },
         {
@@ -28277,6 +28862,19 @@ export const phakDocument = {
           "paragraphs": [
             "Plotter 結合量角與比例尺，先把航線方向相對於經線讀成真航線，再用符合圖種的尺度量距。應讀經線而非任意紙邊，且要選向目的地方向的數字，避免誤讀相差一百八十度的反向刻度。",
             "把 Sectional 用的尺量在 TAC 上，可能得到錯一倍的距離。電子列印或縮放過的航圖也可能改變紙面尺度；應用圖上的比例尺或適用量測工具確認，不要假定所有印出的圖都維持原尺寸。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Plotter先選正確圖種與距離刻度",
+              "paragraphs": [
+                "量角器讀航線角，尺邊讀距離；常有Sectional與其他圖種、NM與SM多套刻度。先看標籤，再把航線端點對上刻度。",
+                "同一半英寸，在原尺寸Sectional約3.43 NM，而TAC約1.71 NM。若打印縮放或螢幕任意縮放，改用與圖同步的比例尺或工具量距。"
+              ],
+              "check": {
+                "question": "把TAC航段用Sectional尺讀，距離會偏大還是偏小？",
+                "answer": "約大一倍，因錯用1:500,000而不是1:250,000的刻度。"
+              }
+            }
           ]
         },
         {
@@ -28290,6 +28888,22 @@ export const phakDocument = {
           "paragraphs": [
             "Pilotage 以地面特徵與航圖互相比對，確認位置及路線。好的地標要容易辨認、在適當時間看得見且不易與其他特徵混淆，例如明顯河流轉彎、道路交會或湖泊形狀，而非僅依一棟不穩定存在的建物。",
             "辨識時至少搭配方向、距離、周邊地形與預計通過時間。看到一座水塔就宣布定位，可能把相似城鎮混為一談；夜間、積雪或季節變化也會改變外觀，應準備替代地標與其他導航方法。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "檢查點要能與周圍特徵共同辨認",
+              "paragraphs": [
+                "選河流交會、湖岸形狀、鐵路與主要道路等可由多個特徵確認的位置。航線兩側的明顯邊界可幫助限制漂移，但應選有安全裕度的地標，不拿禁區邊界當可貼線飛行的欄杆。",
+                "原尺寸Sectional上距航線半英寸的檢查點約偏離3.43 NM；在空中看得到不代表已飛越它。記錄預期通過側、方位及時間，避免只看見熟悉形狀就認定位置。"
+              ]
+            },
+            {
+              "title": "漏掉地標時保持有控制的定位流程",
+              "paragraphs": [
+                "未找到單一檢查點，不要立刻朝某個猜測目標亂轉；先保持安全控制，核對時間、最後確定位置與其他特徵。原文hold heading不是要求明知前方地形、天氣或空域不安全仍盲目維持。",
+                "新道路、天線及纜線可能未畫或難以看見。原書高於天線500 ft提醒不能當成任何情境都合規或保證安全的最低高度，還要按地形、障礙及適用規則規劃。"
+              ]
+            }
           ]
         },
         {
@@ -28303,6 +28917,15 @@ export const phakDocument = {
           "paragraphs": [
             "Dead reckoning 從已知位置出發，依航向、真空速、風與經過時間推估下一位置。它能在地標稀少時提供搜尋範圍，但誤差會隨時間累積，因此要持續用可靠的目視或電子定位重新校正起點。",
             "自編例：已知點後以估計地速 90 kt 飛行二十分鐘，應約前進 30 NM；若只找到距出發點 20 NM 的地標，需檢查認錯地標、風估計或計時。推算的用途是檢驗假設，不是迫使外界符合原先計畫。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "推測位置要由觀測持續校正",
+              "paragraphs": [
+                "Dead reckoning從已知位置出發，以預估heading、GS及經過時間推下一位置；pilotage再檢查是否到達預期地標。兩者配合能發現風與速度估錯。",
+                "偏離可能來自風變、航向維持或定位／計時誤差，先找原因再修正。不要把一次不確定目視估計當成精確新位置，讓後面每段都累積誤差。"
+              ]
+            }
           ]
         },
         {
@@ -28316,6 +28939,32 @@ export const phakDocument = {
           "paragraphs": [
             "風三角的三邊分別代表航空器相對空氣的運動、空氣相對地面的風，以及航空器相對地面的運動。所有速度使用相同比例與同一時間長度，所有方向使用一致基準，才能以首尾相接的方法閉合三角形。",
             "原書範例設定真航線 090°、TAS 120 kt、真風由 045° 以 40 kt 吹來。風會把飛機推向西南，因此機頭必須向東偏北；以下四步沿用這組條件，分別畫出航線、風及空速向量。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Figure 16-19的數字不能同時成立",
+              "paragraphs": [
+                "圖上同時出現080°heading、090°course、10°drift、8°left correction與020°／35 kt風等標示。080與090已相差10°，不能又把8°當成同一修正。",
+                "若以TC090、TAS120、風由020／35作完整條件重算，TH約074.09°、GS103.43 kt，而非圖上080／110。此圖保留作三向量概念辨識，不作精確算例答案；後續使用正文一致的045／40風。"
+              ],
+              "figure": {
+                "label": "Figure 16-19 · Wind triangle principle and inconsistent labels",
+                "page": "16-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=14"
+              }
+            },
+            {
+              "title": "首尾相接：風邊加空速邊等於地速邊",
+              "paragraphs": [
+                "Figure 16-20 的E→W是風，W→P是空速，E→P是地速；風邊可以平移而不改向量，所以把風放在前面仍代表同一相加關係。",
+                "三條長度都用一小時及同一速度比例尺。正文已知TC090、TAS120、風由045以40 kt吹來；未知的是heading與GS，不能先把地速邊硬畫成120。"
+              ],
+              "figure": {
+                "label": "Figure 16-20 · Practical wind triangle",
+                "page": "16-14",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=14"
+              }
+            }
           ]
         },
         {
@@ -28329,6 +28978,20 @@ export const phakDocument = {
           "paragraphs": [
             "先在紙上畫南北線，標出起點 E，再由真北順時針找出航線 090° 與來風方向 045°。這一步只建立方向基準與標記，不要先把風的箭頭畫成朝向來風處，因向量代表的是空氣實際移動方向。",
             "以原書例來說，090° 在 E 的正東，045° 在東北方。檢查紙上北、東與起點標示後再繼續，可以避免整個三角形旋轉或把目的地方向讀成西方；同時先決定速度比例，後續各邊一致使用。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Step 1：建立真北基準與兩個角標",
+              "paragraphs": [
+                "Figure 16-21 從E畫南北參考線，用量角器標090°航線與045°風來向。所有角度都以真北為基準，不能一個用磁航向、一個用真風。",
+                "045°標點是指出風從哪裡來；真正風箭頭下一步要向其相反方向225°畫。先標角，不要此時就把40單位畫往東北。"
+              ],
+              "figure": {
+                "label": "Figure 16-21 · Wind triangle construction steps",
+                "page": "16-15",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=15"
+              }
+            }
           ]
         },
         {
@@ -28342,6 +29005,15 @@ export const phakDocument = {
           "paragraphs": [
             "由 E 朝 090° 畫出航線射線，延伸到足以容納結果的長度，標記 TC 090°。這條線代表希望實際對地移動的方向，最後的目的位置 P 必須落在其上，但現在還不知道一小時能前進多遠。",
             "不要直接在這條線上量 120 單位當作地速，因為 120 kt 是相對空氣的速度。風修正後的地速需等三角形完成才能取得，先把 TAS 當成航段距離會跳過整個風效應。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Step 2：畫TC方向，不先決定GS長度",
+              "paragraphs": [
+                "由E沿090°畫向東射線並標TC090。這條線限定所需地面航跡，末端P尚未求出，所以不把射線長度當作已知航程。",
+                "它代表一小時後地面位置可能落在的方向，之後用120單位空速邊與它相交求P。"
+              ]
+            }
           ]
         },
         {
@@ -28355,6 +29027,19 @@ export const phakDocument = {
           "paragraphs": [
             "風由 045° 吹來，實際吹往 225°，因此從 E 向西南畫長度為 40 速度單位的箭頭，終點記為 W。這是原書作圖最容易反向的一步：氣象風向說明來源，向量箭頭則表示去向。",
             "若選每公分代表 20 kt，風向量長度就是 2 公分，稍後的 TAS 向量則需 6 公分。箭頭畫成東北會把逆風和側風效果一起反轉；完成後先口述「空氣把我推向哪裡」再接下一邊。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Step 3：把來向反轉成風向量",
+              "paragraphs": [
+                "風由045°來，朝225°吹；由E向西南畫40單位到W。若選1單位代表1 kt的一小時距離，三邊都要同樣處理。",
+                "畫錯成向東北會把逆風／南向側風變成順風／北向側風，得到完全相反的修正。畫完先問箭頭是否與氣象FROM相反。"
+              ],
+              "check": {
+                "question": "045°／40 kt的風，向量應畫往045還是225？",
+                "answer": "225°，氣象045是來向，向量箭頭表示空氣往哪裡移動。"
+              }
+            }
           ]
         },
         {
@@ -28373,8 +29058,78 @@ export const phakDocument = {
             "原書條件：TC 090°、TAS 120 kt、風由 045°／40 kt；北向與東向的風分量均為約 −28.28 kt。",
             "需用空速的向北分量抵消向南風，WCA≈−13.63°，所以 TH≈076.37°。",
             "東向地速＝√(120²−28.28²)−28.28≈88.33 kt；原書作圖取約 88 kt。",
-            "原書沿用 88 kt 算 220 NM，時間為 2.5 h、以 8 gal/h 算約 20 gal；若用未取整的 88.33 kt，約為 2.491 h、19.93 gal。這是同一模型不同取整，不是額外燃油裕度。",
+            "原書沿用 88 kt 算 220 NM，時間為 2.5 h、以 8 gal/h 算約 20 gal；若用未取整的 88.33 kt，約為 2.491 h、19.92 gal。這是同一模型不同取整，不是額外燃油裕度。",
             "W → P 是空速／航向邊，E → W 是風邊，E → P 是地速／航線邊；三邊必須用同一比例尺。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Step 4：用120單位空速邊閉合",
+              "paragraphs": [
+                "從W量120單位，使端點P落在E的東向射線。W→P是真航向及TAS，E→P長度是一小時對地距離，數值相當於GS。",
+                "本例量圖約得TH076°、GS88 kt；向北的空速分量抵銷向南的風，東向分量則再扣掉逆風。量圖取整不代表條件真的精確到一度或一節。"
+              ]
+            },
+            {
+              "title": "Figure 16-22實際是在量真航向",
+              "paragraphs": [
+                "圖內量角器沿南北線，讀W→P相對真北約076°，是直接量TH。圖下caption卻寫by the wind correction angle，與實際圖示方法不一致。",
+                "此處按圖內量角器位置辨認方法，不依錯置caption命名。它與下一幅以航線為基準量14°的方法應得到一致航向。"
+              ],
+              "figure": {
+                "label": "Figure 16-22 · Direct true-heading measurement; caption mismatch",
+                "page": "16-16",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=16"
+              }
+            },
+            {
+              "title": "Figure 16-23實際是在量風修正角",
+              "paragraphs": [
+                "圖內量角器在P沿TC線量空速邊的夾角，得約14°左修正，所以TH=090−14=076°。圖下caption寫direct measurement，與上一幅的標題方法對調。",
+                "這兩幅是Step 4在下一頁的直接延伸。先求TH，再用磁差及本機羅差卡得到CH，不能把076°直接當羅盤應保持讀數。"
+              ],
+              "figure": {
+                "label": "Figure 16-23 · Wind-correction-angle measurement; caption mismatch",
+                "page": "16-16",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=16"
+              }
+            },
+            {
+              "title": "獨立向量驗算與220 NM用油",
+              "paragraphs": [
+                "風的東、北分量均為−40/√2≈−28.284 kt。空速需向北+28.284，向東為√(120²−28.284²)≈116.619；所以GS≈88.33477 kt，TH≈076.36698°。",
+                "原書採88 kt：220÷88=2.5 h，8 US gal/h×2.5=20 US gal。用未取整GS則2.49053 h、19.92421 US gal，取兩位小數19.92。本站舊概述19.93已訂正；這些都只是該航段燃油，未含其他階段與備份。"
+              ],
+              "table": {
+                "caption": "獨立向量驗算與220 NM用油",
+                "headers": [
+                  "算法",
+                  "TH",
+                  "GS",
+                  "220 NM時間",
+                  "8 US gal/h用油"
+                ],
+                "rows": [
+                  [
+                    "原書量圖取整",
+                    "076°",
+                    "88 kt",
+                    "2.50 h",
+                    "20.00 US gal"
+                  ],
+                  [
+                    "向量重算",
+                    "076.37°",
+                    "88.33477 kt",
+                    "2.49053 h",
+                    "19.92421 US gal"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "向量重算比20 gal少約0.08 gal，可否把差額視為額外安全備份？",
+                "answer": "不能。這只是計算取整差異，預報誤差及備份要另外規劃。"
+              }
+            }
           ]
         },
         {
@@ -29163,8 +29918,8 @@ export const phakDocument = {
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388",
       "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388",
       "detailMode": "outline",
-      "checked": "2026-09-12",
-      "coverageNote": "依提供目錄完整展開 62 節；保留英文原名、中文詳解與 FAA 頁碼。風三角 Step 1–4 分節說明，計算例區分原書取整與本站重算；航圖、GPS 及飛行計畫制度更新另列官方來源。"
+      "checked": "2026-09-20",
+      "coverageNote": "本輪深化前 29 節（導論至風三角 Step 4），共 43 個單元、8 張比較表、15 題理解練習與 Figure 16-1～16-23 官方原圖指引。核對比例尺、時區、真磁羅航向、風三角及時間油量，註明圖 16-19 數字與圖 16-22／23 標題差異；飛行計畫至章末仍為既有概述，未標為全章深化完成。"
     },
     {
       "id": "phak25c-17",
