@@ -211,7 +211,7 @@ test('Chapter 16 covers all 62 supplied headings with FAA source pages and wind-
  assert.deepEqual(c.detailSections.map(s=>[s.english,Number(s.printedPage.split('-')[1])]),expected);
  const seen=new Set();for(const s of c.detailSections){assert.ok(!seen.has(s.id));if(s.parent)assert.ok(seen.has(s.parent));seen.add(s.id);assert.equal(s.source,'https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page='+s.printedPage.split('-')[1]);}
  assert.deepEqual(c.detailSections.filter(s=>s.parent==='triangle').map(s=>s.id),['step-1','step-2','step-3','step-4']);
- assert.equal(c.checked,'2026-09-20');
+ assert.equal(c.checked,'2026-09-21');
  for(const id of ['sectional','wac','sa','raim','vfr-plan']){const s=c.detailSections.find(s=>s.id===id);assert.ok(s.currentNote);assert.ok(s.references.length);}
 });
 
@@ -409,4 +409,25 @@ test('Chapter 16 worked navigation tables match independent geometry and unit co
  assert.equal(utc.getUTCDate(),12);assert.equal(utc.getUTCHours(),2);
  assert.ok(tables('time-zones').some(r=>r[0]==='11日21:30 EST'&&r[2]==='12日02:30Z'));
  assert.ok(text('fuel').includes('5 h'));assert.ok(text('fuel').includes((400/80*5)+' US gal'));
+});
+
+test('Chapter 16 continuation separates route fuel, endurance and approximate RMI geometry',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[15];
+ const sections=c.detailSections;
+ const flight=sections.find(s=>s.id==='chart-steps').lessonBlocks;
+ const fuel=flight.find(b=>b.title.startsWith('53 NM')).table.rows;
+ const rad=Math.PI/180,wca=Math.asin(-10*Math.sin(31*rad)/115),gs=115*Math.cos(wca)-10*Math.cos(31*rad);
+ assert.equal((31+wca/rad).toFixed(2),'28.43');assert.equal(gs.toFixed(2),'106.31');
+ assert.ok(flight.some(b=>b.paragraphs.some(p=>p.includes('GS106.31 kt'))));
+ const distance=[11,10,10.5,13,8.5].reduce((a,b)=>a+b,0),minutes=distance/106*60+5;
+ assert.equal(fuel.find(r=>r[0]==='總距離')[2],distance+' NM');
+ assert.equal(fuel.find(r=>r[0]==='範例總時間')[2],minutes+' min');
+ assert.equal(fuel.find(r=>r[0]==='範例航程耗油')[2],(minutes/60*8).toFixed(1)+' US gal');
+ assert.equal(fuel.find(r=>r[0]==='機上可用燃油')[2],'38 US gal');assert.equal(38/8,4.75);
+ const rmi=sections.find(s=>s.id==='rmi-time').lessonBlocks;
+ assert.equal(120/10,12);assert.equal(12/60*120,24);
+ assert.ok(rmi[1].paragraphs.some(p=>p.includes((4/Math.tan(10*rad)).toFixed(2))&&p.includes((4/Math.sin(10*rad)).toFixed(2))));
+ const checks=sections.find(s=>s.id==='vor').lessonBlocks.find(b=>b.title.startsWith('VOR檢查')).table.rows;
+ assert.equal(checks[2][1],'±6°');assert.equal(checks[3][1],'兩者差值不超過4°');
+ assert.ok(sections.slice(46).every(s=>!s.lessonBlocks?.length));
 });

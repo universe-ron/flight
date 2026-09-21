@@ -27938,7 +27938,7 @@ export const phakDocument = {
               "title": "導航是持續核對位置，不只是起飛前畫線",
               "paragraphs": [
                 "Pilotage以地標定位，dead reckoning以時間、方向、速度推算，radio navigation使用導航設施；三者可互相驗證。先規劃航線、檢查點、天氣、航向、時間與燃油，再在飛行中比較預期與實際。",
-                "本輪深化到風三角Step 4，含其引用的Figure 16-22、16-23。後續飛行計畫與無線電導航保留既有概述，尚未標成全章深化完成。"
+                "本輪接續深化至RMI時間／距離估算與Figure 16-33，涵蓋飛行計畫、VOR及其儀表。CDI時間／距離估算至章末仍為既有概述，尚未標成全章深化完成。"
               ]
             }
           ]
@@ -29149,6 +29149,24 @@ export const phakDocument = {
               "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
+            },
+            {
+              "title": "14 CFR 91.103 — Preflight action",
+              "url": "https://www.ecfr.gov/current/title-14/section-91.103",
+              "checked": "2026-09-21"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "行前資訊要能支持出發與備案",
+              "paragraphs": [
+                "91.103要求PIC熟悉與飛行相關的可用資訊。IFR或離開機場附近的飛行，須納入天氣報告與預報、燃油、無法完成原計畫時的替代方案，以及ATC已告知的交通延誤。",
+                "所有飛行還須考量擬用機場跑道長度及適用起降性能資料。把航行計算與可用跑道、重量、風、溫度和地形一起檢查，才知道計畫是否可行。"
+              ],
+              "check": {
+                "question": "已算出到目的地只需35分鐘，是否已完成行前準備？",
+                "answer": "沒有。仍須查天氣、機場與跑道、航空器性能、空域、燃油及替代方案等相關資訊。"
+              }
             }
           ]
         },
@@ -29170,6 +29188,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "把航路與鄰近區域資料準備好",
+              "paragraphs": [
+                "除了現行航圖，航線接近圖幅邊界時也應備妥相鄰區域，供偏航或改降使用。攜帶熟悉的plotter、飛行計算器或合適電子工具，並確認離線資料、電量與備援。",
+                "夜航照明、沙漠飲水等用品應隨環境安排。資料齊全但操作不熟，仍可能在飛行中造成長時間低頭；先在地面練習查頻率、改航和重新計算。"
+              ]
+            }
           ]
         },
         {
@@ -29190,6 +29217,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先查天氣，再決定航路是否成立",
+              "paragraphs": [
+                "先判斷VFR飛行是否可行，再選路與高度。檢查出發、沿途、目的地與備案的時間趨勢，不只讀一份目的地觀測；風資料要對應預定高度和通過時間。",
+                "延後起飛、改路或換高度後，重新評估雲、能見度、對流及可用日照，也重算地速與燃油。原航行表的精確小數不能補救已失效的預報假設。"
+              ]
+            }
           ]
         },
         {
@@ -29209,6 +29245,29 @@ export const phakDocument = {
               "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
+            },
+            {
+              "title": "FAA Chart Supplements",
+              "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/productcatalog/supplementalcharts/airportdirectory/",
+              "checked": "2026-09-21"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "機場資料要讀到備註與營業時間",
+              "paragraphs": [
+                "Figure 16-24 示範Chart Supplement條目。讀取位置、標高、跑道與燈光、頻率、服務和備註；若依賴中途加油，確認油品、服務時間及安排條件。",
+                "FAA現行Chart Supplement採56天週期。原文「NOTAM每28天發行」不能理解成NOTAM只在固定日期更新；短期變更仍須查有效NOTAM。航圖與機場資料有差異時，核對生效日期及適用範圍，不只比較書名。"
+              ],
+              "figure": {
+                "label": "Figure 16-24 · Chart Supplement entry",
+                "page": "16-17",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=17"
+              },
+              "check": {
+                "question": "圖上有燃油服務符號，能否保證晚上抵達仍可加到需要的油？",
+                "answer": "不能。還要確認油品、服務時間、可用狀態，以及是否需預先安排。"
+              }
             }
           ]
         },
@@ -29230,6 +29289,19 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "使用本機最新重量平衡與性能",
+              "paragraphs": [
+                "從本機有效AFM／POH及永久紀錄取得最新空重、空重CG與設備狀態，加入實際乘員、行李及燃油，檢查重量與CG限制。依所用空重定義判斷滑油與不可用燃油是否已包含，避免重複加算。",
+                "用預期重量、標高、溫度、風與跑道條件查起降性能，並依適用圖表計算爬升和巡航油耗。高密度高度或重載對性能不利，但各項修正應依本機資料，不能套用一個通用百分比。"
+              ],
+              "check": {
+                "question": "知道總重量低於最大重量，能否省略CG計算？",
+                "answer": "不能。同一總重量可能因裝載位置不同而超出前後CG限制；還要考慮燃油消耗後的狀態。"
+              }
+            }
           ]
         },
         {
@@ -29249,6 +29321,49 @@ export const phakDocument = {
               "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
               "checked": "2026-09-12"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "Chickasha至Guthrie是歷史教學航線",
+              "paragraphs": [
+                "本例給定TAS115 kt、風360°／10 kt、可用燃油38 US gal、耗油8 US gal/h與羅差修正+2°。這些是範例條件，不能當作今日航線、機場或某架飛機的有效資料。",
+                "Figure 16-25 從A到F畫出航線，再辨認檢查點、地形、障礙與空域。直接線不合適時可分段繞行；不同段要各自量TC、距離並計算風。"
+              ],
+              "figure": {
+                "label": "Figure 16-25 · Historical sectional route example",
+                "page": "16-19",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=19"
+              },
+              "table": {
+                "caption": "Chickasha至Guthrie是歷史教學航線",
+                "headers": [
+                  "範例輸入",
+                  "數值"
+                ],
+                "rows": [
+                  [
+                    "TAS",
+                    "115 kt"
+                  ],
+                  [
+                    "風（吹來方向）",
+                    "360°／10 kt"
+                  ],
+                  [
+                    "機上可用燃油",
+                    "38 US gal"
+                  ],
+                  [
+                    "巡航耗油率",
+                    "8 US gal/h"
+                  ],
+                  [
+                    "本例羅差修正",
+                    "+2°"
+                  ]
+                ]
+              }
             }
           ]
         },
@@ -29278,6 +29393,121 @@ export const phakDocument = {
             "四、由磁差換 MH，再依羅差卡取 CH；由 GS 求 ETE、ETA 與燃油。",
             "五、填頻率、機場資料、備案及改航觸發點，核對各段加總和燃油餘裕。",
             "六、航中記錄實際時間、位置與用油，查明差異並更新後續計畫。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "檢查點與高度都要有判讀依據",
+              "paragraphs": [
+                "原例以塔、道路鐵路、機場等組合交叉辨認四個檢查點。大城的黃色區塊通常容易辨認，但能否實際看見仍取決於地形、天氣、光線與角度；小圓點城鎮不一定適合。",
+                "原圖Class C頂5,300 ft MSL、Class D頂3,800 ft MSL，正文選5,500 ft MSL；這些只供閱讀舊圖。巡航高度規則以磁航線及離地高度等適用條件判斷，不以羅盤航向選奇偶，也不能只要高過空域就忽略雲與障礙。",
+                "Figure 16-26 上表8,000與下表8,000／10,000高度欄，和正文及Figure 16-27的5,500不一致。本教材保留差異提示，不把衝突數字拼成可執行的飛行計畫。"
+              ],
+              "figure": {
+                "label": "Figure 16-26 · Planning sheet and visual flight log",
+                "page": "16-20",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=20"
+              }
+            },
+            {
+              "title": "TC031到CH023：每一步保留基準",
+              "paragraphs": [
+                "依原例取整：TC031°加左修正−3°得到TH028°，減7°E磁差得到MH021°，再加本例羅差2°得到CH023°。原圖磁差6°30′E取整為7°，不能作現行磁差使用。",
+                "以TAS115、風360／10和TC031向量驗算，WCA約−2.57°、TH028.43°、GS106.31 kt；原書的3°與106 kt是教學取整。CH023不是地面航線方向，而是此例羅盤保持值。"
+              ],
+              "table": {
+                "caption": "TC031到CH023：每一步保留基準",
+                "headers": [
+                  "轉換",
+                  "原書取整結果"
+                ],
+                "rows": [
+                  [
+                    "TC",
+                    "031°"
+                  ],
+                  [
+                    "WCA",
+                    "−3°"
+                  ],
+                  [
+                    "TH",
+                    "028°"
+                  ],
+                  [
+                    "磁差",
+                    "7°E（減7°）"
+                  ],
+                  [
+                    "MH",
+                    "021°"
+                  ],
+                  [
+                    "羅差",
+                    "+2°"
+                  ],
+                  [
+                    "CH",
+                    "023°"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "原例羅盤023°與航圖031°不同，是否一定偏離航線？",
+                "answer": "不是。兩者分別是CH與TC，還隔著風修正、磁差與羅差；應以地面位置核對航跡。"
+              }
+            },
+            {
+              "title": "53 NM、35分鐘、4.7 gallons分別代表什麼",
+              "paragraphs": [
+                "檢查點航段11、10、10.5、13、8.5 NM，合計53 NM。以原例GS106 kt計算，純巡航時間30分鐘；原書另加5分鐘爬升，得到35分鐘，按8 US gal/h估用油4.6667，約4.7 US gal。",
+                "實際應用AFM／POH分算爬升時間、距離與油量，再算剩餘巡航，避免既把全程當巡航又完整重複計入爬升距離。原例加5分鐘是其簡化做法，不是所有飛行通用。",
+                "38 US gal是附件明列的機上可用燃油，不是這趟耗油；38÷8=4.75 h即4小時45分的簡化續航。備份、地面用油和各階段實耗仍須另計，不能把4小時45分全部當作可排定航時。"
+              ],
+              "table": {
+                "caption": "53 NM、35分鐘、4.7 gallons分別代表什麼",
+                "headers": [
+                  "量",
+                  "計算",
+                  "結果"
+                ],
+                "rows": [
+                  [
+                    "總距離",
+                    "11＋10＋10.5＋13＋8.5",
+                    "53 NM"
+                  ],
+                  [
+                    "巡航時間",
+                    "53÷106×60",
+                    "30 min"
+                  ],
+                  [
+                    "範例總時間",
+                    "30＋5",
+                    "35 min"
+                  ],
+                  [
+                    "範例航程耗油",
+                    "35÷60×8",
+                    "4.7 US gal"
+                  ],
+                  [
+                    "機上可用燃油",
+                    "題設",
+                    "38 US gal"
+                  ],
+                  [
+                    "簡化續航",
+                    "38÷8",
+                    "4 h 45 min"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "Figure 16-26的TOTAL FUEL 38 gal是否代表35分鐘燒掉38 gal？",
+                "answer": "不是。38 gal是可用燃油題設；原例35分鐘按8 GPH估約4.7 gal。"
+              }
+            }
           ]
         },
         {
@@ -29294,9 +29524,9 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 5-1：飛前準備、NOTAM 與飛行計畫",
+              "title": "FAA AIM 5-1 — Flight planning",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html",
-              "checked": "2026-09-12"
+              "checked": "2026-09-21"
             }
           ],
           "currentNote": "原書展示舊 FAA Form 7233-1；現行一般民用提交依 FAA Form 7233-4／ICAO 格式資訊處理，7233-1 有限定例外。提交格式與 VFR 飛行計畫的啟用、更新、關閉是不同問題，依 FAA AIM 5-1 與所用服務確認。",
@@ -29306,6 +29536,32 @@ export const phakDocument = {
             "更新：目的地、航路或時間大幅改變時，讓飛行計畫的搜尋資訊反映現況。",
             "關閉：到達後確認 VFR 計畫已關閉；塔臺不會像部分 IFR 情況一樣自動關閉 VFR 計畫。",
             "Flight following 是 ATC 交通諮詢，與 Flight Service 的 VFR 飛行計畫／搜救資訊不同。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "舊國內表格與現行ICAO格式分開讀",
+              "paragraphs": [
+                "Figure 16-27 是歷史FAA Form 7233-1。現行一般民用申報使用FAA Form 7233-4國際格式；AIM列有DoD與特定stereo route使用者例外。舊C150/X的斜線裝備碼不能原封不動當成現行欄位填法。",
+                "舊表以UTC填出發時間，ETE35分鐘與fuel endurance4小時45分鐘分欄。現行表格的編號和裝備欄位不同，應依適用表單說明填寫，不照舊圖Item 3、6、7等號碼搬移。"
+              ],
+              "figure": {
+                "label": "Figure 16-27 · Historical domestic flight plan form",
+                "page": "16-21",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=21"
+              }
+            },
+            {
+              "title": "提交、啟用、更新與關閉各有責任",
+              "paragraphs": [
+                "一般國內美國VFR飛行計畫主要供搜尋救援；涉及ADIZ等特殊作業仍可能有申報要求。Filing不等於activation，也不是進入空域的ATC許可；flight following同樣不能取代啟用。",
+                "現行AIM說明VFR proposals通常保留至預定出發後2小時，與原文1小時不同。可用電話、無線電或電子方式依服務流程辦理；若採假定出發時間啟用，延誤時要更新，避免搜尋依據錯誤。",
+                "抵達後確認關閉，途中更改路線或時間也應更新。不要因目的地有塔臺就假定VFR計畫會自動啟閉。"
+              ],
+              "check": {
+                "question": "收到flight following的雷達辨識，是否代表搜救飛行計畫已啟用？",
+                "answer": "不代表。需另按Flight Service或申報服務流程確認啟用與關閉。"
+              }
+            }
           ]
         },
         {
@@ -29326,6 +29582,15 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "無線電導航不全是地面台站",
+              "paragraphs": [
+                "本節原文將VOR、NDB與GPS一起介紹；VOR和NDB使用地面發射台，GPS是衛星導航，不因放在Ground-Based Navigation標題下就變成地面設施。",
+                "無線電來源應與目視地標、推算位置交叉核對。訊號有效、來源選對與台站識別是不同檢查，不能只看指針穩定就相信顯示。"
+              ]
+            }
           ]
         },
         {
@@ -29342,9 +29607,112 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "title": "FAA AIM 1-1 — Navigation aids and service volumes",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
-              "checked": "2026-09-12"
+              "checked": "2026-09-21"
+            },
+            {
+              "title": "14 CFR 91.171 — VOR checks",
+              "url": "https://www.ecfr.gov/current/title-14/section-91.171",
+              "checked": "2026-09-21"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "VOR給方位，距離需要另一項能力",
+              "paragraphs": [
+                "VOR radial是從台站向外的磁方位。在090 radial上進台，所需course為270°；機頭如何偏風不會改變radial的定義。",
+                "VOR／DME加上測距；VORTAC結合VOR與TACAN，民機可用合適DME取得距離。只有VOR接收器與CDI，並不會因地面站是VORTAC就自動得到距離。",
+                "Figure 16-28 顯示視線限制：高度、距離與遮蔽物會影響接收。108.0～117.95 MHz是VOR工作頻帶，不代表其中每個頻率都可任意當VOR使用；必須調航圖公布的台站頻率。"
+              ],
+              "figure": {
+                "label": "Figure 16-28 · Line-of-sight reception",
+                "page": "16-22",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=22"
+              }
+            },
+            {
+              "title": "服務範圍不等於只要聽得到就能使用",
+              "paragraphs": [
+                "原文T、L、H是傳統標準服務範圍；現行AIM還有VL與VH。高度基準是ATH，即高於發射天線的高度，不能直接把表格數字當MSL或本機下方地形的AGL。",
+                "下表整理傳統範圍，低於1,000 ft ATH的細節另查AIM圖。新VL在5,000至未滿18,000 ft ATH可達70 NM；VH亦有擴充區段，須依台站實際分類查完整現行表。VOR與同址DME不一定有相同服務範圍。",
+                "地形、公布限制與NOTAM仍會影響可用性。標準服務範圍、經核准的延伸服務及單純收到訊號，是不同概念。"
+              ],
+              "table": {
+                "caption": "服務範圍不等於只要聽得到就能使用",
+                "headers": [
+                  "傳統分類",
+                  "高度（ft ATH）",
+                  "半徑"
+                ],
+                "rows": [
+                  [
+                    "T",
+                    "1,000～12,000（含）",
+                    "25 NM"
+                  ],
+                  [
+                    "L",
+                    "1,000～18,000（含）",
+                    "40 NM"
+                  ],
+                  [
+                    "H",
+                    "1,000～14,500（含）",
+                    "40 NM"
+                  ],
+                  [
+                    "H",
+                    "14,500～60,000（含）",
+                    "100 NM"
+                  ],
+                  [
+                    "H擴大區段",
+                    "18,000～45,000（含）",
+                    "130 NM"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "台站標高2,000 ft，12,000 ft ATH可直接讀成12,000 ft MSL嗎？",
+                "answer": "不能。ATH以發射天線為基準；兩者高度基準不同，還須知道天線標高。"
+              }
+            },
+            {
+              "title": "VOR檢查容差與VFR／IFR適用範圍",
+              "paragraphs": [
+                "91.171針對民用航空器IFR使用VOR導航：除按核准程序維護檢查的途徑外，通常須在此前30天內完成合格操作檢查，並記錄日期、地點、方位誤差及簽名。不能把這條直接說成所有VFR都需30天檢查。",
+                "VFR仍應確認設備可靠。原文年度校準是建議，與91.171操作檢查不是同一件事。地面台對準精度約±1°也不是整套機載系統或所有飛行條件的總誤差保證。"
+              ],
+              "table": {
+                "caption": "VOR檢查容差與VFR／IFR適用範圍",
+                "headers": [
+                  "檢查方法",
+                  "容許誤差／差值"
+                ],
+                "rows": [
+                  [
+                    "適用VOT／核准測試訊號",
+                    "±4°"
+                  ],
+                  [
+                    "指定地面檢查點",
+                    "±4°"
+                  ],
+                  [
+                    "指定空中檢查點",
+                    "±6°"
+                  ],
+                  [
+                    "雙獨立VOR系統同台比較",
+                    "兩者差值不超過4°"
+                  ]
+                ]
+              },
+              "check": {
+                "question": "兩部接收器各差4°、分別在基準兩側，是否通過雙機比較？",
+                "answer": "不通過。兩者相差8°，超過雙機比較4°上限。"
+              }
             }
           ]
         },
@@ -29362,9 +29730,9 @@ export const phakDocument = {
           ],
           "references": [
             {
-              "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
+              "title": "FAA AIM 1-1 — VOR identification",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
-              "checked": "2026-09-12"
+              "checked": "2026-09-21"
             }
           ],
           "points": [
@@ -29372,6 +29740,15 @@ export const phakDocument = {
             "自編位置：台站東側 090 radial，選 090° 居中通常 FROM；選 270° 居中通常 TO。",
             "轉動機頭不改變所在 radial；轉 OBS 不改變航空器的實際位置。",
             "在傳統 CDI 上若用與飛行方向相反的課程設定，可能產生反向感應，不能盲目「向針轉」。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "調頻後先確認識別與導航來源",
+              "paragraphs": [
+                "台站識別用Morse code或正確的自動語音識別；一般FSS語音不是該VOR的身分證明。設備能實際解碼識別時，依其功能核對；單純從資料庫顯示預期名稱，不等於已驗證收到的台站。",
+                "失效或維修資訊優先於看似正常的指針。無有效識別、NAV旗標或NOTAM標明不能使用時，不以穩定顯示掩蓋問題；改用合適導航備援。"
+              ]
+            }
           ]
         },
         {
@@ -29397,6 +29774,31 @@ export const phakDocument = {
             "VOR 偏差是角度：在台站 60 NM 處，偏 2° 約為 2.1 NM；在 15 NM 處，同角度約 0.52 NM。",
             "VOR 每點約 2° 的慣例不能套用 GPS、localizer 或所有顯示器；模式與尺度須由設備確認。",
             "旗標無效、錯誤台站或導航來源錯選時，居中的指針也不代表正在正確航路上。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "CDI中線只說明相對所選航線的位置",
+              "paragraphs": [
+                "Figure 16-29 包括OBS、左右偏差針及TO／FROM。轉OBS直到中線，可以讀取所在radial的FROM值，或其相反方向的TO course；這不是風修正後的heading。",
+                "在台站東側090 radial，OBS270且居中通常為TO，OBS090且居中為FROM。就算原地改變機頭方向，位置與OBS未變，TO／FROM也不會因此自動翻轉。"
+              ],
+              "figure": {
+                "label": "Figure 16-29 · VOR course deviation indicator",
+                "page": "16-24",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=24"
+              },
+              "check": {
+                "question": "090 radial上選270 TO，中線是否表示機頭一定朝270？",
+                "answer": "不是。中線與TO由位置和所選航線決定；機頭朝向另看航向儀，保持航線還需風修正。"
+              }
+            },
+            {
+              "title": "反向感應先檢查所選course",
+              "paragraphs": [
+                "要沿進台course飛，就選對應TO；沿離台course飛，就選對應FROM。用相反course而朝另一方向飛，會使傳統CDI的左右意義與預期相反。",
+                "VOR常見五點式刻度每點約2°；同樣角度在遠處代表較大的側向距離。GPS和localizer尺度不同，不能把所有CDI模式都當固定2°一點，也不能把偏針直接當無條件轉彎指令。"
+              ]
+            }
           ]
         },
         {
@@ -29416,6 +29818,24 @@ export const phakDocument = {
               "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
               "checked": "2026-09-12"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "HSI同時呈現航向與選定航線",
+              "paragraphs": [
+                "Figure 16-30 本機航向184°、course pointer295°、尾端115°。三個讀數可以同時成立：184是機頭方向，295是選定航線，115是其反向，不能混為自動駕駛命令。",
+                "偏差桿顯示相對航線的位置；TO／FROM箭頭朝course頭或尾表示其方向關係。NAV旗標表示導航訊號問題，HDG旗標表示航向資料問題，需分別判讀。原文flux valve是所示傳統設備架構，現代顯示器不一定使用同一感測方式。"
+              ],
+              "figure": {
+                "label": "Figure 16-30 · Horizontal situation indicator",
+                "page": "16-24",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=24"
+              },
+              "check": {
+                "question": "HSI航向184、course295，是否應立即把course旋到184？",
+                "answer": "不應只因兩者不同就改course；先確認任務航線、截獲狀態與風修正，兩者原本就可能不同。"
+              }
             }
           ]
         },
@@ -29437,6 +29857,20 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "RMI指針給方位，不替你算風修正",
+              "paragraphs": [
+                "Figure 16-31 的旋轉卡片表示航向，兩根方位指針依來源開關接VOR、ADF或合適GPS資料。圖中的顏色只屬於該圖，不能當作所有儀表的通用來源標準。",
+                "在航向卡與VOR資料有效時，頭端讀磁方位TO，尾端讀所在radial FROM。RMI不需OBS選course；要確認來源和指示有效，不把指針頭直接當成保持直線進台所需的迎風heading。"
+              ],
+              "figure": {
+                "label": "Figure 16-31 · Radio magnetic indicator",
+                "page": "16-25",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=25"
+              }
+            }
           ]
         },
         {
@@ -29457,6 +29891,31 @@ export const phakDocument = {
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
               "checked": "2026-09-12"
             }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "先截回航線，再減為保持角",
+              "paragraphs": [
+                "Figure 16-32 以350°進台course示範：右側風使航空器往左漂，正確感應下CDI往右；右轉截回，接近中心後減小截獲角，保留足以抵風的航向。",
+                "原例試360°發現修正過多，再調355°觀察。這是試調例，不是所有右側風一律修5°；要看趨勢並避免反覆大轉彎造成S形航跡。"
+              ],
+              "figure": {
+                "label": "Figure 16-32 · Tracking a radial in a crosswind",
+                "page": "16-25",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=25"
+              }
+            },
+            {
+              "title": "沿同一條直線過台，OBS可以不變",
+              "paragraphs": [
+                "原例OBS350、TO進台時位於170 radial一側；越台後若繼續同一直線，會在350 radial上以FROM離台，OBS仍是350。改飛不同離台航線才需重設並截獲新course。",
+                "過台附近可能快速偏針與TO／FROM切換，應以整體位置和趨勢判斷，不追逐瞬間大偏轉。"
+              ],
+              "check": {
+                "question": "OBS350 TO進台，越台後沿原直線繼續飛，應把OBS轉成170嗎？",
+                "answer": "不需要。仍選350，指示轉FROM；170是原進台位置的radial，不是繼續向前的離台course。"
+              }
+            }
           ]
         },
         {
@@ -29476,6 +29935,19 @@ export const phakDocument = {
               "title": "FAA AIM 1-1：導航設備、GPS 完整性與 VFR 航點",
               "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html",
               "checked": "2026-09-12"
+            }
+          ],
+          "lessonBlocks": [
+            {
+              "title": "不要用旋轉OBS掩蓋偏離指定航線",
+              "paragraphs": [
+                "原文提示小抖動先觀察，但其中「recenter the course to the needle」容易誤讀。若任務是保持既定radial，應用合適航向截回；把OBS轉到中線只是改了所選航線，沒有使航空器回到原航線。",
+                "確認台站、旗標、服務範圍與感應方向後再修正。若訊號持續不可信，不把等待當成解決故障；使用合適備援並重新確認位置。"
+              ],
+              "check": {
+                "question": "偏離指定radial後把OBS轉到針居中，是否已回到原航線？",
+                "answer": "沒有，航空器位置未變，只改了被比較的航線。"
+              }
             }
           ]
         },
@@ -29502,6 +29974,57 @@ export const phakDocument = {
             "近似式：等效距台時間（分鐘）≈方位變化耗時（秒）／變化角度（度）。",
             "距離（NM）≈等效時間（分鐘）×相關速度（kt）／60；有風時需理解所用 GS 與橫向飛行幾何。",
             "這是小角度近似，不是精密測距；原書示例使用 TAS 的場合也受風影響，不能把 TAS 永遠當成 GS。"
+          ],
+          "lessonBlocks": [
+            {
+              "title": "RMI的90°是台站在翼尖方向",
+              "paragraphs": [
+                "先讓台站方位指針位於相對機頭的90°或270°附近，再保持穩定航向與速度，計時方位改變10°。這裡不是要求磁方位恰好090°。",
+                "Figure 16-33 以120秒改變10°，估計等效距台時間120÷10=12分鐘。除法輸入是秒、輸出是分鐘，是小角度近似公式的特定單位組合，不是普通單位消去。"
+              ],
+              "figure": {
+                "label": "Figure 16-33 · Time-distance check example",
+                "page": "16-26",
+                "url": "https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page=26"
+              },
+              "table": {
+                "caption": "RMI的90°是台站在翼尖方向",
+                "headers": [
+                  "量",
+                  "範例"
+                ],
+                "rows": [
+                  [
+                    "方位改變",
+                    "10°"
+                  ],
+                  [
+                    "經過時間",
+                    "120 s"
+                  ],
+                  [
+                    "近似等效距台時間",
+                    "120÷10＝12 min"
+                  ],
+                  [
+                    "另設相關對地速度120 kt",
+                    "12÷60×120＝24 NM"
+                  ]
+                ]
+              }
+            },
+            {
+              "title": "12分鐘不是保持當前航向就會到台",
+              "paragraphs": [
+                "量測航向大致橫過台站方向，航空器不是正朝台站飛；12分鐘表示以相關速度直飛該估計距離的等效時間。額外假設120 kt時才得到約24 NM，原圖本身未提供速度。",
+                "公式用小角度與每弧度約60°的近似。理想無風、初始航跡垂直方位線、120 kt飛2分鐘走4 NM時，幾何初始距離4／tan10°≈22.69 NM，結束距離4／sin10°≈23.04 NM；24 NM只是近似。",
+                "強風會使heading與track不重合，破壞翼尖量測假設；速度、計時和方位誤差也會累積。不能任意用TAS取代所需對地速度，或把此估算法當成程序要求的DME。"
+              ],
+              "check": {
+                "question": "只知道120秒改變10°，能直接斷言距離24 NM嗎？",
+                "answer": "不能。先得近似12分鐘；還需要速度及量測幾何假設，另設120 kt才約24 NM。"
+              }
+            }
           ]
         },
         {
@@ -29918,8 +30441,8 @@ export const phakDocument = {
       "reader": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388",
       "source": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/faa-h-8083-25c.pdf#page=388",
       "detailMode": "outline",
-      "checked": "2026-09-20",
-      "coverageNote": "本輪深化前 29 節（導論至風三角 Step 4），共 43 個單元、8 張比較表、15 題理解練習與 Figure 16-1～16-23 官方原圖指引。核對比例尺、時區、真磁羅航向、風三角及時間油量，註明圖 16-19 數字與圖 16-22／23 標題差異；飛行計畫至章末仍為既有概述，未標為全章深化完成。"
+      "checked": "2026-09-21",
+      "coverageNote": "本輪深化前 46 節（導論至 RMI 時間／距離估算），共 68 個單元、14 張比較表、28 題理解練習與 Figure 16-1～16-33 官方原圖指引。核對航行表燃油與高度差異、現行飛行計畫及VOR服務範圍、儀表判讀與近似量測；CDI時間／距離估算至章末仍為既有概述，未標為全章深化完成。"
     },
     {
       "id": "phak25c-17",

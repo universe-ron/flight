@@ -733,7 +733,7 @@ test('Chapter 16 navigation foundations render twenty-three figures with honest 
  const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'風箭頭與來向相反'}});
  const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
  assert.equal(c.detailSections.length,62);assert.ok(c.detailSections.slice(0,29).every(s=>s.lessonBlocks?.length));
- assert.ok(c.detailSections.slice(29).every(s=>!s.lessonBlocks?.length));
+ assert.ok(c.detailSections.slice(46).every(s=>!s.lessonBlocks?.length));
  const blocks=c.detailSections.slice(0,29).flatMap(s=>s.lessonBlocks);
  assert.equal(blocks.length,43);assert.equal(blocks.filter(b=>b.table).length,8);assert.equal(blocks.filter(b=>b.check).length,15);
  const figures=blocks.filter(b=>b.figure).map(b=>b.figure),pages=[2,3,4,4,5,6,6,6,7,7,8,8,9,10,10,10,11,13,14,14,15,16,16];
@@ -749,7 +749,30 @@ test('Chapter 16 navigation foundations render twenty-three figures with honest 
   if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
  }
  assert.match(html,/風箭頭與來向相反/);assert.match(html,/本章閱讀與情境檢核已完成/);
- assert.match(html,/本輪深化前 29 節/);assert.match(html,/飛行計畫至章末仍為既有概述/);
+ assert.match(html,/本輪深化前 46 節/);assert.match(html,/CDI時間／距離估算至章末仍為既有概述/);
  assert.match(html,/19.92421 US gal/);assert.match(html,/Figure 16-19的數字不能同時成立/);
  assert.match(html,/Figure 16-22實際是在量真航向/);assert.match(html,/Figure 16-23實際是在量風修正角/);
+});
+
+test('Chapter 16 continuation renders flight planning and VOR through the RMI example',()=>{
+ const c=studyDocuments.find(d=>d.id==='phak25c').chapters[15];
+ const saved=JSON.stringify({read:[c.id],answers:{[c.id]:c.answer},notes:{[c.id]:'38 gallons是機上可用油量'}});
+ const html=environment('#chapter/'+c.id,undefined,saved).element('#app').innerHTML;
+ const blocks=c.detailSections.slice(29,46).flatMap(s=>s.lessonBlocks);
+ assert.ok(c.detailSections.slice(29,46).every(s=>s.lessonBlocks?.length));
+ assert.equal(blocks.length,25);assert.equal(blocks.filter(b=>b.table).length,6);assert.equal(blocks.filter(b=>b.check).length,13);
+ const pages=[17,19,20,21,22,24,24,25,25,26];
+ for(let i=0;i<10;i++){
+  const f=blocks.find(b=>b.figure?.label.startsWith('Figure 16-'+(24+i)+' ·'))?.figure;
+  assert.ok(f);assert.equal(f.page,'16-'+pages[i]);assert.equal(f.url,'https://www.faa.gov/sites/faa.gov/files/18_phak_ch16.pdf#page='+pages[i]);assert.ok(html.includes(f.url));
+ }
+ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ for(const b of blocks){
+  assert.ok(html.includes(escape(b.title)));for(const p of b.paragraphs)assert.ok(html.includes(escape(p)));
+  if(b.table){assert.ok(b.table.rows.every(r=>r.length===b.table.headers.length));assert.ok(html.includes('<caption>'+escape(b.table.caption)+'</caption>'));}
+  if(b.check){assert.ok(html.includes('<summary>想一想：'+escape(b.check.question)+'</summary>'));assert.ok(html.includes(escape(b.check.answer)));}
+ }
+ assert.match(html,/38 gallons是機上可用油量/);assert.match(html,/本章閱讀與情境檢核已完成/);
+ assert.match(html,/8,000／10,000/);assert.match(html,/FAA Form 7233-4/);assert.match(html,/高於發射天線/);
+ assert.match(html,/CDI時間／距離估算至章末仍為既有概述/);
 });
