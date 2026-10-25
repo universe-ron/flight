@@ -305,3 +305,43 @@ test('exam navigation cannot clear historical answers',()=>{
  for(const name of ['clear-topic','confirm-clear-topic'])env.events.click({target:{closest:()=>({dataset:{action:name}})}});
  assert.deepEqual(env.caa(),old);
 });
+
+
+test('clear answers control and its confirmation are above the question instead of below the question map',()=>{
+ const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:3,correct:true}],wrong:[]}));
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ let html=env.element('#app').innerHTML;
+ assert.ok(html.indexOf('data-action="clear-topic"')<html.indexOf('<article class="panel">'));
+ assert.equal((html.match(/data-action="clear-topic"/g)||[]).length,1);
+ env.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ html=env.element('#app').innerHTML;
+ assert.ok(html.indexOf('確認清除作答紀錄')<html.indexOf('<article class="panel">'));
+});
+
+test('leave menu can return to each CAA level while preserving submitted records',()=>{
+ for(const route of ['caa/PPL/A14','caa/PPL','caa','home']){
+  const env=environment('#caa/PPL/A14');
+  env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+  assert.ok(env.element('#app').innerHTML.includes('data-leave-to="'+route+'"'));
+  env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
+  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+  const before=env.caa();
+  env.events.click({target:{closest:()=>({dataset:{leaveTo:route}})}});
+  assert.equal(env.context.location.hash,'#'+route);
+  assert.deepEqual(env.caa(),before);
+  assert.equal(vm.runInContext('session',env.context),null);
+ }
+});
+
+test('leaving does not count unconfirmed practice selections; exams are submitted before return',()=>{
+ const env=environment('#caa/PPL/A14');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
+ env.events.click({target:{closest:()=>({dataset:{leaveTo:'caa/PPL'}})}});
+ assert.equal(env.caa(),null);
+ vm.runInContext('start(caaItems([1,2]),"exam")',env.context);
+ env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
+ env.events.click({target:{closest:()=>({dataset:{leaveTo:'home'}})}});
+ assert.equal(env.caa().attempts.length,2);
+ assert.equal(env.context.location.hash,'#home');
+});
