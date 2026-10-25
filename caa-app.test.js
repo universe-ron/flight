@@ -242,7 +242,9 @@ test('exam question map is restricted to the current exam and hides historic ans
  let html=env.element('#app').innerHTML;
  assert.equal((html.match(/data-quiz-jump=/g)||[]).length,3);
  assert.doesNotMatch(html,/class="question-number answered/);
+ const firstId=vm.runInContext('session.items[0].id',env.context);
  env.events.click({target:{closest:()=>({dataset:{answer:'1'}})}});
  html=env.element('#app').innerHTML;
- assert.match(html,/class="question-number answered current" data-quiz-jump="1"/);
+ assert.match(html,new RegExp('class="question-number answered current" data-quiz-jump="'+firstId+'"'));
+ assert.equal((html.match(/class="question-number answered/g)||[]).length,1);
 });
