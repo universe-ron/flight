@@ -113,3 +113,41 @@ test('CAA practice warns when browser storage cannot save answers',()=>{
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
  assert.match(env.element('#app').innerHTML,/無法儲存 CAA 練習紀錄/);
 });
+
+
+test('every official and self-made question exposes a traceable number and source before answering',()=>{
+ const env=environment('#caa');
+ for(const q of caaA14.questions){
+  env.context.originQuestion=q;
+  const html=vm.runInContext('questionOriginHTML(caaItem(originQuestion))',env.context);
+  assert.ok(html.includes('官方題號 '+q.orig));
+  assert.ok(html.includes('PDF 第 '+q.seq+' 題'));
+  assert.ok(html.includes('href="'+caaA14.fileUrl.replaceAll('&','&amp;')+'"'));
+ }
+ for(const q of questions){
+  env.context.originQuestion=q;
+  const html=vm.runInContext('questionOriginHTML(originQuestion)',env.context);
+  assert.ok(html.includes('自編題號 '+q.id));
+  assert.ok(html.includes(sources[q.source].url.replaceAll('&','&amp;')));
+  assert.ok(!html.includes('官方題號'));
+ }
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'1'}})}});
+ assert.match(env.element('#app').innerHTML,/官方題號 0011087/);
+ assert.match(env.element('#app').innerHTML,/question-origin/);
+ assert.doesNotMatch(env.element('#app').innerHTML,/正確答案/);
+});
+
+test('question lists and completed review keep source and question numbers visible',()=>{
+ const env=environment('#caa');
+ assert.equal((env.element('#caa-results').innerHTML.match(/class="muted question-origin"/g)||[]).length,222);
+ const q=caaA14.questions[0];
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(q.seq)}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
+ const html=env.element('#app').innerHTML;
+ assert.match(html,/<h3>[^]*?question-origin[^]*?<details>/);
+ vm.runInContext('saved.track="FAA";list();',env.context);
+ assert.match(env.element('#question-results').innerHTML,/自編題號 f1/);
+ assert.match(env.element('#question-results').innerHTML,/命題參考來源/);
+});
