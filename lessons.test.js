@@ -776,3 +776,36 @@ test('Chapter 16 continuation renders flight planning and VOR through the RMI ex
  assert.match(html,/8,000／10,000/);assert.match(html,/FAA Form 7233-4/);assert.match(html,/高於發射天線/);
  assert.match(html,/CDI時間／距離估算至章末仍為既有概述/);
 });
+
+
+test('a delayed PHAK chapter cannot overwrite a newer route',async()=>{
+ const env=environment('#home');
+ let resolve;
+ env.context.pendingChapter=new Promise(r=>{resolve=r;});
+ env.context.lazyDocs=studyDocuments.map(d=>({...d,fullChapters:[]}));
+ vm.runInContext('study={docs:lazyDocs,cleanStudyState,chapterProgress,ensurePhak:()=>pendingChapter}',env.context);
+ env.context.location.hash='#chapter/phak25c-1';
+ env.events.hashchange();
+ assert.match(env.element('#app').innerHTML,/載入本章內容/);
+ env.context.location.hash='#home';
+ env.events.hashchange();
+ const home=env.element('#app').innerHTML;
+ env.context.lazyDocs[1].fullChapters.push('phak25c-1');
+ resolve();
+ await new Promise(r=>setImmediate(r));
+ assert.equal(env.element('#app').innerHTML,home);
+});
+
+test('a failed obsolete chapter download does not replace the current page with an error',async()=>{
+ const env=environment('#home');
+ let reject;
+ env.context.pendingChapter=new Promise((_,r)=>{reject=r;});
+ env.context.lazyDocs=studyDocuments.map(d=>({...d,fullChapters:[]}));
+ vm.runInContext('study={docs:lazyDocs,cleanStudyState,chapterProgress,ensurePhak:()=>pendingChapter}',env.context);
+ env.context.location.hash='#chapter/phak25c-1';env.events.hashchange();
+ env.context.location.hash='#learn';env.events.hashchange();
+ const learning=env.element('#app').innerHTML;
+ reject(new Error('Network unavailable'));
+ await new Promise(r=>setImmediate(r));
+ assert.equal(env.element('#app').innerHTML,learning);
+});

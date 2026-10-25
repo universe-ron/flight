@@ -22,6 +22,12 @@ export function pool(track,subject='all',includeCommon=false){return questions.f
 export function score(items,answers){return items.reduce((n,q)=>n+(answers[q.id]===q.answer?1:0),0);}
 
 Object.assign(sources, {
+  "caaA14": {
+    "title": "交通部民用航空局 · PPL (A14) 飛機飛航原理 題目範例",
+    "url": "https://www.caa.gov.tw/ContentAndMorefiles.aspx?a=474&lang=1",
+    "section": "學科檢定題目範例 · 飛機自用駕駛員檢定 (PPL) 第 A14 科",
+    "version": "105/12/01 更新（2016/12/01）；官方僅標示答案，無官方解析"
+  },
   "lesson_flight-controls": {
     "title": "FAA PHAK · Chapter 6: Flight Controls",
     "url": "https://www.faa.gov/sites/faa.gov/files/08_phak_ch6.pdf",
