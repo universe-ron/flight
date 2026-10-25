@@ -82,7 +82,7 @@ function quizToolbarHTML(){
  const history=official?caaState.attempts:saved.attempts;
  const hasAnswers=navigationQuestions().some(q=>history.some(a=>String(a.id)===String(q.id))||s.committed.has(q.id)||Object.hasOwn(s.answers,q.id));
  const destinations=official?[['caa/PPL/A14','回到 A14 科目首頁'],['caa/PPL','回到 PPL 科目列表'],['caa','回到考試準備'],['home','回到學習總覽']]:[['practice','回到自編題庫'],['learn','回到教材學習'],['review','回到我的複習'],['home','回到學習總覽']];
- return `<div class="quiz-toolbar"><details class="practice-leave"><summary>← 離開／返回</summary><div class="practice-leave-menu"><p>${s.mode==='exam'?'離開時會先交卷並保存本次結果。':'已確認的答案會保留，未確認的選項不計入紀錄。'}</p>${destinations.map(([route,label])=>`<button type="button" data-leave-to="${route}">${label}</button>`).join('')}<button type="button" data-action="exit">${s.mode==='exam'?'交卷並看本次結果':'查看本次練習結果'}</button></div></details>${s.mode==='practice'?`<button type="button" class="button secondary quiz-clear-button" data-action="clear-topic" ${hasAnswers?'':'disabled'}>清除已作答</button>`:''}</div>`;
+ return `<div class="quiz-toolbar"><details class="practice-leave"><summary>← 離開／返回</summary><div class="practice-leave-menu"><p>${s.mode==='exam'?'離開時會先交卷並保存本次結果。':'已確認的答案會保留，未確認的選項不計入紀錄。'}</p>${destinations.map(([route,label])=>`<button type="button" data-leave-to="${route}">${label}</button>`).join('')}<button type="button" data-action="exit">${s.mode==='exam'?'交卷並看本次結果':'查看本次練習結果'}</button></div></details>${s.mode==='practice'?`<button type="button" class="button secondary quiz-clear-button" data-action="clear-topic" ${hasAnswers?'':'disabled'}>清除已作答</button>`:''}${official?caaUI.officialFileLink(caaDoc().subject):''}</div>`;
 }
 function topicResetNoticeHTML(){
  const s=session,current=s.items[s.index];if(s.mode!=='practice')return'';

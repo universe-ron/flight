@@ -345,3 +345,27 @@ test('leaving does not count unconfirmed practice selections; exams are submitte
  assert.equal(env.caa().attempts.length,2);
  assert.equal(env.context.location.hash,'#home');
 });
+
+
+test('PPL cards expose A13 and A14 official files even when A13 practice is unavailable',()=>{
+ const env=environment('#caa/PPL');const html=env.element('#app').innerHTML;
+ assert.match(html,/<h2>A13 · 飛航管理程序<\/h2>/);
+ assert.match(html,/<h2>A14 · 飛機飛航原理<\/h2>/);
+ assert.match(html,/href="https:\/\/www.caa.gov.tw\/FileAtt.ashx\?lang=1&amp;id=14459"/);
+ assert.match(html,/href="https:\/\/www.caa.gov.tw\/FileAtt.ashx\?lang=1&amp;id=14461"/);
+ assert.match(html,/對照 A13 官方 PDF/);
+ assert.doesNotMatch(html,/href="#caa\/PPL\/A13"/);
+});
+
+test('A14 PDF comparison is visible on subject home, question browser and before answering',()=>{
+ for(const route of ['#caa/PPL/A14','#caa/PPL/A14/questions']){
+  const env=environment(route);const html=env.element('#app').innerHTML;
+  assert.ok(html.indexOf('對照 A14 官方 PDF')<html.indexOf('<details class="exam-source">'));
+ }
+ const env=environment('#caa/PPL/A14');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ const html=env.element('#app').innerHTML;
+ assert.ok(html.indexOf('對照 A14 官方 PDF')<html.indexOf('<article class="panel">'));
+ assert.match(html,/target="_blank" rel="noopener noreferrer" aria-label="對照 A14/);
+ assert.doesNotMatch(html,/class="explanation"/);
+});
