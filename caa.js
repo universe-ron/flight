@@ -1,6 +1,21 @@
-// CAA PPL (A14) 飛機飛航原理 — 官方題目範例匯入
+// CAA PPL 官方題目範例匯入（A13 飛航管理程序、A14 飛機飛航原理）
 // 來源：交通部民用航空局 學科檢定題目範例
 // 官方答案與本站解析分開；無法確認的標記為待核對，不計入計分。
+export {caaA13Questions as caaA13QuestionsRaw} from './caa-a13-questions.js';
+import {caaA13Questions} from './caa-a13-questions.js';
+export const caaA13={
+  id:'caa-ppl-a13',
+  subject:'A13',
+  subjectName:'飛航管理程序',
+  exam:'PPL 飛機自用駕駛員檢定',
+  authority:'CAA',
+  authorityName:'交通部民用航空局',
+  sourceUrl:'https://www.caa.gov.tw/ContentAndMorefiles.aspx?a=474&lang=1',
+  fileUrl:'https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=14459',
+  fileVersion:'105/12/01 更新（2016/12/01）',
+  note:'原始 PDF 標註「最近更新日期：無；更新題號：無」；本匯入以 105/12/01 檔案版本為準。',
+  questions:caaA13Questions
+};
 export const caaA14={
   id:'caa-ppl-a14',
   subject:'A14',

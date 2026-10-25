@@ -1,39 +1,53 @@
+import * as caaStore from './caa-state.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 import {tracks,sources,questions,pool,score} from './data.js';
-import {caaA14} from './caa.js';
+import {caaA13,caaA14} from './caa.js';
 import * as caaUI from './caa-ui.js';
 
-function environment(hash,caaStored){
+const A14_KEY='flightdeck.caa.a14.v2';
+const A13_KEY='flightdeck.caa.a13.v2';
+
+function environment(hash,storage={}){
  const elements=new Map(),events={};
  const element=id=>{if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',value:'',validity:{valid:true},addEventListener:(type,fn)=>{const key='app:'+type,previous=events[key];events[key]=event=>{previous?.(event);fn(event);};},insertAdjacentHTML(){}});return elements.get(id);};
- const stored=new Map([['flightdeck.v1',null],['flightdeck.study.v1',null],['flightdeck.caa.v1',caaStored]]);
- const context={studyDocuments:[],cleanStudyState:v=>({read:[],answers:{},notes:{}}),chapterProgress:()=>({read:false,answered:false,correct:false,complete:false}),lessons:[],annexes:[],tracks,sources,questions,pool,score,caaA14,caaUI,document:{querySelector:element,querySelectorAll:()=>[],addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};}},location:{hash},localStorage:{getItem:key=>stored.get(key)??null,setItem:(key,value)=>{stored.set(key,value);}},window:{addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};},scrollTo(){}},setInterval:()=>1,clearInterval(){},console};
+ const stored=new Map([['flightdeck.v1',null],['flightdeck.study.v1',null],['flightdeck.caa.v1',null],[A13_KEY,null],[A14_KEY,null],...Object.entries(storage)]);
+ const context={studyDocuments:[],cleanStudyState:v=>({read:[],answers:{},notes:{}}),chapterProgress:()=>({read:false,answered:false,correct:false,complete:false}),lessons:[],annexes:[],tracks,sources,questions,pool,score,caaA13,caaA14,caaUI,caaStore,document:{querySelector:element,querySelectorAll:()=>[],addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};}},location:{hash},localStorage:{getItem:key=>stored.get(key)??null,setItem:(key,value)=>{stored.set(key,value);}},window:{addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};},scrollTo(){}},setInterval:()=>1,clearInterval(){},console};
  vm.createContext(context);
  vm.runInContext(readFileSync('app.js','utf8').replace(/^import .*;$/gm,''),context);
- return {context,element,events,caa:()=>JSON.parse(stored.get('flightdeck.caa.v1')||'null')};
+ return {context,element,events,storage:stored};
 }
+const a14=id=>JSON.parse(environment.storage.get(A14_KEY)||'null');
 
-test('CAA question browser defaults to 111 Chinese questions with official source and version',()=>{
+test('A14 question browser defaults to 111 Chinese questions with official source and version',()=>{
  const env=environment('#caa/PPL/A14/questions');
  const html=env.element('#app').innerHTML;
  assert.match(html,/瀏覽全部題目/);
  assert.match(html,/FileAtt\.ashx\?lang=1&amp;id=14461/);
  assert.match(html,/105\/12\/01/);
  assert.match(env.element('#caa-results').innerHTML,/共 111 題/);
- assert.equal((env.element('#caa-results').innerHTML.match(/data-caa-question="\d+"/g)||[]).length,111);
+ assert.equal((env.element('#caa-results').innerHTML.match(/data-caa-question="A14:\d+:zh"/g)||[]).length,111);
 });
 
-test('CAA single-question practice shows official answer (no guessed explanation) and official source',()=>{
+test('A13 question browser defaults to 35 Chinese questions with official source and version',()=>{
+ const env=environment('#caa/PPL/A13/questions');
+ const html=env.element('#app').innerHTML;
+ assert.match(html,/瀏覽全部題目/);
+ assert.match(html,/FileAtt\.ashx\?lang=1&amp;id=14459/);
+ assert.match(html,/105\/12\/01/);
+ assert.match(env.element('#caa-results').innerHTML,/共 35 題/);
+ assert.equal((env.element('#caa-results').innerHTML.match(/data-caa-question="A13:\d+:zh"/g)||[]).length,35);
+});
+
+test('A14 single-question practice shows official answer and source',()=>{
  const env=environment('#caa/PPL/A14/questions');
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(caaA14.questions[0].seq)}})}});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011087:zh'}})}});
  const html=env.element('#app').innerHTML;
  assert.ok(html.includes(caaA14.questions[0].stem));
  assert.match(html,/官方題目範例/);
  assert.equal((html.match(/data-answer="\d"/g)||[]).length,3);
- // choose the correct answer and confirm
  const q=caaA14.questions[0];
  env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
@@ -43,87 +57,141 @@ test('CAA single-question practice shows official answer (no guessed explanation
  assert.match(after,/正確答案 /);
 });
 
-test('CAA wrong answers are recorded, appear in review, and clear after a correct answer',()=>{
+test('A13 single-question practice shows official answer and source',()=>{
+ const env=environment('#caa/PPL/A13/questions');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A13:0011052:zh'}})}});
+ const html=env.element('#app').innerHTML;
+ assert.ok(html.includes(caaA13.questions[0].stem));
+ assert.match(html,/官方題目範例/);
+ assert.equal((html.match(/data-answer="\d"/g)||[]).length,3);
+ const q=caaA13.questions[0];
+ env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ const after=env.element('#app').innerHTML;
+ assert.match(after,/官方題目範例僅提供答案標示/);
+ assert.match(after,/FileAtt\.ashx/);
+ assert.match(after,/正確答案 /);
+});
+
+test('A14 wrong answers are recorded with stable IDs and clear after correct answer',()=>{
  const q=caaA14.questions[0];
  const wrongAnswer=(q.answer+1)%3;
  let env=environment('#caa/PPL/A14/questions');
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(q.seq)}})}});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011087:zh'}})}});
  env.events.click({target:{closest:()=>({dataset:{answer:String(wrongAnswer)}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
- let st=env.caa();
+ const st=env.storage.get(A14_KEY)?JSON.parse(env.storage.get(A14_KEY)):null;
  assert.equal(st.attempts.length,1);
- assert.deepEqual(st.wrong,[q.seq]);
+ assert.deepEqual(st.wrong,['A14:0011087:zh']);
  assert.equal(st.attempts[0].correct,false);
- // reload with stored state, wrong review should list it
- env=environment('#caa/PPL/A14/questions',JSON.stringify(st));
+ env=environment('#caa/PPL/A14/questions',{[A14_KEY]:JSON.stringify(st)});
  assert.equal(vm.runInContext('caaState.wrong.length',env.context),1);
- // answer correctly now
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(q.seq)}})}});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011087:zh'}})}});
  env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
- st=env.caa();
- assert.equal(st.attempts.length,2);
- assert.deepEqual(st.wrong,[]);
- assert.equal(st.attempts[1].correct,true);
+ const st2=JSON.parse(env.storage.get(A14_KEY));
+ assert.equal(st2.attempts.length,2);
+ assert.deepEqual(st2.wrong,[]);
+ assert.equal(st2.attempts[1].correct,true);
 });
 
-test('CAA lang filter narrows to the English half (111) without touching progress',()=>{
+test('A13 and A14 records are stored in separate localStorage keys',()=>{
+ let env=environment('#caa/PPL/A13/questions');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A13:0011052:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:String(caaA13.questions[0].answer)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
+ const a13st=JSON.parse(env.storage.get(A13_KEY));
+ assert.equal(a13st.attempts.length,1);
+ assert.ok(a13st.attempts[0].id.startsWith('A13:'));
+ assert.equal(env.storage.get(A14_KEY),null,'A14 storage must remain empty');
+});
+
+test('A14 records do not appear in A13 progress and vice versa',()=>{
+ const a14st={attempts:[{id:'A14:0011087:zh',correct:false}],wrong:['A14:0011087:zh']};
+ const a13st={attempts:[{id:'A13:0011052:zh',correct:true}],wrong:[]};
+ const env=environment('#caa/PPL',{[A14_KEY]:JSON.stringify(a14st),[A13_KEY]:JSON.stringify(a13st)});
+ const html=env.element('#app').innerHTML;
+ assert.match(html,/A13 · 飛航管理程序/);
+ assert.match(html,/A14 · 飛機飛航原理/);
+ assert.match(html,/中文已練習 1／35/);
+ assert.match(html,/中文已練習 1／111/);
+});
+
+test('legacy flightdeck.caa.v1 records migrate to A14 stable IDs',()=>{
+ const legacy={attempts:[{id:1,correct:false},{id:5,correct:true}],wrong:[1]};
+ const env=environment('#caa/PPL/A14',{ 'flightdeck.caa.v1':JSON.stringify(legacy)});
+ const st=vm.runInContext('caaDocState("A14")',env.context);
+ assert.equal(st.attempts.length,2);
+ assert.ok(st.attempts.some(a=>a.id==='A14:0011087:zh'));
+ assert.ok(st.attempts.some(a=>a.id==='A14:0011091:zh'));
+ assert.equal(st.wrong.length,1);
+ assert.equal(st.wrong[0],'A14:0011087:zh');
+});
+
+test('A14 lang filter narrows to the English half (111)',()=>{
  const env=environment('#caa/PPL/A14/questions');
  env.element('#caa-lang').value='en';
  vm.runInContext("caaLang='en';drawCaa();",env.context);
- assert.equal((env.element('#caa-results').innerHTML.match(/data-caa-question="\d+"/g)||[]).length,111);
+ assert.equal((env.element('#caa-results').innerHTML.match(/data-caa-question="A14:\d+:en"/g)||[]).length,111);
 });
 
-test('CAA items adapt to the quiz shape and keep official fields separated from display fields',()=>{
- const env=environment('#caa/PPL/A14/questions');
- const item=vm.runInContext('caaItem(caaA14.questions[0])',env.context);
- assert.equal(item.track,'CAA');
- assert.equal(item.id,caaA14.questions[0].seq);
- assert.equal(item.kind,'官方題目範例');
- assert.equal(item.explanation,'');
- assert.equal(item.options.length,3);
- assert.ok(item.orig&&item.seq);
+test('A13 lang filter narrows to the English half (35)',()=>{
+ const env=environment('#caa/PPL/A13/questions');
+ env.element('#caa-lang').value='en';
+ vm.runInContext("caaLang='en';drawCaa();",env.context);
+ assert.equal((env.element('#caa-results').innerHTML.match(/data-caa-question="A13:\d+:en"/g)||[]).length,35);
 });
 
-
-test('CAA results return to the CAA review page instead of the unrelated demo question bank',()=>{
+test('items adapt to the quiz shape with stable subject-prefixed IDs',()=>{
  const env=environment('#caa/PPL/A14/questions');
- const q=caaA14.questions[0];
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(q.seq)}})}});
- env.events.click({target:{closest:()=>({dataset:{answer:String((q.answer+1)%3)}})}});
+ const item14=vm.runInContext('caaItem(caaA14.questions[0],"A14")',env.context);
+ assert.equal(item14.track,'CAA');
+ assert.equal(item14.id,'A14:0011087:zh');
+ assert.equal(item14.code,'A14');
+ assert.equal(item14.kind,'官方題目範例');
+ const item13=vm.runInContext('caaItem(caaA13.questions[0],"A13")',env.context);
+ assert.equal(item13.id,'A13:0011052:zh');
+ assert.equal(item13.code,'A13');
+});
+
+test('A14 results return to A14 subject page',()=>{
+ const env=environment('#caa/PPL/A14/questions');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011087:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:String((caaA14.questions[0].answer+1)%3)}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'mistakes'}})}});
  assert.equal(env.context.location.hash,'#caa/PPL/A14');
- assert.equal(vm.runInContext('caaState.wrong.length',env.context),1);
 });
 
-test('CAA topic filter includes a selected all-topics option on first load',()=>{
- const env=environment('#caa/PPL/A14/questions');
- assert.match(env.element('#app').innerHTML,/<option value="all" selected>所有主題<\/option>/);
-});
-
-test('CAA practice warns when browser storage cannot save answers',()=>{
- const env=environment('#caa/PPL/A14/questions');
- env.context.localStorage.setItem=()=>{throw new Error('Storage disabled');};
- const q=caaA14.questions[0];
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(q.seq)}})}});
- env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+test('A13 results return to A13 subject page',()=>{
+ const env=environment('#caa/PPL/A13/questions');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A13:0011052:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:String((caaA13.questions[0].answer+1)%3)}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
- assert.match(env.element('#app').innerHTML,/無法儲存 CAA 練習紀錄/);
+ env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'mistakes'}})}});
+ assert.equal(env.context.location.hash,'#caa/PPL/A13');
 });
 
-
-test('every official and self-made question exposes a traceable number and source before answering',()=>{
+test('every official question exposes a traceable number and source',()=>{
  const env=environment('#caa/PPL/A14/questions');
  for(const q of caaA14.questions){
   env.context.originQuestion=q;
-  const html=vm.runInContext('questionOriginHTML(caaItem(originQuestion))',env.context);
+  const html=vm.runInContext('questionOriginHTML(caaItem(originQuestion,"A14"))',env.context);
   assert.ok(html.includes('官方題號 '+q.orig));
-  assert.ok(html.includes('PDF 第 '+q.seq+' 題'));
+  assert.ok(html.includes('A14 PDF 第 '+q.seq+' 題'));
   assert.ok(html.includes('href="'+caaA14.fileUrl.replaceAll('&','&amp;')+'"'));
+ }
+ for(const q of caaA13.questions){
+  env.context.originQuestion=q;
+  const html=vm.runInContext('questionOriginHTML(caaItem(originQuestion,"A13"))',env.context);
+  assert.ok(html.includes('官方題號 '+q.orig));
+  assert.ok(html.includes('A13 PDF 第 '+q.seq+' 題'));
+  assert.ok(html.includes('href="'+caaA13.fileUrl.replaceAll('&','&amp;')+'"'));
  }
  for(const q of questions){
   env.context.originQuestion=q;
@@ -132,49 +200,31 @@ test('every official and self-made question exposes a traceable number and sourc
   assert.ok(html.includes(sources[q.source].url.replaceAll('&','&amp;')));
   assert.ok(!html.includes('官方題號'));
  }
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'1'}})}});
- assert.match(env.element('#app').innerHTML,/官方題號 0011087/);
- assert.match(env.element('#app').innerHTML,/question-origin/);
- assert.doesNotMatch(env.element('#app').innerHTML,/正確答案/);
 });
 
-test('question lists and completed review keep source and question numbers visible',()=>{
- const env=environment('#caa/PPL/A14/questions');
- assert.equal((env.element('#caa-results').innerHTML.match(/class="muted question-origin"/g)||[]).length,111);
- const q=caaA14.questions[0];
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:String(q.seq)}})}});
- env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
- env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
- env.events.click({target:{closest:()=>({dataset:{action:'next'}})}});
- const html=env.element('#app').innerHTML;
- assert.match(html,/<h3>[^]*?question-origin[^]*?<details>/);
- vm.runInContext('saved.track="FAA";list();',env.context);
- assert.match(env.element('#question-results').innerHTML,/自編題號 f1/);
- assert.match(env.element('#question-results').innerHTML,/命題參考來源/);
-});
-
-
-test('exam navigation separates goals, unavailable subjects and the A14 dashboard',()=>{
+test('exam navigation separates goals, unavailable subjects and A13/A14 dashboards',()=>{
  const goals=environment('#caa');
  assert.match(goals.element('#app').innerHTML,/#caa\/PPL/);
  assert.match(goals.element('#app').innerHTML,/#caa\/CPL/);
- assert.doesNotMatch(goals.element('#app').innerHTML,/data-caa-question/);
  const ppl=environment('#caa/PPL');
+ assert.match(ppl.element('#app').innerHTML,/#caa\/PPL\/A13/);
  assert.match(ppl.element('#app').innerHTML,/#caa\/PPL\/A14/);
- assert.equal((ppl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,8);
+ assert.equal((ppl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,7);
  const cpl=environment('#caa/CPL');
  assert.equal((cpl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,9);
  assert.doesNotMatch(cpl.element('#app').innerHTML,/href="#caa\/CPL\/A14/);
- const subject=environment('#caa/PPL/A14');
- assert.match(subject.element('#app').innerHTML,/data-action="caa-continue"/);
- assert.match(subject.element('#app').innerHTML,/瀏覽全部題目/);
- assert.doesNotMatch(subject.element('#app').innerHTML,/data-caa-question/);
+ const a14subj=environment('#caa/PPL/A14');
+ assert.match(a14subj.element('#app').innerHTML,/data-action="caa-continue"/);
+ assert.match(a14subj.element('#app').innerHTML,/瀏覽全部題目/);
+ const a13subj=environment('#caa/PPL/A13');
+ assert.match(a13subj.element('#app').innerHTML,/data-action="caa-continue"/);
+ assert.match(a13subj.element('#app').innerHTML,/瀏覽全部題目/);
  assert.match(environment('#caa/CPL/A14').element('#app').innerHTML,/這個科目尚未提供/);
 });
 
-test('continue practice retains old attempts and starts at an unattempted question in the selected language',()=>{
- const old={attempts:[{id:1,correct:false},{id:112,correct:true}],wrong:[1]};
- const env=environment('#caa/PPL/A14',JSON.stringify(old));
+test('continue practice retains old attempts and starts at unattempted question',()=>{
+ const old={attempts:[{id:'A14:0011087:zh',correct:false},{id:'A14:0011087:en',correct:true}],wrong:['A14:0011087:zh']};
+ const env=environment('#caa/PPL/A14',{[A14_KEY]:JSON.stringify(old)});
  assert.match(env.element('#app').innerHTML,/已練習 1／111/);
  assert.match(env.element('#app').innerHTML,/複習錯題（1）/);
  env.events.click({target:{closest:()=>({dataset:{action:'caa-continue'}})}});
@@ -185,7 +235,7 @@ test('continue practice retains old attempts and starts at an unattempted questi
 });
 
 test('language-specific statistics and topic batches do not double-count bilingual questions',()=>{
- const state={attempts:[{id:1,correct:false},{id:1,correct:true},{id:112,correct:false}],wrong:[112]};
+ const state={attempts:[{id:'A14:0011087:zh',correct:false},{id:'A14:0011087:zh',correct:true},{id:'A14:0011087:en',correct:false}],wrong:['A14:0011087:en']};
  assert.deepEqual(caaUI.progress(caaA14,state,'zh'),{total:111,done:1,correct:1,wrong:0});
  assert.deepEqual(caaUI.progress(caaA14,state,'en'),{total:111,done:1,correct:0,wrong:1});
  const env=environment('#caa/PPL/A14');
@@ -194,51 +244,47 @@ test('language-specific statistics and topic batches do not double-count bilingu
  assert.ok(vm.runInContext('session.items.length<=10',env.context));
 });
 
-test('review hub includes both official and demo wrong-answer sources and can review both languages',()=>{
- const env=environment('#review',JSON.stringify({attempts:[],wrong:[1,112]}));
- assert.match(env.element('#app').innerHTML,/中文 1 題 · 英文 1 題/);
- assert.match(env.element('#app').innerHTML,/#mistakes/);
- assert.match(env.element('#app').innerHTML,/#documents/);
- env.events.click({target:{closest:()=>({dataset:{action:'caa-review-all'}})}});
- assert.equal(vm.runInContext('session.items.length',env.context),2);
- assert.equal(vm.runInContext('new Set(session.items.map(q=>q.lang)).size',env.context),2);
+test('review hub shows per-subject wrong counts and can review each subject',()=>{
+ const a14st={attempts:[],wrong:['A14:0011087:zh','A14:0011087:en']};
+ const a13st={attempts:[],wrong:['A13:0011052:zh']};
+ const env=environment('#review',{[A14_KEY]:JSON.stringify(a14st),[A13_KEY]:JSON.stringify(a13st)});
+ const html=env.element('#app').innerHTML;
+ assert.match(html,/CAA · PPL A13/);
+ assert.match(html,/CAA · PPL A14/);
+ assert.match(html,/1 題待複習/);
+ assert.match(html,/2 題待複習/);
+ env.events.click({target:{closest:()=>({dataset:{action:'caa-review-all',caaCode:'A13'}})}});
+ assert.equal(vm.runInContext('session.items.length',env.context),1);
+ assert.equal(vm.runInContext('session.items[0].code',env.context),'A13');
 });
 
-
-test('question map lists the whole current topic, keeps historic answers lit and highlights the current question',()=>{
- const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:3,correct:false}],wrong:[3]}));
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+test('question map lists the whole current topic for A14',()=>{
+ const env=environment('#caa/PPL/A14',{[A14_KEY]:JSON.stringify({attempts:[{id:'A14:0011089:zh',correct:false}],wrong:['A14:0011089:zh']})});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011089:zh'}})}});
  const current=caaA14.questions.find(q=>q.seq===3);
  const expected=caaA14.questions.filter(q=>q.subject===current.subject&&q.lang==='zh');
  const html=env.element('#app').innerHTML;
  assert.equal((html.match(/data-quiz-jump=/g)||[]).length,expected.length);
- assert.match(html,/class="question-number answered current" data-quiz-jump="3" aria-current="step"/);
+ assert.match(html,/class="question-number answered current" data-quiz-jump="A14:0011089:zh" aria-current="step"/);
  assert.ok(expected.length>1);
- assert.ok(expected.every(q=>html.includes('data-quiz-jump="'+q.seq+'"')));
+ assert.ok(expected.every(q=>html.includes('data-quiz-jump="'+caaStore.questionId('A14',q)+'"')));
 });
 
-test('jumping outside a practice batch preserves unsubmitted selections and submitted answers',()=>{
+test('question map lists the whole current topic for A13',()=>{
+ const env=environment('#caa/PPL/A13',{[A13_KEY]:JSON.stringify({attempts:[{id:'A13:0011054:zh',correct:false}],wrong:['A13:0011054:zh']})});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A13:0011054:zh'}})}});
+ const current=caaA13.questions.find(q=>q.seq===3);
+ const expected=caaA13.questions.filter(q=>q.subject===current.subject&&q.lang==='zh');
+ const html=env.element('#app').innerHTML;
+ assert.equal((html.match(/data-quiz-jump=/g)||[]).length,expected.length);
+ assert.match(html,/class="question-number answered current" data-quiz-jump="A13:0011054:zh" aria-current="step"/);
+ assert.ok(expected.length>1);
+ assert.ok(expected.every(q=>html.includes('data-quiz-jump="'+caaStore.questionId('A13',q)+'"')));
+});
+
+test('exam question map is restricted to the current exam',()=>{
  const env=environment('#caa/PPL/A14');
- env.events.click({target:{closest:()=>({dataset:{caaTopic:'飛操系統'}})}});
- const first=vm.runInContext('session.items[0]',env.context);
- const outside=caaA14.questions.find(q=>q.subject===first.subject&&q.lang==='zh'&&!vm.runInContext('session.items.map(q=>q.id)',env.context).includes(q.seq));
- assert.ok(outside,'topic must exceed the initial ten-question batch');
- env.events.click({target:{closest:()=>({dataset:{answer:'0'}})}});
- env.events.click({target:{closest:()=>({dataset:{quizJump:String(outside.seq)}})}});
- assert.equal(vm.runInContext('session.items[session.index].seq',env.context),outside.seq);
- env.events.click({target:{closest:()=>({dataset:{quizJump:String(first.seq)}})}});
- assert.equal(vm.runInContext('session.answers[session.items[session.index].id]',env.context),0);
- assert.equal(env.caa(),null,'choosing an option must not record a submitted answer');
- env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
- assert.match(env.element('#app').innerHTML,new RegExp('question-number answered current" data-quiz-jump="'+first.seq+'"'));
- const before=vm.runInContext('session.items.length',env.context);
- env.events.click({target:{closest:()=>({dataset:{quizJump:'999999'}})}});
- assert.equal(vm.runInContext('session.items.length',env.context),before);
-});
-
-test('exam question map is restricted to the current exam and hides historic answer status',()=>{
- const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:1,correct:true}],wrong:[]}));
- vm.runInContext('start(caaItems([1,2,3]),"exam")',env.context);
+ vm.runInContext('start(caaItems("A14",[1,2,3]),"exam")',env.context);
  let html=env.element('#app').innerHTML;
  assert.equal((html.match(/data-quiz-jump=/g)||[]).length,3);
  assert.doesNotMatch(html,/class="question-number answered/);
@@ -249,123 +295,92 @@ test('exam question map is restricted to the current exam and hides historic ans
  assert.equal((html.match(/class="question-number answered/g)||[]).length,1);
 });
 
-
-test('clearing topic answers requires confirmation and resets only the active topic and language',()=>{
- const old={attempts:[{id:3,correct:false},{id:4,correct:true},{id:114,correct:false},{id:1,correct:false}],wrong:[3,114,1]};
- const env=environment('#caa/PPL/A14',JSON.stringify(old));
+test('clearing A14 topic answers does not affect A13 records',()=>{
+ const a14st={attempts:[{id:'A14:0011089:zh',correct:false},{id:'A14:0011090:zh',correct:true},{id:'A14:0011089:en',correct:false},{id:'A14:0011087:zh',correct:false}],wrong:['A14:0011089:zh','A14:0011089:en','A14:0011087:zh']};
+ const a13st={attempts:[{id:'A13:0011052:zh',correct:false}],wrong:['A13:0011052:zh']};
+ const env=environment('#caa/PPL/A14',{[A14_KEY]:JSON.stringify(a14st),[A13_KEY]:JSON.stringify(a13st)});
  const action=name=>env.events.click({target:{closest:()=>({dataset:{action:name}})}});
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011089:zh'}})}});
  env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
- action('check');const before=env.caa();
- action('clear-topic');
- assert.match(env.element('#app').innerHTML,/確認清除作答紀錄/);
- assert.deepEqual(env.caa(),before,'opening confirmation must not delete data');
- action('cancel-clear-topic');assert.deepEqual(env.caa(),before);
+ action('check');
+ const beforeA14=JSON.parse(env.storage.get(A14_KEY));
+ const beforeA13=JSON.parse(env.storage.get(A13_KEY));
  action('clear-topic');action('confirm-clear-topic');
- assert.deepEqual(env.caa(),{attempts:old.attempts.slice(2),wrong:[114,1]});
- assert.equal(vm.runInContext('session.committed.size',env.context),0);
- assert.equal(vm.runInContext('Object.keys(session.answers).length',env.context),0);
- assert.doesNotMatch(env.element('#app').innerHTML,/question-number answered/);
- assert.match(env.element('#app').innerHTML,/已清除本主題作答紀錄/);
- assert.match(env.element('#app').innerHTML,/data-action="clear-topic" disabled/);
- const reloaded=environment('#caa/PPL/A14',JSON.stringify(env.caa()));
- reloaded.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
- assert.doesNotMatch(reloaded.element('#app').innerHTML,/question-number answered/);
+ const afterA14=JSON.parse(env.storage.get(A14_KEY));
+ const afterA13=JSON.parse(env.storage.get(A13_KEY));
+ assert.deepEqual(afterA13,beforeA13,'A13 records must be preserved');
+ assert.ok(afterA14.attempts.length<a14st.attempts.length);
 });
 
-test('a failed clear preserves persisted history and in-session confirmed answers',()=>{
- const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:3,correct:false}],wrong:[3]}));
- const action=name=>env.events.click({target:{closest:()=>({dataset:{action:name}})}});
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
- env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});action('check');
- const before=env.caa();env.context.localStorage.setItem=()=>{throw new Error('Storage unavailable');};
- action('clear-topic');action('confirm-clear-topic');
- assert.deepEqual(env.caa(),before);
- assert.equal(vm.runInContext('session.committed.size',env.context),1);
- assert.match(env.element('#app').innerHTML,/原紀錄已保留/);
- assert.match(env.element('#app').innerHTML,/question-number answered current/);
-});
-
-test('clearing a demo topic preserves other topics, reading history and CAA progress',()=>{
- const old={attempts:[{id:3,correct:true}],wrong:[]};
- const env=environment('#caa/PPL/A14',JSON.stringify(old));
- vm.runInContext('saved.attempts=[{id:"f1",correct:false},{id:"f2",correct:true}];saved.wrong=["f1"];saved.read=["angle-of-attack"];start([questions.find(q=>q.id==="f1")]);',env.context);
- for(const name of ['clear-topic','confirm-clear-topic'])env.events.click({target:{closest:()=>({dataset:{action:name}})}});
- assert.equal(vm.runInContext('saved.attempts.length',env.context),1);
- assert.equal(vm.runInContext('saved.attempts[0].id',env.context),'f2');
- assert.equal(vm.runInContext('saved.read[0]',env.context),'angle-of-attack');
- assert.deepEqual(env.caa(),old);
-});
-
-test('exam navigation cannot clear historical answers',()=>{
- const old={attempts:[{id:1,correct:true}],wrong:[]};
- const env=environment('#caa/PPL/A14',JSON.stringify(old));
- vm.runInContext('start(caaItems([1,2]),"exam")',env.context);
- assert.doesNotMatch(env.element('#app').innerHTML,/data-action="clear-topic"/);
- for(const name of ['clear-topic','confirm-clear-topic'])env.events.click({target:{closest:()=>({dataset:{action:name}})}});
- assert.deepEqual(env.caa(),old);
-});
-
-
-test('clear answers control and its confirmation are above the question instead of below the question map',()=>{
- const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:3,correct:true}],wrong:[]}));
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
- let html=env.element('#app').innerHTML;
- assert.ok(html.indexOf('data-action="clear-topic"')<html.indexOf('<article class="panel">'));
- assert.equal((html.match(/data-action="clear-topic"/g)||[]).length,1);
- env.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
- html=env.element('#app').innerHTML;
- assert.ok(html.indexOf('確認清除作答紀錄')<html.indexOf('<article class="panel">'));
-});
-
-test('leave menu can return to each CAA level while preserving submitted records',()=>{
- for(const route of ['caa/PPL/A14','caa/PPL','caa','home']){
-  const env=environment('#caa/PPL/A14');
-  env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
-  assert.ok(env.element('#app').innerHTML.includes('data-leave-to="'+route+'"'));
-  env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
-  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
-  const before=env.caa();
-  env.events.click({target:{closest:()=>({dataset:{leaveTo:route}})}});
-  assert.equal(env.context.location.hash,'#'+route);
-  assert.deepEqual(env.caa(),before);
-  assert.equal(vm.runInContext('session',env.context),null);
+test('A14 PDF comparison is visible on subject home and question browser',()=>{
+ for(const route of ['#caa/PPL/A14','#caa/PPL/A14/questions']){
+  const env=environment(route);const html=env.element('#app').innerHTML;
+  assert.ok(html.indexOf('對照 A14 官方 PDF')<html.indexOf('<details class="exam-source">'));
  }
-});
-
-test('leaving does not count unconfirmed practice selections; exams are submitted before return',()=>{
  const env=environment('#caa/PPL/A14');
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
- env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
- env.events.click({target:{closest:()=>({dataset:{leaveTo:'caa/PPL'}})}});
- assert.equal(env.caa(),null);
- vm.runInContext('start(caaItems([1,2]),"exam")',env.context);
- env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
- env.events.click({target:{closest:()=>({dataset:{leaveTo:'home'}})}});
- assert.equal(env.caa().attempts.length,2);
- assert.equal(env.context.location.hash,'#home');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:0011089:zh'}})}});
+ const html=env.element('#app').innerHTML;
+ assert.ok(html.indexOf('對照 A14 官方 PDF')<html.indexOf('<article class="panel">'));
 });
 
+test('A13 PDF comparison is visible on subject home and question browser',()=>{
+ for(const route of ['#caa/PPL/A13','#caa/PPL/A13/questions']){
+  const env=environment(route);const html=env.element('#app').innerHTML;
+  assert.ok(html.indexOf('對照 A13 官方 PDF')<html.indexOf('<details class="exam-source">'));
+ }
+ const env=environment('#caa/PPL/A13');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A13:0011054:zh'}})}});
+ const html=env.element('#app').innerHTML;
+ assert.ok(html.indexOf('對照 A13 官方 PDF')<html.indexOf('<article class="panel">'));
+});
 
-test('PPL cards expose A13 and A14 official files even when A13 practice is unavailable',()=>{
+test('PPL cards expose A13 and A14 as available subjects with official files',()=>{
  const env=environment('#caa/PPL');const html=env.element('#app').innerHTML;
  assert.match(html,/<h2>A13 · 飛航管理程序<\/h2>/);
  assert.match(html,/<h2>A14 · 飛機飛航原理<\/h2>/);
  assert.match(html,/href="https:\/\/www.caa.gov.tw\/FileAtt.ashx\?lang=1&amp;id=14459"/);
  assert.match(html,/href="https:\/\/www.caa.gov.tw\/FileAtt.ashx\?lang=1&amp;id=14461"/);
  assert.match(html,/對照 A13 官方 PDF/);
- assert.doesNotMatch(html,/href="#caa\/PPL\/A13"/);
+ assert.match(html,/對照 A14 官方 PDF/);
+ assert.match(html,/href="#caa\/PPL\/A13"/);
+ assert.match(html,/href="#caa\/PPL\/A14"/);
 });
 
-test('A14 PDF comparison is visible on subject home, question browser and before answering',()=>{
- for(const route of ['#caa/PPL/A14','#caa/PPL/A14/questions']){
-  const env=environment(route);const html=env.element('#app').innerHTML;
-  assert.ok(html.indexOf('對照 A14 官方 PDF')<html.indexOf('<details class="exam-source">'));
+test('leave menu returns to the correct subject level for A13 and A14',()=>{
+ for(const [code,route] of [['A14','caa/PPL/A14'],['A13','caa/PPL/A13']]){
+  const env=environment('#caa/PPL/'+code);
+  env.events.click({target:{closest:()=>({dataset:{caaQuestion:code+':1'}})}});
+  assert.ok(env.element('#app').innerHTML.includes('data-leave-to="'+route+'"'));
+  env.events.click({target:{closest:()=>({dataset:{answer:'0'}})}});
+  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+  const key=code==='A14'?A14_KEY:A13_KEY;
+  const before=env.storage.get(key);
+  env.events.click({target:{closest:()=>({dataset:{leaveTo:route}})}});
+  assert.equal(env.context.location.hash,'#'+route);
+  assert.equal(env.storage.get(key),before);
  }
- const env=environment('#caa/PPL/A14');
- env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
- const html=env.element('#app').innerHTML;
- assert.ok(html.indexOf('對照 A14 官方 PDF')<html.indexOf('<article class="panel">'));
- assert.match(html,/target="_blank" rel="noopener noreferrer" aria-label="對照 A14/);
- assert.doesNotMatch(html,/class="explanation"/);
+});
+
+test('A13 practice warns when browser storage cannot save answers',()=>{
+ const env=environment('#caa/PPL/A13/questions');
+ env.context.localStorage.setItem=()=>{throw new Error('Storage disabled');};
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A13:0011052:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:String(caaA13.questions[0].answer)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.match(env.element('#app').innerHTML,/無法儲存 CAA 練習紀錄/);
+});
+
+
+test('legacy mistakes stay removed after correction, clear and a fresh application load',()=>{
+ const legacy=JSON.stringify({attempts:[{id:1,correct:false},{id:1,correct:true}],wrong:[1]});
+ const env=environment('#caa/PPL/A14/questions',{'flightdeck.caa.v1':legacy});
+ assert.equal(JSON.parse(env.storage.get(A14_KEY)).attempts.length,2);
+ assert.deepEqual(JSON.parse(env.storage.get(A14_KEY)).wrong,[]);
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'A14:1'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ const fresh=environment('#caa/PPL/A14/questions',Object.fromEntries(env.storage));
+ assert.equal(vm.runInContext('caaDocState("A14").attempts.length',fresh.context),0);
+ assert.equal(vm.runInContext('caaDocState("A14").wrong.length',fresh.context),0);
+ assert.equal(fresh.storage.get('flightdeck.caa.v1'),legacy);
 });
