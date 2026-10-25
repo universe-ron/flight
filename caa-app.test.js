@@ -248,3 +248,60 @@ test('exam question map is restricted to the current exam and hides historic ans
  assert.match(html,new RegExp('class="question-number answered current" data-quiz-jump="'+firstId+'"'));
  assert.equal((html.match(/class="question-number answered/g)||[]).length,1);
 });
+
+
+test('clearing topic answers requires confirmation and resets only the active topic and language',()=>{
+ const old={attempts:[{id:3,correct:false},{id:4,correct:true},{id:114,correct:false},{id:1,correct:false}],wrong:[3,114,1]};
+ const env=environment('#caa/PPL/A14',JSON.stringify(old));
+ const action=name=>env.events.click({target:{closest:()=>({dataset:{action:name}})}});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});
+ action('check');const before=env.caa();
+ action('clear-topic');
+ assert.match(env.element('#app').innerHTML,/確認清除作答紀錄/);
+ assert.deepEqual(env.caa(),before,'opening confirmation must not delete data');
+ action('cancel-clear-topic');assert.deepEqual(env.caa(),before);
+ action('clear-topic');action('confirm-clear-topic');
+ assert.deepEqual(env.caa(),{attempts:old.attempts.slice(2),wrong:[114,1]});
+ assert.equal(vm.runInContext('session.committed.size',env.context),0);
+ assert.equal(vm.runInContext('Object.keys(session.answers).length',env.context),0);
+ assert.doesNotMatch(env.element('#app').innerHTML,/question-number answered/);
+ assert.match(env.element('#app').innerHTML,/已清除本主題作答紀錄/);
+ assert.match(env.element('#app').innerHTML,/data-action="clear-topic" disabled/);
+ const reloaded=environment('#caa/PPL/A14',JSON.stringify(env.caa()));
+ reloaded.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ assert.doesNotMatch(reloaded.element('#app').innerHTML,/question-number answered/);
+});
+
+test('a failed clear preserves persisted history and in-session confirmed answers',()=>{
+ const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:3,correct:false}],wrong:[3]}));
+ const action=name=>env.events.click({target:{closest:()=>({dataset:{action:name}})}});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ env.events.click({target:{closest:()=>({dataset:{answer:'2'}})}});action('check');
+ const before=env.caa();env.context.localStorage.setItem=()=>{throw new Error('Storage unavailable');};
+ action('clear-topic');action('confirm-clear-topic');
+ assert.deepEqual(env.caa(),before);
+ assert.equal(vm.runInContext('session.committed.size',env.context),1);
+ assert.match(env.element('#app').innerHTML,/原紀錄已保留/);
+ assert.match(env.element('#app').innerHTML,/question-number answered current/);
+});
+
+test('clearing a demo topic preserves other topics, reading history and CAA progress',()=>{
+ const old={attempts:[{id:3,correct:true}],wrong:[]};
+ const env=environment('#caa/PPL/A14',JSON.stringify(old));
+ vm.runInContext('saved.attempts=[{id:"f1",correct:false},{id:"f2",correct:true}];saved.wrong=["f1"];saved.read=["angle-of-attack"];start([questions.find(q=>q.id==="f1")]);',env.context);
+ for(const name of ['clear-topic','confirm-clear-topic'])env.events.click({target:{closest:()=>({dataset:{action:name}})}});
+ assert.equal(vm.runInContext('saved.attempts.length',env.context),1);
+ assert.equal(vm.runInContext('saved.attempts[0].id',env.context),'f2');
+ assert.equal(vm.runInContext('saved.read[0]',env.context),'angle-of-attack');
+ assert.deepEqual(env.caa(),old);
+});
+
+test('exam navigation cannot clear historical answers',()=>{
+ const old={attempts:[{id:1,correct:true}],wrong:[]};
+ const env=environment('#caa/PPL/A14',JSON.stringify(old));
+ vm.runInContext('start(caaItems([1,2]),"exam")',env.context);
+ assert.doesNotMatch(env.element('#app').innerHTML,/data-action="clear-topic"/);
+ for(const name of ['clear-topic','confirm-clear-topic'])env.events.click({target:{closest:()=>({dataset:{action:name}})}});
+ assert.deepEqual(env.caa(),old);
+});
