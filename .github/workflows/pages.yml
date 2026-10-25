@@ -24,11 +24,12 @@ jobs:
           node --check phak-summary.js
           for file in phak-ch*.js; do node --check "$file"; done
           node --check caa.js
+          node --check caa-ui.js
           npm test
       - name: Prepare public website files
         run: |
           mkdir -p _site
-          cp index.html style.css app.js data.js lessons.js study.js study-core.js phak.js phak-summary.js phak-ch*.js caa.js _site/
+          cp index.html style.css app.js data.js lessons.js study.js study-core.js phak.js phak-summary.js phak-ch*.js caa.js caa-ui.js _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:
