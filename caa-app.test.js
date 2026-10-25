@@ -203,3 +203,46 @@ test('review hub includes both official and demo wrong-answer sources and can re
  assert.equal(vm.runInContext('session.items.length',env.context),2);
  assert.equal(vm.runInContext('new Set(session.items.map(q=>q.lang)).size',env.context),2);
 });
+
+
+test('question map lists the whole current topic, keeps historic answers lit and highlights the current question',()=>{
+ const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:3,correct:false}],wrong:[3]}));
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'3'}})}});
+ const current=caaA14.questions.find(q=>q.seq===3);
+ const expected=caaA14.questions.filter(q=>q.subject===current.subject&&q.lang==='zh');
+ const html=env.element('#app').innerHTML;
+ assert.equal((html.match(/data-quiz-jump=/g)||[]).length,expected.length);
+ assert.match(html,/class="question-number answered current" data-quiz-jump="3" aria-current="step"/);
+ assert.ok(expected.length>1);
+ assert.ok(expected.every(q=>html.includes('data-quiz-jump="'+q.seq+'"')));
+});
+
+test('jumping outside a practice batch preserves unsubmitted selections and submitted answers',()=>{
+ const env=environment('#caa/PPL/A14');
+ env.events.click({target:{closest:()=>({dataset:{caaTopic:'飛操系統'}})}});
+ const first=vm.runInContext('session.items[0]',env.context);
+ const outside=caaA14.questions.find(q=>q.subject===first.subject&&q.lang==='zh'&&!vm.runInContext('session.items.map(q=>q.id)',env.context).includes(q.seq));
+ assert.ok(outside,'topic must exceed the initial ten-question batch');
+ env.events.click({target:{closest:()=>({dataset:{answer:'0'}})}});
+ env.events.click({target:{closest:()=>({dataset:{quizJump:String(outside.seq)}})}});
+ assert.equal(vm.runInContext('session.items[session.index].seq',env.context),outside.seq);
+ env.events.click({target:{closest:()=>({dataset:{quizJump:String(first.seq)}})}});
+ assert.equal(vm.runInContext('session.answers[session.items[session.index].id]',env.context),0);
+ assert.equal(env.caa(),null,'choosing an option must not record a submitted answer');
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.match(env.element('#app').innerHTML,new RegExp('question-number answered current" data-quiz-jump="'+first.seq+'"'));
+ const before=vm.runInContext('session.items.length',env.context);
+ env.events.click({target:{closest:()=>({dataset:{quizJump:'999999'}})}});
+ assert.equal(vm.runInContext('session.items.length',env.context),before);
+});
+
+test('exam question map is restricted to the current exam and hides historic answer status',()=>{
+ const env=environment('#caa/PPL/A14',JSON.stringify({attempts:[{id:1,correct:true}],wrong:[]}));
+ vm.runInContext('start(caaItems([1,2,3]),"exam")',env.context);
+ let html=env.element('#app').innerHTML;
+ assert.equal((html.match(/data-quiz-jump=/g)||[]).length,3);
+ assert.doesNotMatch(html,/class="question-number answered/);
+ env.events.click({target:{closest:()=>({dataset:{answer:'1'}})}});
+ html=env.element('#app').innerHTML;
+ assert.match(html,/class="question-number answered current" data-quiz-jump="1"/);
+});
