@@ -1,3 +1,4 @@
+import {caaCplDocuments} from './caa-cpl.js';
 import * as caaStore from './caa-state.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,6 +8,7 @@ import {tracks,sources,questions,pool,score} from './data.js';
 import {caaA13,caaA14,caaDocuments} from './caa.js';
 import * as caaUI from './caa-ui.js';
 
+const caaExamDocuments=[...caaDocuments,...caaCplDocuments];
 const A14_KEY='flightdeck.caa.a14.v2';
 const A13_KEY='flightdeck.caa.a13.v2';
 
@@ -14,7 +16,7 @@ function environment(hash,storage={}){
  const elements=new Map(),events={};
  const element=id=>{if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',value:'',validity:{valid:true},addEventListener:(type,fn)=>{const key='app:'+type,previous=events[key];events[key]=event=>{previous?.(event);fn(event);};},insertAdjacentHTML(){}});return elements.get(id);};
  const stored=new Map([['flightdeck.v1',null],['flightdeck.study.v1',null],['flightdeck.caa.v1',null],[A13_KEY,null],[A14_KEY,null],...Object.entries(storage)]);
- const context={studyDocuments:[],cleanStudyState:v=>({read:[],answers:{},notes:{}}),chapterProgress:()=>({read:false,answered:false,correct:false,complete:false}),lessons:[],annexes:[],tracks,sources,questions,pool,score,caaA13,caaA14,caaDocuments,caaUI,caaStore,document:{querySelector:element,querySelectorAll:()=>[],addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};}},location:{hash},localStorage:{getItem:key=>stored.get(key)??null,setItem:(key,value)=>{stored.set(key,value);}},window:{addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};},scrollTo(){}},setInterval:()=>1,clearInterval(){},console};
+ const context={studyDocuments:[],cleanStudyState:v=>({read:[],answers:{},notes:{}}),chapterProgress:()=>({read:false,answered:false,correct:false,complete:false}),lessons:[],annexes:[],tracks,sources,questions,pool,score,caaA13,caaA14,caaDocuments:caaExamDocuments,caaUI,caaStore,document:{querySelector:element,querySelectorAll:()=>[],addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};}},location:{hash},localStorage:{getItem:key=>stored.get(key)??null,setItem:(key,value)=>{stored.set(key,value);}},window:{addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};},scrollTo(){}},setInterval:()=>1,clearInterval(){},console};
  vm.createContext(context);
  vm.runInContext(readFileSync('app.js','utf8').replace(/^import .*;$/gm,''),context);
  return {context,element,events,storage:stored};
@@ -211,8 +213,8 @@ test('exam navigation separates goals, unavailable subjects and A13/A14 dashboar
  assert.match(ppl.element('#app').innerHTML,/#caa\/PPL\/A14/);
  assert.equal((ppl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,0);
  const cpl=environment('#caa/CPL');
- assert.equal((cpl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,9);
- assert.doesNotMatch(cpl.element('#app').innerHTML,/FileAtt\.ashx/);
+ assert.equal((cpl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,0);
+ assert.match(cpl.element('#app').innerHTML,/FileAtt\.ashx/);
  assert.doesNotMatch(cpl.element('#app').innerHTML,/href="#caa\/CPL\/A14/);
  const a14subj=environment('#caa/PPL/A14');
  assert.match(a14subj.element('#app').innerHTML,/data-action="caa-continue"/);
@@ -417,4 +419,36 @@ test('incomplete B01 English item is visible with official ID and cannot enter a
  assert.equal(vm.runInContext('session',env.context),null);
  vm.runInContext('caaBatch()',env.context);
  assert.ok(vm.runInContext('session.items.every(q=>q.id!=="B01:0068367:en")',env.context));
+});
+
+for(const doc of caaCplDocuments)test(`${doc.key} routes, source, history and clear stay inside CPL`,()=>{
+ const q=doc.questions[0],key=doc.key,id=caaStore.questionId(key,q);
+ const old=JSON.stringify({attempts:[{id:'B01:0068115:zh',correct:false}],wrong:['B01:0068115:zh']});
+ const env=environment('#caa/CPL/'+doc.subject+'/questions',{[caaStore.storageKey('B01')]:old});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ let html=env.element('#app').innerHTML;
+ assert.ok(html.includes(doc.fileUrl.replaceAll('&','&amp;')));assert.ok(html.includes(q.orig));
+ assert.ok(html.includes('data-leave-to="caa/CPL/'+doc.subject+'"'));assert.ok(html.includes('data-leave-to="caa/CPL"'));
+ assert.ok(!html.includes('data-leave-to="caa/PPL'));
+ env.events.click({target:{closest:()=>({dataset:{answer:String((q.answer+1)%q.options.length)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(env.storage.get(caaStore.storageKey(key))).wrong,[id]);
+ const review=environment('#review',Object.fromEntries(env.storage));
+ review.events.click({target:{closest:()=>({dataset:{action:'caa-review-all',caaCode:key}})}});
+ assert.ok(review.element('#app').innerHTML.includes(q.orig));
+ review.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))).wrong,[]);
+ review.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))),{attempts:[],wrong:[]});
+ assert.equal(review.storage.get(caaStore.storageKey('B01')),old);
+ review.events.click({target:{closest:()=>({dataset:{leaveTo:'caa/CPL/'+doc.subject}})}});
+ assert.equal(review.context.location.hash,'#caa/CPL/'+doc.subject);
+});
+test('CPL B01 incomplete official item is visible but cannot enter practice',()=>{
+ const env=environment('#caa/CPL/B01/questions');vm.runInContext("caaLang='en';drawCaa();",env.context);
+ assert.match(env.element('#caa-results').innerHTML,/data-caa-question="CPL-B01:0068367:en" disabled/);
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'CPL-B01:0068367:en'}})}});
+ assert.equal(vm.runInContext('session',env.context),null);
 });

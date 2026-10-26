@@ -1,0 +1,213 @@
+{
+  "A21": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=27207",
+    "fileVersion": "110/12/27 更新（2021/12/27）",
+    "pdfSha256": "eea53f43edabdf51c18350ac607e5600a260b1d1cc2a1c4857e392729af70fd6",
+    "records": 442,
+    "playable": 442,
+    "zh": 221,
+    "en": 221,
+    "figureOccurrences": 180,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [],
+    "questionsSha256": "61f4f8b49f1df8490c3fd10eb241bc6e1b8d8876dd21439d6ac87bd352da1780"
+  },
+  "A22": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=27209",
+    "fileVersion": "110/12/27 更新（2021/12/27）",
+    "pdfSha256": "cfa902017b57984d066c85daf9a99ed34ee97c8c0fdb485ab981c4016530c534",
+    "records": 480,
+    "playable": 480,
+    "zh": 240,
+    "en": 240,
+    "figureOccurrences": 28,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [
+      {
+        "orig": "0011778",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      },
+      {
+        "orig": "0011793",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      },
+      {
+        "orig": "0011728",
+        "lang": "en",
+        "note": "對照原始 PDF 畫面及第二解析器，移除抽字多出的私用區字元。"
+      },
+      {
+        "orig": "0011730",
+        "lang": "en",
+        "note": "對照原始 PDF 畫面，移除不可見的私用區字元。"
+      }
+    ],
+    "questionsSha256": "54c3722677e557d562651eafafc1e6d8137daf332a6c2b6fa243d745021d1bae"
+  },
+  "A23": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=14396",
+    "fileVersion": "107/02/08 更新（2018/02/08）",
+    "pdfSha256": "f3318de27215cc489b4dfead98471a9373ca9ba2aadf062403486ff0c259cc66",
+    "records": 376,
+    "playable": 376,
+    "zh": 188,
+    "en": 188,
+    "figureOccurrences": 10,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [
+      {
+        "orig": "0012019",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      }
+    ],
+    "questionsSha256": "065645708290135e513167f46268a2641ac4edfe5d32a11be00fdcf39b30f84d"
+  },
+  "A24": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=14399",
+    "fileVersion": "105/12/01 更新（2016/12/01）",
+    "pdfSha256": "928c5d8ca6965c3d1e206958a990570d97d291325fc17b86006762de5ed06dd1",
+    "records": 296,
+    "playable": 296,
+    "zh": 148,
+    "en": 148,
+    "figureOccurrences": 74,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [
+      {
+        "orig": "0012088",
+        "lang": "zh",
+        "note": "對照原始 PDF 畫面及第二解析器，移除抽字多出的右括號。"
+      },
+      {
+        "orig": "0012177",
+        "lang": "zh",
+        "note": "對照原始 PDF 畫面及第二解析器，移除抽字多出的右括號。"
+      },
+      {
+        "orig": "0012109",
+        "lang": "en",
+        "note": "對照原始 PDF 畫面及第二解析器，移除抽字多出的逗號。"
+      }
+    ],
+    "questionsSha256": "a6fa3686c81e85730f60297222d71d7da060da9c007699c4f18b83d58aeeef56"
+  },
+  "A25": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=14400",
+    "fileVersion": "107/06/11 更新（2018/06/11）",
+    "pdfSha256": "9bf919dca74a50fe0e57d5302a35ea04f0173b93f1c1b4b7f3f39d7ca7984e2b",
+    "records": 382,
+    "playable": 382,
+    "zh": 191,
+    "en": 191,
+    "figureOccurrences": 0,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [],
+    "questionsSha256": "1d431a6ec2f0dc6ff0d8cc27ba7881c801b1a466df8af29807a6595f8a31f159"
+  },
+  "A26": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=20233",
+    "fileVersion": "108/11/18 更新（2019/11/18）",
+    "pdfSha256": "5f02ef9fcd459f093fcd879fd2327e27c33f258fccbf68f97d7f958b6db46bbf",
+    "records": 256,
+    "playable": 256,
+    "zh": 128,
+    "en": 128,
+    "figureOccurrences": 0,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [],
+    "questionsSha256": "ad8c0ddf107044a78acc7db0eb99461ab37a0009e6d786f59659c3bfc97869a9"
+  },
+  "A27": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=14402",
+    "fileVersion": "107/02/08 更新（2018/02/08）",
+    "pdfSha256": "9d0b50bbf473c6677733aee8533efed55e71854c2c71ba74e5bdbfd1f2a4419e",
+    "records": 150,
+    "playable": 150,
+    "zh": 75,
+    "en": 75,
+    "figureOccurrences": 0,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [],
+    "questionsSha256": "17c2a46e4d30cf8828cd767045efe1e1401b9077b18669b1863b8288d9548534"
+  },
+  "B01": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=20823",
+    "fileVersion": "109/01/13 更新（2020/01/13）",
+    "pdfSha256": "efa7dabcfde98b2bbb682192448d40f7513c5e6acc22e289016c6f0fac6337b9",
+    "records": 588,
+    "playable": 587,
+    "zh": 294,
+    "en": 293,
+    "figureOccurrences": 0,
+    "excluded": 1,
+    "pending": [
+      {
+        "seq": 506,
+        "pdfQuestion": 212,
+        "orig": "0068367",
+        "group": 0,
+        "difficulty": "易",
+        "lang": "en",
+        "subject": "民用航空法及相關法規(航務)",
+        "phak": null,
+        "stem": "A civil air transport enterprise permit, Air Operator Certificate or air route certificate is _____, and the holder of the permit/certificate must not consider him- or herself as enjoying exclusive rights to operate the various services as prescribed in the permit or certificate thereof.",
+        "options": [
+          "transferable",
+          "not transferable",
+          "transferable after approval",
+          ""
+        ],
+        "answer": 1,
+        "sourcePage": 64,
+        "revision": "20191121",
+        "figures": [],
+        "scorable": false,
+        "sourceNote": "官方 PDF 的 D 選項留白，待核對；本題不開放計分。"
+      }
+    ],
+    "normalizations": [
+      {
+        "orig": "0068212",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      },
+      {
+        "orig": "0068213",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      },
+      {
+        "orig": "0068256",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      }
+    ],
+    "questionsSha256": "cd58b569340e63aead9512ec4af172b9020bb693bd304f1ba051461ff1a76a64",
+    "sharedWith": "PPL-B01"
+  },
+  "B09": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=20499",
+    "fileVersion": "108/12/05 更新（2019/12/05）",
+    "pdfSha256": "e90e12a72e59dc2c41699007a382aeb27d5032ed62345ed66f5e030d999dfe90",
+    "records": 410,
+    "playable": 410,
+    "zh": 205,
+    "en": 205,
+    "figureOccurrences": 0,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [],
+    "questionsSha256": "64b715859a76587b32bf13840c9a98b8ae87ebf913dc44d5c16b4cde348b8934",
+    "sharedWith": "PPL-B09"
+  }
+}
