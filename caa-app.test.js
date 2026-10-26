@@ -1,3 +1,4 @@
+import {caaAtplDocuments} from './caa-atpl.js';
 import {caaCplDocuments} from './caa-cpl.js';
 import * as caaStore from './caa-state.js';
 import test from 'node:test';
@@ -8,7 +9,7 @@ import {tracks,sources,questions,pool,score} from './data.js';
 import {caaA13,caaA14,caaDocuments} from './caa.js';
 import * as caaUI from './caa-ui.js';
 
-const caaExamDocuments=[...caaDocuments,...caaCplDocuments];
+const caaExamDocuments=[...caaDocuments,...caaCplDocuments,...caaAtplDocuments];
 const A14_KEY='flightdeck.caa.a14.v2';
 const A13_KEY='flightdeck.caa.a13.v2';
 
@@ -451,4 +452,55 @@ test('CPL B01 incomplete official item is visible but cannot enter practice',()=
  assert.match(env.element('#caa-results').innerHTML,/data-caa-question="CPL-B01:0068367:en" disabled/);
  env.events.click({target:{closest:()=>({dataset:{caaQuestion:'CPL-B01:0068367:en'}})}});
  assert.equal(vm.runInContext('session',env.context),null);
+});
+
+for(const doc of caaAtplDocuments)test(`${doc.key} routes, source, history and clear stay inside ATPL`,()=>{
+ const q=doc.questions[0],key=doc.key,id=caaStore.questionId(key,q);
+ const old=JSON.stringify({attempts:[{id:'B01:0068115:zh',correct:false}],wrong:['B01:0068115:zh']});
+ const env=environment('#caa/ATPL/'+doc.subject+'/questions',{[caaStore.storageKey('B01')]:old});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ let html=env.element('#app').innerHTML;
+ assert.ok(html.includes(doc.fileUrl.replaceAll('&','&amp;')));assert.ok(html.includes(q.orig));
+ assert.ok(html.includes('data-leave-to="caa/ATPL/'+doc.subject+'"'));assert.ok(html.includes('data-leave-to="caa/ATPL"'));
+ assert.ok(!html.includes('data-leave-to="caa/PPL'));
+ env.events.click({target:{closest:()=>({dataset:{answer:String((q.answer+1)%q.options.length)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(env.storage.get(caaStore.storageKey(key))).wrong,[id]);
+ const review=environment('#review',Object.fromEntries(env.storage));
+ review.events.click({target:{closest:()=>({dataset:{action:'caa-review-all',caaCode:key}})}});
+ assert.ok(review.element('#app').innerHTML.includes(q.orig));
+ review.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))).wrong,[]);
+ review.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))),{attempts:[],wrong:[]});
+ assert.equal(review.storage.get(caaStore.storageKey('B01')),old);
+ review.events.click({target:{closest:()=>({dataset:{leaveTo:'caa/ATPL/'+doc.subject}})}});
+ assert.equal(review.context.location.hash,'#caa/ATPL/'+doc.subject);
+});
+
+test('shared B01 clear in ATPL preserves both PPL and CPL records',()=>{
+ const ppl=JSON.stringify({attempts:[{id:'B01:0068115:zh',correct:false}],wrong:['B01:0068115:zh']});
+ const cpl=JSON.stringify({attempts:[{id:'CPL-B01:0068115:zh',correct:false}],wrong:['CPL-B01:0068115:zh']});
+ const atpl=JSON.stringify({attempts:[{id:'ATPL-B01:0068115:zh',correct:false},{id:'ATPL-B01:0068115:en',correct:false}],wrong:['ATPL-B01:0068115:zh','ATPL-B01:0068115:en']});
+ const env=environment('#caa/ATPL/B01/questions',{'flightdeck.caa.b01.v2':ppl,'flightdeck.caa.cpl-b01.v2':cpl,'flightdeck.caa.atpl-b01.v2':atpl});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'ATPL-B01:0068115:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.equal(env.storage.get('flightdeck.caa.b01.v2'),ppl);assert.equal(env.storage.get('flightdeck.caa.cpl-b01.v2'),cpl);
+ assert.deepEqual(JSON.parse(env.storage.get('flightdeck.caa.atpl-b01.v2')).wrong,['ATPL-B01:0068115:en']);
+});
+test('ATPL incomplete B01 remains visible and excluded; IR is still unavailable',()=>{
+ const env=environment('#caa/ATPL/B01/questions');vm.runInContext("caaLang='en';drawCaa();",env.context);
+ assert.match(env.element('#caa-results').innerHTML,/data-caa-question="ATPL-B01:0068367:en" disabled/);
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'ATPL-B01:0068367:en'}})}});
+ assert.equal(vm.runInContext('session',env.context),null);
+ assert.match(environment('#caa/IR/A03').element('#app').innerHTML,/這個科目尚未提供/);
+ assert.match(environment('#caa/ATPL/A21').element('#app').innerHTML,/這個科目尚未提供/);
+});
+
+test('unknown exam names do not invoke deferred loaders',()=>{
+ assert.match(environment('#caa/toString').element('#app').innerHTML,/這個科目尚未提供/);
+ assert.match(environment('#caa/constructor').element('#app').innerHTML,/這個科目尚未提供/);
 });

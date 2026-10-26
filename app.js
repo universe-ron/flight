@@ -13,14 +13,23 @@ try{const x=JSON.parse(localStorage.getItem('flightdeck.v1'));if(x&&tracks.some(
 let studyState=null,studyStorageOK=true;
 function restoreStudyState(){if(studyState)return studyState;studyState=study.cleanStudyState(null);try{studyState=study.cleanStudyState(JSON.parse(localStorage.getItem('flightdeck.study.v1')));}catch{studyStorageOK=false;}return studyState;}
 const caaDocById=Object.fromEntries(caaDocuments.map(doc=>[doc.key||doc.subject,doc]));
-let caaCplPromise;
-function hasCplHistory(){try{return caaUI.exams.find(e=>e.id==='CPL').subjects.some(code=>localStorage.getItem(caaStore.storageKey('CPL-'+code))!==null);}catch{return false;}}
-function ensureCpl(){
- if(caaDocById['CPL-A21'])return Promise.resolve();
- if(!caaCplPromise)caaCplPromise=import('./caa-cpl.js').then(({caaCplDocuments})=>{for(const doc of caaCplDocuments)caaDocById[doc.key]=doc;caaUI.registerDocs(...Object.values(caaDocById));updateReviewBadge();}).catch(error=>{caaCplPromise=null;throw error;});
- return caaCplPromise;
+const caaLazyExams={
+ CPL:{first:'CPL-A21',load:()=>import('./caa-cpl.js').then(m=>m.caaCplDocuments)},
+ ATPL:{first:'ATPL-A41',load:()=>import('./caa-atpl.js').then(m=>m.caaAtplDocuments)}
+};
+const caaExamPromises={};
+function hasCaaHistory(license){try{return caaUI.exams.find(e=>e.id===license).subjects.some(code=>localStorage.getItem(caaStore.storageKey(caaUI.keyFor(license,code)))!==null);}catch{return false;}}
+function needsCaaExam(license){return Object.hasOwn(caaLazyExams,license)&&!caaDocById[caaLazyExams[license].first];}
+function ensureCaaExam(license){
+ if(!needsCaaExam(license))return Promise.resolve();
+ if(!caaExamPromises[license])caaExamPromises[license]=caaLazyExams[license].load().then(docs=>{for(const doc of docs)caaDocById[doc.key]=doc;caaUI.registerDocs(...Object.values(caaDocById));updateReviewBadge();}).catch(error=>{delete caaExamPromises[license];throw error;});
+ return caaExamPromises[license];
 }
-function loadCplView(render){const hash=location.hash;app.innerHTML='<p role="status">正在載入 CPL 題庫…</p>';ensureCpl().then(()=>{if(location.hash===hash)render();}).catch(()=>{if(location.hash===hash)app.innerHTML='<p role="alert">CPL 題庫載入失敗，請重新整理再試一次。已保存的作答紀錄會保留。</p>';});}
+function loadCaaView(licenses,render){
+ const list=Array.isArray(licenses)?licenses:[licenses],hash=location.hash,label=list.join('／');
+ app.innerHTML=`<p role="status">正在載入 ${label} 題庫…</p>`;
+ Promise.all(list.map(ensureCaaExam)).then(()=>{if(location.hash===hash)render();}).catch(()=>{if(location.hash===hash)app.innerHTML=`<p role="alert">${label} 題庫載入失敗，請重新整理再試一次。已保存的作答紀錄會保留。</p>`;});
+}
 const caaDoc=code=>caaDocById[code]||null;
 const caaQ=(code,id)=>{const d=caaDoc(code);return d?d.questions.find(q=>q.seq===id):null;};
 function caaDocState(code){
@@ -31,7 +40,7 @@ let caaState={attempts:[],wrong:[]},caaActiveCode='A14',caaStorageOK=true;
 function caaRestore(code){caaActiveCode=code||caaActiveCode;caaStorageOK=true;caaState=caaDocState(caaActiveCode);updateReviewBadge();return caaState;}
 function caaNotice(){return caaStorageOK?'':'<p class="storage-warning" role="status">瀏覽器無法儲存 CAA 練習紀錄；本次仍可使用，關閉頁面後可能遺失。</p>';}
 function caaWrongTotal(){return Object.keys(caaDocById).reduce((n,c)=>caaDocState(c).wrong.length,0);}
-function updateReviewBadge(){if(hasCplHistory()&&!caaDocById['CPL-A21'])ensureCpl().catch(()=>{});const badge=$('#wrong-badge');if(badge)badge.textContent=saved.wrong.length+caaWrongTotal();}
+function updateReviewBadge(){for(const license of Object.keys(caaLazyExams))if(hasCaaHistory(license)&&needsCaaExam(license))ensureCaaExam(license).catch(()=>{});const badge=$('#wrong-badge');if(badge)badge.textContent=saved.wrong.length+caaWrongTotal();}
 function caaPersist(){caaStorageOK=caaStore.saveState(caaDoc(caaActiveCode),localStorage,caaState);updateReviewBadge();}
 function caaRecord(q,answer){const id=q.id;caaState.attempts.push({id,correct:answer===q.answer,date:new Date().toISOString()});caaState.wrong=caaState.wrong.filter(x=>x!==id);if(answer!==q.answer)caaState.wrong.push(id);caaPersist();}
 function caaProgress(code){const d=caaDoc(code);if(!d)return{done:0,total:0,correct:0};const st=caaDocState(code);const seen=new Map();st.attempts.forEach(a=>seen.set(a.id,a.correct));return{done:seen.size,total:d.questions.length,correct:[...seen.values()].filter(Boolean).length};}
@@ -55,7 +64,7 @@ function examPage(){app.innerHTML=heading('給自己一次起飛前的檢核。'
 let caaSubject='all',caaLang='zh',caaQuery='';
 try{const pref=JSON.parse(localStorage.getItem('flightdeck.caa.preferences.v1'));if(['zh','en','all'].includes(pref?.lang))caaLang=pref.lang;}catch{}
 function caaPage(){
- if(location.hash.startsWith('#caa/CPL')&&!caaDocById['CPL-A21']){loadCplView(caaPage);return;}
+ const license=location.hash.split('/')[1];if(needsCaaExam(license)){loadCaaView(license,caaPage);return;}
  const parts=location.hash.slice(1).split('/'),exam=caaUI.exams.find(e=>e.id===parts[1]),key=exam&&caaUI.keyFor(exam.id,parts[2]);
  if(parts.length===1)app.innerHTML=caaUI.catalog();
  else if(exam&&parts.length===2){const st={};for(const c of Object.keys(caaDocById))st[c]=caaRestore(c);app.innerHTML=caaUI.subjects(exam,st);}
@@ -70,7 +79,7 @@ function caaBatch(topic='all',wrongOnly=false){
  const queue=wrongOnly?selected:(selected.length?selected:items);start(caaItems(caaActiveCode,queue.slice(0,10).map(q=>q.seq)));
 }
 function reviewPage(){
- if(hasCplHistory()&&!caaDocById['CPL-A21']){loadCplView(reviewPage);return;}
+ const missing=Object.keys(caaLazyExams).filter(license=>hasCaaHistory(license)&&needsCaaExam(license));if(missing.length){loadCaaView(missing,reviewPage);return;}
  const docs=Object.keys(caaDocById).map(code=>{const st=caaDocState(code);return{code,st};});
  const n=docs.reduce((x,d)=>x+d.st.wrong.length,0);
  const cards=docs.map(({code,st})=>{const zh=st.wrong.filter(id=>caaStore.resolveQuestion(caaDoc(code),id)?.lang==='zh').length,en=st.wrong.filter(id=>caaStore.resolveQuestion(caaDoc(code),id)?.lang==='en').length;return `<article class="exam-card"><span class="tag">CAA · ${caaDoc(code).license||'PPL'} ${caaDoc(code).subject}</span><h2>${caaDoc(code).subjectName}</h2><p>${st.wrong.length} 題待複習（中文 ${zh} · 英文 ${en}）</p><button class="button" data-action="caa-review-all" data-caa-code="${code}" ${st.wrong.length?'':'disabled'}>複習錯題（${st.wrong.length}）→</button><p><a href="${caaUI.subjectBase(code)}">返回 ${caaDoc(code).subject} 科目進度 →</a></p></article>`;}).join('');
