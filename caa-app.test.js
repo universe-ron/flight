@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 import {tracks,sources,questions,pool,score} from './data.js';
-import {caaA13,caaA14} from './caa.js';
+import {caaA13,caaA14,caaDocuments} from './caa.js';
 import * as caaUI from './caa-ui.js';
 
 const A14_KEY='flightdeck.caa.a14.v2';
@@ -14,7 +14,7 @@ function environment(hash,storage={}){
  const elements=new Map(),events={};
  const element=id=>{if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',value:'',validity:{valid:true},addEventListener:(type,fn)=>{const key='app:'+type,previous=events[key];events[key]=event=>{previous?.(event);fn(event);};},insertAdjacentHTML(){}});return elements.get(id);};
  const stored=new Map([['flightdeck.v1',null],['flightdeck.study.v1',null],['flightdeck.caa.v1',null],[A13_KEY,null],[A14_KEY,null],...Object.entries(storage)]);
- const context={studyDocuments:[],cleanStudyState:v=>({read:[],answers:{},notes:{}}),chapterProgress:()=>({read:false,answered:false,correct:false,complete:false}),lessons:[],annexes:[],tracks,sources,questions,pool,score,caaA13,caaA14,caaUI,caaStore,document:{querySelector:element,querySelectorAll:()=>[],addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};}},location:{hash},localStorage:{getItem:key=>stored.get(key)??null,setItem:(key,value)=>{stored.set(key,value);}},window:{addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};},scrollTo(){}},setInterval:()=>1,clearInterval(){},console};
+ const context={studyDocuments:[],cleanStudyState:v=>({read:[],answers:{},notes:{}}),chapterProgress:()=>({read:false,answered:false,correct:false,complete:false}),lessons:[],annexes:[],tracks,sources,questions,pool,score,caaA13,caaA14,caaDocuments,caaUI,caaStore,document:{querySelector:element,querySelectorAll:()=>[],addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};}},location:{hash},localStorage:{getItem:key=>stored.get(key)??null,setItem:(key,value)=>{stored.set(key,value);}},window:{addEventListener:(type,fn)=>{const previous=events[type];events[type]=event=>{previous?.(event);fn(event);};},scrollTo(){}},setInterval:()=>1,clearInterval(){},console};
  vm.createContext(context);
  vm.runInContext(readFileSync('app.js','utf8').replace(/^import .*;$/gm,''),context);
  return {context,element,events,storage:stored};
@@ -209,7 +209,7 @@ test('exam navigation separates goals, unavailable subjects and A13/A14 dashboar
  const ppl=environment('#caa/PPL');
  assert.match(ppl.element('#app').innerHTML,/#caa\/PPL\/A13/);
  assert.match(ppl.element('#app').innerHTML,/#caa\/PPL\/A14/);
- assert.equal((ppl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,7);
+ assert.equal((ppl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,0);
  const cpl=environment('#caa/CPL');
  assert.equal((cpl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,9);
  assert.doesNotMatch(cpl.element('#app').innerHTML,/href="#caa\/CPL\/A14/);
@@ -383,4 +383,37 @@ test('legacy mistakes stay removed after correction, clear and a fresh applicati
  assert.equal(vm.runInContext('caaDocState("A14").attempts.length',fresh.context),0);
  assert.equal(vm.runInContext('caaDocState("A14").wrong.length',fresh.context),0);
  assert.equal(fresh.storage.get('flightdeck.caa.v1'),legacy);
+});
+
+for(const doc of caaDocuments.filter(d=>!['A13','A14'].includes(d.subject)))test(`${doc.subject} supports source, answers, progress, review and isolated clear`,()=>{
+ const code=doc.subject,q=doc.questions[0],id=caaStore.questionId(code,q),key=caaStore.storageKey(code);
+ const old=JSON.stringify({attempts:[{id:'A14:0011087:zh',correct:false}],wrong:['A14:0011087:zh']});
+ const env=environment('#caa/PPL/'+code+'/questions',{[A14_KEY]:old});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ let html=env.element('#app').innerHTML;assert.ok(html.includes(q.orig));assert.ok(html.includes(doc.fileUrl.replaceAll('&','&amp;')));
+ if(q.figures.length)assert.ok(html.includes(q.figures[0].src));
+ env.events.click({target:{closest:()=>({dataset:{answer:String((q.answer+1)%q.options.length)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(env.storage.get(key)).wrong,[id]);
+ const review=environment('#review',Object.fromEntries(env.storage));
+ assert.ok(review.element('#app').innerHTML.includes('data-caa-code="'+code+'"'));
+ review.events.click({target:{closest:()=>({dataset:{action:'caa-review-all',caaCode:code}})}});
+ assert.ok(review.element('#app').innerHTML.includes(q.orig));
+ review.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(key)).wrong,[]);
+ review.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(key)),{attempts:[],wrong:[]});
+ assert.equal(review.storage.get(A14_KEY),old);
+});
+test('incomplete B01 English item is visible with official ID and cannot enter a practice queue',()=>{
+ const env=environment('#caa/PPL/B01/questions');
+ vm.runInContext("caaLang='en';drawCaa();",env.context);
+ const html=env.element('#caa-results').innerHTML;
+ assert.match(html,/data-caa-question="B01:0068367:en" disabled/);assert.match(html,/待核對，不計分/);
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'B01:0068367:en'}})}});
+ assert.equal(vm.runInContext('session',env.context),null);
+ vm.runInContext('caaBatch()',env.context);
+ assert.ok(vm.runInContext('session.items.every(q=>q.id!=="B01:0068367:en")',env.context));
 });

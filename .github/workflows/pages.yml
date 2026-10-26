@@ -26,12 +26,14 @@ jobs:
           node --check caa.js
           node --check caa-ui.js
           node --check caa-state.js
-          node --check caa-a13-questions.js
+          for file in caa-*-questions.js; do node --check "$file"; done
+          node --check caa-ppl.js
           npm test
       - name: Prepare public website files
         run: |
           mkdir -p _site
-          cp index.html style.css app.js data.js lessons.js study.js study-core.js phak.js phak-summary.js phak-ch*.js caa.js caa-ui.js caa-state.js caa-a13-questions.js _site/
+          cp index.html style.css app.js data.js lessons.js study.js study-core.js phak.js phak-summary.js phak-ch*.js caa.js caa-ui.js caa-state.js caa-*-questions.js caa-ppl.js _site/
+          cp -R assets _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:

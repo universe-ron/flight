@@ -1,3 +1,4 @@
+import {caaRemaining} from './caa-ppl.js';
 // CAA PPL 官方題目範例匯入（A13 飛航管理程序、A14 飛機飛航原理）
 // 來源：交通部民用航空局 學科檢定題目範例
 // 官方答案與本站解析分開；無法確認的標記為待核對，不計入計分。
@@ -252,3 +253,5 @@ export const caaA14={
     {seq:222,orig:"0011197",group:0,difficulty:"中",lang:"en",subject:"飛行原理",phak:"phak25c-5",stem:"What true airspeed and angle of attack should be used to generate the same amount of lift as altitude is increased?",options:["The same true airspeed and angle of attack.", "A higher true airspeed for any given angle of attack.", "A lower true airspeed and higher angle of attack."],answer:1}
   ]
 };
+
+export const caaDocuments=[caaA13,caaA14,...caaRemaining];
