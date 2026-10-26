@@ -1,3 +1,4 @@
+import {caaIrDocuments} from './caa-ir.js';
 import {caaAtplDocuments} from './caa-atpl.js';
 import {caaCplDocuments} from './caa-cpl.js';
 import * as caaStore from './caa-state.js';
@@ -9,7 +10,7 @@ import {tracks,sources,questions,pool,score} from './data.js';
 import {caaA13,caaA14,caaDocuments} from './caa.js';
 import * as caaUI from './caa-ui.js';
 
-const caaExamDocuments=[...caaDocuments,...caaCplDocuments,...caaAtplDocuments];
+const caaExamDocuments=[...caaDocuments,...caaCplDocuments,...caaAtplDocuments,...caaIrDocuments];
 const A14_KEY='flightdeck.caa.a14.v2';
 const A13_KEY='flightdeck.caa.a13.v2';
 
@@ -491,16 +492,76 @@ test('shared B01 clear in ATPL preserves both PPL and CPL records',()=>{
  assert.equal(env.storage.get('flightdeck.caa.b01.v2'),ppl);assert.equal(env.storage.get('flightdeck.caa.cpl-b01.v2'),cpl);
  assert.deepEqual(JSON.parse(env.storage.get('flightdeck.caa.atpl-b01.v2')).wrong,['ATPL-B01:0068115:en']);
 });
-test('ATPL incomplete B01 remains visible and excluded; IR is still unavailable',()=>{
+test('ATPL incomplete B01 remains excluded and IR A03 is available',()=>{
  const env=environment('#caa/ATPL/B01/questions');vm.runInContext("caaLang='en';drawCaa();",env.context);
  assert.match(env.element('#caa-results').innerHTML,/data-caa-question="ATPL-B01:0068367:en" disabled/);
  env.events.click({target:{closest:()=>({dataset:{caaQuestion:'ATPL-B01:0068367:en'}})}});
  assert.equal(vm.runInContext('session',env.context),null);
- assert.match(environment('#caa/IR/A03').element('#app').innerHTML,/這個科目尚未提供/);
+ assert.match(environment('#caa/IR/A03').element('#app').innerHTML,/A03 · 儀器飛航/);
  assert.match(environment('#caa/ATPL/A21').element('#app').innerHTML,/這個科目尚未提供/);
 });
 
 test('unknown exam names do not invoke deferred loaders',()=>{
  assert.match(environment('#caa/toString').element('#app').innerHTML,/這個科目尚未提供/);
  assert.match(environment('#caa/constructor').element('#app').innerHTML,/這個科目尚未提供/);
+});
+
+for(const doc of caaIrDocuments)test(`${doc.key} routes, source, history and clear stay inside IR`,()=>{
+ const q=doc.questions[0],key=doc.key,id=caaStore.questionId(key,q);
+ const old=JSON.stringify({attempts:[{id:'B01:0068115:zh',correct:false}],wrong:['B01:0068115:zh']});
+ const env=environment('#caa/IR/'+doc.subject+'/questions',{[caaStore.storageKey('B01')]:old});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ let html=env.element('#app').innerHTML;
+ assert.ok(html.includes(doc.fileUrl.replaceAll('&','&amp;')));assert.ok(html.includes(q.orig));
+ assert.ok(html.includes('data-leave-to="caa/IR/'+doc.subject+'"'));assert.ok(html.includes('data-leave-to="caa/IR"'));
+ assert.ok(!html.includes('data-leave-to="caa/PPL'));
+ env.events.click({target:{closest:()=>({dataset:{answer:String((q.answer+1)%q.options.length)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(env.storage.get(caaStore.storageKey(key))).wrong,[id]);
+ const review=environment('#review',Object.fromEntries(env.storage));
+ review.events.click({target:{closest:()=>({dataset:{action:'caa-review-all',caaCode:key}})}});
+ assert.ok(review.element('#app').innerHTML.includes(q.orig));
+ review.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))).wrong,[]);
+ review.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))),{attempts:[],wrong:[]});
+ assert.equal(review.storage.get(caaStore.storageKey('B01')),old);
+ review.events.click({target:{closest:()=>({dataset:{leaveTo:'caa/IR/'+doc.subject}})}});
+ assert.equal(review.context.location.hash,'#caa/IR/'+doc.subject);
+});
+
+
+test('IR two-choice questions support answer confirmation, source and persistent progress',()=>{
+ const doc=caaIrDocuments[0];
+ for(const q of doc.questions.filter(q=>q.options.length===2)){
+  const env=environment('#caa/IR/A03/questions'),id=caaStore.questionId(doc.key,q);
+  env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+  let html=env.element('#app').innerHTML;assert.equal((html.match(/data-answer="\d"/g)||[]).length,2);
+  assert.ok(html.includes(q.orig));assert.ok(html.includes(q.figures[0].src));
+  env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+  const stored=JSON.parse(env.storage.get('flightdeck.caa.ir-a03.v2'));assert.equal(stored.attempts[0].id,id);assert.equal(stored.attempts[0].correct,true);
+ }
+});
+test('IR clear is scoped to language and retains PPL, CPL and ATPL histories',()=>{
+ const previous={};for(const key of ['flightdeck.caa.b01.v2','flightdeck.caa.cpl-b01.v2','flightdeck.caa.atpl-b01.v2'])previous[key]=JSON.stringify({attempts:[],wrong:[]});
+ const history=JSON.stringify({attempts:[{id:'IR-A03:0010766:zh',correct:false},{id:'IR-A03:0010766:en',correct:false}],wrong:['IR-A03:0010766:zh','IR-A03:0010766:en']});
+ const env=environment('#caa/IR/A03/questions',{...previous,'flightdeck.caa.ir-a03.v2':history});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'IR-A03:0010766:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.deepEqual(JSON.parse(env.storage.get('flightdeck.caa.ir-a03.v2')).wrong,['IR-A03:0010766:en']);
+ for(const [key,value] of Object.entries(previous))assert.equal(env.storage.get(key),value);
+});
+
+test('IR four-choice items retain D and can record an official D answer',()=>{
+ const doc=caaIrDocuments[0],q=doc.questions.find(q=>q.options.length===4&&q.answer===3),id=caaStore.questionId(doc.key,q);
+ assert.ok(q);const env=environment('#caa/IR/A03/questions');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ assert.equal((env.element('#app').innerHTML.match(/data-answer="\d"/g)||[]).length,4);
+ env.events.click({target:{closest:()=>({dataset:{answer:'3'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.equal(JSON.parse(env.storage.get('flightdeck.caa.ir-a03.v2')).attempts[0].correct,true);
 });

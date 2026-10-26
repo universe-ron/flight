@@ -30,11 +30,12 @@ jobs:
           node --check caa-ppl.js
           node --check caa-cpl.js
           node --check caa-atpl.js
+          node --check caa-ir.js
           npm test
       - name: Prepare public website files
         run: |
           mkdir -p _site
-          cp index.html style.css app.js data.js lessons.js study.js study-core.js phak.js phak-summary.js phak-ch*.js caa.js caa-ui.js caa-state.js caa-*-questions.js caa-ppl.js caa-cpl.js caa-atpl.js _site/
+          cp index.html style.css app.js data.js lessons.js study.js study-core.js phak.js phak-summary.js phak-ch*.js caa.js caa-ui.js caa-state.js caa-*-questions.js caa-ppl.js caa-cpl.js caa-atpl.js caa-ir.js _site/
           cp -R assets _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4

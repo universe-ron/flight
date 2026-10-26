@@ -1,0 +1,39 @@
+{
+  "A03": {
+    "fileUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=27203",
+    "fileVersion": "110/12/27 更新（2021/12/27）",
+    "figureUrl": "https://www.caa.gov.tw/FileAtt.ashx?lang=1&id=27204",
+    "figureVersion": "110/12/27 更新（2021/12/27）",
+    "pdfSha256": "20e3cfda7c804304ca2aad5f5a4e0a8e59843488f2185db73b1f8bc6febe992d",
+    "records": 558,
+    "playable": 558,
+    "zh": 279,
+    "en": 279,
+    "figureOccurrences": 162,
+    "excluded": 0,
+    "pending": [],
+    "normalizations": [
+      {
+        "orig": "0010786",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      },
+      {
+        "orig": "0010835",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      },
+      {
+        "orig": "0010912",
+        "lang": "zh",
+        "note": "官方 PDF 的選項標記缺右括號；本站僅補齊選項分隔，題文與官方答案不變。"
+      }
+    ],
+    "optionCounts": {
+      "3": 532,
+      "4": 22,
+      "2": 4
+    },
+    "questionsSha256": "39e047d389a2f0a9393e65e6000ce982183f35ab424a618bb0e3409169f7c45f"
+  }
+}
