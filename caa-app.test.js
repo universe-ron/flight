@@ -212,6 +212,7 @@ test('exam navigation separates goals, unavailable subjects and A13/A14 dashboar
  assert.equal((ppl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,0);
  const cpl=environment('#caa/CPL');
  assert.equal((cpl.element('#app').innerHTML.match(/disabled>尚未提供/g)||[]).length,9);
+ assert.doesNotMatch(cpl.element('#app').innerHTML,/FileAtt\.ashx/);
  assert.doesNotMatch(cpl.element('#app').innerHTML,/href="#caa\/CPL\/A14/);
  const a14subj=environment('#caa/PPL/A14');
  assert.match(a14subj.element('#app').innerHTML,/data-action="caa-continue"/);
