@@ -1,3 +1,4 @@
+import {caaMplDocuments} from './caa-mpl.js';
 import {caaIrDocuments} from './caa-ir.js';
 import {caaAtplDocuments} from './caa-atpl.js';
 import {caaCplDocuments} from './caa-cpl.js';
@@ -10,7 +11,7 @@ import {tracks,sources,questions,pool,score} from './data.js';
 import {caaA13,caaA14,caaDocuments} from './caa.js';
 import * as caaUI from './caa-ui.js';
 
-const caaExamDocuments=[...caaDocuments,...caaCplDocuments,...caaAtplDocuments,...caaIrDocuments];
+const caaExamDocuments=[...caaDocuments,...caaCplDocuments,...caaAtplDocuments,...caaIrDocuments,...caaMplDocuments];
 const A14_KEY='flightdeck.caa.a14.v2';
 const A13_KEY='flightdeck.caa.a13.v2';
 
@@ -564,4 +565,62 @@ test('IR four-choice items retain D and can record an official D answer',()=>{
  env.events.click({target:{closest:()=>({dataset:{answer:'3'}})}});
  env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
  assert.equal(JSON.parse(env.storage.get('flightdeck.caa.ir-a03.v2')).attempts[0].correct,true);
+});
+
+for(const doc of caaMplDocuments)test(`${doc.key} routes, source, history and clear stay inside MPL`,()=>{
+ const q=doc.questions[0],key=doc.key,id=caaStore.questionId(key,q);
+ const old=JSON.stringify({attempts:[{id:'B01:0068115:zh',correct:false}],wrong:['B01:0068115:zh']});
+ const env=environment('#caa/MPL/'+doc.subject+'/questions',{[caaStore.storageKey('B01')]:old});
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ let html=env.element('#app').innerHTML;
+ assert.ok(html.includes(doc.fileUrl.replaceAll('&','&amp;')));assert.ok(html.includes(q.orig));
+ assert.ok(html.includes('data-leave-to="caa/MPL/'+doc.subject+'"'));assert.ok(html.includes('data-leave-to="caa/MPL"'));
+ assert.ok(!html.includes('data-leave-to="caa/PPL'));
+ env.events.click({target:{closest:()=>({dataset:{answer:String((q.answer+1)%q.options.length)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(env.storage.get(caaStore.storageKey(key))).wrong,[id]);
+ const review=environment('#review',Object.fromEntries(env.storage));
+ review.events.click({target:{closest:()=>({dataset:{action:'caa-review-all',caaCode:key}})}});
+ assert.ok(review.element('#app').innerHTML.includes(q.orig));
+ review.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))).wrong,[]);
+ review.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ review.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ assert.deepEqual(JSON.parse(review.storage.get(caaStore.storageKey(key))),{attempts:[],wrong:[]});
+ assert.equal(review.storage.get(caaStore.storageKey('B01')),old);
+ review.events.click({target:{closest:()=>({dataset:{leaveTo:'caa/MPL/'+doc.subject}})}});
+ assert.equal(review.context.location.hash,'#caa/MPL/'+doc.subject);
+});
+
+test('MPL catalog opens ten official subjects and rejects subjects from other licenses',()=>{
+ const env=environment('#caa/MPL');const html=env.element('#app').innerHTML;
+ assert.equal((html.match(/class="exam-card available"/g)||[]).length,10);
+ for(const code of ['B01','A03','A31','A32','A33','A34','A35','A36','A37','B09'])assert.ok(html.includes('#caa/MPL/'+code));
+ assert.match(environment('#caa/MPL/A21').element('#app').innerHTML,/這個科目尚未提供/);
+});
+test('MPL clear retains other licenses, subjects and the other language',()=>{
+ const stored={};for(const code of ['B01','CPL-B01','ATPL-B01','IR-A03','MPL-A03']){const orig=code.endsWith('A03')?'0010766':'0068115';const id=code+':'+orig+':zh';stored[caaStore.storageKey(code)]=JSON.stringify({attempts:[{id,correct:false}],wrong:[id]});}
+ stored['flightdeck.caa.mpl-b01.v2']=JSON.stringify({attempts:[{id:'MPL-B01:0068115:zh',correct:false},{id:'MPL-B01:0068115:en',correct:false}],wrong:['MPL-B01:0068115:zh','MPL-B01:0068115:en']});
+ const env=environment('#caa/MPL/B01/questions',stored);
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'MPL-B01:0068115:zh'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'clear-topic'}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'confirm-clear-topic'}})}});
+ for(const [key,value] of Object.entries(stored))if(key!=='flightdeck.caa.mpl-b01.v2')assert.equal(env.storage.get(key),value);
+ assert.deepEqual(JSON.parse(env.storage.get('flightdeck.caa.mpl-b01.v2')).wrong,['MPL-B01:0068115:en']);
+});
+test('MPL A03 keeps its official two-choice questions and source distinct from IR',()=>{
+ const d=caaMplDocuments.find(d=>d.subject==='A03'),q=d.questions.find(q=>q.options.length===2),id=caaStore.questionId(d.key,q),env=environment('#caa/MPL/A03/questions');
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:id}})}});
+ assert.equal((env.element('#app').innerHTML.match(/data-answer="\d"/g)||[]).length,2);
+ assert.ok(env.element('#app').innerHTML.includes('id=27205'));
+ env.events.click({target:{closest:()=>({dataset:{answer:String(q.answer)}})}});
+ env.events.click({target:{closest:()=>({dataset:{action:'check'}})}});
+ assert.equal(JSON.parse(env.storage.get('flightdeck.caa.mpl-a03.v2')).attempts[0].correct,true);
+});
+test('MPL incomplete B01 item stays visible but cannot enter a practice queue',()=>{
+ const env=environment('#caa/MPL/B01/questions');vm.runInContext("caaLang='en';drawCaa();",env.context);
+ assert.match(env.element('#caa-results').innerHTML,/data-caa-question="MPL-B01:0068367:en" disabled/);
+ env.events.click({target:{closest:()=>({dataset:{caaQuestion:'MPL-B01:0068367:en'}})}});
+ assert.equal(vm.runInContext('session',env.context),null);
 });

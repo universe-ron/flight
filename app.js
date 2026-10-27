@@ -16,7 +16,8 @@ const caaDocById=Object.fromEntries(caaDocuments.map(doc=>[doc.key||doc.subject,
 const caaLazyExams={
  CPL:{first:'CPL-A21',load:()=>import('./caa-cpl.js').then(m=>m.caaCplDocuments)},
  ATPL:{first:'ATPL-A41',load:()=>import('./caa-atpl.js').then(m=>m.caaAtplDocuments)},
- IR:{first:'IR-A03',load:()=>import('./caa-ir.js').then(m=>m.caaIrDocuments)}
+ IR:{first:'IR-A03',load:()=>import('./caa-ir.js').then(m=>m.caaIrDocuments)},
+ MPL:{first:'MPL-A31',load:()=>import('./caa-mpl.js').then(m=>m.caaMplDocuments)}
 };
 const caaExamPromises={};
 function hasCaaHistory(license){try{return caaUI.exams.find(e=>e.id===license).subjects.some(code=>localStorage.getItem(caaStore.storageKey(caaUI.keyFor(license,code)))!==null);}catch{return false;}}
